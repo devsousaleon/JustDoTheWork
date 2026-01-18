@@ -40,5 +40,35 @@ namespace JustDoTheWork.Sistema.Forms
             else
                 CarregaPanel(new HomeUserControl());
         }
+
+        private void RegisterPage_Click(object sender, EventArgs e)
+        {
+            var control = panelPrincipal.Controls.OfType<RegisterUserControl>().FirstOrDefault();
+
+            if (control != null)
+                return;
+            else
+                CarregaPanel(new RegisterUserControl());
+        }
+
+        private void HistoricPage_Click(object sender, EventArgs e)
+        {
+            var control = panelPrincipal.Controls.OfType<HistoricUserControl>().FirstOrDefault();
+
+            if (control != null)
+                return;
+            else
+                CarregaPanel(new HistoricUserControl());
+        }
+
+        private void ReportPage_Click(object sender, EventArgs e)
+        {
+            var control = panelPrincipal.Controls.OfType<ReportUserControl>().FirstOrDefault();
+
+            if (control != null)
+                return;
+            else
+                CarregaPanel(new ReportUserControl());
+        }
     }
 }

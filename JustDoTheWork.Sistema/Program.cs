@@ -1,11 +1,7 @@
-﻿using DevExpress.LookAndFeel;
-using DevExpress.Skins;
-using DevExpress.UserSkins;
-using JustDoTheWork.Sistema.Forms;
+﻿using JustDoTheWork.Sistema.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+
 
 namespace JustDoTheWork.Sistema
 {
@@ -18,7 +14,8 @@ namespace JustDoTheWork.Sistema
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(false);           
+
             Application.Run(new FormPrincipal());
         }
     }

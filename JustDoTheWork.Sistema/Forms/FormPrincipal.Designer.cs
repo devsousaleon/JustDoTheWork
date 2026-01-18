@@ -76,6 +76,7 @@
             this.RegisterPage.Name = "RegisterPage";
             this.RegisterPage.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.RegisterPage.Text = "Cadastro";
+            this.RegisterPage.Click += new System.EventHandler(this.RegisterPage_Click);
             // 
             // HistoricPage
             // 
@@ -83,6 +84,7 @@
             this.HistoricPage.Name = "HistoricPage";
             this.HistoricPage.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.HistoricPage.Text = "Histórico";
+            this.HistoricPage.Click += new System.EventHandler(this.HistoricPage_Click);
             // 
             // ReportPage
             // 
@@ -90,6 +92,7 @@
             this.ReportPage.Name = "ReportPage";
             this.ReportPage.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ReportPage.Text = "Relatórios";
+            this.ReportPage.Click += new System.EventHandler(this.ReportPage_Click);
             // 
             // panelPrincipal
             // 
@@ -110,6 +113,7 @@
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.ControlMenuBar);
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormPrincipal.IconOptions.LargeImage")));
+            this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";

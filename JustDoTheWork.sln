@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.Sistema", "JustDoTheWork.Sistema\JustDoTheWork.Sistema.csproj", "{45AC4F90-8C49-4D46-B1FB-02DA8D5B6149}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.DTO", "JustDoTheWork.DTO\JustDoTheWork.DTO.csproj", "{7FE86730-D370-48D7-B507-3450F1103400}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{45AC4F90-8C49-4D46-B1FB-02DA8D5B6149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45AC4F90-8C49-4D46-B1FB-02DA8D5B6149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45AC4F90-8C49-4D46-B1FB-02DA8D5B6149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FE86730-D370-48D7-B507-3450F1103400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE86730-D370-48D7-B507-3450F1103400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE86730-D370-48D7-B507-3450F1103400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE86730-D370-48D7-B507-3450F1103400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

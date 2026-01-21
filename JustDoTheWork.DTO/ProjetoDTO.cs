@@ -1,0 +1,8 @@
+﻿namespace JustDoTheWork.DTO
+{
+    public class ProjetoDTO
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+    }
+}

@@ -6,10 +6,10 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface IProjetoRepository
     {
-        void Inclusao(Projeto projeto);
-        void Edicao(Projeto projeto);
-        void ExclusaoPorId(int id);
+        string Inclusao(Projeto projeto);
+        string Edicao(Projeto projeto);
+        string ExclusaoPorId(int id);
         Projeto BuscarPorId(int id);
-        IEnumerable<Projeto> Pesquisar(ProjetoFiltro filtro);
+        IEnumerable<Projeto> Pesquisar(ProjetoFilter filtro);
     }
 }

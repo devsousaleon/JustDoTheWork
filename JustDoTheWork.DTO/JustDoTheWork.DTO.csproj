@@ -42,7 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtividadeDTO.cs" />
+    <Compile Include="ExecucaoDTO.cs" />
+    <Compile Include="ProjetoComboBox.cs" />
+    <Compile Include="ProjetoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JustDoTheWork.Entity\JustDoTheWork.Entity.csproj">
+      <Project>{83B564C3-4CC5-4094-908C-7299A2F772F2}</Project>
+      <Name>JustDoTheWork.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

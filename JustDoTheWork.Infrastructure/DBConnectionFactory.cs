@@ -4,18 +4,20 @@ using System.Data;
 
 namespace JustDoTheWork.Infrastructure
 {
-    public class DBConnection
+    public class DBConnectionFactory
     {
         private readonly string _connectionString;
 
-        public DBConnection(string connectionString)
+        public DBConnectionFactory(string connectionString)
         {
             _connectionString = connectionString;
         }
 
         public IDbConnection Create()
         {
-            return new NpgsqlConnection(_connectionString);
+            var conn = new NpgsqlConnection(_connectionString);
+            conn.Open();
+            return conn;
         }
     }
 }

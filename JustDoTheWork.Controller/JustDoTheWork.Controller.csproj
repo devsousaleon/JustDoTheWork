@@ -41,7 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtividadeController.cs" />
+    <Compile Include="ExecucaoController.cs" />
+    <Compile Include="ProjetoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JustDoTheWork.DTO\JustDoTheWork.DTO.csproj">
+      <Project>{7FE86730-D370-48D7-B507-3450F1103400}</Project>
+      <Name>JustDoTheWork.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JustDoTheWork.Entity\JustDoTheWork.Entity.csproj">
+      <Project>{83B564C3-4CC5-4094-908C-7299A2F772F2}</Project>
+      <Name>JustDoTheWork.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JustDoTheWork.Infrastructure\JustDoTheWork.Infrastructure.csproj">
+      <Project>{F0550861-B28B-4056-A79A-42B0AC5F3FAB}</Project>
+      <Name>JustDoTheWork.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

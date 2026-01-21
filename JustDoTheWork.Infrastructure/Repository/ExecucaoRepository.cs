@@ -1,10 +1,8 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
 using JustDoTheWork.Entity;
-using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -18,9 +16,11 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             _connection = connection;
         }
+
         public void Inclusao(Execucao execucao)
         {
-            var sql = @"INSERT INTO execucao(datainicio, datafim, atividadeid) VALUES(@DataInicio, @DataFim, @AtividadeId)";
+            var sql = @"INSERT INTO execucao(datainicio, datafim, atividadeid)
+                      VALUES(@DataInicio, @DataFim, @AtividadeId)";
 
             using (var transaction = _connection.BeginTransaction())
             {
@@ -36,21 +36,11 @@ namespace JustDoTheWork.Infrastructure.Repository
                 }
             }
         }
-        public void Edicao(Execucao execucao)
+        public Execucao BuscarPorAtividadeId(int atividadeId)
         {
-            throw new NotImplementedException();
-        }
-        public void ExclusaoPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public Execucao BuscarPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public IEnumerable<Execucao> Pesquisar(ExecucaoFiltro filtro)
-        {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM execucao WHERE atividadeid = @AtividadeId";
+
+            return _connection.QueryFirstOrDefault<Execucao>(sql, new { AtividadeId = atividadeId });
         }
     }
 }

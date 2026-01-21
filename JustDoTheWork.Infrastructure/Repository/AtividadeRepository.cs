@@ -5,7 +5,6 @@ using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
@@ -13,80 +12,131 @@ namespace JustDoTheWork.Infrastructure.Repository
 {
     public class AtividadeRepository : IAtividadeRepository
     {
-        private readonly IDbConnection _connection;
-        private readonly IDbTransaction _transaction;
+        private readonly DBConnectionFactory _factory;
 
-        public AtividadeRepository(IDbConnection connection, IDbTransaction transaction)
+        public AtividadeRepository(DBConnectionFactory factory)
         {
-            _connection = connection;
-            _transaction = transaction;
+            _factory = factory;
         }
-        public void Inclusao(Atividade atividade)
+        public string Inclusao(Atividade atividade)
         {
-            var sql = @"
-            INSERT INTO Atividade (nome, descricao, status, datacriacao, datafinalizacao, projetoid)
-            VALUES (@Nome, @Descricao, @Status, @DataCriacao, @DataFinalizacao, @ProjetoId);";
+            const string sql = @"INSERT INTO Atividade(nome, descricao, status, datacriacao, datafinalizacao, projetoid)
+                               VALUES(@Nome, @Descricao, @Status, @DataCriacao, @DataFinalizacao, @ProjetoId);";
 
-            using (var transaction = _connection.BeginTransaction())
+            using (var connection = _factory.Create())
             {
                 try
                 {
-                    _connection.Execute(sql, atividade, transaction);
-                    transaction.Commit();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            connection.Execute(sql, atividade, transaction);
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade!";
+                        }
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    transaction.Rollback();
-                    XtraMessageBox.Show("Ocorreu um erro ao realizar a inclusão desta atividade! \n" + ex, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return "Erro ao tentar conectar no banco de dados!";
+                }
+                finally
+                {
+                    connection.Dispose();
                 }
             }
+            return "";
         }
-        public void Edicao(Atividade atividade)
+        public string Edicao(Atividade atividade)
         {
             var sql = @"UPDATE ATIVIDADE SET nome = @Nome, descricao = @Descricao, status = @Status,
                       datafinalizacao = @DataFinalizacao, projetoid = @ProjetoId where id = @Id";
 
-            using (var transaction = _connection.BeginTransaction())
+            using (var connection = _factory.Create())
             {
                 try
                 {
-                    _connection.Execute(sql, atividade, transaction);
-                    transaction.Commit();
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            connection.Execute(sql, atividade, transaction);
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return "Ocorreu um erro ao tentar realizar a edição da atividade!";
+                        }
+
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    transaction.Rollback();
-                    XtraMessageBox.Show("Ocorreu um erro ao realizar a edição desta atividade! \n" + ex, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return "Erro ao tentar conectar no banco de dados!";
+                }
+                finally
+                {
+                    connection.Dispose();
                 }
             }
+            return "";
         }
-        public void ExclusaoPorId(int id)
+        public string ExclusaoPorId(int id)
         {
             var sql = @"DELETE FROM atividade where id = @Id";
 
-            using (var transaction = _connection.BeginTransaction())
+            using (var connection = _factory.Create())
             {
                 try
                 {
-                    _connection.Execute(sql, id, transaction);
-                    transaction.Commit();
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            connection.Execute(sql, id, transaction);
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return "Ocorreu um erro ao tentar excluir a atividade!";
+                        }
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    transaction.Rollback();
-                    XtraMessageBox.Show("Ocorreu um erro ao excluir desta atividade! \n" + ex, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return "Erro ao tentar conectar no banco de dados!";
+                }
+                finally
+                {
+                    connection.Dispose();
                 }
             }
+            return "";
         }
 
         public Atividade BuscarPorId(int id)
         {
-            var sql = @"SELECT * FROM atividade WHERE id = @Id";
+            const string sql = @"SELECT * FROM atividade WHERE id = @Id";
 
-            return _connection.QueryFirstOrDefault<Atividade>(sql, new { Id = id }, _transaction);
-        }      
+            using (var conn = _factory.Create())
+            {
+                return conn.QueryFirstOrDefault<Atividade>(
+                    sql,
+                    new { Id = id }
+                );
+            }
+        }
 
-        public IEnumerable<Atividade> Pesquisar(AtividadeFiltro filtro)
+        public IEnumerable<Atividade> Pesquisar(AtividadeFilter filtro)
         {
             var sql = new StringBuilder();
             sql.Append("SELECT * FROM atividade WHERE 1 = 1 ");
@@ -111,7 +161,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 parametros.Add("ProjetoId", filtro.ProjetoId);
             }
 
-            if (filtro.DataCriacao != default)
+            if (filtro.DataCriacao.HasValue)
             {
                 sql.Append("AND datacriacao::date = @DataCriacao ");
                 parametros.Add("DataCriacao", filtro.DataCriacao.Value.Date);
@@ -123,11 +173,13 @@ namespace JustDoTheWork.Infrastructure.Repository
                 parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
             }
 
-            return _connection.Query<Atividade>(
-                sql.ToString(),
-                parametros,
-                _transaction
-            );
+            using (var conn = _factory.Create())
+            {
+                return conn.Query<Atividade>(
+                    sql.ToString(),
+                    parametros
+                );
+            }
         }
     }
 }

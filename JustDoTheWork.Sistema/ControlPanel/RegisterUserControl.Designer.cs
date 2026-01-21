@@ -30,20 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterUserControl));
             this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEditarAtividade = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAtualizarPaginaAtividade = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).BeginInit();
             this.panelBotoes.SuspendLayout();
@@ -52,9 +52,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,47 +65,48 @@
             this.panelBotoes.Appearance.BackColor = System.Drawing.Color.White;
             this.panelBotoes.Appearance.Options.UseBackColor = true;
             this.panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelBotoes.Controls.Add(this.simpleButton3);
-            this.panelBotoes.Controls.Add(this.simpleButton2);
-            this.panelBotoes.Controls.Add(this.simpleButton1);
+            this.panelBotoes.Controls.Add(this.btnEditarAtividade);
+            this.panelBotoes.Controls.Add(this.btnAtualizarPaginaAtividade);
+            this.panelBotoes.Controls.Add(this.btnIncluirAtividade);
             this.panelBotoes.Location = new System.Drawing.Point(15, 184);
             this.panelBotoes.Margin = new System.Windows.Forms.Padding(15);
             this.panelBotoes.Name = "panelBotoes";
             this.panelBotoes.Size = new System.Drawing.Size(123, 521);
             this.panelBotoes.TabIndex = 3;
             // 
-            // simpleButton3
+            // btnEditarAtividade
             // 
-            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(17, 198);
-            this.simpleButton3.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(89, 23);
-            this.simpleButton3.TabIndex = 2;
-            this.simpleButton3.Text = "Editar";
+            this.btnEditarAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarAtividade.Appearance.Options.UseFont = true;
+            this.btnEditarAtividade.Location = new System.Drawing.Point(17, 198);
+            this.btnEditarAtividade.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
+            this.btnEditarAtividade.Name = "btnEditarAtividade";
+            this.btnEditarAtividade.Size = new System.Drawing.Size(89, 23);
+            this.btnEditarAtividade.TabIndex = 2;
+            this.btnEditarAtividade.Text = "Editar";
             // 
-            // simpleButton2
+            // btnAtualizarPaginaAtividade
             // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(17, 115);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(89, 23);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "Atualizar";
+            this.btnAtualizarPaginaAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtualizarPaginaAtividade.Appearance.Options.UseFont = true;
+            this.btnAtualizarPaginaAtividade.Location = new System.Drawing.Point(17, 115);
+            this.btnAtualizarPaginaAtividade.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
+            this.btnAtualizarPaginaAtividade.Name = "btnAtualizarPaginaAtividade";
+            this.btnAtualizarPaginaAtividade.Size = new System.Drawing.Size(89, 23);
+            this.btnAtualizarPaginaAtividade.TabIndex = 1;
+            this.btnAtualizarPaginaAtividade.Text = "Atualizar";
             // 
-            // simpleButton1
+            // btnIncluirAtividade
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(17, 32);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(89, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "Incluir";
+            this.btnIncluirAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIncluirAtividade.Appearance.Options.UseFont = true;
+            this.btnIncluirAtividade.Location = new System.Drawing.Point(17, 32);
+            this.btnIncluirAtividade.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
+            this.btnIncluirAtividade.Name = "btnIncluirAtividade";
+            this.btnIncluirAtividade.Size = new System.Drawing.Size(89, 23);
+            this.btnIncluirAtividade.TabIndex = 0;
+            this.btnIncluirAtividade.Text = "Incluir";
+            this.btnIncluirAtividade.Click += new System.EventHandler(this.btnIncluirAtividade_Click);
             // 
             // panelFiltroPesquisa
             // 
@@ -177,6 +178,27 @@
             this.labelControl3.TabIndex = 5;
             this.labelControl3.Text = "Projeto";
             // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Location = new System.Drawing.Point(83, 57);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
+            this.comboBoxEdit1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            "Em análise",
+            "Pendente",
+            "Executando",
+            "Pausado",
+            "Finalizado",
+            "Cancelado"});
+            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEdit1.Size = new System.Drawing.Size(297, 22);
+            this.comboBoxEdit1.TabIndex = 4;
+            // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -238,27 +260,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1097, 521);
             this.dataGridView1.TabIndex = 5;
             // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(83, 57);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
-            this.comboBoxEdit1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
-            "Em análise",
-            "Pendente",
-            "Executando",
-            "Pausado",
-            "Finalizado",
-            "Cancelado"});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(297, 22);
-            this.comboBoxEdit1.TabIndex = 4;
-            // 
             // searchLookUpEdit1View
             // 
             this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -286,9 +287,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
@@ -299,9 +300,9 @@
         private DevExpress.XtraEditors.PanelControl panelBotoes;
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnEditarAtividade;
+        private DevExpress.XtraEditors.SimpleButton btnAtualizarPaginaAtividade;
+        private DevExpress.XtraEditors.SimpleButton btnIncluirAtividade;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;

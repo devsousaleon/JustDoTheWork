@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.ControlPanel;
 using System;
 using System.Collections.Generic;

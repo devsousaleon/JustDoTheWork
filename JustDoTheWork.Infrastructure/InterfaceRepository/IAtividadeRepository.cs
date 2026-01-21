@@ -6,10 +6,10 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface IAtividadeRepository
     {
-        void Inclusao(Atividade atividade);
-        void Edicao(Atividade atividade);
-        void ExclusaoPorId(int id);
+        string Inclusao(Atividade atividade);
+        string Edicao(Atividade atividade);
+        string ExclusaoPorId(int id);
         Atividade BuscarPorId(int id);
-       IEnumerable<Atividade> Pesquisar(AtividadeFiltro filtro);
+       IEnumerable<Atividade> Pesquisar(AtividadeFilter filtro);
     }
 }

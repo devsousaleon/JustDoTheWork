@@ -2,7 +2,7 @@
 
 namespace JustDoTheWork.Entity.Domains
 {
-    public class AtividadeFiltro
+    public class AtividadeFilter
     {
         public string Nome { get; set; }
         public int? Status { get; set; }

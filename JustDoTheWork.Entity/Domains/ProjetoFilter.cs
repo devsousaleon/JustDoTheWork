@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Entity.Domains
 {
-    public class ProjetoFiltro
+    public class ProjetoFilter
     {
         public string Nome { get; set; }
     }

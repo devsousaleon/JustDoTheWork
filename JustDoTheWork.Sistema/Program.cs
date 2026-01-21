@@ -1,5 +1,14 @@
-﻿using JustDoTheWork.Sistema.Forms;
+﻿using DevExpress.XtraEditors.Controls;
+using JustDoTheWork.Controller;
+using JustDoTheWork.Infrastructure.InterfaceRepository;
+using JustDoTheWork.Infrastructure.Repository;
+using JustDoTheWork.Sistema.Forms;
+using Npgsql;
 using System;
+using System.Configuration;
+using System.Data;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -14,7 +23,7 @@ namespace JustDoTheWork.Sistema
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);           
+            Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new FormPrincipal());
         }

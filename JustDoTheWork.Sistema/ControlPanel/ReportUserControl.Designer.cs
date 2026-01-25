@@ -31,21 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUserControl));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.btnSalvarRelatorio = new DevExpress.XtraEditors.SimpleButton();
+            this.DataCriacao = new DevExpress.XtraEditors.DateEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxProjeto = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxStatus = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPesquisarRelatorio = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).BeginInit();
             this.panelFiltroPesquisa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxProjeto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxStatus.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -67,38 +67,58 @@
             this.panelFiltroPesquisa.Appearance.BackColor = System.Drawing.Color.White;
             this.panelFiltroPesquisa.Appearance.Options.UseBackColor = true;
             this.panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelFiltroPesquisa.Controls.Add(this.simpleButton1);
-            this.panelFiltroPesquisa.Controls.Add(this.dateEdit1);
+            this.panelFiltroPesquisa.Controls.Add(this.btnSalvarRelatorio);
+            this.panelFiltroPesquisa.Controls.Add(this.DataCriacao);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl4);
-            this.panelFiltroPesquisa.Controls.Add(this.comboBoxEdit2);
+            this.panelFiltroPesquisa.Controls.Add(this.comboBoxProjeto);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl3);
-            this.panelFiltroPesquisa.Controls.Add(this.comboBoxEdit1);
+            this.panelFiltroPesquisa.Controls.Add(this.comboBoxStatus);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl2);
-            this.panelFiltroPesquisa.Controls.Add(this.simpleButton4);
+            this.panelFiltroPesquisa.Controls.Add(this.btnPesquisarRelatorio);
             this.panelFiltroPesquisa.Location = new System.Drawing.Point(15, 15);
             this.panelFiltroPesquisa.Margin = new System.Windows.Forms.Padding(15);
             this.panelFiltroPesquisa.Name = "panelFiltroPesquisa";
             this.panelFiltroPesquisa.Size = new System.Drawing.Size(1250, 139);
             this.panelFiltroPesquisa.TabIndex = 10;
             // 
-            // dateEdit1
+            // btnSalvarRelatorio
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(83, 54);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEdit1.Properties.Appearance.Options.UseFont = true;
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.btnSalvarRelatorio.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.btnSalvarRelatorio.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvarRelatorio.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnSalvarRelatorio.Appearance.Options.UseBorderColor = true;
+            this.btnSalvarRelatorio.Appearance.Options.UseFont = true;
+            this.btnSalvarRelatorio.Appearance.Options.UseForeColor = true;
+            this.btnSalvarRelatorio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSalvarRelatorio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvarRelatorio.ImageOptions.Image")));
+            this.btnSalvarRelatorio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSalvarRelatorio.Location = new System.Drawing.Point(438, 82);
+            this.btnSalvarRelatorio.Name = "btnSalvarRelatorio";
+            this.btnSalvarRelatorio.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnSalvarRelatorio.Size = new System.Drawing.Size(107, 23);
+            this.btnSalvarRelatorio.TabIndex = 9;
+            this.btnSalvarRelatorio.Text = "Salvar";
+            // 
+            // DataCriacao
+            // 
+            this.DataCriacao.EditValue = null;
+            this.DataCriacao.Location = new System.Drawing.Point(83, 54);
+            this.DataCriacao.Name = "DataCriacao";
+            this.DataCriacao.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataCriacao.Properties.Appearance.Options.UseFont = true;
+            this.DataCriacao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.DataCriacao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(297, 22);
-            this.dateEdit1.TabIndex = 8;
+            this.DataCriacao.Size = new System.Drawing.Size(297, 22);
+            this.DataCriacao.TabIndex = 8;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.Location = new System.Drawing.Point(17, 57);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl4.Name = "labelControl4";
@@ -106,23 +126,25 @@
             this.labelControl4.TabIndex = 7;
             this.labelControl4.Text = "Data";
             // 
-            // comboBoxEdit2
+            // comboBoxProjeto
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(83, 11);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.comboBoxEdit2.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit2.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboBoxProjeto.Location = new System.Drawing.Point(83, 11);
+            this.comboBoxProjeto.Name = "comboBoxProjeto";
+            this.comboBoxProjeto.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.comboBoxProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProjeto.Properties.Appearance.Options.UseFont = true;
+            this.comboBoxProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit2.Size = new System.Drawing.Size(297, 22);
-            this.comboBoxEdit2.TabIndex = 6;
+            this.comboBoxProjeto.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxProjeto.Size = new System.Drawing.Size(297, 22);
+            this.comboBoxProjeto.TabIndex = 6;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.Location = new System.Drawing.Point(17, 17);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl3.Name = "labelControl3";
@@ -130,30 +152,32 @@
             this.labelControl3.TabIndex = 5;
             this.labelControl3.Text = "Projeto";
             // 
-            // comboBoxEdit1
+            // comboBoxStatus
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(83, 97);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboBoxStatus.Location = new System.Drawing.Point(83, 97);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Properties.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
+            this.comboBoxStatus.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxStatus.Properties.Appearance.Options.UseFont = true;
+            this.comboBoxStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            this.comboBoxStatus.Properties.Items.AddRange(new object[] {
             "Em análise",
             "Pendente",
             "Executando",
             "Pausado",
             "Finalizado",
             "Cancelado"});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(297, 22);
-            this.comboBoxEdit1.TabIndex = 4;
+            this.comboBoxStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxStatus.Size = new System.Drawing.Size(297, 22);
+            this.comboBoxStatus.TabIndex = 4;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(17, 103);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl2.Name = "labelControl2";
@@ -161,44 +185,31 @@
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Status";
             // 
-            // simpleButton4
+            // btnPesquisarRelatorio
             // 
-            this.simpleButton4.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton4.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton4.Appearance.Options.UseBorderColor = true;
-            this.simpleButton4.Appearance.Options.UseFont = true;
-            this.simpleButton4.Appearance.Options.UseForeColor = true;
-            this.simpleButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.simpleButton4.Location = new System.Drawing.Point(438, 53);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.simpleButton4.Size = new System.Drawing.Size(107, 23);
-            this.simpleButton4.TabIndex = 2;
-            this.simpleButton4.Text = "Pesquisar";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton1.Appearance.Options.UseBorderColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.simpleButton1.Location = new System.Drawing.Point(438, 82);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.simpleButton1.Size = new System.Drawing.Size(107, 23);
-            this.simpleButton1.TabIndex = 9;
-            this.simpleButton1.Text = "Salvar";
+            this.btnPesquisarRelatorio.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.btnPesquisarRelatorio.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarRelatorio.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnPesquisarRelatorio.Appearance.Options.UseBorderColor = true;
+            this.btnPesquisarRelatorio.Appearance.Options.UseFont = true;
+            this.btnPesquisarRelatorio.Appearance.Options.UseForeColor = true;
+            this.btnPesquisarRelatorio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPesquisarRelatorio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarRelatorio.ImageOptions.Image")));
+            this.btnPesquisarRelatorio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPesquisarRelatorio.Location = new System.Drawing.Point(438, 53);
+            this.btnPesquisarRelatorio.Name = "btnPesquisarRelatorio";
+            this.btnPesquisarRelatorio.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPesquisarRelatorio.Size = new System.Drawing.Size(107, 23);
+            this.btnPesquisarRelatorio.TabIndex = 2;
+            this.btnPesquisarRelatorio.Text = "Pesquisar";
             // 
             // ReportUserControl
             // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.Options.UseBackColor = true;
+            this.Appearance.Options.UseBorderColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
@@ -209,10 +220,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).EndInit();
             this.panelFiltroPesquisa.ResumeLayout(false);
             this.panelFiltroPesquisa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxProjeto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxStatus.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,13 +232,13 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.DateEdit DataCriacao;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxProjeto;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxStatus;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnPesquisarRelatorio;
+        private DevExpress.XtraEditors.SimpleButton btnSalvarRelatorio;
     }
 }

@@ -6,6 +6,7 @@
         Pendente = 2,
         Executando = 3,
         Pausado = 4,
-        Cancelado = 5
+        Cancelado = 5,
+        Finalizado = 6
     }
 }

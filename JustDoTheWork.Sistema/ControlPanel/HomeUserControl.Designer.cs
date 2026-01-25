@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.groupPausado = new DevExpress.XtraEditors.GroupControl();
+            this.btnExecutarAposPausado = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancelarAposPausado = new DevExpress.XtraEditors.SimpleButton();
             this.dataGridPausado = new System.Windows.Forms.DataGridView();
             this.groupExecutando = new DevExpress.XtraEditors.GroupControl();
+            this.btnPausar = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
+            this.btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
             this.dataGridExecutando = new System.Windows.Forms.DataGridView();
             this.groupPendente = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridPendentes = new System.Windows.Forms.DataGridView();
             this.btnExecutar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPausar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancelarAposPausado = new DevExpress.XtraEditors.SimpleButton();
-            this.btnExecutarAposPausado = new DevExpress.XtraEditors.SimpleButton();
+            this.dataGridPendentes = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.groupPausado)).BeginInit();
             this.groupPausado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPausado)).BeginInit();
@@ -54,7 +54,14 @@
             // groupPausado
             // 
             this.groupPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPausado.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupPausado.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupPausado.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupPausado.Appearance.Options.UseBackColor = true;
+            this.groupPausado.Appearance.Options.UseBorderColor = true;
+            this.groupPausado.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
             this.groupPausado.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F);
+            this.groupPausado.AppearanceCaption.Options.UseBorderColor = true;
             this.groupPausado.AppearanceCaption.Options.UseFont = true;
             this.groupPausado.Controls.Add(this.btnExecutarAposPausado);
             this.groupPausado.Controls.Add(this.btnCancelarAposPausado);
@@ -65,6 +72,26 @@
             this.groupPausado.Size = new System.Drawing.Size(720, 346);
             this.groupPausado.TabIndex = 5;
             this.groupPausado.Text = "Pausado";
+            // 
+            // btnExecutarAposPausado
+            // 
+            this.btnExecutarAposPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExecutarAposPausado.Location = new System.Drawing.Point(544, 313);
+            this.btnExecutarAposPausado.Margin = new System.Windows.Forms.Padding(8);
+            this.btnExecutarAposPausado.Name = "btnExecutarAposPausado";
+            this.btnExecutarAposPausado.Size = new System.Drawing.Size(75, 23);
+            this.btnExecutarAposPausado.TabIndex = 2;
+            this.btnExecutarAposPausado.Text = "Executar";
+            // 
+            // btnCancelarAposPausado
+            // 
+            this.btnCancelarAposPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelarAposPausado.Location = new System.Drawing.Point(635, 313);
+            this.btnCancelarAposPausado.Margin = new System.Windows.Forms.Padding(8);
+            this.btnCancelarAposPausado.Name = "btnCancelarAposPausado";
+            this.btnCancelarAposPausado.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarAposPausado.TabIndex = 5;
+            this.btnCancelarAposPausado.Text = "Cancelar";
             // 
             // dataGridPausado
             // 
@@ -81,7 +108,14 @@
             // 
             this.groupExecutando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupExecutando.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupExecutando.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupExecutando.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupExecutando.Appearance.Options.UseBackColor = true;
+            this.groupExecutando.Appearance.Options.UseBorderColor = true;
+            this.groupExecutando.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
             this.groupExecutando.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F);
+            this.groupExecutando.AppearanceCaption.Options.UseBorderColor = true;
             this.groupExecutando.AppearanceCaption.Options.UseFont = true;
             this.groupExecutando.Controls.Add(this.btnPausar);
             this.groupExecutando.Controls.Add(this.btnCancelar);
@@ -93,6 +127,36 @@
             this.groupExecutando.Size = new System.Drawing.Size(720, 314);
             this.groupExecutando.TabIndex = 4;
             this.groupExecutando.Text = "Em execução";
+            // 
+            // btnPausar
+            // 
+            this.btnPausar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPausar.Location = new System.Drawing.Point(453, 281);
+            this.btnPausar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnPausar.Name = "btnPausar";
+            this.btnPausar.Size = new System.Drawing.Size(75, 23);
+            this.btnPausar.TabIndex = 4;
+            this.btnPausar.Text = "Pausar";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(544, 281);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "Cancelar";
+            // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizar.Location = new System.Drawing.Point(635, 281);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
+            this.btnFinalizar.TabIndex = 2;
+            this.btnFinalizar.Text = "Finalizar";
             // 
             // dataGridExecutando
             // 
@@ -110,7 +174,17 @@
             this.groupPendente.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPendente.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.groupPendente.Appearance.BackColor2 = System.Drawing.Color.Silver;
+            this.groupPendente.Appearance.BorderColor = System.Drawing.Color.Silver;
+            this.groupPendente.Appearance.Options.UseBackColor = true;
+            this.groupPendente.Appearance.Options.UseBorderColor = true;
+            this.groupPendente.AppearanceCaption.BackColor = System.Drawing.Color.Silver;
+            this.groupPendente.AppearanceCaption.BackColor2 = System.Drawing.Color.Silver;
+            this.groupPendente.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
             this.groupPendente.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupPendente.AppearanceCaption.Options.UseBackColor = true;
+            this.groupPendente.AppearanceCaption.Options.UseBorderColor = true;
             this.groupPendente.AppearanceCaption.Options.UseFont = true;
             this.groupPendente.Controls.Add(this.btnExecutar);
             this.groupPendente.Controls.Add(this.dataGridPendentes);
@@ -120,6 +194,16 @@
             this.groupPendente.Size = new System.Drawing.Size(500, 690);
             this.groupPendente.TabIndex = 3;
             this.groupPendente.Text = "Pendentes";
+            // 
+            // btnExecutar
+            // 
+            this.btnExecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExecutar.Location = new System.Drawing.Point(415, 657);
+            this.btnExecutar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnExecutar.Name = "btnExecutar";
+            this.btnExecutar.Size = new System.Drawing.Size(75, 23);
+            this.btnExecutar.TabIndex = 1;
+            this.btnExecutar.Text = "Executar";
             // 
             // dataGridPendentes
             // 
@@ -133,68 +217,13 @@
             this.dataGridPendentes.Size = new System.Drawing.Size(490, 622);
             this.dataGridPendentes.TabIndex = 0;
             // 
-            // btnExecutar
-            // 
-            this.btnExecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExecutar.Location = new System.Drawing.Point(415, 657);
-            this.btnExecutar.Margin = new System.Windows.Forms.Padding(8);
-            this.btnExecutar.Name = "btnExecutar";
-            this.btnExecutar.Size = new System.Drawing.Size(75, 23);
-            this.btnExecutar.TabIndex = 1;
-            this.btnExecutar.Text = "Executar";
-            // 
-            // btnFinalizar
-            // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinalizar.Location = new System.Drawing.Point(635, 281);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(8);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
-            this.btnFinalizar.TabIndex = 2;
-            this.btnFinalizar.Text = "Finalizar";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(544, 281);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(8);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            // 
-            // btnPausar
-            // 
-            this.btnPausar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPausar.Location = new System.Drawing.Point(453, 281);
-            this.btnPausar.Margin = new System.Windows.Forms.Padding(8);
-            this.btnPausar.Name = "btnPausar";
-            this.btnPausar.Size = new System.Drawing.Size(75, 23);
-            this.btnPausar.TabIndex = 4;
-            this.btnPausar.Text = "Pausar";
-            // 
-            // btnCancelarAposPausado
-            // 
-            this.btnCancelarAposPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelarAposPausado.Location = new System.Drawing.Point(635, 313);
-            this.btnCancelarAposPausado.Margin = new System.Windows.Forms.Padding(8);
-            this.btnCancelarAposPausado.Name = "btnCancelarAposPausado";
-            this.btnCancelarAposPausado.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarAposPausado.TabIndex = 5;
-            this.btnCancelarAposPausado.Text = "Cancelar";
-            // 
-            // btnExecutarAposPausado
-            // 
-            this.btnExecutarAposPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExecutarAposPausado.Location = new System.Drawing.Point(544, 313);
-            this.btnExecutarAposPausado.Margin = new System.Windows.Forms.Padding(8);
-            this.btnExecutarAposPausado.Name = "btnExecutarAposPausado";
-            this.btnExecutarAposPausado.Size = new System.Drawing.Size(75, 23);
-            this.btnExecutarAposPausado.TabIndex = 2;
-            this.btnExecutarAposPausado.Text = "Executar";
-            // 
             // HomeUserControl
             // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Appearance.Options.UseBackColor = true;
+            this.Appearance.Options.UseBorderColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupPausado);

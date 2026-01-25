@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtividadeDTO.cs" />
+    <Compile Include="AtividadePesquisaDTO.cs" />
+    <Compile Include="AtualizaGridAtividadeDTO.cs" />
     <Compile Include="ExecucaoDTO.cs" />
+    <Compile Include="LookUpDto.cs" />
+    <Compile Include="PesquisaFormAtividadeDTO.cs" />
     <Compile Include="ProjetoComboBox.cs" />
     <Compile Include="ProjetoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

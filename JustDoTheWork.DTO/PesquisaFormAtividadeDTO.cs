@@ -1,15 +1,14 @@
-﻿using JustDoTheWork.Entity.Domains;
-using System;
+﻿using System;
 
-namespace JustDoTheWork.Entity
+namespace JustDoTheWork.DTO
 {
-    public class Atividade
+    public class PesquisaFormAtividadeDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public StatusAtividade Status { get; set; }
-        public DateTime DataCriacao { get; set; } = DateTime.Now;
+        public int Status { get; set; }
+        public DateTime DataCriacao { get; set; }
         public DateTime? DataFinalizacao { get; set; }
         public int ProjetoId { get; set; }
     }

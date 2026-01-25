@@ -3,13 +3,6 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -64,7 +57,5 @@ namespace JustDoTheWork.Sistema.Forms
 
             txtNomeProjeto.DataBindings.Add("Text", _dadosProjetoBindingSource, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
         }
-
-        
     }
 }

@@ -1,17 +1,10 @@
 ﻿using DevExpress.XtraEditors;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
-using JustDoTheWork.Infrastructure.InterfaceRepository;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -45,12 +38,16 @@ namespace JustDoTheWork.Sistema.Forms
                 this.Close();
         }
 
-        void btnSalvarIncluirAtividade_Click(object sender, EventArgs e)
+        void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
             if (_register.Inclusao)
             {
                 var dto = (AtividadeDTO)_dadosAtividadeBindingSource.DataSource;
-                dto.ProjetoId = (int)comboProjeto.EditValue;
+                
+                if(comboProjeto.EditValue != null)
+                    dto.ProjetoId = (int)comboProjeto.EditValue;
+
+                dto.DataCriacao = DateTime.Now;
 
                 var mensagem = _atividadeController.Cadastro(dto);
 

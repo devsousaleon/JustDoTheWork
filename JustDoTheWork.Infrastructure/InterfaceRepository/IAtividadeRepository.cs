@@ -1,4 +1,5 @@
-﻿using JustDoTheWork.Entity;
+﻿using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using System.Collections.Generic;
 
@@ -10,6 +11,6 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string Edicao(Atividade atividade);
         string ExclusaoPorId(int id);
         Atividade BuscarPorId(int id);
-       IEnumerable<Atividade> Pesquisar(AtividadeFilter filtro);
+        IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro);
     }
 }

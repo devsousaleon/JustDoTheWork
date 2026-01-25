@@ -1,14 +1,7 @@
 ﻿using DevExpress.XtraEditors;
-using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.ControlPanel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms

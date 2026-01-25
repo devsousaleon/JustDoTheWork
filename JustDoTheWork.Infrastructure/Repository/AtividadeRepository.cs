@@ -1,12 +1,11 @@
 ﻿using Dapper;
-using DevExpress.XtraEditors;
+using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
@@ -61,7 +60,6 @@ namespace JustDoTheWork.Infrastructure.Repository
             {
                 try
                 {
-                    connection.Open();
                     using (var transaction = connection.BeginTransaction())
                     {
                         try
@@ -88,7 +86,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
-        public string ExclusaoPorId(int id)
+        public string ExclusaoPorId(int Id)
         {
             var sql = @"DELETE FROM atividade where id = @Id";
 
@@ -96,12 +94,11 @@ namespace JustDoTheWork.Infrastructure.Repository
             {
                 try
                 {
-                    connection.Open();
                     using (var transaction = connection.BeginTransaction())
                     {
                         try
                         {
-                            connection.Execute(sql, id, transaction);
+                            connection.Execute(sql, new {id = Id}, transaction);
                             transaction.Commit();
                         }
                         catch
@@ -136,46 +133,49 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
         }
 
-        public IEnumerable<Atividade> Pesquisar(AtividadeFilter filtro)
+        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro)
         {
             var sql = new StringBuilder();
-            sql.Append("SELECT * FROM atividade WHERE 1 = 1 ");
+            sql.Append(@"SELECT a.id AS Id,
+                         a.nome AS Atividade,
+                         p.nome AS Projeto FROM atividade a
+                         INNER JOIN projeto p ON a.projetoid = p.id WHERE 1 = 1");
 
             var parametros = new DynamicParameters();
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
             {
-                sql.Append("AND nome ILIKE @Nome ");
-                parametros.Add("Nome", $"%{filtro.Nome}%");
+                sql.Append(" AND a.nome ILIKE @Nome ");
+                parametros.Add("@Nome", $"%{filtro.Nome}%");
             }
 
             if (filtro.Status > 0)
             {
-                sql.Append("AND status = @Status ");
+                sql.Append(" AND a.status = @Status ");
                 parametros.Add("Status", filtro.Status);
             }
 
             if (filtro.ProjetoId > 0)
             {
-                sql.Append("AND projetoid = @ProjetoId ");
+                sql.Append(" AND a.projetoid = @ProjetoId ");
                 parametros.Add("ProjetoId", filtro.ProjetoId);
             }
 
             if (filtro.DataCriacao.HasValue)
             {
-                sql.Append("AND datacriacao::date = @DataCriacao ");
+                sql.Append(" AND a.datacriacao::date = @DataCriacao ");
                 parametros.Add("DataCriacao", filtro.DataCriacao.Value.Date);
             }
 
             if (filtro.DataFinalizacao.HasValue)
             {
-                sql.Append("AND datafinalizacao::date = @DataFinalizacao ");
+                sql.Append(" AND a.datafinalizacao::date = @DataFinalizacao ");
                 parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
             }
 
             using (var conn = _factory.Create())
             {
-                return conn.Query<Atividade>(
+                return conn.Query<AtualizaGridAtividadeDTO>(
                     sql.ToString(),
                     parametros
                 );

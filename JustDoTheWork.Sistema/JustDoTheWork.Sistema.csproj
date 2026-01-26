@@ -199,7 +199,9 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\JustDoTheWork.DTO.AtualizaAtividadesExecucaoDTO.datasource" />
     <None Include="Properties\DataSources\JustDoTheWork.DTO.AtualizaGridAtividadeDTO.datasource" />
+    <None Include="Properties\DataSources\JustDoTheWork.DTO.PendenteDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

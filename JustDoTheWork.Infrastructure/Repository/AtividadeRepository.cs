@@ -98,7 +98,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                     {
                         try
                         {
-                            connection.Execute(sql, new {id = Id}, transaction);
+                            connection.Execute(sql, new { id = Id }, transaction);
                             transaction.Commit();
                         }
                         catch
@@ -180,6 +180,56 @@ namespace JustDoTheWork.Infrastructure.Repository
                     parametros
                 );
             }
+        }
+
+        public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status)
+        {
+            var sql = @" select a.id as AtividadeId, a.nome as NomeAtividade, p.nome as NomeProjeto " +
+                      " from atividade a " +
+                      " inner join projeto p on p.id = a.projetoid " +
+                      " where a.status = @Status";
+
+            using (var conn = _factory.Create())
+            {
+                return conn.Query<AtualizaAtividadesExecucaoDTO>(
+                    sql.ToString(),
+                    new { status = Status}
+                );
+            }
+        }
+
+        public string ExecutaAtividade(int Id, int Status)
+        {
+            var sql = @"UPDATE atividade set status = @Status where id = @Id";
+
+            using (var connection = _factory.Create())
+            {
+                try
+                {
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            connection.Execute(sql, new { id = Id, status = Status }, transaction);
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            return "Ocorreu um erro ao tentar realizar a execução desta atividade!" + ex;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return "Erro ao conectar no banco de dados \n" + ex;
+                }
+                finally
+                {
+                    connection.Dispose();
+                }
+            }
+            return "";
         }
     }
 }

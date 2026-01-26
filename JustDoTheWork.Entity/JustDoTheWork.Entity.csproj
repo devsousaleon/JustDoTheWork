@@ -46,6 +46,7 @@
     <Compile Include="DatabaseClasses\Execucao.cs" />
     <Compile Include="DatabaseClasses\Projeto.cs" />
     <Compile Include="Domains\ExecucaoFilter.cs" />
+    <Compile Include="Domains\GridPendenteFilter.cs" />
     <Compile Include="Domains\ProjetoFilter.cs" />
     <Compile Include="Domains\StatusAtividade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

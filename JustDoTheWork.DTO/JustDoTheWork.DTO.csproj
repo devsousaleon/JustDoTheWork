@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AtividadeDTO.cs" />
     <Compile Include="AtividadePesquisaDTO.cs" />
+    <Compile Include="AtualizaAtividadesExecucaoDTO.cs" />
     <Compile Include="AtualizaGridAtividadeDTO.cs" />
     <Compile Include="ExecucaoDTO.cs" />
     <Compile Include="LookUpDto.cs" />

@@ -129,5 +129,15 @@ namespace JustDoTheWork.Controller
         {
             return _repository.ExclusaoPorId(Id);
         }
+
+        public IEnumerable<AtualizaAtividadesExecucaoDTO> AtualizaGridAtividades(int Status)
+        {
+            return _repository.BuscaParaGridAtividades(Status);
+        }
+
+        public string ExecutarAtividade(int Id, int ValorStatus)
+        {
+            return _repository.ExecutaAtividade(Id, ValorStatus);
+        }
     }
 }

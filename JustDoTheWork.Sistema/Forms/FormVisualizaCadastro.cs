@@ -120,16 +120,21 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            var mensagem = _atividadeController.Exclusao(_ruc.IdSelecionado);
+            DialogResult result = MessageBox.Show("Deseja realmente excluir esta atividade?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if(!string.IsNullOrWhiteSpace(mensagem))
+            if(result == DialogResult.Yes)
             {
-                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                var mensagem = _atividadeController.Exclusao(_ruc.IdSelecionado);
 
-            this.Close();
-            _ruc.AtualizaGrid();
+                if (!string.IsNullOrWhiteSpace(mensagem))
+                {
+                    XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                this.Close();
+                _ruc.AtualizaGrid();
+            }            
         }
 
         private void btnAvancar_Click(object sender, EventArgs e)

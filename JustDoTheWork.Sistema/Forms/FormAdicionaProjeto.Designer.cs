@@ -41,20 +41,22 @@
             // 
             // txtNomeProjeto
             // 
-            this.txtNomeProjeto.Location = new System.Drawing.Point(65, 18);
+            this.txtNomeProjeto.Location = new System.Drawing.Point(76, 19);
+            this.txtNomeProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNomeProjeto.Name = "txtNomeProjeto";
             this.txtNomeProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeProjeto.Size = new System.Drawing.Size(203, 24);
+            this.txtNomeProjeto.Size = new System.Drawing.Size(237, 24);
             this.txtNomeProjeto.TabIndex = 1;
             // 
             // btnIncluirProjeto
             // 
             this.btnIncluirProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncluirProjeto.Appearance.Options.UseFont = true;
-            this.btnIncluirProjeto.Location = new System.Drawing.Point(13, 118);
+            this.btnIncluirProjeto.Location = new System.Drawing.Point(15, 127);
+            this.btnIncluirProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnIncluirProjeto.Name = "btnIncluirProjeto";
-            this.btnIncluirProjeto.Size = new System.Drawing.Size(75, 23);
+            this.btnIncluirProjeto.Size = new System.Drawing.Size(88, 25);
             this.btnIncluirProjeto.TabIndex = 2;
             this.btnIncluirProjeto.Text = "Incluir";
             this.btnIncluirProjeto.Click += new System.EventHandler(this.btnIncluirProjeto_Click);
@@ -63,10 +65,10 @@
             // 
             this.btnCancelar.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Appearance.Options.UseFont = true;
-            this.btnCancelar.Location = new System.Drawing.Point(101, 118);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(10);
+            this.btnCancelar.Location = new System.Drawing.Point(118, 127);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(88, 25);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -82,17 +84,18 @@
             this.panelControl1.Controls.Add(this.txtNomeProjeto);
             this.panelControl1.Controls.Add(this.btnIncluirProjeto);
             this.panelControl1.Controls.Add(this.btnCancelar);
-            this.panelControl1.Location = new System.Drawing.Point(10, 10);
+            this.panelControl1.Location = new System.Drawing.Point(12, 11);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(1);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(278, 148);
+            this.panelControl1.Size = new System.Drawing.Size(324, 159);
             this.panelControl1.TabIndex = 4;
             // 
             // lblNomeProjeto
             // 
             this.lblNomeProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 12F);
             this.lblNomeProjeto.Appearance.Options.UseFont = true;
-            this.lblNomeProjeto.Location = new System.Drawing.Point(13, 21);
+            this.lblNomeProjeto.Location = new System.Drawing.Point(15, 23);
+            this.lblNomeProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lblNomeProjeto.Name = "lblNomeProjeto";
             this.lblNomeProjeto.Size = new System.Drawing.Size(40, 18);
             this.lblNomeProjeto.TabIndex = 4;
@@ -102,13 +105,16 @@
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Appearance.Options.UseFont = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 168);
+            this.ClientSize = new System.Drawing.Size(348, 181);
             this.Controls.Add(this.panelControl1);
+            this.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("FormAdicionaProjeto.IconOptions.Image")));
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormAdicionaProjeto.IconOptions.LargeImage")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAdicionaProjeto";

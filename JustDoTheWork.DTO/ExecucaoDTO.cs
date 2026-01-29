@@ -4,9 +4,8 @@ namespace JustDoTheWork.DTO
 {
     public class ExecucaoDTO
     {
-        public int Id { get; set; }
-        public DateTime DataInicio { get; set; }
-        public DateTime DataFim { get; set; }
         public int AtividadeId { get; set; }
+        public DateTime DataFimExecucao { get; set; }
+        public DateTime DataInicioExecucao { get; set; }
     }
 }

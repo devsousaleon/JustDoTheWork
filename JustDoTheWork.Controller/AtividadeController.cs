@@ -135,9 +135,30 @@ namespace JustDoTheWork.Controller
             return _repository.BuscaParaGridAtividades(Status);
         }
 
-        public string ExecutarAtividade(int Id, int ValorStatus)
+        public string AlterarStatus(int id, int statusAtual, int novoStatus)
         {
-            return _repository.ExecutaAtividade(Id, ValorStatus);
+            if (!TransicaoPermitida(statusAtual, novoStatus))
+                return "Essa ação não é permitida para esse status.";
+
+            return _repository.ExecutaAtividade(id, novoStatus);
         }
+        private bool TransicaoPermitida(int atual, int novo)
+        {
+            switch (atual)
+            {
+                case 2: // Pendente
+                    return novo == 3;
+
+                case 3: // Executando
+                    return novo == 4 || novo == 2 || novo == 6;
+
+                case 4: // Pausado
+                    return novo == 3 || novo == 2;
+
+                default:
+                    return false;
+            }
+        }
+
     }
 }

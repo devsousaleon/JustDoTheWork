@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormPrincipal : DevExpress.XtraEditors.XtraForm
+    public partial class FormPrincipal : XtraForm
     {
         public FormPrincipal()
         {

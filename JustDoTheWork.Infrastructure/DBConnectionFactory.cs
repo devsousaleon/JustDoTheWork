@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-using Dapper;
 using System.Data;
 
 namespace JustDoTheWork.Infrastructure

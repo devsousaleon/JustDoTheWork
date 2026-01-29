@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVisualizaCadastro));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.txtDescricao = new System.Windows.Forms.RichTextBox();
@@ -44,15 +43,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnAvancar = new DevExpress.XtraEditors.SimpleButton();
             this.btnExcluir = new DevExpress.XtraEditors.SimpleButton();
             this.btnFechar = new DevExpress.XtraEditors.SimpleButton();
             this.btnSalvar = new DevExpress.XtraEditors.SimpleButton();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnAvancar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -64,7 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -97,7 +90,9 @@
             this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.Appearance.Options.UseForeColor = true;
             this.groupControl1.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl1.AppearanceCaption.Options.UseBorderColor = true;
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.DataFinalizacao);
             this.groupControl1.Controls.Add(this.labelControl3);
@@ -252,8 +247,22 @@
             this.panelControl2.Size = new System.Drawing.Size(874, 43);
             this.panelControl2.TabIndex = 1;
             // 
+            // btnAvancar
+            // 
+            this.btnAvancar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAvancar.Appearance.Options.UseFont = true;
+            this.btnAvancar.Location = new System.Drawing.Point(283, 10);
+            this.btnAvancar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnAvancar.Name = "btnAvancar";
+            this.btnAvancar.Size = new System.Drawing.Size(75, 23);
+            this.btnAvancar.TabIndex = 2;
+            this.btnAvancar.Text = "Avançar";
+            this.btnAvancar.Click += new System.EventHandler(this.btnAvancar_Click);
+            // 
             // btnExcluir
             // 
+            this.btnExcluir.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcluir.Appearance.Options.UseFont = true;
             this.btnExcluir.Location = new System.Drawing.Point(192, 10);
             this.btnExcluir.Margin = new System.Windows.Forms.Padding(8);
             this.btnExcluir.Name = "btnExcluir";
@@ -264,6 +273,8 @@
             // 
             // btnFechar
             // 
+            this.btnFechar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFechar.Appearance.Options.UseFont = true;
             this.btnFechar.Location = new System.Drawing.Point(101, 10);
             this.btnFechar.Margin = new System.Windows.Forms.Padding(8);
             this.btnFechar.Name = "btnFechar";
@@ -274,6 +285,8 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.Appearance.Options.UseFont = true;
             this.btnSalvar.Location = new System.Drawing.Point(10, 10);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(8);
             this.btnSalvar.Name = "btnSalvar";
@@ -281,56 +294,6 @@
             this.btnSalvar.TabIndex = 0;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(898, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 618);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(898, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 618);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(898, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 618);
-            // 
-            // btnAvancar
-            // 
-            this.btnAvancar.Location = new System.Drawing.Point(283, 10);
-            this.btnAvancar.Margin = new System.Windows.Forms.Padding(8);
-            this.btnAvancar.Name = "btnAvancar";
-            this.btnAvancar.Size = new System.Drawing.Size(75, 23);
-            this.btnAvancar.TabIndex = 2;
-            this.btnAvancar.Text = "Avançar";
-            this.btnAvancar.Click += new System.EventHandler(this.btnAvancar_Click);
             // 
             // FormVisualizaCadastro
             // 
@@ -341,10 +304,6 @@
             this.ClientSize = new System.Drawing.Size(898, 618);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormVisualizaCadastro.IconOptions.LargeImage")));
@@ -366,9 +325,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -390,11 +347,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSalvar;
         private DevExpress.XtraEditors.SimpleButton btnFechar;
         private DevExpress.XtraEditors.SimpleButton btnExcluir;
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private System.Windows.Forms.RichTextBox txtDescricao;
         private DevExpress.XtraEditors.SimpleButton btnAvancar;
     }

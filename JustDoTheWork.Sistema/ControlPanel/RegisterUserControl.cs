@@ -1,4 +1,5 @@
-﻿using JustDoTheWork.Controller;
+﻿using DevExpress.XtraEditors;
+using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
-    public partial class RegisterUserControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class RegisterUserControl : XtraUserControl
     {
         public bool Inclusao { get; private set; }
 

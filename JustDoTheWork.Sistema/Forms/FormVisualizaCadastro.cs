@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraExport.Helpers;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
@@ -10,7 +9,7 @@ using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormVisualizaCadastro : DevExpress.XtraEditors.XtraForm
+    public partial class FormVisualizaCadastro : XtraForm
     {
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
@@ -32,8 +31,8 @@ namespace JustDoTheWork.Sistema.Forms
             AtualizaComboBoxStatus();
             AtualizaComboBoxProjeto();
 
-            if ((int)comboBoxStatus.EditValue == 2)
-                btnAvancar.Enabled = false;
+            if ((int)comboBoxStatus.EditValue >= 2)
+                btnAvancar.Visible = false;
         }
 
         void CarregaDadosAtividade()
@@ -113,12 +112,22 @@ namespace JustDoTheWork.Sistema.Forms
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if((int)comboBoxStatus.EditValue > 2) 
+            switch ((int)comboBoxStatus.EditValue)
             {
-                XtraMessageBox.Show("Não é possível excluir este projeto \n" +
-                                    "Há execuções em andamento, pendente ou finalizada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+                case 2:
+                case 3:
+                case 4:
+                    XtraMessageBox.Show("Não é possível excluir esta atividade \n" +
+                                    "Há execuções em andamento, pendente ou pausado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+
+                case 5:
+                    XtraMessageBox.Show("Não é possível excluir atividade cancelada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                case 6:
+                    XtraMessageBox.Show("Não é possível excluir atividade finalizada", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+            }           
 
             DialogResult result = MessageBox.Show("Deseja realmente excluir esta atividade?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

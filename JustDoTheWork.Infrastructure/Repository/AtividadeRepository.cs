@@ -193,7 +193,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             {
                 return conn.Query<AtualizaAtividadesExecucaoDTO>(
                     sql.ToString(),
-                    new { status = Status}
+                    new {Status}
                 );
             }
         }
@@ -231,5 +231,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
+
+
     }
 }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterUserControl));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
             this.btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
@@ -241,6 +242,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridCadastroAtividade.AutoGenerateColumns = false;
             this.GridCadastroAtividade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridCadastroAtividade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridCadastroAtividade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridCadastroAtividade.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -265,7 +274,7 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.idDataGridViewTextBoxColumn.Width = 93;
+            this.idDataGridViewTextBoxColumn.Width = 123;
             // 
             // nomeDataGridViewTextBoxColumn
             // 

@@ -2,9 +2,7 @@
 using JustDoTheWork.Infrastructure;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using JustDoTheWork.Infrastructure.Repository;
-using Npgsql;
 using System.Configuration;
-using System.Data;
 
 namespace JustDoTheWork.Sistema.Composition
 {
@@ -23,31 +21,22 @@ namespace JustDoTheWork.Sistema.Composition
         public static AtividadeController CriarAtividadeController()
         {
             var factory = CriarFactory();
-
-            IAtividadeRepository repository =
-                new AtividadeRepository(factory);
-
+            IAtividadeRepository repository = new AtividadeRepository(factory);
             return new AtividadeController(repository);
         }
 
         public static ProjetoController CriarProjetoController()
         {
             var factory = CriarFactory();
-
-            IProjetoRepository repository =
-                new ProjetoRepository(factory);
-
+            IProjetoRepository repository = new ProjetoRepository(factory);
             return new ProjetoController(repository);
         }
 
-        //public static ExecucaoController CriarProjetoController()
-        //{
-        //    var connection = CriarConexao();
-
-        //    IProjetoRepository repository =
-        //        new ExecucaoRepository(connection);
-
-        //    return new ExecucaoController(repository);
-        //}
+        public static ExecucaoController CriarExecucaoController()
+        {
+            var factory = CriarFactory();
+            IExecucaoRepository repository = new ExecucaoRepository(factory);
+            return new ExecucaoController(repository);
+        }
     }
 }

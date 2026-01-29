@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormCadastro : DevExpress.XtraEditors.XtraForm
+    public partial class FormCadastro : XtraForm
     {
         RegisterUserControl _register;
         BindingSource _dadosAtividadeBindingSource;

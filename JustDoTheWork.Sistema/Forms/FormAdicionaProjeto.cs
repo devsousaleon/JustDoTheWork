@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormAdicionaProjeto : DevExpress.XtraEditors.XtraForm
+    public partial class FormAdicionaProjeto : XtraForm
     {
         private readonly ProjetoController _controller;
         BindingSource _dadosProjetoBindingSource;

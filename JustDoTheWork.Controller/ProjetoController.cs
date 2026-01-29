@@ -2,11 +2,8 @@
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JustDoTheWork.Controller
 {

@@ -155,6 +155,12 @@
     <Compile Include="Forms\FormCadastro.Designer.cs">
       <DependentUpon>FormCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormVisualizaAtividadeExecucao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVisualizaAtividadeExecucao.Designer.cs">
+      <DependentUpon>FormVisualizaAtividadeExecucao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormVisualizaCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <EmbeddedResource Include="Forms\FormCadastro.resx">
       <DependentUpon>FormCadastro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVisualizaAtividadeExecucao.resx">
+      <DependentUpon>FormVisualizaAtividadeExecucao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormVisualizaCadastro.resx">
       <DependentUpon>FormVisualizaCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +210,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\JustDoTheWork.DTO.AtualizaAtividadesExecucaoDTO.datasource" />
     <None Include="Properties\DataSources\JustDoTheWork.DTO.AtualizaGridAtividadeDTO.datasource" />
+    <None Include="Properties\DataSources\JustDoTheWork.DTO.ExecucaoDTO.datasource" />
     <None Include="Properties\DataSources\JustDoTheWork.DTO.PendenteDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

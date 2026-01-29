@@ -1,10 +1,15 @@
-﻿using JustDoTheWork.Entity;
+﻿using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
+using System.Collections.Generic;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface IExecucaoRepository
     {
-        void Inclusao(Execucao execucao);
-        Execucao BuscarPorAtividadeId(int id);
+        string Inclusao(Execucao execucao);
+        string FinalizaExecucao(Execucao execucao);
+        IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId);
+        VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId);
+
     }
 }

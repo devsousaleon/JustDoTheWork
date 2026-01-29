@@ -90,8 +90,10 @@
             this.groupControl2.AppearanceCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupControl2.AppearanceCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupControl2.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
             this.groupControl2.AppearanceCaption.Options.UseBackColor = true;
             this.groupControl2.AppearanceCaption.Options.UseBorderColor = true;
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.Controls.Add(this.txtDescricao);
             this.groupControl2.Location = new System.Drawing.Point(17, 115);
             this.groupControl2.Name = "groupControl2";
@@ -102,6 +104,7 @@
             // txtDescricao
             // 
             this.txtDescricao.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.txtDescricao.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.txtDescricao.Location = new System.Drawing.Point(17, 38);
             this.txtDescricao.Margin = new System.Windows.Forms.Padding(15);
             this.txtDescricao.Name = "txtDescricao";
@@ -119,9 +122,11 @@
             this.groupControl1.AppearanceCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupControl1.AppearanceCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupControl1.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupControl1.AppearanceCaption.Options.UseBackColor = true;
             this.groupControl1.AppearanceCaption.Options.UseBorderColor = true;
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl1.Controls.Add(this.comboProjeto);
             this.groupControl1.Controls.Add(this.btnAdicionarProjeto);

@@ -155,8 +155,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         private void btnVisualizaAtividade_Click(object sender, EventArgs e)
         {
-            FormVisualizaAtividadeExecucao Fvae = new FormVisualizaAtividadeExecucao(this);
-            Fvae.ShowDialog();
+            visualizaAtividade();
         }
 
         private void dataGridPendentes_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -178,6 +177,29 @@ namespace JustDoTheWork.Sistema.ControlPanel
             dataGridPausado.ClearSelection();
             IdSelecionadoAtividade = 0;
             StatusExecucaoSelecionado = 0;
+        }
+
+        private void dataGridPendentes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            visualizaAtividade();
+        }
+
+        void visualizaAtividade()
+        {
+            if (IdSelecionadoAtividade <= 0)
+                return;
+            FormVisualizaAtividadeExecucao Fvae = new FormVisualizaAtividadeExecucao(this);
+            Fvae.ShowDialog();
+        }
+
+        private void dataGridExecutando_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            visualizaAtividade();
+        }
+
+        private void dataGridPausado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            visualizaAtividade();
         }
     }
 }

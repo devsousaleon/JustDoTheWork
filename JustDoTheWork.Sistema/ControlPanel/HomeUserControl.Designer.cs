@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.atualizaAtividadesExecucaoDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupExecutando = new DevExpress.XtraEditors.GroupControl();
             this.dataGridExecutando = new System.Windows.Forms.DataGridView();
@@ -48,7 +45,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panelButtonsExecucao = new DevExpress.XtraEditors.PanelControl();
             this.btnVisualizaAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
             this.btnPausar = new DevExpress.XtraEditors.SimpleButton();
@@ -65,8 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupPendente)).BeginInit();
             this.groupPendente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPendentes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelButtonsExecucao)).BeginInit();
+            this.panelButtonsExecucao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelAtividadesExecucao)).BeginInit();
             this.panelAtividadesExecucao.SuspendLayout();
             this.SuspendLayout();
@@ -103,14 +100,6 @@
             this.dataGridExecutando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridExecutando.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridExecutando.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridExecutando.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridExecutando.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn4,
@@ -122,6 +111,7 @@
             this.dataGridExecutando.ReadOnly = true;
             this.dataGridExecutando.Size = new System.Drawing.Size(710, 249);
             this.dataGridExecutando.TabIndex = 1;
+            this.dataGridExecutando.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridExecutando_CellDoubleClick);
             this.dataGridExecutando.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridExecutando_DataBindingComplete);
             this.dataGridExecutando.SelectionChanged += new System.EventHandler(this.dataGridExecutando_SelectionChanged);
             // 
@@ -132,7 +122,7 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "AtividadeId";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 109;
+            this.dataGridViewTextBoxColumn4.Width = 87;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -177,14 +167,6 @@
             this.dataGridPausado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridPausado.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridPausado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridPausado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPausado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
@@ -196,6 +178,7 @@
             this.dataGridPausado.ReadOnly = true;
             this.dataGridPausado.Size = new System.Drawing.Size(710, 266);
             this.dataGridPausado.TabIndex = 2;
+            this.dataGridPausado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPausado_CellDoubleClick);
             this.dataGridPausado.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridPausado_DataBindingComplete);
             this.dataGridPausado.SelectionChanged += new System.EventHandler(this.dataGridPausado_SelectionChanged);
             // 
@@ -206,7 +189,7 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "AtividadeId";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 109;
+            this.dataGridViewTextBoxColumn7.Width = 87;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -256,14 +239,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridPendentes.AutoGenerateColumns = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridPendentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridPendentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPendentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -275,6 +250,7 @@
             this.dataGridPendentes.ReadOnly = true;
             this.dataGridPendentes.Size = new System.Drawing.Size(490, 559);
             this.dataGridPendentes.TabIndex = 5;
+            this.dataGridPendentes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPendentes_CellDoubleClick);
             this.dataGridPendentes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridPendentes_DataBindingComplete);
             this.dataGridPendentes.SelectionChanged += new System.EventHandler(this.dataGridPendentes_SelectionChanged);
             // 
@@ -285,7 +261,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "AtividadeId";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 109;
+            this.dataGridViewTextBoxColumn1.Width = 87;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -303,19 +279,19 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // panelControl1
+            // panelButtonsExecucao
             // 
-            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelButtonsExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl1.Controls.Add(this.btnVisualizaAtividade);
-            this.panelControl1.Controls.Add(this.btnFinalizar);
-            this.panelControl1.Controls.Add(this.btnPausar);
-            this.panelControl1.Controls.Add(this.btnExecutar);
-            this.panelControl1.Controls.Add(this.btnVoltaPendente);
-            this.panelControl1.Location = new System.Drawing.Point(22, 625);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(495, 70);
-            this.panelControl1.TabIndex = 6;
+            this.panelButtonsExecucao.Controls.Add(this.btnVisualizaAtividade);
+            this.panelButtonsExecucao.Controls.Add(this.btnFinalizar);
+            this.panelButtonsExecucao.Controls.Add(this.btnPausar);
+            this.panelButtonsExecucao.Controls.Add(this.btnExecutar);
+            this.panelButtonsExecucao.Controls.Add(this.btnVoltaPendente);
+            this.panelButtonsExecucao.Location = new System.Drawing.Point(22, 625);
+            this.panelButtonsExecucao.Name = "panelButtonsExecucao";
+            this.panelButtonsExecucao.Size = new System.Drawing.Size(1216, 70);
+            this.panelButtonsExecucao.TabIndex = 6;
             // 
             // btnVisualizaAtividade
             // 
@@ -387,7 +363,7 @@
             this.panelAtividadesExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAtividadesExecucao.Controls.Add(this.panelControl1);
+            this.panelAtividadesExecucao.Controls.Add(this.panelButtonsExecucao);
             this.panelAtividadesExecucao.Controls.Add(this.groupPendente);
             this.panelAtividadesExecucao.Controls.Add(this.groupPausado);
             this.panelAtividadesExecucao.Controls.Add(this.groupExecutando);
@@ -420,8 +396,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupPendente)).EndInit();
             this.groupPendente.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPendentes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelButtonsExecucao)).EndInit();
+            this.panelButtonsExecucao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelAtividadesExecucao)).EndInit();
             this.panelAtividadesExecucao.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -448,7 +424,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl panelButtonsExecucao;
         private DevExpress.XtraEditors.SimpleButton btnVisualizaAtividade;
         private DevExpress.XtraEditors.SimpleButton btnFinalizar;
         private DevExpress.XtraEditors.SimpleButton btnPausar;

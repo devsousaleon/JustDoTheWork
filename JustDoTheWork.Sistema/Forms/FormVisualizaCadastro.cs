@@ -87,7 +87,7 @@ namespace JustDoTheWork.Sistema.Forms
 
             dto.Id = _ruc.IdSelecionado;
 
-            var mensagem = _atividadeController.EditaInformacaoAtividade(dto);
+            var mensagem = _atividadeController.EditaInformacaoAtividade(dto, (int)comboBoxStatus.EditValue);
 
             if (!string.IsNullOrWhiteSpace(mensagem))
             {

@@ -83,7 +83,7 @@ namespace JustDoTheWork.Controller
             return dados;
         }
 
-        public string EditaInformacaoAtividade(AtividadeDTO dto)
+        public string EditaInformacaoAtividade(AtividadeDTO dto, int StatusAtual)
         {
             if (string.IsNullOrWhiteSpace(dto.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
@@ -93,7 +93,7 @@ namespace JustDoTheWork.Controller
                 Id = dto.Id,
                 Nome = dto.Nome,
                 Descricao = dto.Descricao,
-                Status = StatusAtividade.Analise,
+                Status = (StatusAtividade)StatusAtual,
                 DataCriacao = dto.DataCriacao,
                 DataFinalizacao = dto.DataFinalizacao,
                 ProjetoId = dto.ProjetoId

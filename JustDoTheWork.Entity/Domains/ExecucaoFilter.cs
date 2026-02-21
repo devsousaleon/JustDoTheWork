@@ -7,7 +7,7 @@ namespace JustDoTheWork.Entity.Domains
         public int AtividadeId { get; set; }
         public string NomeAtividade { get; set; }
         public string NomeProjeto { get; set; }
-        public string DescricaoAtividade { get; set; }
+        public byte[] DescricaoAtividade { get; set; }
         public DateTime DataCriacaoAtividade { get; set; }
         public DateTime DataInicioExecucao { get; set; }
         public DateTime DataFimExecucao { get; set; }

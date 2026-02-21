@@ -88,6 +88,9 @@ namespace JustDoTheWork.Controller
             if (string.IsNullOrWhiteSpace(dto.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
+            if (dto.Descricao == null && dto.Status != StatusAtividade.Analise)
+                return "Necessário informar a descrição da atividade!";
+
             var atividade = new Atividade
             {
                 Id = dto.Id,
@@ -108,7 +111,7 @@ namespace JustDoTheWork.Controller
             if (string.IsNullOrWhiteSpace(dto.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (string.IsNullOrWhiteSpace(dto.Descricao))
+            if (dto.Descricao == null)
                 return "Necessário informar os requisitos para esta atividade!";
 
             var atividade = new Atividade

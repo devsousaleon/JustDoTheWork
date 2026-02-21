@@ -30,7 +30,7 @@ namespace JustDoTheWork.Sistema.Forms
 
             var dadosInfoAtividade = _execucaoController.InformaDadosAtividade(_homeUserControl.IdSelecionadoAtividade);
 
-            txtDescricao.Text = dadosInfoAtividade.DescricaoAtividade;
+            txtEditorAtividade.LoadDocument(dadosInfoAtividade.DescricaoAtividade, DevExpress.XtraRichEdit.DocumentFormat.OpenXml);
             txtNomeAtividade.Text = dadosInfoAtividade.NomeAtividade;
             txtNomeProjeto.Text = dadosInfoAtividade.NomeProjeto;
             DataCriacaoAtividade.EditValue = dadosInfoAtividade.DataCriacaoAtividade;

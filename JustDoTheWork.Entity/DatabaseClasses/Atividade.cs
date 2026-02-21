@@ -7,7 +7,7 @@ namespace JustDoTheWork.Entity
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public byte[] Descricao { get; set; }
         public StatusAtividade Status { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime? DataFinalizacao { get; set; }

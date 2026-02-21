@@ -200,7 +200,13 @@ namespace JustDoTheWork.Infrastructure.Repository
 
         public string ExecutaAtividade(int Id, int Status)
         {
-            var sql = @"UPDATE atividade set status = @Status where id = @Id";
+            var sql = @"UPDATE atividade 
+                        SET status = @Status, 
+                            datafinalizacao =
+                                        CASE 
+                                            WHEN @Status = 6 THEN @DataFinalizacao ELSE datafinalizacao 
+                                        END 
+                        WHERE id = @Id";
 
             using (var connection = _factory.Create())
             {
@@ -210,7 +216,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                     {
                         try
                         {
-                            connection.Execute(sql, new { id = Id, status = Status }, transaction);
+                            connection.Execute(sql, new { id = Id, status = Status, DataFinalizacao = DateTime.Now }, transaction);
                             transaction.Commit();
                         }
                         catch (Exception ex)

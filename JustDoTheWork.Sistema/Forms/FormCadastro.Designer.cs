@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastro));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnEditaTextoAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.btnFecharAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.btnSalvarIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.txtDescricao = new System.Windows.Forms.RichTextBox();
+            this.txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.comboProjeto = new DevExpress.XtraEditors.LookUpEdit();
             this.btnAdicionarProjeto = new DevExpress.XtraEditors.SimpleButton();
@@ -54,6 +55,7 @@
             // 
             this.panelControl1.Appearance.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panelControl1.Appearance.Options.UseBackColor = true;
+            this.panelControl1.Controls.Add(this.btnEditaTextoAtividade);
             this.panelControl1.Controls.Add(this.btnFecharAtividade);
             this.panelControl1.Controls.Add(this.btnSalvarIncluirAtividade);
             this.panelControl1.Controls.Add(this.groupControl2);
@@ -62,6 +64,18 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(974, 644);
             this.panelControl1.TabIndex = 0;
+            // 
+            // btnEditaTextoAtividade
+            // 
+            this.btnEditaTextoAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditaTextoAtividade.Appearance.Options.UseFont = true;
+            this.btnEditaTextoAtividade.Location = new System.Drawing.Point(220, 605);
+            this.btnEditaTextoAtividade.Margin = new System.Windows.Forms.Padding(8);
+            this.btnEditaTextoAtividade.Name = "btnEditaTextoAtividade";
+            this.btnEditaTextoAtividade.Size = new System.Drawing.Size(181, 23);
+            this.btnEditaTextoAtividade.TabIndex = 4;
+            this.btnEditaTextoAtividade.Text = "Editar Texto Atividade";
+            this.btnEditaTextoAtividade.Click += new System.EventHandler(this.btnEditaTextoAtividade_Click);
             // 
             // btnFecharAtividade
             // 
@@ -94,23 +108,22 @@
             this.groupControl2.AppearanceCaption.Options.UseBackColor = true;
             this.groupControl2.AppearanceCaption.Options.UseBorderColor = true;
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
-            this.groupControl2.Controls.Add(this.txtDescricao);
+            this.groupControl2.Controls.Add(this.txtEditorAtividade);
             this.groupControl2.Location = new System.Drawing.Point(17, 115);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(940, 479);
             this.groupControl2.TabIndex = 3;
             this.groupControl2.Text = "Informações da atividade";
             // 
-            // txtDescricao
+            // txtEditorAtividade
             // 
-            this.txtDescricao.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtDescricao.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.txtDescricao.Location = new System.Drawing.Point(17, 38);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(15);
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(906, 421);
-            this.txtDescricao.TabIndex = 0;
-            this.txtDescricao.Text = "";
+            this.txtEditorAtividade.Location = new System.Drawing.Point(12, 33);
+            this.txtEditorAtividade.Margin = new System.Windows.Forms.Padding(10);
+            this.txtEditorAtividade.Name = "txtEditorAtividade";
+            this.txtEditorAtividade.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
+            this.txtEditorAtividade.ReadOnly = true;
+            this.txtEditorAtividade.Size = new System.Drawing.Size(916, 431);
+            this.txtEditorAtividade.TabIndex = 19;
             // 
             // groupControl1
             // 
@@ -190,6 +203,7 @@
             this.txtNomeAtividade.Name = "txtNomeAtividade";
             this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
+            this.txtNomeAtividade.Properties.MaxLength = 50;
             this.txtNomeAtividade.Size = new System.Drawing.Size(322, 24);
             this.txtNomeAtividade.TabIndex = 0;
             // 
@@ -232,8 +246,9 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.SimpleButton btnFecharAtividade;
         private DevExpress.XtraEditors.SimpleButton btnSalvarIncluirAtividade;
-        private System.Windows.Forms.RichTextBox txtDescricao;
         private DevExpress.XtraEditors.SimpleButton btnAdicionarProjeto;
         private DevExpress.XtraEditors.LookUpEdit comboProjeto;
+        private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
+        private DevExpress.XtraEditors.SimpleButton btnEditaTextoAtividade;
     }
 }

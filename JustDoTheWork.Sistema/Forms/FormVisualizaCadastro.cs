@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
@@ -13,14 +14,18 @@ namespace JustDoTheWork.Sistema.Forms
     {
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
+        private readonly ExecucaoController _execucaoController;
         private readonly RegisterUserControl _ruc;
         private BindingSource _dadosVisualizaCadastro;
+
+        public string TextoAtividadeDescricao { get; set; }
 
         public FormVisualizaCadastro(RegisterUserControl ruc)
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
+            _execucaoController = CompositionRoot.CriarExecucaoController();
             _ruc = ruc;
         }
 
@@ -30,21 +35,35 @@ namespace JustDoTheWork.Sistema.Forms
             CarregaDadosAtividade();
             AtualizaComboBoxStatus();
             AtualizaComboBoxProjeto();
+            CarregaDadosExecucao();
 
             if ((int)comboBoxStatus.EditValue >= 2)
                 btnAvancar.Visible = false;
         }
-
         void CarregaDadosAtividade()
         {
             var dados = _atividadeController.ObtemDadosFormAtividade(_ruc.IdSelecionado);
 
             txtNomeAtividade.Text = dados.Nome;
-            txtDescricao.Text = dados.Descricao;
+            txtEditorAtividade.LoadDocument(dados.Descricao, DocumentFormat.OpenXml);
             comboBoxProjeto.EditValue = dados.ProjetoId;
             comboBoxStatus.EditValue = dados.Status;
             DataCriacao.EditValue = dados.DataCriacao;
             DataFinalizacao.EditValue = dados.DataFinalizacao;
+
+            bool finalizado = (int)comboBoxStatus.EditValue == 6;
+
+            DataFinalizacao.Visible = finalizado;
+            lblDataFinalizacao.Visible = finalizado;
+        }
+
+        void CarregaDadosExecucao()
+        {
+            if ((int)comboBoxStatus.EditValue == 6)
+            {
+                var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_ruc.IdSelecionado);
+                dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
+            }
         }
 
         void AtualizaComboBoxProjeto()
@@ -86,7 +105,7 @@ namespace JustDoTheWork.Sistema.Forms
                 dto.ProjetoId = (int)comboBoxProjeto.EditValue;
 
             dto.Id = _ruc.IdSelecionado;
-
+            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
             var mensagem = _atividadeController.EditaInformacaoAtividade(dto, (int)comboBoxStatus.EditValue);
 
             if (!string.IsNullOrWhiteSpace(mensagem))
@@ -105,7 +124,6 @@ namespace JustDoTheWork.Sistema.Forms
             _dadosVisualizaCadastro.DataSource = new AtividadeDTO();
 
             txtNomeAtividade.DataBindings.Add("Text", _dadosVisualizaCadastro, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
-            txtDescricao.DataBindings.Add("Text", _dadosVisualizaCadastro, "Descricao", true, DataSourceUpdateMode.OnPropertyChanged);
             DataCriacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataCriacao", true, DataSourceUpdateMode.OnPropertyChanged);
             DataFinalizacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataFinalizacao", true, DataSourceUpdateMode.OnPropertyChanged);
         }
@@ -149,10 +167,9 @@ namespace JustDoTheWork.Sistema.Forms
         private void btnAvancar_Click(object sender, EventArgs e)
         {
             var dto = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
-
             dto.ProjetoId = (int)comboBoxProjeto.EditValue;
-
             dto.Id = _ruc.IdSelecionado;
+            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
             var mensagem = _atividadeController.EditaInfoAvancaAtividade(dto);
 
@@ -167,6 +184,13 @@ namespace JustDoTheWork.Sistema.Forms
             this.Close();
             _ruc.AtualizaGrid();
 
+        }
+
+        private void btnEditaTextoAtividade_Click(object sender, EventArgs e)
+        {
+            var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);
+            editaTextoAtividade.ShowDialog();
+            txtEditorAtividade.RtfText = editaTextoAtividade.NovoTextoDescricaoAtividade;
         }
     }
 }

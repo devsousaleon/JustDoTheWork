@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVisualizaAtividadeExecucao));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControlAtividadesExecucao = new DevExpress.XtraTab.XtraTabControl();
@@ -48,7 +47,7 @@
             this.lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
             this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             this.xtraPageDescricaoAtividade = new DevExpress.XtraTab.XtraTabPage();
-            this.txtDescricao = new System.Windows.Forms.RichTextBox();
+            this.txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlAtividadesExecucao)).BeginInit();
@@ -112,14 +111,6 @@
             this.dataGridHistoricoExecucao.AllowUserToAddRows = false;
             this.dataGridHistoricoExecucao.AllowUserToDeleteRows = false;
             this.dataGridHistoricoExecucao.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridHistoricoExecucao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridHistoricoExecucao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridHistoricoExecucao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.atividadeIdDataGridViewTextBoxColumn,
@@ -140,7 +131,7 @@
             this.atividadeIdDataGridViewTextBoxColumn.HeaderText = "AtividadeId";
             this.atividadeIdDataGridViewTextBoxColumn.Name = "atividadeIdDataGridViewTextBoxColumn";
             this.atividadeIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.atividadeIdDataGridViewTextBoxColumn.Width = 121;
+            this.atividadeIdDataGridViewTextBoxColumn.Width = 87;
             // 
             // dataInicioExecucaoDataGridViewTextBoxColumn
             // 
@@ -255,22 +246,20 @@
             // 
             this.xtraPageDescricaoAtividade.Appearance.Header.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.xtraPageDescricaoAtividade.Appearance.Header.Options.UseFont = true;
-            this.xtraPageDescricaoAtividade.Controls.Add(this.txtDescricao);
+            this.xtraPageDescricaoAtividade.Controls.Add(this.txtEditorAtividade);
             this.xtraPageDescricaoAtividade.Name = "xtraPageDescricaoAtividade";
             this.xtraPageDescricaoAtividade.Size = new System.Drawing.Size(862, 508);
             this.xtraPageDescricaoAtividade.Text = "Descrição da atividade";
             // 
-            // txtDescricao
+            // txtEditorAtividade
             // 
-            this.txtDescricao.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDescricao.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.txtDescricao.Location = new System.Drawing.Point(10, 10);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(10);
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.ReadOnly = true;
-            this.txtDescricao.Size = new System.Drawing.Size(842, 489);
-            this.txtDescricao.TabIndex = 0;
-            this.txtDescricao.Text = "";
+            this.txtEditorAtividade.Location = new System.Drawing.Point(10, 10);
+            this.txtEditorAtividade.Margin = new System.Windows.Forms.Padding(10);
+            this.txtEditorAtividade.Name = "txtEditorAtividade";
+            this.txtEditorAtividade.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
+            this.txtEditorAtividade.ReadOnly = true;
+            this.txtEditorAtividade.Size = new System.Drawing.Size(842, 488);
+            this.txtEditorAtividade.TabIndex = 19;
             // 
             // FormVisualizaAtividadeExecucao
             // 
@@ -319,7 +308,6 @@
         private DevExpress.XtraEditors.TextEdit txtNomeAtividade;
         private DevExpress.XtraEditors.GroupControl groupHistoricoExecucao;
         private System.Windows.Forms.DataGridView dataGridHistoricoExecucao;
-        private System.Windows.Forms.RichTextBox txtDescricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataFimDataGridViewTextBoxColumn;
@@ -329,5 +317,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn atividadeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicioExecucaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataFimExecucaoDataGridViewTextBoxColumn;
+        private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
     }
 }

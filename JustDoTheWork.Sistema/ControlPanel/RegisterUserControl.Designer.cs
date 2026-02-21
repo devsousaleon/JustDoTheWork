@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterUserControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
+            this.btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             this.btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             this.comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
@@ -44,11 +44,11 @@
             this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.GridCadastroAtividade = new System.Windows.Forms.DataGridView();
+            this.atualizaGridAtividadeDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atualizaGridAtividadeDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).BeginInit();
             this.panelBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).BeginInit();
@@ -70,12 +70,25 @@
             this.panelBotoes.Appearance.BackColor = System.Drawing.Color.White;
             this.panelBotoes.Appearance.Options.UseBackColor = true;
             this.panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelBotoes.Controls.Add(this.btnLimpar);
             this.panelBotoes.Controls.Add(this.btnIncluirAtividade);
             this.panelBotoes.Location = new System.Drawing.Point(15, 184);
             this.panelBotoes.Margin = new System.Windows.Forms.Padding(15);
             this.panelBotoes.Name = "panelBotoes";
             this.panelBotoes.Size = new System.Drawing.Size(123, 521);
             this.panelBotoes.TabIndex = 3;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Appearance.Options.UseFont = true;
+            this.btnLimpar.Location = new System.Drawing.Point(17, 115);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(89, 23);
+            this.btnLimpar.TabIndex = 1;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnIncluirAtividade
             // 
@@ -214,6 +227,7 @@
             this.txtNomeAtividade.Name = "txtNomeAtividade";
             this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
+            this.txtNomeAtividade.Properties.MaxLength = 50;
             this.txtNomeAtividade.Size = new System.Drawing.Size(313, 22);
             this.txtNomeAtividade.TabIndex = 1;
             // 
@@ -234,7 +248,6 @@
             // 
             this.GridCadastroAtividade.AllowUserToAddRows = false;
             this.GridCadastroAtividade.AllowUserToDeleteRows = false;
-            this.GridCadastroAtividade.AllowUserToOrderColumns = true;
             this.GridCadastroAtividade.AllowUserToResizeColumns = false;
             this.GridCadastroAtividade.AllowUserToResizeRows = false;
             this.GridCadastroAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -242,14 +255,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridCadastroAtividade.AutoGenerateColumns = false;
             this.GridCadastroAtividade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridCadastroAtividade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridCadastroAtividade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridCadastroAtividade.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -266,15 +271,26 @@
             this.GridCadastroAtividade.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCadastroAtividade_CellDoubleClick);
             this.GridCadastroAtividade.SelectionChanged += new System.EventHandler(this.GridCadastroAtividade_SelectionChanged);
             // 
+            // atualizaGridAtividadeDTOBindingSource
+            // 
+            this.atualizaGridAtividadeDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.AtualizaGridAtividadeDTO);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
             // idDataGridViewTextBoxColumn
             // 
-            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Identificador";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.idDataGridViewTextBoxColumn.Width = 123;
+            this.idDataGridViewTextBoxColumn.Width = 93;
             // 
             // nomeDataGridViewTextBoxColumn
             // 
@@ -293,17 +309,6 @@
             this.projetoDataGridViewTextBoxColumn.Name = "projetoDataGridViewTextBoxColumn";
             this.projetoDataGridViewTextBoxColumn.ReadOnly = true;
             this.projetoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // atualizaGridAtividadeDTOBindingSource
-            // 
-            this.atualizaGridAtividadeDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.AtualizaGridAtividadeDTO);
-            // 
-            // searchLookUpEdit1View
-            // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // RegisterUserControl
             // 
@@ -355,6 +360,7 @@
         private System.Windows.Forms.BindingSource atualizaGridAtividadeDTOBindingSource;
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
+        private DevExpress.XtraEditors.SimpleButton btnLimpar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn projetoDataGridViewTextBoxColumn;

@@ -46,6 +46,7 @@
             this.txtNomeProjeto.Name = "txtNomeProjeto";
             this.txtNomeProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
+            this.txtNomeProjeto.Properties.MaxLength = 50;
             this.txtNomeProjeto.Size = new System.Drawing.Size(237, 24);
             this.txtNomeProjeto.TabIndex = 1;
             // 

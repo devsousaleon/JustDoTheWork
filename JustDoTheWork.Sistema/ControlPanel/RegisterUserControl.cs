@@ -11,8 +11,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
 {
     public partial class RegisterUserControl : XtraUserControl
     {
-        public bool Inclusao { get; private set; }
-
         public int IdSelecionado { get; private set; }
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
@@ -31,8 +29,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         private void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
-            Inclusao = true;
-            FormCadastro fr = new FormCadastro(this);
+            FormCadastro fr = new FormCadastro();
             fr.ShowDialog();
         }
 
@@ -101,6 +98,14 @@ namespace JustDoTheWork.Sistema.ControlPanel
         private void GridCadastroAtividade_SelectionChanged(object sender, EventArgs e)
         {
             IdSelecionado = Convert.ToInt32(GridCadastroAtividade.CurrentRow.Cells["idDataGridViewTextBoxColumn"].Value);
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtNomeAtividade.Text = "";
+            comboProjetoPesquisa.EditValue = null;
+            comboStatusPesquisa.EditValue = null;
+            dataCriacaoPesquisa.EditValue = null;
         }
     }
 }

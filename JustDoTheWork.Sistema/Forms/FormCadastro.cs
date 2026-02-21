@@ -2,7 +2,6 @@
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
-using JustDoTheWork.Sistema.ControlPanel;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,15 +10,13 @@ namespace JustDoTheWork.Sistema.Forms
 {
     public partial class FormCadastro : XtraForm
     {
-        RegisterUserControl _register;
         BindingSource _dadosAtividadeBindingSource;
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
 
-        public FormCadastro(RegisterUserControl register)
+        public FormCadastro()
         {
             InitializeComponent();
-            _register = register;
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
         }
@@ -40,30 +37,24 @@ namespace JustDoTheWork.Sistema.Forms
 
         void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
-            if (_register.Inclusao)
+            var dto = (AtividadeDTO)_dadosAtividadeBindingSource.DataSource;
+
+            if (comboProjeto.EditValue != null)
+                dto.ProjetoId = (int)comboProjeto.EditValue;
+
+            dto.DataCriacao = DateTime.Now;
+            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
+
+            var mensagem = _atividadeController.Cadastro(dto);
+
+            if (!string.IsNullOrEmpty(mensagem))
             {
-                var dto = (AtividadeDTO)_dadosAtividadeBindingSource.DataSource;
-                
-                if(comboProjeto.EditValue != null)
-                    dto.ProjetoId = (int)comboProjeto.EditValue;
-
-                dto.DataCriacao = DateTime.Now;
-
-                var mensagem = _atividadeController.Cadastro(dto);
-
-                if (!string.IsNullOrEmpty(mensagem))
-                {
-                    XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                XtraMessageBox.Show("Atividade cadastrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
 
-            }
+            XtraMessageBox.Show("Atividade cadastrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         void ConfiguracaoBindingSource()
@@ -72,7 +63,6 @@ namespace JustDoTheWork.Sistema.Forms
             _dadosAtividadeBindingSource.DataSource = new AtividadeDTO();
 
             txtNomeAtividade.DataBindings.Add("Text", _dadosAtividadeBindingSource, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
-            txtDescricao.DataBindings.Add("Text", _dadosAtividadeBindingSource, "Descricao", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         void btnAdicionarProjeto_Click(object sender, EventArgs e)
@@ -94,5 +84,11 @@ namespace JustDoTheWork.Sistema.Forms
             comboProjeto.Properties.NullText = "Selecione um projeto";
         }
 
+        private void btnEditaTextoAtividade_Click(object sender, EventArgs e)
+        {
+            var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);
+            editaTextoAtividade.ShowDialog();
+            txtEditorAtividade.RtfText = editaTextoAtividade.NovoTextoDescricaoAtividade;
+        }
     }
 }

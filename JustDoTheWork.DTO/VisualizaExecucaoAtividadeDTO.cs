@@ -6,7 +6,7 @@ namespace JustDoTheWork.DTO
     {
         public string NomeAtividade { get; set; }
         public string NomeProjeto { get; set; }
-        public string DescricaoAtividade { get; set; }
+        public byte[] DescricaoAtividade { get; set; }
         public DateTime DataCriacaoAtividade { get; set; }
     }
 }

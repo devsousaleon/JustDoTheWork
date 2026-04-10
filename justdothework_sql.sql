@@ -1,0 +1,33 @@
+CREATE DATABASE JustDoTheWork;
+
+CREATE TABLE Atividade(
+
+	Id SERIAL PRIMARY KEY,
+	Nome VARCHAR(50) NOT NULL, 
+	Descricao TEXT,
+	Status INT NOT NULL,
+	ProjetoId INT, 
+	DataCriacao TIMESTAMP NOT NULL,
+	DataFinalizacao TIMESTAMP NULL
+);
+
+CREATE TABLE Execucao(
+
+	Id SERIAL PRIMARY KEY,
+	DataInicio TIMESTAMP NOT NULL,
+	DataFim TIMESTAMP NULL,
+	AtividadeId INT NOT NULL
+
+);
+
+CREATE TABLE Projeto(
+
+	Id SERIAL PRIMARY KEY,
+	Nome VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE Atividade
+ADD CONSTRAINT FK_Projeto_Atividade FOREIGN KEY(ProjetoId) REFERENCES Projeto(Id)
+
+ALTER TABLE Execucao
+ADD CONSTRAINT FK_Atividade_Execucao FOREIGN KEY(AtividadeId) REFERENCES Atividade(Id)

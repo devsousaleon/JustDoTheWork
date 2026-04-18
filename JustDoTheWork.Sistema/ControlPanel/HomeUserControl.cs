@@ -18,6 +18,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         //futuramente alterar a forma como está o código abaixo dos botões.
         //Fazer um método central que realize todas as ações e apenas chamar no eventclick do botão 
+        // MODIFICAR PARA QUE FIQUE APENAS UM MÉTODO PARA TUDO QUE É IGUAL
 
         public HomeUserControl()
         {
@@ -136,55 +137,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             CarregaGridAtividades();
         }
 
-        void dataGridExecutando_SelectionChanged(object sender, EventArgs e)
-        {
-            IdSelecionadoAtividade = Convert.ToInt32(dataGridExecutando.CurrentRow.Cells["dataGridViewTextBoxColumn4"].Value);
-            StatusExecucaoSelecionado = 3;
-        }
-
-        void dataGridPausado_SelectionChanged(object sender, EventArgs e)
-        {
-            IdSelecionadoAtividade = Convert.ToInt32(dataGridPausado.CurrentRow.Cells["dataGridViewTextBoxColumn7"].Value);
-            StatusExecucaoSelecionado = 4;
-        }
-        void dataGridPendentes_SelectionChanged(object sender, EventArgs e)
-        {
-            IdSelecionadoAtividade = Convert.ToInt32(dataGridPendentes.CurrentRow.Cells["dataGridViewTextBoxColumn1"].Value);
-            StatusExecucaoSelecionado = 2;
-        }
-
         private void btnVisualizaAtividade_Click(object sender, EventArgs e)
-        {
-            visualizaAtividade();
-        }
-
-        private void dataGridPendentes_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dataGridPendentes.ClearSelection();
-            IdSelecionadoAtividade = 0;
-            StatusExecucaoSelecionado = 0;
-        }
-
-        private void dataGridExecutando_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dataGridExecutando.ClearSelection();
-            IdSelecionadoAtividade = 0;
-            StatusExecucaoSelecionado = 0;
-        }
-
-        private void dataGridPausado_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dataGridPausado.ClearSelection();
-            IdSelecionadoAtividade = 0;
-            StatusExecucaoSelecionado = 0;
-        }
-
-        private void dataGridPendentes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            visualizaAtividade();
-        }
-
-        void visualizaAtividade()
         {
             if (IdSelecionadoAtividade <= 0)
                 return;
@@ -192,14 +145,36 @@ namespace JustDoTheWork.Sistema.ControlPanel
             Fvae.ShowDialog();
         }
 
-        private void dataGridExecutando_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void gridPendentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            visualizaAtividade();
+            IdSelecionadoAtividade = Convert.ToInt32(gridPendentes.GetFocusedRowCellValue("AtividadeId"));
+            StatusExecucaoSelecionado = 2;
+
+            if (IdSelecionadoAtividade <= 0)
+                return;
+            FormVisualizaAtividadeExecucao Fvae = new FormVisualizaAtividadeExecucao(this);
+            Fvae.ShowDialog();
+        }
+        private void gridExecutando_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            IdSelecionadoAtividade = Convert.ToInt32(gridExecutando.GetFocusedRowCellValue("AtividadeId"));
+            StatusExecucaoSelecionado = 3;
+
+            if (IdSelecionadoAtividade <= 0)
+                return;
+            FormVisualizaAtividadeExecucao Fvae = new FormVisualizaAtividadeExecucao(this);
+            Fvae.ShowDialog();
         }
 
-        private void dataGridPausado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void gridPausado_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            visualizaAtividade();
+            IdSelecionadoAtividade = Convert.ToInt32(gridPausado.GetFocusedRowCellValue("AtividadeId"));
+            StatusExecucaoSelecionado = 4;
+
+            if (IdSelecionadoAtividade <= 0)
+                return;
+            FormVisualizaAtividadeExecucao Fvae = new FormVisualizaAtividadeExecucao(this);
+            Fvae.ShowDialog();
         }
     }
 }

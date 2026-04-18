@@ -1,5 +1,7 @@
 ﻿namespace JustDoTheWork.Entity.Domains
 {
+    // PODE SER EXCLUIDO?
+
     public class GridPendenteFilter
     {
         public int AtividadeId { get; set; }

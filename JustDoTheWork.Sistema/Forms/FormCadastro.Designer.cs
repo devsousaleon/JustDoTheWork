@@ -53,8 +53,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Appearance.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.Controls.Add(this.btnEditaTextoAtividade);
             this.panelControl1.Controls.Add(this.btnFecharAtividade);
             this.panelControl1.Controls.Add(this.btnSalvarIncluirAtividade);
@@ -68,7 +66,6 @@
             // btnEditaTextoAtividade
             // 
             this.btnEditaTextoAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditaTextoAtividade.Appearance.Options.UseFont = true;
             this.btnEditaTextoAtividade.Location = new System.Drawing.Point(220, 605);
             this.btnEditaTextoAtividade.Margin = new System.Windows.Forms.Padding(8);
             this.btnEditaTextoAtividade.Name = "btnEditaTextoAtividade";
@@ -100,14 +97,7 @@
             // groupControl2
             // 
             this.groupControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl2.Appearance.Options.UseBackColor = true;
-            this.groupControl2.AppearanceCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl2.AppearanceCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl2.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
             this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupControl2.AppearanceCaption.Options.UseBackColor = true;
-            this.groupControl2.AppearanceCaption.Options.UseBorderColor = true;
-            this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.Controls.Add(this.txtEditorAtividade);
             this.groupControl2.Location = new System.Drawing.Point(17, 115);
             this.groupControl2.Name = "groupControl2";
@@ -127,20 +117,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.Appearance.Options.UseBackColor = true;
-            this.groupControl1.Appearance.Options.UseBorderColor = true;
-            this.groupControl1.AppearanceCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.AppearanceCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.AppearanceCaption.BorderColor = System.Drawing.Color.Silver;
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupControl1.AppearanceCaption.Options.UseBackColor = true;
-            this.groupControl1.AppearanceCaption.Options.UseBorderColor = true;
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl1.Controls.Add(this.comboProjeto);
             this.groupControl1.Controls.Add(this.btnAdicionarProjeto);
             this.groupControl1.Controls.Add(this.lblProjeto);
@@ -158,7 +135,6 @@
             this.comboProjeto.Location = new System.Drawing.Point(590, 37);
             this.comboProjeto.Name = "comboProjeto";
             this.comboProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboProjeto.Properties.Appearance.Options.UseFont = true;
             this.comboProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboProjeto.Properties.NullText = "";
@@ -170,7 +146,6 @@
             this.btnAdicionarProjeto.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdicionarProjeto.ImageOptions.Image")));
             this.btnAdicionarProjeto.Location = new System.Drawing.Point(898, 38);
             this.btnAdicionarProjeto.Name = "btnAdicionarProjeto";
-            this.btnAdicionarProjeto.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.btnAdicionarProjeto.Size = new System.Drawing.Size(24, 23);
             this.btnAdicionarProjeto.TabIndex = 8;
             this.btnAdicionarProjeto.Click += new System.EventHandler(this.btnAdicionarProjeto_Click);
@@ -178,7 +153,6 @@
             // lblProjeto
             // 
             this.lblProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjeto.Appearance.Options.UseFont = true;
             this.lblProjeto.Location = new System.Drawing.Point(507, 43);
             this.lblProjeto.Margin = new System.Windows.Forms.Padding(20);
             this.lblProjeto.Name = "lblProjeto";
@@ -189,7 +163,6 @@
             // lblNomeAtividade
             // 
             this.lblNomeAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeAtividade.Appearance.Options.UseFont = true;
             this.lblNomeAtividade.Location = new System.Drawing.Point(22, 43);
             this.lblNomeAtividade.Margin = new System.Windows.Forms.Padding(20);
             this.lblNomeAtividade.Name = "lblNomeAtividade";
@@ -202,15 +175,12 @@
             this.txtNomeAtividade.Location = new System.Drawing.Point(85, 40);
             this.txtNomeAtividade.Name = "txtNomeAtividade";
             this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
             this.txtNomeAtividade.Properties.MaxLength = 50;
             this.txtNomeAtividade.Size = new System.Drawing.Size(322, 24);
             this.txtNomeAtividade.TabIndex = 0;
             // 
             // FormCadastro
             // 
-            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 668);

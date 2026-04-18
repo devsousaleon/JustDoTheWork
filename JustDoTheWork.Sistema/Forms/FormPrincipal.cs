@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTab;
 using JustDoTheWork.Sistema.ControlPanel;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -15,54 +15,15 @@ namespace JustDoTheWork.Sistema.Forms
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            CarregaPanel(new HomeUserControl());
+            CarregaDadosTabControl(tabTarefas, new HomeUserControl());
+            CarregaDadosTabControl(tabCadastro, new RegisterUserControl());
         }
 
-        void CarregaPanel(XtraUserControl control)
+        void CarregaDadosTabControl(XtraTabPage aba, XtraUserControl control)
         {
-            panelPrincipal.Controls.Clear();
+            aba.Controls.Clear();
             control.Dock = DockStyle.Fill;
-            panelPrincipal.Controls.Add(control);
-        }
-
-        private void HomePage_Click(object sender, EventArgs e)
-        {
-            var control = panelPrincipal.Controls.OfType<HomeUserControl>().FirstOrDefault();
-
-            if (control != null)
-                return;
-            else
-                CarregaPanel(new HomeUserControl());
-        }
-
-        private void RegisterPage_Click(object sender, EventArgs e)
-        {
-            var control = panelPrincipal.Controls.OfType<RegisterUserControl>().FirstOrDefault();
-
-            if (control != null)
-                return;
-            else
-                CarregaPanel(new RegisterUserControl());
-        }
-
-        private void HistoricPage_Click(object sender, EventArgs e)
-        {
-            var control = panelPrincipal.Controls.OfType<HistoricUserControl>().FirstOrDefault();
-
-            if (control != null)
-                return;
-            else
-                CarregaPanel(new HistoricUserControl());
-        }
-
-        private void ReportPage_Click(object sender, EventArgs e)
-        {
-            var control = panelPrincipal.Controls.OfType<ReportUserControl>().FirstOrDefault();
-
-            if (control != null)
-                return;
-            else
-                CarregaPanel(new ReportUserControl());
+            aba.Controls.Add(control);
         }
     }
 }

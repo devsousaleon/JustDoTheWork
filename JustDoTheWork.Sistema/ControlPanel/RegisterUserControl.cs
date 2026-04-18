@@ -86,26 +86,20 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboStatusPesquisa.Properties.NullText = "Selecione uma opção";
         }
 
-        private void GridCadastroAtividade_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {    
-                FormVisualizaCadastro fvc = new FormVisualizaCadastro(this);
-                fvc.ShowDialog();
-            }
-        }
-
-        private void GridCadastroAtividade_SelectionChanged(object sender, EventArgs e)
-        {
-            IdSelecionado = Convert.ToInt32(GridCadastroAtividade.CurrentRow.Cells["idDataGridViewTextBoxColumn"].Value);
-        }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             txtNomeAtividade.Text = "";
             comboProjetoPesquisa.EditValue = null;
             comboStatusPesquisa.EditValue = null;
             dataCriacaoPesquisa.EditValue = null;
+        }
+
+        void gridAtividadesCadastradas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            IdSelecionado = Convert.ToInt32(gridAtividadesCadastradas.GetFocusedRowCellValue("Id"));
+
+            FormVisualizaCadastro fvc = new FormVisualizaCadastro(this);
+            fvc.ShowDialog();
         }
     }
 }

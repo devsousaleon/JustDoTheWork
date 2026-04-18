@@ -43,32 +43,32 @@
             this.btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.GridCadastroAtividade = new System.Windows.Forms.DataGridView();
             this.atualizaGridAtividadeDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
+            this.gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).BeginInit();
             this.panelBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).BeginInit();
             this.panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboStatusPesquisa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboProjetoPesquisa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.atualizaGridAtividadeDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAtividadesCadastradas)).BeginInit();
             this.SuspendLayout();
             // 
             // panelBotoes
             // 
             this.panelBotoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelBotoes.Appearance.BackColor = System.Drawing.Color.White;
-            this.panelBotoes.Appearance.Options.UseBackColor = true;
             this.panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.panelBotoes.Controls.Add(this.btnLimpar);
             this.panelBotoes.Controls.Add(this.btnIncluirAtividade);
@@ -106,8 +106,6 @@
             // 
             this.panelFiltroPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFiltroPesquisa.Appearance.BackColor = System.Drawing.Color.White;
-            this.panelFiltroPesquisa.Appearance.Options.UseBackColor = true;
             this.panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.panelFiltroPesquisa.Controls.Add(this.comboStatusPesquisa);
             this.panelFiltroPesquisa.Controls.Add(this.comboProjetoPesquisa);
@@ -134,7 +132,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboStatusPesquisa.Properties.NullText = "";
             this.comboStatusPesquisa.Properties.PopupSizeable = false;
-            this.comboStatusPesquisa.Size = new System.Drawing.Size(296, 24);
+            this.comboStatusPesquisa.Size = new System.Drawing.Size(296, 32);
             this.comboStatusPesquisa.TabIndex = 10;
             // 
             // comboProjetoPesquisa
@@ -146,7 +144,7 @@
             this.comboProjetoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboProjetoPesquisa.Properties.NullText = "";
-            this.comboProjetoPesquisa.Size = new System.Drawing.Size(312, 24);
+            this.comboProjetoPesquisa.Size = new System.Drawing.Size(312, 32);
             this.comboProjetoPesquisa.TabIndex = 9;
             // 
             // dataCriacaoPesquisa
@@ -160,15 +158,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dataCriacaoPesquisa.Size = new System.Drawing.Size(336, 22);
+            this.dataCriacaoPesquisa.Size = new System.Drawing.Size(336, 30);
             this.dataCriacaoPesquisa.TabIndex = 8;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.Location = new System.Drawing.Point(429, 63);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl4.Name = "labelControl4";
@@ -179,9 +175,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.Location = new System.Drawing.Point(429, 17);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl3.Name = "labelControl3";
@@ -192,9 +186,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(17, 63);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl2.Name = "labelControl2";
@@ -204,12 +196,8 @@
             // 
             // btnPesquisarAtividade
             // 
-            this.btnPesquisarAtividade.Appearance.BorderColor = System.Drawing.Color.Transparent;
             this.btnPesquisarAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarAtividade.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.btnPesquisarAtividade.Appearance.Options.UseBorderColor = true;
             this.btnPesquisarAtividade.Appearance.Options.UseFont = true;
-            this.btnPesquisarAtividade.Appearance.Options.UseForeColor = true;
             this.btnPesquisarAtividade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPesquisarAtividade.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarAtividade.ImageOptions.Image")));
             this.btnPesquisarAtividade.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -228,48 +216,19 @@
             this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
             this.txtNomeAtividade.Properties.MaxLength = 50;
-            this.txtNomeAtividade.Size = new System.Drawing.Size(313, 22);
+            this.txtNomeAtividade.Size = new System.Drawing.Size(313, 30);
             this.txtNomeAtividade.TabIndex = 1;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(17, 17);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(32, 16);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nome";
-            // 
-            // GridCadastroAtividade
-            // 
-            this.GridCadastroAtividade.AllowUserToAddRows = false;
-            this.GridCadastroAtividade.AllowUserToDeleteRows = false;
-            this.GridCadastroAtividade.AllowUserToResizeColumns = false;
-            this.GridCadastroAtividade.AllowUserToResizeRows = false;
-            this.GridCadastroAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridCadastroAtividade.AutoGenerateColumns = false;
-            this.GridCadastroAtividade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.GridCadastroAtividade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridCadastroAtividade.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nomeDataGridViewTextBoxColumn,
-            this.projetoDataGridViewTextBoxColumn});
-            this.GridCadastroAtividade.DataSource = this.atualizaGridAtividadeDTOBindingSource;
-            this.GridCadastroAtividade.Location = new System.Drawing.Point(168, 184);
-            this.GridCadastroAtividade.Margin = new System.Windows.Forms.Padding(15);
-            this.GridCadastroAtividade.MultiSelect = false;
-            this.GridCadastroAtividade.Name = "GridCadastroAtividade";
-            this.GridCadastroAtividade.ReadOnly = true;
-            this.GridCadastroAtividade.Size = new System.Drawing.Size(1097, 521);
-            this.GridCadastroAtividade.TabIndex = 5;
-            this.GridCadastroAtividade.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCadastroAtividade_CellDoubleClick);
-            this.GridCadastroAtividade.SelectionChanged += new System.EventHandler(this.GridCadastroAtividade_SelectionChanged);
             // 
             // atualizaGridAtividadeDTOBindingSource
             // 
@@ -282,41 +241,62 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // idDataGridViewTextBoxColumn
+            // GridCadastroAtividade
             // 
-            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Identificador";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.idDataGridViewTextBoxColumn.Width = 93;
+            this.GridCadastroAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridCadastroAtividade.DataSource = this.atualizaGridAtividadeDTOBindingSource;
+            this.GridCadastroAtividade.Location = new System.Drawing.Point(168, 184);
+            this.GridCadastroAtividade.MainView = this.gridAtividadesCadastradas;
+            this.GridCadastroAtividade.Name = "GridCadastroAtividade";
+            this.GridCadastroAtividade.Size = new System.Drawing.Size(1097, 521);
+            this.GridCadastroAtividade.TabIndex = 6;
+            this.GridCadastroAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridAtividadesCadastradas});
             // 
-            // nomeDataGridViewTextBoxColumn
+            // gridAtividadesCadastradas
             // 
-            this.nomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Atividade";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Atividade";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nomeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.gridAtividadesCadastradas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colAtividade,
+            this.colProjeto});
+            this.gridAtividadesCadastradas.GridControl = this.GridCadastroAtividade;
+            this.gridAtividadesCadastradas.Name = "gridAtividadesCadastradas";
+            this.gridAtividadesCadastradas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridAtividadesCadastradas_RowClick);
             // 
-            // projetoDataGridViewTextBoxColumn
+            // colId
             // 
-            this.projetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.projetoDataGridViewTextBoxColumn.DataPropertyName = "Projeto";
-            this.projetoDataGridViewTextBoxColumn.HeaderText = "Projeto";
-            this.projetoDataGridViewTextBoxColumn.Name = "projetoDataGridViewTextBoxColumn";
-            this.projetoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.projetoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            this.colId.OptionsColumn.AllowEdit = false;
+            this.colId.OptionsColumn.AllowMove = false;
+            this.colId.OptionsColumn.ReadOnly = true;
+            this.colId.Visible = true;
+            this.colId.VisibleIndex = 0;
+            // 
+            // colAtividade
+            // 
+            this.colAtividade.FieldName = "Atividade";
+            this.colAtividade.Name = "colAtividade";
+            this.colAtividade.OptionsColumn.AllowEdit = false;
+            this.colAtividade.OptionsColumn.AllowMove = false;
+            this.colAtividade.OptionsColumn.ReadOnly = true;
+            this.colAtividade.Visible = true;
+            this.colAtividade.VisibleIndex = 1;
+            // 
+            // colProjeto
+            // 
+            this.colProjeto.FieldName = "Projeto";
+            this.colProjeto.Name = "colProjeto";
+            this.colProjeto.OptionsColumn.AllowEdit = false;
+            this.colProjeto.OptionsColumn.AllowMove = false;
+            this.colProjeto.OptionsColumn.ReadOnly = true;
+            this.colProjeto.Visible = true;
+            this.colProjeto.VisibleIndex = 2;
             // 
             // RegisterUserControl
             // 
-            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Appearance.Options.UseBackColor = true;
-            this.Appearance.Options.UseBorderColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -336,9 +316,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.atualizaGridAtividadeDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAtividadesCadastradas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,7 +328,6 @@
 
         private DevExpress.XtraEditors.PanelControl panelBotoes;
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
-        private System.Windows.Forms.DataGridView GridCadastroAtividade;
         private DevExpress.XtraEditors.SimpleButton btnIncluirAtividade;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtNomeAtividade;
@@ -361,8 +341,10 @@
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn projetoDataGridViewTextBoxColumn;
+        private DevExpress.XtraGrid.GridControl GridCadastroAtividade;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridAtividadesCadastradas;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colAtividade;
+        private DevExpress.XtraGrid.Columns.GridColumn colProjeto;
     }
 }

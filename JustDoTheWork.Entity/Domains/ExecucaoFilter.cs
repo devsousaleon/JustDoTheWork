@@ -2,6 +2,8 @@
 
 namespace JustDoTheWork.Entity.Domains
 {
+    //PODE SER EXCLUIDO?
+
     public class ExecucaoFilter
     {
         public int AtividadeId { get; set; }

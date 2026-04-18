@@ -34,11 +34,12 @@
             this.xtraTabControlAtividadesExecucao = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabInfoAtividade = new DevExpress.XtraTab.XtraTabPage();
             this.groupHistoricoExecucao = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridHistoricoExecucao = new System.Windows.Forms.DataGridView();
-            this.atividadeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataInicioExecucaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataFimExecucaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridHistoricoExecucao = new DevExpress.XtraGrid.GridControl();
             this.execucaoDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupInfoAtividade = new DevExpress.XtraEditors.GroupControl();
             this.txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
             this.lblDataCriacaoAtividade = new DevExpress.XtraEditors.LabelControl();
@@ -57,6 +58,7 @@
             this.groupHistoricoExecucao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHistoricoExecucao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.execucaoDTOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHistoricoExecucao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupInfoAtividade)).BeginInit();
             this.groupInfoAtividade.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNomeProjeto.Properties)).BeginInit();
@@ -91,7 +93,7 @@
             this.xtraTabInfoAtividade.Controls.Add(this.groupHistoricoExecucao);
             this.xtraTabInfoAtividade.Controls.Add(this.groupInfoAtividade);
             this.xtraTabInfoAtividade.Name = "xtraTabInfoAtividade";
-            this.xtraTabInfoAtividade.Size = new System.Drawing.Size(862, 508);
+            this.xtraTabInfoAtividade.Size = new System.Drawing.Size(862, 503);
             this.xtraTabInfoAtividade.Text = "Detalhamento da atividade";
             // 
             // groupHistoricoExecucao
@@ -108,50 +110,61 @@
             // 
             // dataGridHistoricoExecucao
             // 
-            this.dataGridHistoricoExecucao.AllowUserToAddRows = false;
-            this.dataGridHistoricoExecucao.AllowUserToDeleteRows = false;
-            this.dataGridHistoricoExecucao.AutoGenerateColumns = false;
-            this.dataGridHistoricoExecucao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHistoricoExecucao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.atividadeIdDataGridViewTextBoxColumn,
-            this.dataInicioExecucaoDataGridViewTextBoxColumn,
-            this.dataFimExecucaoDataGridViewTextBoxColumn});
             this.dataGridHistoricoExecucao.DataSource = this.execucaoDTOBindingSource;
-            this.dataGridHistoricoExecucao.Location = new System.Drawing.Point(12, 33);
+            this.dataGridHistoricoExecucao.Location = new System.Drawing.Point(12, 39);
+            this.dataGridHistoricoExecucao.MainView = this.gridHistoricoExecucao;
             this.dataGridHistoricoExecucao.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridHistoricoExecucao.Name = "dataGridHistoricoExecucao";
-            this.dataGridHistoricoExecucao.ReadOnly = true;
-            this.dataGridHistoricoExecucao.Size = new System.Drawing.Size(818, 267);
-            this.dataGridHistoricoExecucao.TabIndex = 0;
-            // 
-            // atividadeIdDataGridViewTextBoxColumn
-            // 
-            this.atividadeIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.atividadeIdDataGridViewTextBoxColumn.DataPropertyName = "AtividadeId";
-            this.atividadeIdDataGridViewTextBoxColumn.HeaderText = "AtividadeId";
-            this.atividadeIdDataGridViewTextBoxColumn.Name = "atividadeIdDataGridViewTextBoxColumn";
-            this.atividadeIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.atividadeIdDataGridViewTextBoxColumn.Width = 87;
-            // 
-            // dataInicioExecucaoDataGridViewTextBoxColumn
-            // 
-            this.dataInicioExecucaoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataInicioExecucaoDataGridViewTextBoxColumn.DataPropertyName = "DataInicioExecucao";
-            this.dataInicioExecucaoDataGridViewTextBoxColumn.HeaderText = "Data Inicio da Execução";
-            this.dataInicioExecucaoDataGridViewTextBoxColumn.Name = "dataInicioExecucaoDataGridViewTextBoxColumn";
-            this.dataInicioExecucaoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataFimExecucaoDataGridViewTextBoxColumn
-            // 
-            this.dataFimExecucaoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataFimExecucaoDataGridViewTextBoxColumn.DataPropertyName = "DataFimExecucao";
-            this.dataFimExecucaoDataGridViewTextBoxColumn.HeaderText = "Data Fim da Execução";
-            this.dataFimExecucaoDataGridViewTextBoxColumn.Name = "dataFimExecucaoDataGridViewTextBoxColumn";
-            this.dataFimExecucaoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridHistoricoExecucao.Size = new System.Drawing.Size(818, 261);
+            this.dataGridHistoricoExecucao.TabIndex = 1;
+            this.dataGridHistoricoExecucao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridHistoricoExecucao});
             // 
             // execucaoDTOBindingSource
             // 
             this.execucaoDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.ExecucaoDTO);
+            // 
+            // gridHistoricoExecucao
+            // 
+            this.gridHistoricoExecucao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colAtividadeId,
+            this.colDataFimExecucao,
+            this.colDataInicioExecucao});
+            this.gridHistoricoExecucao.GridControl = this.dataGridHistoricoExecucao;
+            this.gridHistoricoExecucao.Name = "gridHistoricoExecucao";
+            // 
+            // colAtividadeId
+            // 
+            this.colAtividadeId.FieldName = "AtividadeId";
+            this.colAtividadeId.Name = "colAtividadeId";
+            this.colAtividadeId.OptionsColumn.AllowEdit = false;
+            this.colAtividadeId.OptionsColumn.AllowMove = false;
+            this.colAtividadeId.OptionsColumn.AllowSize = false;
+            this.colAtividadeId.OptionsColumn.ReadOnly = true;
+            this.colAtividadeId.Visible = true;
+            this.colAtividadeId.VisibleIndex = 0;
+            // 
+            // colDataFimExecucao
+            // 
+            this.colDataFimExecucao.FieldName = "DataFimExecucao";
+            this.colDataFimExecucao.Name = "colDataFimExecucao";
+            this.colDataFimExecucao.OptionsColumn.AllowEdit = false;
+            this.colDataFimExecucao.OptionsColumn.AllowMove = false;
+            this.colDataFimExecucao.OptionsColumn.AllowSize = false;
+            this.colDataFimExecucao.OptionsColumn.ReadOnly = true;
+            this.colDataFimExecucao.Visible = true;
+            this.colDataFimExecucao.VisibleIndex = 2;
+            // 
+            // colDataInicioExecucao
+            // 
+            this.colDataInicioExecucao.FieldName = "DataInicioExecucao";
+            this.colDataInicioExecucao.Name = "colDataInicioExecucao";
+            this.colDataInicioExecucao.OptionsColumn.AllowEdit = false;
+            this.colDataInicioExecucao.OptionsColumn.AllowMove = false;
+            this.colDataInicioExecucao.OptionsColumn.AllowSize = false;
+            this.colDataInicioExecucao.OptionsColumn.ReadOnly = true;
+            this.colDataInicioExecucao.Visible = true;
+            this.colDataInicioExecucao.VisibleIndex = 1;
             // 
             // groupInfoAtividade
             // 
@@ -177,15 +190,13 @@
             this.txtNomeProjeto.Name = "txtNomeProjeto";
             this.txtNomeProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeProjeto.Size = new System.Drawing.Size(302, 24);
+            this.txtNomeProjeto.Size = new System.Drawing.Size(302, 32);
             this.txtNomeProjeto.TabIndex = 22;
             // 
             // lblDataCriacaoAtividade
             // 
             this.lblDataCriacaoAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataCriacaoAtividade.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblDataCriacaoAtividade.Appearance.Options.UseFont = true;
-            this.lblDataCriacaoAtividade.Appearance.Options.UseForeColor = true;
             this.lblDataCriacaoAtividade.Location = new System.Drawing.Point(420, 43);
             this.lblDataCriacaoAtividade.Margin = new System.Windows.Forms.Padding(10);
             this.lblDataCriacaoAtividade.Name = "lblDataCriacaoAtividade";
@@ -203,15 +214,13 @@
             this.DataCriacaoAtividade.Properties.Appearance.Options.UseFont = true;
             this.DataCriacaoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DataCriacaoAtividade.Size = new System.Drawing.Size(254, 24);
+            this.DataCriacaoAtividade.Size = new System.Drawing.Size(254, 32);
             this.DataCriacaoAtividade.TabIndex = 20;
             // 
             // lblProjeto
             // 
             this.lblProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjeto.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblProjeto.Appearance.Options.UseFont = true;
-            this.lblProjeto.Appearance.Options.UseForeColor = true;
             this.lblProjeto.Location = new System.Drawing.Point(12, 87);
             this.lblProjeto.Margin = new System.Windows.Forms.Padding(20);
             this.lblProjeto.Name = "lblProjeto";
@@ -222,9 +231,7 @@
             // lblNomeAtividade
             // 
             this.lblNomeAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeAtividade.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblNomeAtividade.Appearance.Options.UseFont = true;
-            this.lblNomeAtividade.Appearance.Options.UseForeColor = true;
             this.lblNomeAtividade.Location = new System.Drawing.Point(12, 43);
             this.lblNomeAtividade.Margin = new System.Windows.Forms.Padding(10);
             this.lblNomeAtividade.Name = "lblNomeAtividade";
@@ -239,7 +246,7 @@
             this.txtNomeAtividade.Name = "txtNomeAtividade";
             this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeAtividade.Size = new System.Drawing.Size(342, 24);
+            this.txtNomeAtividade.Size = new System.Drawing.Size(342, 32);
             this.txtNomeAtividade.TabIndex = 16;
             // 
             // xtraPageDescricaoAtividade
@@ -248,7 +255,7 @@
             this.xtraPageDescricaoAtividade.Appearance.Header.Options.UseFont = true;
             this.xtraPageDescricaoAtividade.Controls.Add(this.txtEditorAtividade);
             this.xtraPageDescricaoAtividade.Name = "xtraPageDescricaoAtividade";
-            this.xtraPageDescricaoAtividade.Size = new System.Drawing.Size(862, 508);
+            this.xtraPageDescricaoAtividade.Size = new System.Drawing.Size(862, 503);
             this.xtraPageDescricaoAtividade.Text = "Descrição da atividade";
             // 
             // txtEditorAtividade
@@ -283,6 +290,7 @@
             this.groupHistoricoExecucao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHistoricoExecucao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.execucaoDTOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHistoricoExecucao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupInfoAtividade)).EndInit();
             this.groupInfoAtividade.ResumeLayout(false);
             this.groupInfoAtividade.PerformLayout();
@@ -307,16 +315,17 @@
         private DevExpress.XtraEditors.LabelControl lblNomeAtividade;
         private DevExpress.XtraEditors.TextEdit txtNomeAtividade;
         private DevExpress.XtraEditors.GroupControl groupHistoricoExecucao;
-        private System.Windows.Forms.DataGridView dataGridHistoricoExecucao;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataFimDataGridViewTextBoxColumn;
         private DevExpress.XtraEditors.TextEdit txtNomeProjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCriacaoAtividadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource execucaoDTOBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn atividadeIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataInicioExecucaoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataFimExecucaoDataGridViewTextBoxColumn;
         private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
+        private DevExpress.XtraGrid.GridControl dataGridHistoricoExecucao;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridHistoricoExecucao;
+        private DevExpress.XtraGrid.Columns.GridColumn colAtividadeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDataFimExecucao;
+        private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;
     }
 }

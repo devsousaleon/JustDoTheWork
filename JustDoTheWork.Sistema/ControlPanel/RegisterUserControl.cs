@@ -5,7 +5,6 @@ using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
 using System;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {

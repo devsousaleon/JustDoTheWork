@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36908.2
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11723.231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.Entity", "JustDoTheWork.Entity\JustDoTheWork.Entity.csproj", "{83B564C3-4CC5-4094-908C-7299A2F772F2}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.Sistema", "JustDoTheWork.Sistema\JustDoTheWork.Sistema.csproj", "{45AC4F90-8C49-4D46-B1FB-02DA8D5B6149}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.DTO", "JustDoTheWork.DTO\JustDoTheWork.DTO.csproj", "{7FE86730-D370-48D7-B507-3450F1103400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.UI.Core", "JustDoTheWork.UI.Core\JustDoTheWork.UI.Core.csproj", "{C1C8E85E-7A38-44E1-B355-CC24F11A3140}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7FE86730-D370-48D7-B507-3450F1103400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE86730-D370-48D7-B507-3450F1103400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FE86730-D370-48D7-B507-3450F1103400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

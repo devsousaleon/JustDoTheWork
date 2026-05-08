@@ -73,7 +73,7 @@
             this.panelBotoes.Controls.Add(this.btnLimpar);
             this.panelBotoes.Controls.Add(this.btnIncluirAtividade);
             this.panelBotoes.Location = new System.Drawing.Point(15, 184);
-            this.panelBotoes.Margin = new System.Windows.Forms.Padding(15);
+            this.panelBotoes.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.panelBotoes.Name = "panelBotoes";
             this.panelBotoes.Size = new System.Drawing.Size(123, 521);
             this.panelBotoes.TabIndex = 3;
@@ -117,7 +117,7 @@
             this.panelFiltroPesquisa.Controls.Add(this.txtNomeAtividade);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl1);
             this.panelFiltroPesquisa.Location = new System.Drawing.Point(15, 15);
-            this.panelFiltroPesquisa.Margin = new System.Windows.Forms.Padding(15);
+            this.panelFiltroPesquisa.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.panelFiltroPesquisa.Name = "panelFiltroPesquisa";
             this.panelFiltroPesquisa.Size = new System.Drawing.Size(1250, 139);
             this.panelFiltroPesquisa.TabIndex = 4;
@@ -166,7 +166,7 @@
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Location = new System.Drawing.Point(429, 63);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(15);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(32, 16);
             this.labelControl4.TabIndex = 7;
@@ -177,7 +177,7 @@
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Location = new System.Drawing.Point(429, 17);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(15);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(56, 16);
             this.labelControl3.TabIndex = 5;
@@ -188,7 +188,7 @@
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(17, 63);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(15);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 16);
             this.labelControl2.TabIndex = 3;
@@ -224,7 +224,7 @@
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(17, 17);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(15);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(32, 16);
             this.labelControl1.TabIndex = 0;

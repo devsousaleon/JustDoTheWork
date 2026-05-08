@@ -5,6 +5,7 @@ using JustDoTheWork.Sistema.Forms;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using JustDoTheWork.UI.Core;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
@@ -15,10 +16,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         private int StatusExecucaoSelecionado;
         public int IdSelecionadoAtividade { get; private set; }
-
-        //futuramente alterar a forma como está o código abaixo dos botões.
-        //Fazer um método central que realize todas as ações e apenas chamar no eventclick do botão 
-        // MODIFICAR PARA QUE FIQUE APENAS UM MÉTODO PARA TUDO QUE É IGUAL
 
         public HomeUserControl()
         {
@@ -51,7 +48,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
             if (!string.IsNullOrWhiteSpace(mensagemAtividade))
             {
-                XtraMessageBox.Show(mensagemAtividade, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageService.MensagemErro(mensagemAtividade);
                 return;
             }
 
@@ -74,7 +71,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
             if (!string.IsNullOrWhiteSpace(mensagemPausaAtividade))
             {
-                XtraMessageBox.Show(mensagemPausaAtividade, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageService.MensagemErro(mensagemPausaAtividade);
                 return;
             }
 

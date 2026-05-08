@@ -86,7 +86,7 @@
             this.groupExecutando.AppearanceCaption.Options.UseFont = true;
             this.groupExecutando.Controls.Add(this.dataGridExecutando);
             this.groupExecutando.Location = new System.Drawing.Point(523, 17);
-            this.groupExecutando.Margin = new System.Windows.Forms.Padding(15);
+            this.groupExecutando.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.groupExecutando.Name = "groupExecutando";
             this.groupExecutando.Size = new System.Drawing.Size(720, 280);
             this.groupExecutando.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.dataGridExecutando.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
             this.dataGridExecutando.Location = new System.Drawing.Point(12, 39);
             this.dataGridExecutando.MainView = this.gridExecutando;
-            this.dataGridExecutando.Margin = new System.Windows.Forms.Padding(10);
+            this.dataGridExecutando.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.dataGridExecutando.Name = "dataGridExecutando";
             this.dataGridExecutando.Size = new System.Drawing.Size(696, 229);
             this.dataGridExecutando.TabIndex = 4;
@@ -171,7 +171,7 @@
             this.dataGridPausado.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
             this.dataGridPausado.Location = new System.Drawing.Point(12, 39);
             this.dataGridPausado.MainView = this.gridPausado;
-            this.dataGridPausado.Margin = new System.Windows.Forms.Padding(10);
+            this.dataGridPausado.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.dataGridPausado.Name = "dataGridPausado";
             this.dataGridPausado.Size = new System.Drawing.Size(696, 246);
             this.dataGridPausado.TabIndex = 3;
@@ -244,7 +244,7 @@
             this.dataGridPendentes.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
             this.dataGridPendentes.Location = new System.Drawing.Point(12, 39);
             this.dataGridPendentes.MainView = this.gridPendentes;
-            this.dataGridPendentes.Margin = new System.Windows.Forms.Padding(10);
+            this.dataGridPendentes.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.dataGridPendentes.Name = "dataGridPendentes";
             this.dataGridPendentes.Size = new System.Drawing.Size(476, 539);
             this.dataGridPendentes.TabIndex = 6;
@@ -312,7 +312,7 @@
             this.btnVisualizaAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.btnVisualizaAtividade.Appearance.Options.UseFont = true;
             this.btnVisualizaAtividade.Location = new System.Drawing.Point(282, 10);
-            this.btnVisualizaAtividade.Margin = new System.Windows.Forms.Padding(8);
+            this.btnVisualizaAtividade.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnVisualizaAtividade.Name = "btnVisualizaAtividade";
             this.btnVisualizaAtividade.Size = new System.Drawing.Size(165, 23);
             this.btnVisualizaAtividade.TabIndex = 5;
@@ -325,7 +325,7 @@
             this.btnFinalizar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.btnFinalizar.Appearance.Options.UseFont = true;
             this.btnFinalizar.Location = new System.Drawing.Point(10, 42);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
             this.btnFinalizar.TabIndex = 2;
@@ -338,7 +338,7 @@
             this.btnPausar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.btnPausar.Appearance.Options.UseFont = true;
             this.btnPausar.Location = new System.Drawing.Point(10, 10);
-            this.btnPausar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnPausar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnPausar.Name = "btnPausar";
             this.btnPausar.Size = new System.Drawing.Size(75, 23);
             this.btnPausar.TabIndex = 4;
@@ -351,7 +351,7 @@
             this.btnExecutar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.btnExecutar.Appearance.Options.UseFont = true;
             this.btnExecutar.Location = new System.Drawing.Point(101, 42);
-            this.btnExecutar.Margin = new System.Windows.Forms.Padding(8);
+            this.btnExecutar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnExecutar.Name = "btnExecutar";
             this.btnExecutar.Size = new System.Drawing.Size(133, 23);
             this.btnExecutar.TabIndex = 1;
@@ -364,7 +364,7 @@
             this.btnVoltaPendente.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.btnVoltaPendente.Appearance.Options.UseFont = true;
             this.btnVoltaPendente.Location = new System.Drawing.Point(101, 10);
-            this.btnVoltaPendente.Margin = new System.Windows.Forms.Padding(8);
+            this.btnVoltaPendente.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnVoltaPendente.Name = "btnVoltaPendente";
             this.btnVoltaPendente.Size = new System.Drawing.Size(165, 23);
             this.btnVoltaPendente.TabIndex = 3;
@@ -381,7 +381,7 @@
             this.panelAtividadesExecucao.Controls.Add(this.groupPausado);
             this.panelAtividadesExecucao.Controls.Add(this.groupExecutando);
             this.panelAtividadesExecucao.Location = new System.Drawing.Point(10, 10);
-            this.panelAtividadesExecucao.Margin = new System.Windows.Forms.Padding(10);
+            this.panelAtividadesExecucao.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.panelAtividadesExecucao.Name = "panelAtividadesExecucao";
             this.panelAtividadesExecucao.Size = new System.Drawing.Size(1260, 700);
             this.panelAtividadesExecucao.TabIndex = 7;

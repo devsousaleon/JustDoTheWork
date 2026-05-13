@@ -4,9 +4,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
-using System;
-using System.Linq;
-using System.Windows.Forms;
+using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
 {
@@ -15,20 +13,17 @@ namespace JustDoTheWork.Sistema.Forms
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
         private readonly ExecucaoController _execucaoController;
-        private readonly RegisterUserControl _ruc;
+        private readonly VisualizaAtividadesUserControl _registerUserControl;
         private BindingSource _dadosVisualizaCadastro;
 
-        public string TextoAtividadeDescricao { get; set; }
-
-        public FormVisualizaCadastro(RegisterUserControl ruc)
+        public FormVisualizaCadastro(VisualizaAtividadesUserControl _registerUserControl)
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
             _execucaoController = CompositionRoot.CriarExecucaoController();
-            _ruc = ruc;
+            this._registerUserControl = _registerUserControl;
         }
-
         private void FormVisualizaCadastro_Load(object sender, EventArgs e)
         {
             ConfiguracaoBindingSource();
@@ -42,7 +37,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
         void CarregaDadosAtividade()
         {
-            var dados = _atividadeController.ObtemDadosFormAtividade(_ruc.IdSelecionado);
+            var dados = _atividadeController.ObtemDadosFormAtividade(_registerUserControl.IdSelecionado);
 
             txtNomeAtividade.Text = dados.Nome;
             txtEditorAtividade.LoadDocument(dados.Descricao, DocumentFormat.OpenXml);
@@ -56,12 +51,11 @@ namespace JustDoTheWork.Sistema.Forms
             DataFinalizacao.Visible = finalizado;
             lblDataFinalizacao.Visible = finalizado;
         }
-
         void CarregaDadosExecucao()
         {
             if ((int)comboBoxStatus.EditValue == 6)
             {
-                var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_ruc.IdSelecionado);  
+                var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_registerUserControl.IdSelecionado);  
                 
                 if(dadosInfoExecucao != null)
                 {
@@ -73,7 +67,6 @@ namespace JustDoTheWork.Sistema.Forms
                 }                
             }
         }
-
         void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
@@ -86,7 +79,6 @@ namespace JustDoTheWork.Sistema.Forms
             comboBoxProjeto.Properties.ValueMember = "Id";
             comboBoxProjeto.Properties.NullText = "Selecione um projeto";
         }
-
         void AtualizaComboBoxStatus()
         {
             comboBoxStatus.Properties.DataSource = _atividadeController.ObterStatusAtividade();
@@ -95,37 +87,30 @@ namespace JustDoTheWork.Sistema.Forms
             comboBoxStatus.Properties.ValueMember = "Id";
             comboBoxStatus.Properties.NullText = "Selecione uma opção";
         }
-
         private void btnFechar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Deseja realmente fechar esta atividade? \n" +
-                "As ações realizadas não serão salvas e serão perdidas!", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-
-            if (result == DialogResult.Yes)
-                this.Close();
+           MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas!");
         }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            var dto = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
+            var dtoAtividade = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
 
             if (comboBoxProjeto.EditValue != null)
-                dto.ProjetoId = (int)comboBoxProjeto.EditValue;
+                dtoAtividade.ProjetoId = (int)comboBoxProjeto.EditValue;
 
-            dto.Id = _ruc.IdSelecionado;
-            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
-            var mensagem = _atividadeController.EditaInformacaoAtividade(dto, (int)comboBoxStatus.EditValue);
+            dtoAtividade.Id = _registerUserControl.IdSelecionado;
+            dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
+            var retornoMensagemEdicaoAtividade = _atividadeController.EditaInformacaoAtividade(dtoAtividade, (int)comboBoxStatus.EditValue);
 
-            if (!string.IsNullOrWhiteSpace(mensagem))
+            if (!string.IsNullOrWhiteSpace(retornoMensagemEdicaoAtividade))
             {
-                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageService.Mensagem_Atencao(retornoMensagemEdicaoAtividade);
                 return;
             }
 
             this.Close();
-            _ruc.AtualizaGrid();
+            _registerUserControl.AtualizaGrid();
         }
-
         void ConfiguracaoBindingSource()
         {
             _dadosVisualizaCadastro = new BindingSource();
@@ -134,8 +119,7 @@ namespace JustDoTheWork.Sistema.Forms
             txtNomeAtividade.DataBindings.Add("Text", _dadosVisualizaCadastro, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
             DataCriacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataCriacao", true, DataSourceUpdateMode.OnPropertyChanged);
             DataFinalizacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataFinalizacao", true, DataSourceUpdateMode.OnPropertyChanged);
-        }
-
+        }        
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             switch ((int)comboBoxStatus.EditValue)
@@ -143,57 +127,52 @@ namespace JustDoTheWork.Sistema.Forms
                 case 2:
                 case 3:
                 case 4:
-                    XtraMessageBox.Show("Não é possível excluir esta atividade \n" +
-                                    "Há execuções em andamento, pendente ou pausado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageService.Mensagem_Atencao("Não é possível excluir esta atividade \nHá execuções em andamento, pendente ou pausado!");
                     return;
 
                 case 5:
-                    XtraMessageBox.Show("Não é possível excluir atividade cancelada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageService.Mensagem_Atencao("Não é possível excluir atividade cancelada!");
                     return;
                 case 6:
-                    XtraMessageBox.Show("Não é possível excluir atividade finalizada", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageService.Mensagem_Atencao("Não é possível excluir atividade finalizada!");
                     return;
             }           
 
-            DialogResult result = MessageBox.Show("Deseja realmente excluir esta atividade?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageService.Mensagem_Pergunta("Deseja realmente excluir esta atividade? \nOs dados informados serão perdidos!");
 
             if(result == DialogResult.Yes)
             {
-                var mensagem = _atividadeController.Exclusao(_ruc.IdSelecionado);
+                var mensagemRetornoExclusaoAtividade = _atividadeController.Exclusao(_registerUserControl.IdSelecionado);
 
-                if (!string.IsNullOrWhiteSpace(mensagem))
+                if (!string.IsNullOrWhiteSpace(mensagemRetornoExclusaoAtividade))
                 {
-                    XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageService.Mensagem_Erro(mensagemRetornoExclusaoAtividade);
                     return;
                 }
 
                 this.Close();
-                _ruc.AtualizaGrid();
+                _registerUserControl.AtualizaGrid();
             }            
         }
-
         private void btnAvancar_Click(object sender, EventArgs e)
         {
-            var dto = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
-            dto.ProjetoId = (int)comboBoxProjeto.EditValue;
-            dto.Id = _ruc.IdSelecionado;
-            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
+            var dtoAtividade = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
+            dtoAtividade.ProjetoId = (int)comboBoxProjeto.EditValue;
+            dtoAtividade.Id = _registerUserControl.IdSelecionado;
+            dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
-            var mensagem = _atividadeController.EditaInfoAvancaAtividade(dto);
+            var RetornoMensagemAvancaAtividade = _atividadeController.EditaInfoAvancaAtividade(dtoAtividade);
 
-            if (!string.IsNullOrWhiteSpace(mensagem))
+            if (!string.IsNullOrWhiteSpace(RetornoMensagemAvancaAtividade))
             {
-                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageService.Mensagem_Atencao(RetornoMensagemAvancaAtividade);
                 return;
             }
 
-            XtraMessageBox.Show("Atividade se encontra pendente para execução! \n" +
-                                "Processo realizado com sucesso", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageService.Mensagem_Sucesso("Atividade se encontra pendente! \nProcesso realizado com sucesso.");
             this.Close();
-            _ruc.AtualizaGrid();
-
+            _registerUserControl.AtualizaGrid();
         }
-
         private void btnEditaTextoAtividade_Click(object sender, EventArgs e)
         {
             var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);

@@ -2,27 +2,24 @@
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class ProjetoRepository : IProjetoRepository
     {
-        private readonly DBConnectionFactory _factory;
+        private readonly DBConnection _dbConnection;
 
-        public ProjetoRepository(DBConnectionFactory factory)
+        public ProjetoRepository(DBConnection _dbConnection)
         {
-            _factory = factory;
+            this._dbConnection = _dbConnection;
         }
-
         public string Inclusao(Projeto projeto)
         {
             var sql = @"INSERT INTO projeto(nome) VALUES(@Nome)";
             try
             {
-                using (var connection = _factory.Create())
+                using (var connection = _dbConnection.Create())
                 {
                     using (var transaction = connection.BeginTransaction())
                     {
@@ -31,19 +28,19 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, projeto, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Erro ao incluir projeto!";
+                            return "Erro ao incluir projeto! " + ex.Message;
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return "Erro ao conectar com o banco de dados!";
+                return "Erro de conexão com banco de dados. " + exception.Message;
             }
-            
+
             return "";
         }
         public string Edicao(Projeto projeto)
@@ -51,7 +48,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             var sql = @"UPDATE projeto SET nome = @nome WHERE id = @Id";
             try
             {
-                using (var connection = _factory.Create())
+                using (var connection = _dbConnection.Create())
                 {
                     using (var transaction = connection.BeginTransaction())
                     {
@@ -60,17 +57,17 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, projeto, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Erro ao editar dados do projeto!";
+                            return "Erro ao editar dados do projeto! " + ex.Message;
                         }
                     }
                 }
             }
-            catch 
+            catch (Exception exception)
             {
-                return "Erro ao conectar com o banco de dados!";
+                return "Erro de conexão com banco de dados. " + exception.Message;
             }
             return "";
         }
@@ -80,7 +77,7 @@ namespace JustDoTheWork.Infrastructure.Repository
 
             try
             {
-                using (var connection = _factory.Create())
+                using (var connection = _dbConnection.Create())
                 {
                     using (var transaction = connection.BeginTransaction())
                     {
@@ -89,17 +86,17 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, new { Id = id }, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Erro ao excluir projeto!";
+                            return "Erro ao excluir projeto! " + ex.Message;
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return "Erro ao conectar com o banco de dados!";
+                return "Erro de conexão com banco de dados. " + exception.Message;
             }
             return "";
         }
@@ -107,7 +104,7 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             var sql = @"SELECT * FROM projeto WHERE id = @Id";
 
-            using (var connection = _factory.Create())
+            using (var connection = _dbConnection.Create())
             {
                 return connection.QueryFirstOrDefault<Projeto>(
                     sql,
@@ -128,7 +125,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 parametros.Add("Nome", $"%{filtro.Nome}%");
             }
 
-            using (var conn = _factory.Create())
+            using (var conn = _dbConnection.Create())
             {
                 return conn.Query<Projeto>(
                     sql.ToString(),

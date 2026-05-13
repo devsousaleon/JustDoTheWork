@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.ControlPanel
 {
-    partial class ReportUserControl
+    partial class HistoricoUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUserControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoricoUserControl));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
-            this.btnSalvarRelatorio = new DevExpress.XtraEditors.SimpleButton();
             this.DataCriacao = new DevExpress.XtraEditors.DateEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxProjeto = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxStatus = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnPesquisarRelatorio = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPesquisarHistorico = new DevExpress.XtraEditors.SimpleButton();
+            this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
+            this.btnSalvarHistorico = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).BeginInit();
             this.panelFiltroPesquisa.SuspendLayout();
@@ -46,6 +47,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxProjeto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxStatus.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).BeginInit();
+            this.panelBotoes.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -54,55 +57,39 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 184);
+            this.dataGridView1.Location = new System.Drawing.Point(168, 184);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(15);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1250, 521);
-            this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.Size = new System.Drawing.Size(1097, 521);
+            this.dataGridView1.TabIndex = 8;
             // 
             // panelFiltroPesquisa
             // 
             this.panelFiltroPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFiltroPesquisa.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelFiltroPesquisa.Appearance.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panelFiltroPesquisa.Appearance.BackColor2 = System.Drawing.Color.DarkSlateBlue;
+            this.panelFiltroPesquisa.Appearance.BorderColor = System.Drawing.Color.DarkSlateBlue;
             this.panelFiltroPesquisa.Appearance.Options.UseBackColor = true;
+            this.panelFiltroPesquisa.Appearance.Options.UseBorderColor = true;
             this.panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelFiltroPesquisa.Controls.Add(this.btnSalvarRelatorio);
             this.panelFiltroPesquisa.Controls.Add(this.DataCriacao);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl4);
             this.panelFiltroPesquisa.Controls.Add(this.comboBoxProjeto);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl3);
             this.panelFiltroPesquisa.Controls.Add(this.comboBoxStatus);
             this.panelFiltroPesquisa.Controls.Add(this.labelControl2);
-            this.panelFiltroPesquisa.Controls.Add(this.btnPesquisarRelatorio);
+            this.panelFiltroPesquisa.Controls.Add(this.btnPesquisarHistorico);
             this.panelFiltroPesquisa.Location = new System.Drawing.Point(15, 15);
             this.panelFiltroPesquisa.Margin = new System.Windows.Forms.Padding(15);
             this.panelFiltroPesquisa.Name = "panelFiltroPesquisa";
             this.panelFiltroPesquisa.Size = new System.Drawing.Size(1250, 139);
-            this.panelFiltroPesquisa.TabIndex = 10;
-            // 
-            // btnSalvarRelatorio
-            // 
-            this.btnSalvarRelatorio.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.btnSalvarRelatorio.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvarRelatorio.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.btnSalvarRelatorio.Appearance.Options.UseBorderColor = true;
-            this.btnSalvarRelatorio.Appearance.Options.UseFont = true;
-            this.btnSalvarRelatorio.Appearance.Options.UseForeColor = true;
-            this.btnSalvarRelatorio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSalvarRelatorio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvarRelatorio.ImageOptions.Image")));
-            this.btnSalvarRelatorio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSalvarRelatorio.Location = new System.Drawing.Point(438, 82);
-            this.btnSalvarRelatorio.Name = "btnSalvarRelatorio";
-            this.btnSalvarRelatorio.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnSalvarRelatorio.Size = new System.Drawing.Size(107, 23);
-            this.btnSalvarRelatorio.TabIndex = 9;
-            this.btnSalvarRelatorio.Text = "Salvar";
+            this.panelFiltroPesquisa.TabIndex = 7;
             // 
             // DataCriacao
             // 
             this.DataCriacao.EditValue = null;
-            this.DataCriacao.Location = new System.Drawing.Point(83, 54);
+            this.DataCriacao.Location = new System.Drawing.Point(439, 35);
             this.DataCriacao.Name = "DataCriacao";
             this.DataCriacao.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataCriacao.Properties.Appearance.Options.UseFont = true;
@@ -110,7 +97,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DataCriacao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DataCriacao.Size = new System.Drawing.Size(297, 22);
+            this.DataCriacao.Size = new System.Drawing.Size(336, 22);
             this.DataCriacao.TabIndex = 8;
             // 
             // labelControl4
@@ -119,7 +106,7 @@
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(17, 57);
+            this.labelControl4.Location = new System.Drawing.Point(389, 38);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(32, 16);
@@ -154,7 +141,7 @@
             // 
             // comboBoxStatus
             // 
-            this.comboBoxStatus.Location = new System.Drawing.Point(83, 97);
+            this.comboBoxStatus.Location = new System.Drawing.Point(83, 57);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Properties.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
             this.comboBoxStatus.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -178,32 +165,60 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(17, 103);
+            this.labelControl2.Location = new System.Drawing.Point(17, 63);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 16);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Status";
             // 
-            // btnPesquisarRelatorio
+            // btnPesquisarHistorico
             // 
-            this.btnPesquisarRelatorio.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.btnPesquisarRelatorio.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarRelatorio.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.btnPesquisarRelatorio.Appearance.Options.UseBorderColor = true;
-            this.btnPesquisarRelatorio.Appearance.Options.UseFont = true;
-            this.btnPesquisarRelatorio.Appearance.Options.UseForeColor = true;
-            this.btnPesquisarRelatorio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPesquisarRelatorio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarRelatorio.ImageOptions.Image")));
-            this.btnPesquisarRelatorio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPesquisarRelatorio.Location = new System.Drawing.Point(438, 53);
-            this.btnPesquisarRelatorio.Name = "btnPesquisarRelatorio";
-            this.btnPesquisarRelatorio.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnPesquisarRelatorio.Size = new System.Drawing.Size(107, 23);
-            this.btnPesquisarRelatorio.TabIndex = 2;
-            this.btnPesquisarRelatorio.Text = "Pesquisar";
+            this.btnPesquisarHistorico.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.btnPesquisarHistorico.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarHistorico.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnPesquisarHistorico.Appearance.Options.UseBorderColor = true;
+            this.btnPesquisarHistorico.Appearance.Options.UseFont = true;
+            this.btnPesquisarHistorico.Appearance.Options.UseForeColor = true;
+            this.btnPesquisarHistorico.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPesquisarHistorico.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarHistorico.ImageOptions.Image")));
+            this.btnPesquisarHistorico.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPesquisarHistorico.Location = new System.Drawing.Point(378, 97);
+            this.btnPesquisarHistorico.Name = "btnPesquisarHistorico";
+            this.btnPesquisarHistorico.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPesquisarHistorico.Size = new System.Drawing.Size(107, 23);
+            this.btnPesquisarHistorico.TabIndex = 2;
+            this.btnPesquisarHistorico.Text = "Pesquisar";
             // 
-            // ReportUserControl
+            // panelBotoes
+            // 
+            this.panelBotoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelBotoes.Appearance.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panelBotoes.Appearance.BackColor2 = System.Drawing.Color.DarkSlateBlue;
+            this.panelBotoes.Appearance.BorderColor = System.Drawing.Color.DarkSlateBlue;
+            this.panelBotoes.Appearance.Options.UseBackColor = true;
+            this.panelBotoes.Appearance.Options.UseBorderColor = true;
+            this.panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelBotoes.Controls.Add(this.btnSalvarHistorico);
+            this.panelBotoes.Location = new System.Drawing.Point(15, 184);
+            this.panelBotoes.Margin = new System.Windows.Forms.Padding(15);
+            this.panelBotoes.Name = "panelBotoes";
+            this.panelBotoes.Size = new System.Drawing.Size(123, 521);
+            this.panelBotoes.TabIndex = 6;
+            // 
+            // btnSalvarHistorico
+            // 
+            this.btnSalvarHistorico.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvarHistorico.Appearance.Options.UseFont = true;
+            this.btnSalvarHistorico.Location = new System.Drawing.Point(17, 32);
+            this.btnSalvarHistorico.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
+            this.btnSalvarHistorico.Name = "btnSalvarHistorico";
+            this.btnSalvarHistorico.Size = new System.Drawing.Size(89, 23);
+            this.btnSalvarHistorico.TabIndex = 1;
+            this.btnSalvarHistorico.Text = "Salvar";
+            // 
+            // HistoricUserControl
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -214,7 +229,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelFiltroPesquisa);
-            this.Name = "ReportUserControl";
+            this.Controls.Add(this.panelBotoes);
+            this.Name = "HistoricUserControl";
             this.Size = new System.Drawing.Size(1280, 720);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).EndInit();
@@ -224,6 +240,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataCriacao.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxProjeto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxStatus.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).EndInit();
+            this.panelBotoes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -238,7 +256,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxStatus;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SimpleButton btnPesquisarRelatorio;
-        private DevExpress.XtraEditors.SimpleButton btnSalvarRelatorio;
+        private DevExpress.XtraEditors.SimpleButton btnPesquisarHistorico;
+        private DevExpress.XtraEditors.PanelControl panelBotoes;
+        private DevExpress.XtraEditors.SimpleButton btnSalvarHistorico;
     }
 }

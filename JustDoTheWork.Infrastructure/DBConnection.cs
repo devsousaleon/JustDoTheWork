@@ -3,15 +3,14 @@ using System.Data;
 
 namespace JustDoTheWork.Infrastructure
 {
-    public class DBConnectionFactory
+    public class DBConnection
     {
         private readonly string _connectionString;
 
-        public DBConnectionFactory(string connectionString)
+        public DBConnection(string connectionString)
         {
             _connectionString = connectionString;
         }
-
         public IDbConnection Create()
         {
             var conn = new NpgsqlConnection(_connectionString);

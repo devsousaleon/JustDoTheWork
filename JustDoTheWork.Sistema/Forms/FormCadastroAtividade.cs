@@ -2,19 +2,17 @@
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
-using System;
-using System.Linq;
-using System.Windows.Forms;
+using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormCadastro : XtraForm
+    public partial class FormCadastroAtividade : XtraForm
     {
         BindingSource _dadosAtividadeBindingSource;
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
 
-        public FormCadastro()
+        public FormCadastroAtividade()
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
@@ -25,38 +23,32 @@ namespace JustDoTheWork.Sistema.Forms
             ConfiguracaoBindingSource();
             AtualizaComboBoxProjeto();
         }
-
         void btnFecharAtividade_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Deseja realmente fechar esta atividade? \n" +
-                "As ações realizadas não serão salvas e serão perdidas!", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-
-            if (result == DialogResult.Yes)
-                this.Close();
+            MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas e serão perdidas!");
         }
 
         void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
-            var dto = (AtividadeDTO)_dadosAtividadeBindingSource.DataSource;
+            var dtoAtividade = (AtividadeDTO)_dadosAtividadeBindingSource.DataSource;
 
             if (comboProjeto.EditValue != null)
-                dto.ProjetoId = (int)comboProjeto.EditValue;
+                dtoAtividade.ProjetoId = (int)comboProjeto.EditValue;
 
-            dto.DataCriacao = DateTime.Now;
-            dto.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
+            dtoAtividade.DataCriacao = DateTime.Now;
+            dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
-            var mensagem = _atividadeController.Cadastro(dto);
+            var mensagemRetornoInclusaoAtividade = _atividadeController.Cadastro(dtoAtividade);
 
-            if (!string.IsNullOrEmpty(mensagem))
+            if (!string.IsNullOrEmpty(mensagemRetornoInclusaoAtividade))
             {
-                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageService.Mensagem_Atencao(mensagemRetornoInclusaoAtividade);
                 return;
             }
 
-            XtraMessageBox.Show("Atividade cadastrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageService.Mensagem_Sucesso("Atividade cadastrada com sucesso!");
             this.Close();
         }
-
         void ConfiguracaoBindingSource()
         {
             _dadosAtividadeBindingSource = new BindingSource();
@@ -64,13 +56,11 @@ namespace JustDoTheWork.Sistema.Forms
 
             txtNomeAtividade.DataBindings.Add("Text", _dadosAtividadeBindingSource, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
         }
-
         void btnAdicionarProjeto_Click(object sender, EventArgs e)
         {
-            FormAdicionaProjeto fap = new FormAdicionaProjeto(this);
-            fap.ShowDialog();
+            FormCadastroProjeto _formAdicionaProjeto = new (this);
+            _formAdicionaProjeto.ShowDialog();
         }
-
         public void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
@@ -83,7 +73,6 @@ namespace JustDoTheWork.Sistema.Forms
             comboProjeto.Properties.ValueMember = "Id";
             comboProjeto.Properties.NullText = "Selecione um projeto";
         }
-
         private void btnEditaTextoAtividade_Click(object sender, EventArgs e)
         {
             var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);

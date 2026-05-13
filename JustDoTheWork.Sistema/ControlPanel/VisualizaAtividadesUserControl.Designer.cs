@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.ControlPanel
 {
-    partial class RegisterUserControl
+    partial class VisualizaAtividadesUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterUserControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisualizaAtividadesUserControl));
             this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
             this.btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             this.btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();

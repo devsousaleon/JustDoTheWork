@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.ControlPanel
 {
-    partial class HomeUserControl
+    partial class VisualizaExecucaoUserControl
     {
         /// <summary> 
         /// Required designer variable.

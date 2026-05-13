@@ -1,5 +1,4 @@
 ﻿using JustDoTheWork.Entity.Domains;
-using System;
 
 namespace JustDoTheWork.DTO
 {

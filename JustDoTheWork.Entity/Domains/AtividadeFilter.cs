@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JustDoTheWork.Entity.Domains
+﻿namespace JustDoTheWork.Entity.Domains
 {
     public class AtividadeFilter
     {

@@ -8,33 +8,30 @@ namespace JustDoTheWork.Sistema.Composition
 {
     public static class CompositionRoot
     {
-        private static DBConnectionFactory CriarFactory()
+        private static DBConnection ConnectionDB()
         {
             var connectionString =
                 ConfigurationManager
                     .ConnectionStrings["Postgres"]
                     .ConnectionString;
 
-            return new DBConnectionFactory(connectionString);
+            return new DBConnection(connectionString);
         }
-
         public static AtividadeController CriarAtividadeController()
         {
-            var factory = CriarFactory();
-            IAtividadeRepository repository = new AtividadeRepository(factory);
+            var _dbconnection = ConnectionDB();
+            IAtividadeRepository repository = new AtividadeRepository(_dbconnection);
             return new AtividadeController(repository);
         }
-
         public static ProjetoController CriarProjetoController()
         {
-            var factory = CriarFactory();
+            var factory = ConnectionDB();
             IProjetoRepository repository = new ProjetoRepository(factory);
             return new ProjetoController(repository);
         }
-
         public static ExecucaoController CriarExecucaoController()
         {
-            var factory = CriarFactory();
+            var factory = ConnectionDB();
             IExecucaoRepository repository = new ExecucaoRepository(factory);
             return new ExecucaoController(repository);
         }

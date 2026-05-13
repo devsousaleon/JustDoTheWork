@@ -1,7 +1,4 @@
 ﻿using JustDoTheWork.Sistema.Forms;
-using System;
-using System.Windows.Forms;
-
 
 namespace JustDoTheWork.Sistema
 {
@@ -12,7 +9,6 @@ namespace JustDoTheWork.Sistema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Application.Run(new FormPrincipal());
         }
     }

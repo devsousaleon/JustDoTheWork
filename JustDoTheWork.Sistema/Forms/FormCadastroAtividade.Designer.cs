@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.Forms
 {
-    partial class FormCadastro
+    partial class FormCadastroAtividade
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroAtividade));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnEditaTextoAtividade = new DevExpress.XtraEditors.SimpleButton();
             this.btnFecharAtividade = new DevExpress.XtraEditors.SimpleButton();

@@ -10,12 +10,10 @@ namespace JustDoTheWork.Sistema.Composition
     {
         private static DBConnection ConnectionDB()
         {
-            var connectionString =
-                ConfigurationManager
-                    .ConnectionStrings["Postgres"]
-                    .ConnectionString;
+            //var connectionStringPostgres = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
+            var connectionStringSqlServer = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
 
-            return new DBConnection(connectionString);
+            return new DBConnectionFactory(connectionStringSqlServer);
         }
         public static AtividadeController CriarAtividadeController()
         {

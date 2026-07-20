@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.Forms
 {
-    partial class FormAdicionaProjeto
+    partial class FormCadastroProjeto
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdicionaProjeto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroProjeto));
             this.txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
             this.btnIncluirProjeto = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();

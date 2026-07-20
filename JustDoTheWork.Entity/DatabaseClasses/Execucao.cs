@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JustDoTheWork.Entity
+﻿namespace JustDoTheWork.Entity
 {
     public class Execucao
     {

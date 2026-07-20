@@ -3,18 +3,16 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
-using System;
-using System.Linq;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
-    public partial class RegisterUserControl : XtraUserControl
+    public partial class VisualizaAtividadesUserControl : XtraUserControl
     {
         public int IdSelecionado { get; private set; }
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
 
-        public RegisterUserControl()
+        public VisualizaAtividadesUserControl()
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
@@ -25,13 +23,11 @@ namespace JustDoTheWork.Sistema.ControlPanel
             AtualizaComboBoxProjeto();
             AtualizaComboBoxStatus();
         }
-
         private void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
-            FormCadastro fr = new FormCadastro();
-            fr.ShowDialog();
+            FormCadastroAtividade _formCadastro = new();
+            _formCadastro.ShowDialog();
         }
-
         public void AtualizaGrid()
         {
             var filtro = new AtividadePesquisaDTO
@@ -57,12 +53,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
             GridCadastroAtividade.DataSource = dadosGrid;
         }
-
         private void btnPesquisarAtividade_Click(object sender, EventArgs e)
         {
             AtualizaGrid();
         }
-
         public void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
@@ -75,7 +69,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboProjetoPesquisa.Properties.ValueMember = "Id";
             comboProjetoPesquisa.Properties.NullText = "Selecione um projeto";
         }
-
         void AtualizaComboBoxStatus()
         {
             comboStatusPesquisa.Properties.DataSource = _atividadeController.ObterStatusAtividade();
@@ -84,7 +77,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboStatusPesquisa.Properties.ValueMember = "Id";
             comboStatusPesquisa.Properties.NullText = "Selecione uma opção";
         }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             txtNomeAtividade.Text = "";
@@ -92,13 +84,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboStatusPesquisa.EditValue = null;
             dataCriacaoPesquisa.EditValue = null;
         }
-
         void gridAtividadesCadastradas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             IdSelecionado = Convert.ToInt32(gridAtividadesCadastradas.GetFocusedRowCellValue("Id"));
 
-            FormVisualizaCadastro fvc = new FormVisualizaCadastro(this);
-            fvc.ShowDialog();
+            FormVisualizaCadastro _formVisualizaCadastro = new(this);
+            _formVisualizaCadastro.ShowDialog();
         }
     }
 }

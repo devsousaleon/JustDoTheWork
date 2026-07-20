@@ -2,22 +2,21 @@
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
-using System;
-using System.Windows.Forms;
+using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormAdicionaProjeto : XtraForm
+    public partial class FormCadastroProjeto : XtraForm
     {
         private readonly ProjetoController _controller;
         BindingSource _dadosProjetoBindingSource;
-        FormCadastro _formCadastro;
+        FormCadastroAtividade _formCadastro;
 
-        public FormAdicionaProjeto(FormCadastro formCadastro)
+        public FormCadastroProjeto(FormCadastroAtividade _formCadastro)
         {
             InitializeComponent();
             _controller = CompositionRoot.CriarProjetoController();
-            _formCadastro = formCadastro;
+            this._formCadastro = _formCadastro;
         }
         private void FormAdicionaProjeto_Load(object sender, EventArgs e)
         {
@@ -26,30 +25,24 @@ namespace JustDoTheWork.Sistema.Forms
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Deseja realmente fechar a inclusão deste projeto? \n" +
-                "As ações realizadas não serão salvas e serão perdidas!", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-
-            if (result == DialogResult.Yes)
-                this.Close();
+            MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
         }
-
         private void btnIncluirProjeto_Click(object sender, EventArgs e)
         {
-            var dto = (ProjetoDTO)_dadosProjetoBindingSource.DataSource;
+            var dtoProjeto = (ProjetoDTO)_dadosProjetoBindingSource.DataSource;
 
-            var mensagem = _controller.Inclusao(dto);
+            var mensagemRetornoInclusaoProjeto = _controller.Inclusao(dtoProjeto);
 
-            if (!string.IsNullOrWhiteSpace(mensagem))
+            if (!string.IsNullOrWhiteSpace(mensagemRetornoInclusaoProjeto))
             {
-                XtraMessageBox.Show(mensagem, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageService.Mensagem_Atencao(mensagemRetornoInclusaoProjeto);
                 return;
             }
 
-            XtraMessageBox.Show("Projeto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageService.Mensagem_Sucesso("Projeto cadastrado com sucesso!");
             _formCadastro.AtualizaComboBoxProjeto();
             this.Close();
         }
-
         void ConfiguracaoBindingSource()
         {
             _dadosProjetoBindingSource = new BindingSource();

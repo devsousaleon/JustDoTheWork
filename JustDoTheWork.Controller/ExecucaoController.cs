@@ -1,20 +1,17 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System;
-using System.Collections.Generic;
 
 namespace JustDoTheWork.Controller
 {
     public class ExecucaoController
     {
-        private readonly IExecucaoRepository _repository;
+        private readonly IExecucaoRepository _iExecucaoRepository;
 
         public ExecucaoController(IExecucaoRepository repository)
         {
-            _repository = repository;
+            _iExecucaoRepository = repository;
         }
-
         public string Inclusao(int Id)
         {
             var execucao = new Execucao
@@ -22,24 +19,20 @@ namespace JustDoTheWork.Controller
                 AtividadeId = Id
             };
 
-            return _repository.Inclusao(execucao);
+            return _iExecucaoRepository.Inclusao(execucao);
         }
-
         public string FinalizaExecucao(int Id)
         {
             var execucao = new Execucao { AtividadeId = Id, DataFim = DateTime.Now };
-            return _repository.FinalizaExecucao(execucao);
+            return _iExecucaoRepository.FinalizaExecucao(execucao);
         }
-
         public IEnumerable<ExecucaoDTO> InformaDadosExecucao(int AtividadeId)
         {
-            return _repository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
+            return _iExecucaoRepository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
         }
         public VisualizaExecucaoAtividadeDTO InformaDadosAtividade(int AtividadeId)
         {
-            return _repository.BuscaInfoAtividadeExecucao(AtividadeId);
+            return _iExecucaoRepository.BuscaInfoAtividadeExecucao(AtividadeId);
         }
-
-
     }
 }

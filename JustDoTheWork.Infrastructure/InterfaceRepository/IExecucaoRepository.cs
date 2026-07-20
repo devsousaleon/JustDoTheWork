@@ -1,6 +1,5 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
-using System.Collections.Generic;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
@@ -10,6 +9,5 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string FinalizaExecucao(Execucao execucao);
         IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId);
         VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId);
-
     }
 }

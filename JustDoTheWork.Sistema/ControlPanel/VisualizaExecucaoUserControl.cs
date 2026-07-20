@@ -1,0 +1,130 @@
+﻿using DevExpress.XtraEditors;
+using JustDoTheWork.Controller;
+using JustDoTheWork.Sistema.Composition;
+using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.UI.Core.Geral;
+
+namespace JustDoTheWork.Sistema.ControlPanel
+{
+    public partial class VisualizaExecucaoUserControl : XtraUserControl
+    {
+        private readonly AtividadeController _atividadeController;
+        private readonly ExecucaoController _execucaoController;
+
+        private int _statusExecucaoSelecionado;
+        public int IdSelecionadoAtividade { get; private set; }
+
+        enum TipoExecucao { Inclusao, Edicao }
+
+        public VisualizaExecucaoUserControl()
+        {
+            InitializeComponent();
+            _atividadeController = CompositionRoot.CriarAtividadeController();
+            _execucaoController = CompositionRoot.CriarExecucaoController();
+        }
+        private void HomeUserControl_Load(object sender, EventArgs e)
+        {
+            CarregaGridAtividades();
+        }
+
+        void CarregaGridAtividades()
+        {
+            var dadosPendente = _atividadeController.AtualizaGridAtividades(2).ToList();
+            var dadosExecutando = _atividadeController.AtualizaGridAtividades(3).ToList();
+            var dadosPausado = _atividadeController.AtualizaGridAtividades(4).ToList();
+
+            dataGridPendentes.DataSource = dadosPendente;
+            dataGridExecutando.DataSource = dadosExecutando;
+            dataGridPausado.DataSource = dadosPausado;
+        }
+
+        private void btnExecutar_Click(object sender, EventArgs e)
+        {
+            ExecutaAcaoAlterarStatus(3, TipoExecucao.Inclusao);
+        }
+
+        private void btnPausar_Click(object sender, EventArgs e)
+        {
+            ExecutaAcaoAlterarStatus(4, TipoExecucao.Edicao);
+        }
+
+        private void btnVoltaPendente_Click(object sender, EventArgs e)
+        {
+            ExecutaAcaoAlterarStatus(2, TipoExecucao.Edicao);
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
+        }
+
+        private void btnVisualizaAtividade_Click(object sender, EventArgs e)
+        {
+            if (IdSelecionadoAtividade <= 0)
+                return;
+            FormVisualizaAtividadeExecucao _formVisualizaAtividadeExecucao = new(this);
+            _formVisualizaAtividadeExecucao.ShowDialog();
+        }
+
+        private void gridPendentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            InstanciaFormPorIdSelecionado(gridPendentes, 2);
+        }
+        private void gridExecutando_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            InstanciaFormPorIdSelecionado(gridExecutando, 3);
+        }
+        private void gridPausado_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            InstanciaFormPorIdSelecionado(gridPausado, 4);
+        }
+
+        void InstanciaFormPorIdSelecionado(DevExpress.XtraGrid.Views.Grid.GridView gridView, int status)
+        {
+            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
+            _statusExecucaoSelecionado = status;
+
+            if (IdSelecionadoAtividade <= 0)
+                return;
+
+            FormVisualizaAtividadeExecucao _formVisualizaAtividadeExecucao = new(this);
+            _formVisualizaAtividadeExecucao.ShowDialog();
+        }
+
+        void ExecutaAcaoAlterarStatus(int novoStatus, TipoExecucao acaoExecutada)
+        {
+            if (IdSelecionadoAtividade <= 0 || _statusExecucaoSelecionado == 0)
+                return;
+
+            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus);
+
+            if (!string.IsNullOrWhiteSpace(mensagemRetornoAlteracaoStatus))
+            {
+                MessageService.Mensagem_Atencao(mensagemRetornoAlteracaoStatus);
+                return;
+            }
+
+            if(acaoExecutada == TipoExecucao.Edicao)
+            {
+                var mensagemRetornoFinalizaExecucao = _execucaoController.FinalizaExecucao(IdSelecionadoAtividade);
+
+                if (!string.IsNullOrWhiteSpace(mensagemRetornoFinalizaExecucao))
+                {
+                    MessageService.Mensagem_Erro(mensagemRetornoFinalizaExecucao);
+                    return;
+                }
+            }
+            else if(acaoExecutada == TipoExecucao.Inclusao)
+            {
+                var mensagemRetornoExecucao = _execucaoController.Inclusao(IdSelecionadoAtividade);
+
+                if (!string.IsNullOrWhiteSpace(mensagemRetornoExecucao))
+                {
+                    MessageService.Mensagem_Erro(mensagemRetornoExecucao);
+                    return;
+                }
+            }
+            CarregaGridAtividades();
+        }
+    }
+}

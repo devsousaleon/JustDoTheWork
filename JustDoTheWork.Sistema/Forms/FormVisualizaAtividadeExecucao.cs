@@ -2,16 +2,15 @@
 using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
-using System;
 
 namespace JustDoTheWork.Sistema.Forms
 {
     public partial class FormVisualizaAtividadeExecucao : XtraForm
     {
         private readonly ExecucaoController _execucaoController;
-        private readonly HomeUserControl _homeUserControl;
+        private readonly VisualizaExecucaoUserControl _homeUserControl;
 
-        public FormVisualizaAtividadeExecucao(HomeUserControl homeUserControl)
+        public FormVisualizaAtividadeExecucao(VisualizaExecucaoUserControl homeUserControl)
         {
             InitializeComponent();
             _execucaoController = CompositionRoot.CriarExecucaoController();

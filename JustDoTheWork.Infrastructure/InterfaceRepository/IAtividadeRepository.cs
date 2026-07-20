@@ -1,7 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
-using System.Collections.Generic;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {

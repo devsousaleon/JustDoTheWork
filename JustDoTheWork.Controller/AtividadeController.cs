@@ -2,56 +2,53 @@
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace JustDoTheWork.Controller
 {
     public class AtividadeController
     {
-        private readonly IAtividadeRepository _repository;
+        private readonly IAtividadeRepository _iAtividadeRepository;
 
         public AtividadeController(IAtividadeRepository repository)
         {
-            _repository = repository;
+            _iAtividadeRepository = repository;
         }
-        public string Cadastro(AtividadeDTO dto)
+        public string Cadastro(AtividadeDTO dtoAtividade)
         {
             var mensagem = "";
 
-            if (dto == null)
+            if (dtoAtividade == null)
                 return "Dados inválidos para inclusão!";
 
-            if (string.IsNullOrWhiteSpace(dto.Nome))
+            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
                 return "É necessário informar o nome da atividade!";
 
-            if (dto.ProjetoId == 0)
+            if (dtoAtividade.ProjetoId == 0)
                 return "É necessário vincular a atividade a um projeto!";
 
             var atividade = new Atividade
             {
-                Nome = dto.Nome,
-                Descricao = dto.Descricao,
+                Nome = dtoAtividade.Nome,
+                Descricao = dtoAtividade.Descricao,
                 Status = StatusAtividade.Analise,
-                ProjetoId = dto.ProjetoId
+                ProjetoId = dtoAtividade.ProjetoId
             };
-            mensagem = _repository.Inclusao(atividade);
+            mensagem = _iAtividadeRepository.Inclusao(atividade);
 
             return mensagem;
         }
-        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dto)
+        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dtoAtividadePesquisa)
         {
             var filtro = new AtividadeFilter
             {
-                Nome = dto.Nome,
-                ProjetoId = dto.ProjetoId,
-                Status = dto.Status,
-                DataCriacao = dto.DataCriacao,
-                DataFinalizacao = dto.DataFinalizacao
+                Nome = dtoAtividadePesquisa.Nome,
+                ProjetoId = dtoAtividadePesquisa.ProjetoId,
+                Status = dtoAtividadePesquisa.Status,
+                DataCriacao = dtoAtividadePesquisa.DataCriacao,
+                DataFinalizacao = dtoAtividadePesquisa.DataFinalizacao
             };
 
-            return _repository.PesquisarParaGrid(filtro);
+            return _iAtividadeRepository.PesquisarParaGrid(filtro);
         }
 
         public IEnumerable<LookUpDto> ObterStatusAtividade()
@@ -66,9 +63,9 @@ namespace JustDoTheWork.Controller
                 });
         }
 
-        public PesquisaFormAtividadeDTO ObtemDadosFormAtividade(int id)
+        public PesquisaFormAtividadeDTO ObtemDadosFormAtividade(int idObterDadosForm)
         {
-           var resposta = _repository.BuscarPorId(id);
+           var resposta = _iAtividadeRepository.BuscarPorId(idObterDadosForm);
 
             var dados = new PesquisaFormAtividadeDTO
             {
@@ -83,85 +80,83 @@ namespace JustDoTheWork.Controller
             return dados;
         }
 
-        public string EditaInformacaoAtividade(AtividadeDTO dto, int StatusAtual)
+        public string EditaInformacaoAtividade(AtividadeDTO dtoAtividade, int StatusAtual)
         {
-            if (string.IsNullOrWhiteSpace(dto.Nome))
+            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (dto.Descricao == null && dto.Status != StatusAtividade.Analise)
+            if (dtoAtividade.Descricao == null && dtoAtividade.Status != StatusAtividade.Analise)
                 return "Necessário informar a descrição da atividade!";
 
             var atividade = new Atividade
             {
-                Id = dto.Id,
-                Nome = dto.Nome,
-                Descricao = dto.Descricao,
+                Id = dtoAtividade.Id,
+                Nome = dtoAtividade.Nome,
+                Descricao = dtoAtividade.Descricao,
                 Status = (StatusAtividade)StatusAtual,
-                DataCriacao = dto.DataCriacao,
-                DataFinalizacao = dto.DataFinalizacao,
-                ProjetoId = dto.ProjetoId
+                DataCriacao = dtoAtividade.DataCriacao,
+                DataFinalizacao = dtoAtividade.DataFinalizacao,
+                ProjetoId = dtoAtividade.ProjetoId
             };
 
-            return _repository.Edicao(atividade);
+            return _iAtividadeRepository.Edicao(atividade);
 
         }
-
-        public string EditaInfoAvancaAtividade(AtividadeDTO dto)
+        public string EditaInfoAvancaAtividade(AtividadeDTO dtoAtividade)
         {
-            if (string.IsNullOrWhiteSpace(dto.Nome))
+            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (dto.Descricao == null)
+            if (dtoAtividade.Descricao == null)
                 return "Necessário informar os requisitos para esta atividade!";
 
             var atividade = new Atividade
             {
-                Id = dto.Id,
-                Nome = dto.Nome,
-                Descricao = dto.Descricao,
+                Id = dtoAtividade.Id,
+                Nome = dtoAtividade.Nome,
+                Descricao = dtoAtividade.Descricao,
                 Status = StatusAtividade.Pendente,
-                DataCriacao = dto.DataCriacao,
-                DataFinalizacao = dto.DataFinalizacao,
-                ProjetoId = dto.ProjetoId
+                DataCriacao = dtoAtividade.DataCriacao,
+                DataFinalizacao = dtoAtividade.DataFinalizacao,
+                ProjetoId = dtoAtividade.ProjetoId
             };
 
-            return _repository.Edicao(atividade);
+            return _iAtividadeRepository.Edicao(atividade);
         }
 
-        public string Exclusao(int Id)
+        public string Exclusao(int idExclusao)
         {
-            return _repository.ExclusaoPorId(Id);
+            return _iAtividadeRepository.ExclusaoPorId(idExclusao);
         }
 
         public IEnumerable<AtualizaAtividadesExecucaoDTO> AtualizaGridAtividades(int Status)
         {
-            return _repository.BuscaParaGridAtividades(Status);
+            return _iAtividadeRepository.BuscaParaGridAtividades(Status);
         }
 
-        public string AlterarStatus(int id, int statusAtual, int novoStatus)
+        public string AlterarStatus(int idAlteraStatus, int statusAtual, int novoStatus)
         {
             if (!TransicaoPermitida(statusAtual, novoStatus))
                 return "Essa ação não é permitida para esse status.";
 
-            return _repository.ExecutaAtividade(id, novoStatus);
+            return _iAtividadeRepository.ExecutaAtividade(idAlteraStatus, novoStatus);
         }
-        private bool TransicaoPermitida(int atual, int novo)
+        private bool TransicaoPermitida(int transicaoAtual, int transicaoNova)
         {
-            switch (atual)
+            switch (transicaoAtual)
             {
                 case 2: // Pendente
-                    return novo == 3;
+                    return transicaoNova == 3;
 
                 case 3: // Executando
-                    return novo == 4 || novo == 2 || novo == 6;
+                    return transicaoNova == 4 || transicaoNova == 2 || transicaoNova == 6;
 
                 case 4: // Pausado
-                    return novo == 3 || novo == 2;
+                    return transicaoNova == 3 || transicaoNova == 2;
 
                 default:
                     return false;
             }
         }
-
     }
 }

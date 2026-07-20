@@ -3,26 +3,24 @@ using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class AtividadeRepository : IAtividadeRepository
     {
-        private readonly DBConnectionFactory _factory;
+        private readonly DBConnection _dbConnection;
 
-        public AtividadeRepository(DBConnectionFactory factory)
+        public AtividadeRepository(DBConnection _dbConnection)
         {
-            _factory = factory;
+            this._dbConnection = _dbConnection;
         }
         public string Inclusao(Atividade atividade)
         {
             const string sql = @"INSERT INTO Atividade(nome, descricao, status, datacriacao, datafinalizacao, projetoid)
                                VALUES(@Nome, @Descricao, @Status, @DataCriacao, @DataFinalizacao, @ProjetoId);";
 
-            using (var connection = _factory.Create())
+            using (var connection = _dbConnection.Create())
             {
                 try
                 {
@@ -33,16 +31,16 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, atividade, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade!";
+                            return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade! " + ex.Message;
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    return "Erro ao tentar conectar no banco de dados!";
+                    return "Erro de conexão com banco de dados. " + exception.Message;
                 }
                 finally
                 {
@@ -56,7 +54,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             var sql = @"UPDATE ATIVIDADE SET nome = @Nome, descricao = @Descricao, status = @Status,
                       datafinalizacao = @DataFinalizacao, projetoid = @ProjetoId where id = @Id";
 
-            using (var connection = _factory.Create())
+            using (var connection = _dbConnection.Create())
             {
                 try
                 {
@@ -67,17 +65,17 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, atividade, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a edição da atividade!";
+                            return "Ocorreu um erro ao tentar realizar a edição da atividade! " + ex.Message;
                         }
 
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    return "Erro ao tentar conectar no banco de dados!";
+                    return "Erro de conexão com banco de dados. " + exception.Message;
                 }
                 finally
                 {
@@ -90,7 +88,7 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             var sql = @"DELETE FROM atividade where id = @Id";
 
-            using (var connection = _factory.Create())
+            using (var connection = _dbConnection.Create())
             {
                 try
                 {
@@ -101,16 +99,16 @@ namespace JustDoTheWork.Infrastructure.Repository
                             connection.Execute(sql, new { id = Id }, transaction);
                             transaction.Commit();
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
-                            return "Ocorreu um erro ao tentar excluir a atividade!";
+                            return "Ocorreu um erro ao tentar excluir a atividade! " + ex.Message;
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    return "Erro ao tentar conectar no banco de dados!";
+                    return "Erro de conexão com banco de dados. " + exception.Message;
                 }
                 finally
                 {
@@ -119,12 +117,11 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
-
         public Atividade BuscarPorId(int id)
         {
             const string sql = @"SELECT * FROM atividade WHERE id = @Id";
 
-            using (var conn = _factory.Create())
+            using (var conn = _dbConnection.Create())
             {
                 return conn.QueryFirstOrDefault<Atividade>(
                     sql,
@@ -132,7 +129,6 @@ namespace JustDoTheWork.Infrastructure.Repository
                 );
             }
         }
-
         public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro)
         {
             var sql = new StringBuilder();
@@ -173,7 +169,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
             }
 
-            using (var conn = _factory.Create())
+            using (var conn = _dbConnection.Create())
             {
                 return conn.Query<AtualizaGridAtividadeDTO>(
                     sql.ToString(),
@@ -181,7 +177,6 @@ namespace JustDoTheWork.Infrastructure.Repository
                 );
             }
         }
-
         public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status)
         {
             var sql = @" select a.id as AtividadeId, a.nome as NomeAtividade, p.nome as NomeProjeto " +
@@ -189,7 +184,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                       " inner join projeto p on p.id = a.projetoid " +
                       " where a.status = @Status";
 
-            using (var conn = _factory.Create())
+            using (var conn = _dbConnection.Create())
             {
                 return conn.Query<AtualizaAtividadesExecucaoDTO>(
                     sql.ToString(),
@@ -197,7 +192,6 @@ namespace JustDoTheWork.Infrastructure.Repository
                 );
             }
         }
-
         public string ExecutaAtividade(int Id, int Status)
         {
             var sql = @"UPDATE atividade 
@@ -208,7 +202,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                                         END 
                         WHERE id = @Id";
 
-            using (var connection = _factory.Create())
+            using (var connection = _dbConnection.Create())
             {
                 try
                 {
@@ -222,13 +216,13 @@ namespace JustDoTheWork.Infrastructure.Repository
                         catch (Exception ex)
                         {
                             transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a execução desta atividade!" + ex;
+                            return "Ocorreu um erro ao tentar realizar a execução desta atividade!" + ex.Message;
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    return "Erro ao conectar no banco de dados \n" + ex;
+                    return "Erro de conexão com banco de dados. " + exception.Message;
                 }
                 finally
                 {
@@ -237,7 +231,5 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
-
-
     }
 }

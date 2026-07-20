@@ -1,8 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using JustDoTheWork.Sistema.ControlPanel;
-using System;
-using System.Windows.Forms;
 
 namespace JustDoTheWork.Sistema.Forms
 {
@@ -12,13 +10,11 @@ namespace JustDoTheWork.Sistema.Forms
         {
             InitializeComponent();
         }
-
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            CarregaDadosTabControl(tabTarefas, new HomeUserControl());
-            CarregaDadosTabControl(tabCadastro, new RegisterUserControl());
+            CarregaDadosTabControl(tabTarefas, new VisualizaExecucaoUserControl());
+            CarregaDadosTabControl(tabCadastro, new VisualizaAtividadesUserControl());
         }
-
         void CarregaDadosTabControl(XtraTabPage aba, XtraUserControl control)
         {
             aba.Controls.Clear();

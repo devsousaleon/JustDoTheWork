@@ -18,16 +18,19 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
         }
-        private void RegisterUserControl_Load(object sender, EventArgs e)
+
+        void RegisterUserControl_Load(object sender, EventArgs e)
         {
             AtualizaComboBoxProjeto();
             AtualizaComboBoxStatus();
         }
-        private void btnIncluirAtividade_Click(object sender, EventArgs e)
+
+        void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
             FormCadastroAtividade _formCadastro = new();
             _formCadastro.ShowDialog();
         }
+
         public void AtualizaGrid()
         {
             var filtro = new AtividadePesquisaDTO
@@ -53,10 +56,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
             GridCadastroAtividade.DataSource = dadosGrid;
         }
-        private void btnPesquisarAtividade_Click(object sender, EventArgs e)
-        {
-            AtualizaGrid();
-        }
+
+        void btnPesquisarAtividade_Click(object sender, EventArgs e)
+            => AtualizaGrid();
+
         public void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
@@ -69,6 +72,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboProjetoPesquisa.Properties.ValueMember = "Id";
             comboProjetoPesquisa.Properties.NullText = "Selecione um projeto";
         }
+
         void AtualizaComboBoxStatus()
         {
             comboStatusPesquisa.Properties.DataSource = _atividadeController.ObterStatusAtividade();
@@ -77,13 +81,15 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboStatusPesquisa.Properties.ValueMember = "Id";
             comboStatusPesquisa.Properties.NullText = "Selecione uma opção";
         }
-        private void btnLimpar_Click(object sender, EventArgs e)
+
+        void btnLimpar_Click(object sender, EventArgs e)
         {
             txtNomeAtividade.Text = "";
             comboProjetoPesquisa.EditValue = null;
             comboStatusPesquisa.EditValue = null;
             dataCriacaoPesquisa.EditValue = null;
         }
+
         void gridAtividadesCadastradas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             IdSelecionado = Convert.ToInt32(gridAtividadesCadastradas.GetFocusedRowCellValue("Id"));

@@ -17,10 +17,8 @@ namespace JustDoTheWork.Sistema.Forms
             _homeUserControl = homeUserControl;
         }
 
-        private void FormVisualizaAtividadeExecucao_Load(object sender, EventArgs e)
-        {
-            CarregaInfoAtividadeExecucao();
-        }
+        void FormVisualizaAtividadeExecucao_Load(object sender, EventArgs e)
+            => CarregaInfoAtividadeExecucao();
 
         void CarregaInfoAtividadeExecucao()
         {

@@ -18,16 +18,14 @@ namespace JustDoTheWork.Sistema.Forms
             _controller = CompositionRoot.CriarProjetoController();
             this._formCadastro = _formCadastro;
         }
-        private void FormAdicionaProjeto_Load(object sender, EventArgs e)
-        {
-            ConfiguracaoBindingSource();
-        }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
-        }
-        private void btnIncluirProjeto_Click(object sender, EventArgs e)
+        void FormAdicionaProjeto_Load(object sender, EventArgs e)
+            => ConfiguracaoBindingSource();
+
+        void btnCancelar_Click(object sender, EventArgs e)
+            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
+        
+        void btnIncluirProjeto_Click(object sender, EventArgs e)
         {
             var dtoProjeto = (ProjetoDTO)_dadosProjetoBindingSource.DataSource;
 
@@ -43,6 +41,7 @@ namespace JustDoTheWork.Sistema.Forms
             _formCadastro.AtualizaComboBoxProjeto();
             this.Close();
         }
+        
         void ConfiguracaoBindingSource()
         {
             _dadosProjetoBindingSource = new BindingSource();

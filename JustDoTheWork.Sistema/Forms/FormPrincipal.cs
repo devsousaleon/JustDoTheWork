@@ -10,11 +10,13 @@ namespace JustDoTheWork.Sistema.Forms
         {
             InitializeComponent();
         }
-        private void FormPrincipal_Load(object sender, EventArgs e)
+
+        void FormPrincipal_Load(object sender, EventArgs e)
         {
             CarregaDadosTabControl(tabTarefas, new VisualizaExecucaoUserControl());
             CarregaDadosTabControl(tabCadastro, new VisualizaAtividadesUserControl());
         }
+
         void CarregaDadosTabControl(XtraTabPage aba, XtraUserControl control)
         {
             aba.Controls.Clear();

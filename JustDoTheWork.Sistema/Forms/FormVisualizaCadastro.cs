@@ -24,7 +24,8 @@ namespace JustDoTheWork.Sistema.Forms
             _execucaoController = CompositionRoot.CriarExecucaoController();
             this._registerUserControl = _registerUserControl;
         }
-        private void FormVisualizaCadastro_Load(object sender, EventArgs e)
+
+        void FormVisualizaCadastro_Load(object sender, EventArgs e)
         {
             ConfiguracaoBindingSource();
             CarregaDadosAtividade();
@@ -35,6 +36,7 @@ namespace JustDoTheWork.Sistema.Forms
             if ((int)comboBoxStatus.EditValue >= 2)
                 btnAvancar.Visible = false;
         }
+
         void CarregaDadosAtividade()
         {
             var dados = _atividadeController.ObtemDadosFormAtividade(_registerUserControl.IdSelecionado);
@@ -67,6 +69,7 @@ namespace JustDoTheWork.Sistema.Forms
                 }                
             }
         }
+
         void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
@@ -79,6 +82,7 @@ namespace JustDoTheWork.Sistema.Forms
             comboBoxProjeto.Properties.ValueMember = "Id";
             comboBoxProjeto.Properties.NullText = "Selecione um projeto";
         }
+
         void AtualizaComboBoxStatus()
         {
             comboBoxStatus.Properties.DataSource = _atividadeController.ObterStatusAtividade();
@@ -87,11 +91,11 @@ namespace JustDoTheWork.Sistema.Forms
             comboBoxStatus.Properties.ValueMember = "Id";
             comboBoxStatus.Properties.NullText = "Selecione uma opção";
         }
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-           MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas!");
-        }
-        private void btnSalvar_Click(object sender, EventArgs e)
+
+        void btnFechar_Click(object sender, EventArgs e)
+            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas!");
+
+        void btnSalvar_Click(object sender, EventArgs e)
         {
             var dtoAtividade = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
 
@@ -111,6 +115,7 @@ namespace JustDoTheWork.Sistema.Forms
             this.Close();
             _registerUserControl.AtualizaGrid();
         }
+
         void ConfiguracaoBindingSource()
         {
             _dadosVisualizaCadastro = new BindingSource();
@@ -119,8 +124,9 @@ namespace JustDoTheWork.Sistema.Forms
             txtNomeAtividade.DataBindings.Add("Text", _dadosVisualizaCadastro, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
             DataCriacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataCriacao", true, DataSourceUpdateMode.OnPropertyChanged);
             DataFinalizacao.DataBindings.Add("EditValue", _dadosVisualizaCadastro, "DataFinalizacao", true, DataSourceUpdateMode.OnPropertyChanged);
-        }        
-        private void btnExcluir_Click(object sender, EventArgs e)
+        }    
+        
+        void btnExcluir_Click(object sender, EventArgs e)
         {
             switch ((int)comboBoxStatus.EditValue)
             {
@@ -154,7 +160,8 @@ namespace JustDoTheWork.Sistema.Forms
                 _registerUserControl.AtualizaGrid();
             }            
         }
-        private void btnAvancar_Click(object sender, EventArgs e)
+
+        void btnAvancar_Click(object sender, EventArgs e)
         {
             var dtoAtividade = (AtividadeDTO)_dadosVisualizaCadastro.DataSource;
             dtoAtividade.ProjetoId = (int)comboBoxProjeto.EditValue;
@@ -173,7 +180,8 @@ namespace JustDoTheWork.Sistema.Forms
             this.Close();
             _registerUserControl.AtualizaGrid();
         }
-        private void btnEditaTextoAtividade_Click(object sender, EventArgs e)
+
+        void btnEditaTextoAtividade_Click(object sender, EventArgs e)
         {
             var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);
             editaTextoAtividade.ShowDialog();

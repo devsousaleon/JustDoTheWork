@@ -11,7 +11,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         private readonly AtividadeController _atividadeController;
         private readonly ExecucaoController _execucaoController;
 
-        private int _statusExecucaoSelecionado;
+        int _statusExecucaoSelecionado;
         public int IdSelecionadoAtividade { get; private set; }
 
         enum TipoExecucao { Inclusao, Edicao }
@@ -22,10 +22,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _execucaoController = CompositionRoot.CriarExecucaoController();
         }
-        private void HomeUserControl_Load(object sender, EventArgs e)
-        {
-            CarregaGridAtividades();
-        }
+
+        void HomeUserControl_Load(object sender, EventArgs e)
+            => CarregaGridAtividades();
 
         void CarregaGridAtividades()
         {
@@ -38,27 +37,19 @@ namespace JustDoTheWork.Sistema.ControlPanel
             dataGridPausado.DataSource = dadosPausado;
         }
 
-        private void btnExecutar_Click(object sender, EventArgs e)
-        {
-            ExecutaAcaoAlterarStatus(3, TipoExecucao.Inclusao);
-        }
+        void btnExecutar_Click(object sender, EventArgs e)
+            => ExecutaAcaoAlterarStatus(3, TipoExecucao.Inclusao);
 
-        private void btnPausar_Click(object sender, EventArgs e)
-        {
-            ExecutaAcaoAlterarStatus(4, TipoExecucao.Edicao);
-        }
+        void btnPausar_Click(object sender, EventArgs e)
+            => ExecutaAcaoAlterarStatus(4, TipoExecucao.Edicao);
 
-        private void btnVoltaPendente_Click(object sender, EventArgs e)
-        {
-            ExecutaAcaoAlterarStatus(2, TipoExecucao.Edicao);
-        }
+        void btnVoltaPendente_Click(object sender, EventArgs e)
+            => ExecutaAcaoAlterarStatus(2, TipoExecucao.Edicao);
 
-        private void btnFinalizar_Click(object sender, EventArgs e)
-        {
-            ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
-        }
+        void btnFinalizar_Click(object sender, EventArgs e)
+            => ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
 
-        private void btnVisualizaAtividade_Click(object sender, EventArgs e)
+        void btnVisualizaAtividade_Click(object sender, EventArgs e)
         {
             if (IdSelecionadoAtividade <= 0)
                 return;
@@ -66,18 +57,14 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _formVisualizaAtividadeExecucao.ShowDialog();
         }
 
-        private void gridPendentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            InstanciaFormPorIdSelecionado(gridPendentes, 2);
-        }
-        private void gridExecutando_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            InstanciaFormPorIdSelecionado(gridExecutando, 3);
-        }
-        private void gridPausado_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            InstanciaFormPorIdSelecionado(gridPausado, 4);
-        }
+        void gridPendentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridPendentes, 2);
+        
+        void gridExecutando_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridExecutando, 3);
+        
+        void gridPausado_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridPausado, 4);
 
         void InstanciaFormPorIdSelecionado(DevExpress.XtraGrid.Views.Grid.GridView gridView, int status)
         {

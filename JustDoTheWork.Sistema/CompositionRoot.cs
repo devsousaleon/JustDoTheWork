@@ -12,8 +12,7 @@ namespace JustDoTheWork.Sistema.Composition
         {
             //var connectionStringPostgres = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
             var connectionStringSqlServer = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
-
-            return new DBConnectionFactory(connectionStringSqlServer);
+            return new DBConnection(connectionStringSqlServer);
         }
         public static AtividadeController CriarAtividadeController()
         {
@@ -23,14 +22,14 @@ namespace JustDoTheWork.Sistema.Composition
         }
         public static ProjetoController CriarProjetoController()
         {
-            var factory = ConnectionDB();
-            IProjetoRepository repository = new ProjetoRepository(factory);
+            var _dbconnection = ConnectionDB();
+            IProjetoRepository repository = new ProjetoRepository(_dbconnection);
             return new ProjetoController(repository);
         }
         public static ExecucaoController CriarExecucaoController()
         {
-            var factory = ConnectionDB();
-            IExecucaoRepository repository = new ExecucaoRepository(factory);
+            var _dbconnection = ConnectionDB();
+            IExecucaoRepository repository = new ExecucaoRepository(_dbconnection);
             return new ExecucaoController(repository);
         }
     }

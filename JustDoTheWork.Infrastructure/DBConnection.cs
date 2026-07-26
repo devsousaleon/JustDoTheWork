@@ -16,7 +16,6 @@ namespace JustDoTheWork.Infrastructure
         {
             //var conn = new NpgsqlConnection(_connectionString);
             var conn = new SqlConnection(_connectionString);
-
             conn.Open();
             return conn;
         }

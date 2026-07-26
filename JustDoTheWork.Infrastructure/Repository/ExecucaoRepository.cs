@@ -15,7 +15,7 @@ namespace JustDoTheWork.Infrastructure.Repository
         }
         public string Inclusao(Execucao execucao)
         {
-            var sql = @"INSERT INT execucao(datainicio, datafim, atividadeid)
+            var sql = @"INSERT INTO execucao(datainicio, datafim, atividadeid)
                       VALUES(@DataInicio, @DataFim, @AtividadeId)";
 
             using (var connection = _dbConnection.Create())

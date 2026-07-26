@@ -28,277 +28,271 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVisualizaAtividadeExecucao));
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.xtraTabControlAtividadesExecucao = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabInfoAtividade = new DevExpress.XtraTab.XtraTabPage();
-            this.groupHistoricoExecucao = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridHistoricoExecucao = new DevExpress.XtraGrid.GridControl();
-            this.execucaoDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.groupInfoAtividade = new DevExpress.XtraEditors.GroupControl();
-            this.txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
-            this.lblDataCriacaoAtividade = new DevExpress.XtraEditors.LabelControl();
-            this.DataCriacaoAtividade = new DevExpress.XtraEditors.DateTimeOffsetEdit();
-            this.lblProjeto = new DevExpress.XtraEditors.LabelControl();
-            this.lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
-            this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
-            this.xtraPageDescricaoAtividade = new DevExpress.XtraTab.XtraTabPage();
-            this.txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlAtividadesExecucao)).BeginInit();
-            this.xtraTabControlAtividadesExecucao.SuspendLayout();
-            this.xtraTabInfoAtividade.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupHistoricoExecucao)).BeginInit();
-            this.groupHistoricoExecucao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHistoricoExecucao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.execucaoDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridHistoricoExecucao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupInfoAtividade)).BeginInit();
-            this.groupInfoAtividade.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeProjeto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataCriacaoAtividade.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).BeginInit();
-            this.xtraPageDescricaoAtividade.SuspendLayout();
-            this.SuspendLayout();
+            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            xtraTabControlAtividadesExecucao = new DevExpress.XtraTab.XtraTabControl();
+            xtraTabInfoAtividade = new DevExpress.XtraTab.XtraTabPage();
+            groupHistoricoExecucao = new DevExpress.XtraEditors.GroupControl();
+            dataGridHistoricoExecucao = new DevExpress.XtraGrid.GridControl();
+            execucaoDTOBindingSource = new BindingSource(components);
+            gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            groupInfoAtividade = new DevExpress.XtraEditors.GroupControl();
+            txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
+            lblDataCriacaoAtividade = new DevExpress.XtraEditors.LabelControl();
+            DataCriacaoAtividade = new DevExpress.XtraEditors.DateTimeOffsetEdit();
+            lblProjeto = new DevExpress.XtraEditors.LabelControl();
+            lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
+            txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
+            xtraPageDescricaoAtividade = new DevExpress.XtraTab.XtraTabPage();
+            txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
+            panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)xtraTabControlAtividadesExecucao).BeginInit();
+            xtraTabControlAtividadesExecucao.SuspendLayout();
+            xtraTabInfoAtividade.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)groupHistoricoExecucao).BeginInit();
+            groupHistoricoExecucao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)groupInfoAtividade).BeginInit();
+            groupInfoAtividade.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataCriacaoAtividade.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
+            xtraPageDescricaoAtividade.SuspendLayout();
+            SuspendLayout();
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.xtraTabControlAtividadesExecucao);
-            this.panelControl1.Location = new System.Drawing.Point(12, 12);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(874, 544);
-            this.panelControl1.TabIndex = 0;
+            panelControl1.Controls.Add(xtraTabControlAtividadesExecucao);
+            panelControl1.Location = new Point(12, 12);
+            panelControl1.Name = "panelControl1";
+            panelControl1.Size = new Size(874, 544);
+            panelControl1.TabIndex = 0;
             // 
             // xtraTabControlAtividadesExecucao
             // 
-            this.xtraTabControlAtividadesExecucao.Location = new System.Drawing.Point(5, 5);
-            this.xtraTabControlAtividadesExecucao.Name = "xtraTabControlAtividadesExecucao";
-            this.xtraTabControlAtividadesExecucao.SelectedTabPage = this.xtraTabInfoAtividade;
-            this.xtraTabControlAtividadesExecucao.Size = new System.Drawing.Size(864, 534);
-            this.xtraTabControlAtividadesExecucao.TabIndex = 0;
-            this.xtraTabControlAtividadesExecucao.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabInfoAtividade,
-            this.xtraPageDescricaoAtividade});
+            xtraTabControlAtividadesExecucao.Location = new Point(5, 5);
+            xtraTabControlAtividadesExecucao.Name = "xtraTabControlAtividadesExecucao";
+            xtraTabControlAtividadesExecucao.SelectedTabPage = xtraTabInfoAtividade;
+            xtraTabControlAtividadesExecucao.Size = new Size(864, 534);
+            xtraTabControlAtividadesExecucao.TabIndex = 0;
+            xtraTabControlAtividadesExecucao.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { xtraTabInfoAtividade, xtraPageDescricaoAtividade });
             // 
             // xtraTabInfoAtividade
             // 
-            this.xtraTabInfoAtividade.Appearance.Header.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xtraTabInfoAtividade.Appearance.Header.Options.UseFont = true;
-            this.xtraTabInfoAtividade.Controls.Add(this.groupHistoricoExecucao);
-            this.xtraTabInfoAtividade.Controls.Add(this.groupInfoAtividade);
-            this.xtraTabInfoAtividade.Name = "xtraTabInfoAtividade";
-            this.xtraTabInfoAtividade.Size = new System.Drawing.Size(862, 503);
-            this.xtraTabInfoAtividade.Text = "Detalhamento da atividade";
+            xtraTabInfoAtividade.Appearance.Header.Font = new Font("Courier New", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            xtraTabInfoAtividade.Appearance.Header.Options.UseFont = true;
+            xtraTabInfoAtividade.Controls.Add(groupHistoricoExecucao);
+            xtraTabInfoAtividade.Controls.Add(groupInfoAtividade);
+            xtraTabInfoAtividade.Name = "xtraTabInfoAtividade";
+            xtraTabInfoAtividade.Size = new Size(862, 503);
+            xtraTabInfoAtividade.Text = "Detalhamento da atividade";
             // 
             // groupHistoricoExecucao
             // 
-            this.groupHistoricoExecucao.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupHistoricoExecucao.AppearanceCaption.Options.UseFont = true;
-            this.groupHistoricoExecucao.Controls.Add(this.dataGridHistoricoExecucao);
-            this.groupHistoricoExecucao.Location = new System.Drawing.Point(10, 187);
-            this.groupHistoricoExecucao.Margin = new System.Windows.Forms.Padding(10);
-            this.groupHistoricoExecucao.Name = "groupHistoricoExecucao";
-            this.groupHistoricoExecucao.Size = new System.Drawing.Size(842, 312);
-            this.groupHistoricoExecucao.TabIndex = 1;
-            this.groupHistoricoExecucao.Text = "Histórico de execuções";
+            groupHistoricoExecucao.AppearanceCaption.Font = new Font("Courier New", 9.75F, FontStyle.Bold);
+            groupHistoricoExecucao.AppearanceCaption.Options.UseFont = true;
+            groupHistoricoExecucao.Controls.Add(dataGridHistoricoExecucao);
+            groupHistoricoExecucao.Location = new Point(10, 187);
+            groupHistoricoExecucao.Margin = new Padding(10);
+            groupHistoricoExecucao.Name = "groupHistoricoExecucao";
+            groupHistoricoExecucao.Size = new Size(842, 312);
+            groupHistoricoExecucao.TabIndex = 1;
+            groupHistoricoExecucao.Text = "Histórico de execuções";
             // 
             // dataGridHistoricoExecucao
             // 
-            this.dataGridHistoricoExecucao.DataSource = this.execucaoDTOBindingSource;
-            this.dataGridHistoricoExecucao.Location = new System.Drawing.Point(12, 39);
-            this.dataGridHistoricoExecucao.MainView = this.gridHistoricoExecucao;
-            this.dataGridHistoricoExecucao.Margin = new System.Windows.Forms.Padding(10);
-            this.dataGridHistoricoExecucao.Name = "dataGridHistoricoExecucao";
-            this.dataGridHistoricoExecucao.Size = new System.Drawing.Size(818, 261);
-            this.dataGridHistoricoExecucao.TabIndex = 1;
-            this.dataGridHistoricoExecucao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridHistoricoExecucao});
+            dataGridHistoricoExecucao.DataSource = execucaoDTOBindingSource;
+            dataGridHistoricoExecucao.Location = new Point(12, 39);
+            dataGridHistoricoExecucao.MainView = gridHistoricoExecucao;
+            dataGridHistoricoExecucao.Margin = new Padding(10);
+            dataGridHistoricoExecucao.Name = "dataGridHistoricoExecucao";
+            dataGridHistoricoExecucao.Size = new Size(818, 261);
+            dataGridHistoricoExecucao.TabIndex = 1;
+            dataGridHistoricoExecucao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridHistoricoExecucao });
             // 
             // execucaoDTOBindingSource
             // 
-            this.execucaoDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.ExecucaoDTO);
+            execucaoDTOBindingSource.DataSource = typeof(DTO.ExecucaoDTO);
             // 
             // gridHistoricoExecucao
             // 
-            this.gridHistoricoExecucao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAtividadeId,
-            this.colDataFimExecucao,
-            this.colDataInicioExecucao});
-            this.gridHistoricoExecucao.GridControl = this.dataGridHistoricoExecucao;
-            this.gridHistoricoExecucao.Name = "gridHistoricoExecucao";
+            gridHistoricoExecucao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeId, colDataFimExecucao, colDataInicioExecucao });
+            gridHistoricoExecucao.GridControl = dataGridHistoricoExecucao;
+            gridHistoricoExecucao.Name = "gridHistoricoExecucao";
             // 
             // colAtividadeId
             // 
-            this.colAtividadeId.FieldName = "AtividadeId";
-            this.colAtividadeId.Name = "colAtividadeId";
-            this.colAtividadeId.OptionsColumn.AllowEdit = false;
-            this.colAtividadeId.OptionsColumn.AllowMove = false;
-            this.colAtividadeId.OptionsColumn.AllowSize = false;
-            this.colAtividadeId.OptionsColumn.ReadOnly = true;
-            this.colAtividadeId.Visible = true;
-            this.colAtividadeId.VisibleIndex = 0;
+            colAtividadeId.FieldName = "AtividadeId";
+            colAtividadeId.Name = "colAtividadeId";
+            colAtividadeId.OptionsColumn.AllowEdit = false;
+            colAtividadeId.OptionsColumn.AllowMove = false;
+            colAtividadeId.OptionsColumn.AllowSize = false;
+            colAtividadeId.OptionsColumn.ReadOnly = true;
+            colAtividadeId.Visible = true;
+            colAtividadeId.VisibleIndex = 0;
             // 
             // colDataFimExecucao
             // 
-            this.colDataFimExecucao.FieldName = "DataFimExecucao";
-            this.colDataFimExecucao.Name = "colDataFimExecucao";
-            this.colDataFimExecucao.OptionsColumn.AllowEdit = false;
-            this.colDataFimExecucao.OptionsColumn.AllowMove = false;
-            this.colDataFimExecucao.OptionsColumn.AllowSize = false;
-            this.colDataFimExecucao.OptionsColumn.ReadOnly = true;
-            this.colDataFimExecucao.Visible = true;
-            this.colDataFimExecucao.VisibleIndex = 2;
+            colDataFimExecucao.FieldName = "DataFimExecucao";
+            colDataFimExecucao.Name = "colDataFimExecucao";
+            colDataFimExecucao.OptionsColumn.AllowEdit = false;
+            colDataFimExecucao.OptionsColumn.AllowMove = false;
+            colDataFimExecucao.OptionsColumn.AllowSize = false;
+            colDataFimExecucao.OptionsColumn.ReadOnly = true;
+            colDataFimExecucao.Visible = true;
+            colDataFimExecucao.VisibleIndex = 2;
             // 
             // colDataInicioExecucao
             // 
-            this.colDataInicioExecucao.FieldName = "DataInicioExecucao";
-            this.colDataInicioExecucao.Name = "colDataInicioExecucao";
-            this.colDataInicioExecucao.OptionsColumn.AllowEdit = false;
-            this.colDataInicioExecucao.OptionsColumn.AllowMove = false;
-            this.colDataInicioExecucao.OptionsColumn.AllowSize = false;
-            this.colDataInicioExecucao.OptionsColumn.ReadOnly = true;
-            this.colDataInicioExecucao.Visible = true;
-            this.colDataInicioExecucao.VisibleIndex = 1;
+            colDataInicioExecucao.FieldName = "DataInicioExecucao";
+            colDataInicioExecucao.Name = "colDataInicioExecucao";
+            colDataInicioExecucao.OptionsColumn.AllowEdit = false;
+            colDataInicioExecucao.OptionsColumn.AllowMove = false;
+            colDataInicioExecucao.OptionsColumn.AllowSize = false;
+            colDataInicioExecucao.OptionsColumn.ReadOnly = true;
+            colDataInicioExecucao.Visible = true;
+            colDataInicioExecucao.VisibleIndex = 1;
             // 
             // groupInfoAtividade
             // 
-            this.groupInfoAtividade.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupInfoAtividade.AppearanceCaption.Options.UseFont = true;
-            this.groupInfoAtividade.Controls.Add(this.txtNomeProjeto);
-            this.groupInfoAtividade.Controls.Add(this.lblDataCriacaoAtividade);
-            this.groupInfoAtividade.Controls.Add(this.DataCriacaoAtividade);
-            this.groupInfoAtividade.Controls.Add(this.lblProjeto);
-            this.groupInfoAtividade.Controls.Add(this.lblNomeAtividade);
-            this.groupInfoAtividade.Controls.Add(this.txtNomeAtividade);
-            this.groupInfoAtividade.Location = new System.Drawing.Point(10, 10);
-            this.groupInfoAtividade.Margin = new System.Windows.Forms.Padding(10);
-            this.groupInfoAtividade.Name = "groupInfoAtividade";
-            this.groupInfoAtividade.Size = new System.Drawing.Size(842, 164);
-            this.groupInfoAtividade.TabIndex = 0;
-            this.groupInfoAtividade.Text = "Informações";
+            groupInfoAtividade.AppearanceCaption.Font = new Font("Courier New", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupInfoAtividade.AppearanceCaption.Options.UseFont = true;
+            groupInfoAtividade.Controls.Add(txtNomeProjeto);
+            groupInfoAtividade.Controls.Add(lblDataCriacaoAtividade);
+            groupInfoAtividade.Controls.Add(DataCriacaoAtividade);
+            groupInfoAtividade.Controls.Add(lblProjeto);
+            groupInfoAtividade.Controls.Add(lblNomeAtividade);
+            groupInfoAtividade.Controls.Add(txtNomeAtividade);
+            groupInfoAtividade.Location = new Point(10, 10);
+            groupInfoAtividade.Margin = new Padding(10);
+            groupInfoAtividade.Name = "groupInfoAtividade";
+            groupInfoAtividade.Size = new Size(842, 164);
+            groupInfoAtividade.TabIndex = 0;
+            groupInfoAtividade.Text = "Informações";
             // 
             // txtNomeProjeto
             // 
-            this.txtNomeProjeto.Enabled = false;
-            this.txtNomeProjeto.Location = new System.Drawing.Point(105, 81);
-            this.txtNomeProjeto.Name = "txtNomeProjeto";
-            this.txtNomeProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeProjeto.Size = new System.Drawing.Size(302, 32);
-            this.txtNomeProjeto.TabIndex = 22;
+            txtNomeProjeto.Enabled = false;
+            txtNomeProjeto.Location = new Point(105, 81);
+            txtNomeProjeto.Name = "txtNomeProjeto";
+            txtNomeProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
+            txtNomeProjeto.Size = new Size(302, 32);
+            txtNomeProjeto.TabIndex = 22;
             // 
             // lblDataCriacaoAtividade
             // 
-            this.lblDataCriacaoAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataCriacaoAtividade.Appearance.Options.UseFont = true;
-            this.lblDataCriacaoAtividade.Location = new System.Drawing.Point(420, 43);
-            this.lblDataCriacaoAtividade.Margin = new System.Windows.Forms.Padding(10);
-            this.lblDataCriacaoAtividade.Name = "lblDataCriacaoAtividade";
-            this.lblDataCriacaoAtividade.Size = new System.Drawing.Size(150, 18);
-            this.lblDataCriacaoAtividade.TabIndex = 21;
-            this.lblDataCriacaoAtividade.Text = "Data de Criação";
+            lblDataCriacaoAtividade.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDataCriacaoAtividade.Appearance.Options.UseFont = true;
+            lblDataCriacaoAtividade.Location = new Point(420, 50);
+            lblDataCriacaoAtividade.Margin = new Padding(10);
+            lblDataCriacaoAtividade.Name = "lblDataCriacaoAtividade";
+            lblDataCriacaoAtividade.Size = new Size(150, 18);
+            lblDataCriacaoAtividade.TabIndex = 21;
+            lblDataCriacaoAtividade.Text = "Data de Criação";
             // 
             // DataCriacaoAtividade
             // 
-            this.DataCriacaoAtividade.EditValue = null;
-            this.DataCriacaoAtividade.Enabled = false;
-            this.DataCriacaoAtividade.Location = new System.Drawing.Point(583, 40);
-            this.DataCriacaoAtividade.Name = "DataCriacaoAtividade";
-            this.DataCriacaoAtividade.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F);
-            this.DataCriacaoAtividade.Properties.Appearance.Options.UseFont = true;
-            this.DataCriacaoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DataCriacaoAtividade.Size = new System.Drawing.Size(254, 32);
-            this.DataCriacaoAtividade.TabIndex = 20;
+            DataCriacaoAtividade.EditValue = null;
+            DataCriacaoAtividade.Enabled = false;
+            DataCriacaoAtividade.Location = new Point(583, 40);
+            DataCriacaoAtividade.Name = "DataCriacaoAtividade";
+            DataCriacaoAtividade.Properties.Appearance.Font = new Font("Courier New", 12F);
+            DataCriacaoAtividade.Properties.Appearance.Options.UseFont = true;
+            DataCriacaoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            DataCriacaoAtividade.Size = new Size(254, 32);
+            DataCriacaoAtividade.TabIndex = 20;
             // 
             // lblProjeto
             // 
-            this.lblProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjeto.Appearance.Options.UseFont = true;
-            this.lblProjeto.Location = new System.Drawing.Point(12, 87);
-            this.lblProjeto.Margin = new System.Windows.Forms.Padding(20);
-            this.lblProjeto.Name = "lblProjeto";
-            this.lblProjeto.Size = new System.Drawing.Size(70, 18);
-            this.lblProjeto.TabIndex = 18;
-            this.lblProjeto.Text = "Projeto";
+            lblProjeto.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblProjeto.Appearance.Options.UseFont = true;
+            lblProjeto.Location = new Point(12, 94);
+            lblProjeto.Margin = new Padding(20);
+            lblProjeto.Name = "lblProjeto";
+            lblProjeto.Size = new Size(70, 18);
+            lblProjeto.TabIndex = 18;
+            lblProjeto.Text = "Projeto";
             // 
             // lblNomeAtividade
             // 
-            this.lblNomeAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeAtividade.Appearance.Options.UseFont = true;
-            this.lblNomeAtividade.Location = new System.Drawing.Point(12, 43);
-            this.lblNomeAtividade.Margin = new System.Windows.Forms.Padding(10);
-            this.lblNomeAtividade.Name = "lblNomeAtividade";
-            this.lblNomeAtividade.Size = new System.Drawing.Size(40, 18);
-            this.lblNomeAtividade.TabIndex = 17;
-            this.lblNomeAtividade.Text = "Nome";
+            lblNomeAtividade.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNomeAtividade.Appearance.Options.UseFont = true;
+            lblNomeAtividade.Location = new Point(12, 50);
+            lblNomeAtividade.Margin = new Padding(10);
+            lblNomeAtividade.Name = "lblNomeAtividade";
+            lblNomeAtividade.Size = new Size(40, 18);
+            lblNomeAtividade.TabIndex = 17;
+            lblNomeAtividade.Text = "Nome";
             // 
             // txtNomeAtividade
             // 
-            this.txtNomeAtividade.Enabled = false;
-            this.txtNomeAtividade.Location = new System.Drawing.Point(65, 40);
-            this.txtNomeAtividade.Name = "txtNomeAtividade";
-            this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeAtividade.Size = new System.Drawing.Size(342, 32);
-            this.txtNomeAtividade.TabIndex = 16;
+            txtNomeAtividade.Enabled = false;
+            txtNomeAtividade.Location = new Point(65, 40);
+            txtNomeAtividade.Name = "txtNomeAtividade";
+            txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
+            txtNomeAtividade.Size = new Size(342, 32);
+            txtNomeAtividade.TabIndex = 16;
             // 
             // xtraPageDescricaoAtividade
             // 
-            this.xtraPageDescricaoAtividade.Appearance.Header.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.xtraPageDescricaoAtividade.Appearance.Header.Options.UseFont = true;
-            this.xtraPageDescricaoAtividade.Controls.Add(this.txtEditorAtividade);
-            this.xtraPageDescricaoAtividade.Name = "xtraPageDescricaoAtividade";
-            this.xtraPageDescricaoAtividade.Size = new System.Drawing.Size(862, 503);
-            this.xtraPageDescricaoAtividade.Text = "Descrição da atividade";
+            xtraPageDescricaoAtividade.Appearance.Header.Font = new Font("Courier New", 8.25F);
+            xtraPageDescricaoAtividade.Appearance.Header.Options.UseFont = true;
+            xtraPageDescricaoAtividade.Controls.Add(txtEditorAtividade);
+            xtraPageDescricaoAtividade.Name = "xtraPageDescricaoAtividade";
+            xtraPageDescricaoAtividade.Size = new Size(862, 510);
+            xtraPageDescricaoAtividade.Text = "Descrição da atividade";
             // 
             // txtEditorAtividade
             // 
-            this.txtEditorAtividade.Location = new System.Drawing.Point(10, 10);
-            this.txtEditorAtividade.Margin = new System.Windows.Forms.Padding(10);
-            this.txtEditorAtividade.Name = "txtEditorAtividade";
-            this.txtEditorAtividade.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
-            this.txtEditorAtividade.ReadOnly = true;
-            this.txtEditorAtividade.Size = new System.Drawing.Size(842, 488);
-            this.txtEditorAtividade.TabIndex = 19;
+            txtEditorAtividade.Location = new Point(10, 10);
+            txtEditorAtividade.Margin = new Padding(10);
+            txtEditorAtividade.Name = "txtEditorAtividade";
+            txtEditorAtividade.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
+            txtEditorAtividade.ReadOnly = true;
+            txtEditorAtividade.Size = new Size(842, 488);
+            txtEditorAtividade.TabIndex = 19;
             // 
             // FormVisualizaAtividadeExecucao
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 568);
-            this.Controls.Add(this.panelControl1);
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormVisualizaAtividadeExecucao.IconOptions.LargeImage")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormVisualizaAtividadeExecucao";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Visualização de andamento da atividade";
-            this.Load += new System.EventHandler(this.FormVisualizaAtividadeExecucao_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlAtividadesExecucao)).EndInit();
-            this.xtraTabControlAtividadesExecucao.ResumeLayout(false);
-            this.xtraTabInfoAtividade.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupHistoricoExecucao)).EndInit();
-            this.groupHistoricoExecucao.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHistoricoExecucao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.execucaoDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridHistoricoExecucao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupInfoAtividade)).EndInit();
-            this.groupInfoAtividade.ResumeLayout(false);
-            this.groupInfoAtividade.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeProjeto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataCriacaoAtividade.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).EndInit();
-            this.xtraPageDescricaoAtividade.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(898, 564);
+            Controls.Add(panelControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            IconOptions.LargeImage = (Image)resources.GetObject("FormVisualizaAtividadeExecucao.IconOptions.LargeImage");
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormVisualizaAtividadeExecucao";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Visualização de andamento da atividade";
+            Load += FormVisualizaAtividadeExecucao_Load;
+            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
+            panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)xtraTabControlAtividadesExecucao).EndInit();
+            xtraTabControlAtividadesExecucao.ResumeLayout(false);
+            xtraTabInfoAtividade.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)groupHistoricoExecucao).EndInit();
+            groupHistoricoExecucao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)groupInfoAtividade).EndInit();
+            groupInfoAtividade.ResumeLayout(false);
+            groupInfoAtividade.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataCriacaoAtividade.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
+            xtraPageDescricaoAtividade.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

@@ -29,92 +29,97 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroProjeto));
-            this.txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
-            this.btnIncluirProjeto = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.lblNomeProjeto = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeProjeto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            this.SuspendLayout();
+            txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
+            btnIncluirProjeto = new DevExpress.XtraEditors.SimpleButton();
+            btnCancelar = new DevExpress.XtraEditors.SimpleButton();
+            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            lblNomeProjeto = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
+            panelControl1.SuspendLayout();
+            SuspendLayout();
             // 
             // txtNomeProjeto
             // 
-            this.txtNomeProjeto.Location = new System.Drawing.Point(76, 19);
-            this.txtNomeProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtNomeProjeto.Name = "txtNomeProjeto";
-            this.txtNomeProjeto.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeProjeto.Properties.MaxLength = 50;
-            this.txtNomeProjeto.Size = new System.Drawing.Size(237, 24);
-            this.txtNomeProjeto.TabIndex = 1;
+            txtNomeProjeto.Location = new Point(76, 19);
+            txtNomeProjeto.Margin = new Padding(4, 3, 4, 3);
+            txtNomeProjeto.Name = "txtNomeProjeto";
+            txtNomeProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
+            txtNomeProjeto.Properties.MaxLength = 50;
+            txtNomeProjeto.Size = new Size(237, 32);
+            txtNomeProjeto.TabIndex = 1;
             // 
             // btnIncluirProjeto
             // 
-            this.btnIncluirProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIncluirProjeto.Location = new System.Drawing.Point(15, 127);
-            this.btnIncluirProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnIncluirProjeto.Name = "btnIncluirProjeto";
-            this.btnIncluirProjeto.Size = new System.Drawing.Size(88, 25);
-            this.btnIncluirProjeto.TabIndex = 2;
-            this.btnIncluirProjeto.Text = "Incluir";
-            this.btnIncluirProjeto.Click += new System.EventHandler(this.btnIncluirProjeto_Click);
+            btnIncluirProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIncluirProjeto.Appearance.Options.UseFont = true;
+            btnIncluirProjeto.Location = new Point(15, 127);
+            btnIncluirProjeto.Margin = new Padding(4, 3, 4, 3);
+            btnIncluirProjeto.Name = "btnIncluirProjeto";
+            btnIncluirProjeto.Size = new Size(88, 25);
+            btnIncluirProjeto.TabIndex = 2;
+            btnIncluirProjeto.Text = "Incluir";
+            btnIncluirProjeto.Click += btnIncluirProjeto_Click;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(118, 127);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(88, 25);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            btnCancelar.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.Appearance.Options.UseFont = true;
+            btnCancelar.Location = new Point(118, 127);
+            btnCancelar.Margin = new Padding(12, 11, 12, 11);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(88, 25);
+            btnCancelar.TabIndex = 3;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lblNomeProjeto);
-            this.panelControl1.Controls.Add(this.txtNomeProjeto);
-            this.panelControl1.Controls.Add(this.btnIncluirProjeto);
-            this.panelControl1.Controls.Add(this.btnCancelar);
-            this.panelControl1.Location = new System.Drawing.Point(12, 11);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(1);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(324, 159);
-            this.panelControl1.TabIndex = 4;
+            panelControl1.Controls.Add(lblNomeProjeto);
+            panelControl1.Controls.Add(txtNomeProjeto);
+            panelControl1.Controls.Add(btnIncluirProjeto);
+            panelControl1.Controls.Add(btnCancelar);
+            panelControl1.Location = new Point(12, 11);
+            panelControl1.Margin = new Padding(1);
+            panelControl1.Name = "panelControl1";
+            panelControl1.Size = new Size(324, 159);
+            panelControl1.TabIndex = 4;
             // 
             // lblNomeProjeto
             // 
-            this.lblNomeProjeto.Appearance.Font = new System.Drawing.Font("Courier New", 12F);
-            this.lblNomeProjeto.Location = new System.Drawing.Point(15, 23);
-            this.lblNomeProjeto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.lblNomeProjeto.Name = "lblNomeProjeto";
-            this.lblNomeProjeto.Size = new System.Drawing.Size(40, 18);
-            this.lblNomeProjeto.TabIndex = 4;
-            this.lblNomeProjeto.Text = "Nome";
+            lblNomeProjeto.Appearance.Font = new Font("Courier New", 12F);
+            lblNomeProjeto.Appearance.Options.UseFont = true;
+            lblNomeProjeto.Location = new Point(15, 23);
+            lblNomeProjeto.Margin = new Padding(4, 3, 4, 3);
+            lblNomeProjeto.Name = "lblNomeProjeto";
+            lblNomeProjeto.Size = new Size(40, 18);
+            lblNomeProjeto.TabIndex = 4;
+            lblNomeProjeto.Text = "Nome";
             // 
-            // FormAdicionaProjeto
+            // FormCadastroProjeto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 181);
-            this.Controls.Add(this.panelControl1);
-            this.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("FormAdicionaProjeto.IconOptions.Image")));
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormAdicionaProjeto.IconOptions.LargeImage")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormAdicionaProjeto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inclusão de Projeto";
-            this.Load += new System.EventHandler(this.FormAdicionaProjeto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeProjeto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
-            this.ResumeLayout(false);
+            Appearance.Options.UseFont = true;
+            AutoScaleDimensions = new SizeF(7F, 14F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(348, 181);
+            Controls.Add(panelControl1);
+            Font = new Font("Courier New", 8.25F);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            IconOptions.Image = (Image)resources.GetObject("FormCadastroProjeto.IconOptions.Image");
+            IconOptions.LargeImage = (Image)resources.GetObject("FormCadastroProjeto.IconOptions.LargeImage");
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormCadastroProjeto";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Inclusão de Projeto";
+            Load += FormAdicionaProjeto_Load;
+            ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
+            panelControl1.ResumeLayout(false);
+            panelControl1.PerformLayout();
+            ResumeLayout(false);
 
         }
 

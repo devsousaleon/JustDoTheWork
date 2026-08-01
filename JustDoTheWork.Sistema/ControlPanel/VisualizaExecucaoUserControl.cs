@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
@@ -21,6 +23,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _execucaoController = CompositionRoot.CriarExecucaoController();
+            repositoryButtonActionPendentes.ButtonPressed += RepositoryItemButtonEditPendente_ButtonClick;
+            repositoryButtonActionExecucao.ButtonPressed += RepositoryItemButtonEditExecucao_ButtonClick;
+            repositoryButtonActionPausado.ButtonPressed += RepositoryItemButtonEditPausado_ButtonClick;
         }
 
         void HomeUserControl_Load(object sender, EventArgs e)
@@ -49,27 +54,27 @@ namespace JustDoTheWork.Sistema.ControlPanel
         void btnFinalizar_Click(object sender, EventArgs e)
             => ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
 
-        void btnVisualizaAtividade_Click(object sender, EventArgs e)
-        {
-            if (IdSelecionadoAtividade <= 0)
-                return;
-            FormVisualizaAtividadeExecucao _formVisualizaAtividadeExecucao = new(this);
-            _formVisualizaAtividadeExecucao.ShowDialog();
-        }
+        void gridExecutando_RowClick(object sender, RowClickEventArgs e)
+            => InformaIdSelecionadoAtividade(gridExecutando, 3);
 
-        void gridPendentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridPendentes, 2);
-        
-        void gridExecutando_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridExecutando, 3);
-        
-        void gridPausado_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridPausado, 4);
+        void gridPausado_RowClick(object sender, RowClickEventArgs e)
+            => InformaIdSelecionadoAtividade(gridPausado, 4);
 
-        void InstanciaFormPorIdSelecionado(DevExpress.XtraGrid.Views.Grid.GridView gridView, int status)
+        void gridPendentes_RowClick(object sender, RowClickEventArgs e)
+            => InformaIdSelecionadoAtividade(gridPendentes, 2);
+
+        void RepositoryItemButtonEditPendente_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridPendentes); 
+        
+        void RepositoryItemButtonEditExecucao_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridExecutando); 
+        
+        void RepositoryItemButtonEditPausado_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => InstanciaFormPorIdSelecionado(gridPausado);        
+
+        void InstanciaFormPorIdSelecionado(GridView gridView)
         {
             IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
-            _statusExecucaoSelecionado = status;
 
             if (IdSelecionadoAtividade <= 0)
                 return;
@@ -91,7 +96,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 return;
             }
 
-            if(acaoExecutada == TipoExecucao.Edicao)
+            if (acaoExecutada == TipoExecucao.Edicao)
             {
                 var mensagemRetornoFinalizaExecucao = _execucaoController.FinalizaExecucao(IdSelecionadoAtividade);
 
@@ -101,7 +106,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
                     return;
                 }
             }
-            else if(acaoExecutada == TipoExecucao.Inclusao)
+            else if (acaoExecutada == TipoExecucao.Inclusao)
             {
                 var mensagemRetornoExecucao = _execucaoController.Inclusao(IdSelecionadoAtividade);
 
@@ -112,6 +117,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 }
             }
             CarregaGridAtividades();
+        }
+
+        void InformaIdSelecionadoAtividade(GridView gridView, int status) 
+        {
+            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
+            _statusExecucaoSelecionado = status;
         }
     }
 }

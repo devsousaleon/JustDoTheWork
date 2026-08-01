@@ -28,390 +28,411 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.atualizaAtividadesExecucaoDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupExecutando = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridExecutando = new DevExpress.XtraGrid.GridControl();
-            this.gridExecutando = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAtividadeIdExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeAtividadeExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeProjetoExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.groupPausado = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridPausado = new DevExpress.XtraGrid.GridControl();
-            this.gridPausado = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAtividadeIdPausado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeAtividadePausado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeProjetoPausado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.groupPendente = new DevExpress.XtraEditors.GroupControl();
-            this.dataGridPendentes = new DevExpress.XtraGrid.GridControl();
-            this.gridPendentes = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelButtonsExecucao = new DevExpress.XtraEditors.PanelControl();
-            this.btnVisualizaAtividade = new DevExpress.XtraEditors.SimpleButton();
-            this.btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPausar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnExecutar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnVoltaPendente = new DevExpress.XtraEditors.SimpleButton();
-            this.panelAtividadesExecucao = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.atualizaAtividadesExecucaoDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupExecutando)).BeginInit();
-            this.groupExecutando.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridExecutando)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridExecutando)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupPausado)).BeginInit();
-            this.groupPausado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPausado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridPausado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupPendente)).BeginInit();
-            this.groupPendente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPendentes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridPendentes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelButtonsExecucao)).BeginInit();
-            this.panelButtonsExecucao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelAtividadesExecucao)).BeginInit();
-            this.panelAtividadesExecucao.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            atualizaAtividadesExecucaoDTOBindingSource = new BindingSource(components);
+            groupExecutando = new DevExpress.XtraEditors.GroupControl();
+            dataGridExecutando = new DevExpress.XtraGrid.GridControl();
+            gridExecutando = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colAtividadeIdExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeAtividadeExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeProjetoExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
+            colButtonActionExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonActionExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            groupPausado = new DevExpress.XtraEditors.GroupControl();
+            dataGridPausado = new DevExpress.XtraGrid.GridControl();
+            gridPausado = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colAtividadeIdPausado = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeAtividadePausado = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeProjetoPausado = new DevExpress.XtraGrid.Columns.GridColumn();
+            colButtonActionPausado = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonActionPausado = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            groupPendente = new DevExpress.XtraEditors.GroupControl();
+            dataGridPendentes = new DevExpress.XtraGrid.GridControl();
+            gridPendentes = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
+            colButtonActionPendente = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonActionPendentes = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            panelButtonsExecucao = new DevExpress.XtraEditors.PanelControl();
+            btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
+            btnPausar = new DevExpress.XtraEditors.SimpleButton();
+            btnExecutar = new DevExpress.XtraEditors.SimpleButton();
+            btnVoltaPendente = new DevExpress.XtraEditors.SimpleButton();
+            panelAtividadesExecucao = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)atualizaAtividadesExecucaoDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)groupExecutando).BeginInit();
+            groupExecutando.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridExecutando).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridExecutando).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)groupPausado).BeginInit();
+            groupPausado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridPausado).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPausado).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPausado).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)groupPendente).BeginInit();
+            groupPendente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridPendentes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPendentes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPendentes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelButtonsExecucao).BeginInit();
+            panelButtonsExecucao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).BeginInit();
+            panelAtividadesExecucao.SuspendLayout();
+            SuspendLayout();
             // 
             // atualizaAtividadesExecucaoDTOBindingSource
             // 
-            this.atualizaAtividadesExecucaoDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.AtualizaAtividadesExecucaoDTO);
+            atualizaAtividadesExecucaoDTOBindingSource.DataSource = typeof(DTO.AtualizaAtividadesExecucaoDTO);
             // 
             // groupExecutando
             // 
-            this.groupExecutando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupExecutando.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F);
-            this.groupExecutando.AppearanceCaption.Options.UseFont = true;
-            this.groupExecutando.Controls.Add(this.dataGridExecutando);
-            this.groupExecutando.Location = new System.Drawing.Point(523, 17);
-            this.groupExecutando.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.groupExecutando.Name = "groupExecutando";
-            this.groupExecutando.Size = new System.Drawing.Size(720, 280);
-            this.groupExecutando.TabIndex = 4;
-            this.groupExecutando.Text = "Em execução";
+            groupExecutando.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            groupExecutando.AppearanceCaption.Font = new Font("Courier New", 12F);
+            groupExecutando.AppearanceCaption.Options.UseFont = true;
+            groupExecutando.Controls.Add(dataGridExecutando);
+            groupExecutando.Location = new Point(523, 17);
+            groupExecutando.Margin = new Padding(15);
+            groupExecutando.Name = "groupExecutando";
+            groupExecutando.Size = new Size(720, 280);
+            groupExecutando.TabIndex = 4;
+            groupExecutando.Text = "Em execução";
             // 
             // dataGridExecutando
             // 
-            this.dataGridExecutando.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridExecutando.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
-            this.dataGridExecutando.Location = new System.Drawing.Point(12, 39);
-            this.dataGridExecutando.MainView = this.gridExecutando;
-            this.dataGridExecutando.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.dataGridExecutando.Name = "dataGridExecutando";
-            this.dataGridExecutando.Size = new System.Drawing.Size(696, 229);
-            this.dataGridExecutando.TabIndex = 4;
-            this.dataGridExecutando.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridExecutando});
+            dataGridExecutando.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridExecutando.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridExecutando.Location = new Point(12, 39);
+            dataGridExecutando.MainView = gridExecutando;
+            dataGridExecutando.Margin = new Padding(10);
+            dataGridExecutando.Name = "dataGridExecutando";
+            dataGridExecutando.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionExecucao });
+            dataGridExecutando.Size = new Size(696, 229);
+            dataGridExecutando.TabIndex = 4;
+            dataGridExecutando.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridExecutando });
             // 
             // gridExecutando
             // 
-            this.gridExecutando.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAtividadeIdExecutando,
-            this.colNomeAtividadeExecutando,
-            this.colNomeProjetoExecutando});
-            this.gridExecutando.GridControl = this.dataGridExecutando;
-            this.gridExecutando.Name = "gridExecutando";
-            this.gridExecutando.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridExecutando_RowClick);
+            gridExecutando.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdExecutando, colNomeAtividadeExecutando, colNomeProjetoExecutando, colButtonActionExecucao });
+            gridExecutando.GridControl = dataGridExecutando;
+            gridExecutando.Name = "gridExecutando";
+            gridExecutando.RowClick += gridExecutando_RowClick;
             // 
             // colAtividadeIdExecutando
             // 
-            this.colAtividadeIdExecutando.FieldName = "AtividadeId";
-            this.colAtividadeIdExecutando.Name = "colAtividadeIdExecutando";
-            this.colAtividadeIdExecutando.OptionsColumn.AllowEdit = false;
-            this.colAtividadeIdExecutando.OptionsColumn.AllowMove = false;
-            this.colAtividadeIdExecutando.OptionsColumn.AllowSize = false;
-            this.colAtividadeIdExecutando.OptionsColumn.ReadOnly = true;
-            this.colAtividadeIdExecutando.Visible = true;
-            this.colAtividadeIdExecutando.VisibleIndex = 0;
+            colAtividadeIdExecutando.FieldName = "AtividadeId";
+            colAtividadeIdExecutando.Name = "colAtividadeIdExecutando";
+            colAtividadeIdExecutando.OptionsColumn.AllowEdit = false;
+            colAtividadeIdExecutando.OptionsColumn.AllowMove = false;
+            colAtividadeIdExecutando.OptionsColumn.AllowSize = false;
+            colAtividadeIdExecutando.OptionsColumn.ReadOnly = true;
+            colAtividadeIdExecutando.Visible = true;
+            colAtividadeIdExecutando.VisibleIndex = 0;
             // 
             // colNomeAtividadeExecutando
             // 
-            this.colNomeAtividadeExecutando.FieldName = "NomeAtividade";
-            this.colNomeAtividadeExecutando.Name = "colNomeAtividadeExecutando";
-            this.colNomeAtividadeExecutando.OptionsColumn.AllowEdit = false;
-            this.colNomeAtividadeExecutando.OptionsColumn.AllowMove = false;
-            this.colNomeAtividadeExecutando.OptionsColumn.AllowSize = false;
-            this.colNomeAtividadeExecutando.OptionsColumn.ReadOnly = true;
-            this.colNomeAtividadeExecutando.Visible = true;
-            this.colNomeAtividadeExecutando.VisibleIndex = 1;
+            colNomeAtividadeExecutando.FieldName = "NomeAtividade";
+            colNomeAtividadeExecutando.Name = "colNomeAtividadeExecutando";
+            colNomeAtividadeExecutando.OptionsColumn.AllowEdit = false;
+            colNomeAtividadeExecutando.OptionsColumn.AllowMove = false;
+            colNomeAtividadeExecutando.OptionsColumn.AllowSize = false;
+            colNomeAtividadeExecutando.OptionsColumn.ReadOnly = true;
+            colNomeAtividadeExecutando.Visible = true;
+            colNomeAtividadeExecutando.VisibleIndex = 1;
             // 
             // colNomeProjetoExecutando
             // 
-            this.colNomeProjetoExecutando.FieldName = "NomeProjeto";
-            this.colNomeProjetoExecutando.Name = "colNomeProjetoExecutando";
-            this.colNomeProjetoExecutando.OptionsColumn.AllowEdit = false;
-            this.colNomeProjetoExecutando.OptionsColumn.AllowMove = false;
-            this.colNomeProjetoExecutando.OptionsColumn.AllowSize = false;
-            this.colNomeProjetoExecutando.OptionsColumn.ReadOnly = true;
-            this.colNomeProjetoExecutando.Visible = true;
-            this.colNomeProjetoExecutando.VisibleIndex = 2;
+            colNomeProjetoExecutando.FieldName = "NomeProjeto";
+            colNomeProjetoExecutando.Name = "colNomeProjetoExecutando";
+            colNomeProjetoExecutando.OptionsColumn.AllowEdit = false;
+            colNomeProjetoExecutando.OptionsColumn.AllowMove = false;
+            colNomeProjetoExecutando.OptionsColumn.AllowSize = false;
+            colNomeProjetoExecutando.OptionsColumn.ReadOnly = true;
+            colNomeProjetoExecutando.Visible = true;
+            colNomeProjetoExecutando.VisibleIndex = 2;
+            // 
+            // colButtonActionExecucao
+            // 
+            colButtonActionExecucao.Caption = "Ação";
+            colButtonActionExecucao.ColumnEdit = repositoryButtonActionExecucao;
+            colButtonActionExecucao.Name = "colButtonActionExecucao";
+            colButtonActionExecucao.Visible = true;
+            colButtonActionExecucao.VisibleIndex = 3;
+            // 
+            // repositoryButtonActionExecucao
+            // 
+            repositoryButtonActionExecucao.AutoHeight = false;
+            repositoryButtonActionExecucao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonActionExecucao.Name = "repositoryButtonActionExecucao";
+            repositoryButtonActionExecucao.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // groupPausado
             // 
-            this.groupPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPausado.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F);
-            this.groupPausado.AppearanceCaption.Options.UseFont = true;
-            this.groupPausado.Controls.Add(this.dataGridPausado);
-            this.groupPausado.Location = new System.Drawing.Point(523, 310);
-            this.groupPausado.Margin = new System.Windows.Forms.Padding(15, 15, 15, 10);
-            this.groupPausado.Name = "groupPausado";
-            this.groupPausado.Size = new System.Drawing.Size(720, 297);
-            this.groupPausado.TabIndex = 5;
-            this.groupPausado.Text = "Pausado";
+            groupPausado.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupPausado.AppearanceCaption.Font = new Font("Courier New", 12F);
+            groupPausado.AppearanceCaption.Options.UseFont = true;
+            groupPausado.Controls.Add(dataGridPausado);
+            groupPausado.Location = new Point(523, 310);
+            groupPausado.Margin = new Padding(15, 15, 15, 10);
+            groupPausado.Name = "groupPausado";
+            groupPausado.Size = new Size(720, 297);
+            groupPausado.TabIndex = 5;
+            groupPausado.Text = "Pausado";
             // 
             // dataGridPausado
             // 
-            this.dataGridPausado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridPausado.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
-            this.dataGridPausado.Location = new System.Drawing.Point(12, 39);
-            this.dataGridPausado.MainView = this.gridPausado;
-            this.dataGridPausado.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.dataGridPausado.Name = "dataGridPausado";
-            this.dataGridPausado.Size = new System.Drawing.Size(696, 246);
-            this.dataGridPausado.TabIndex = 3;
-            this.dataGridPausado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridPausado});
+            dataGridPausado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridPausado.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridPausado.Location = new Point(12, 39);
+            dataGridPausado.MainView = gridPausado;
+            dataGridPausado.Margin = new Padding(10);
+            dataGridPausado.Name = "dataGridPausado";
+            dataGridPausado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionPausado });
+            dataGridPausado.Size = new Size(696, 246);
+            dataGridPausado.TabIndex = 3;
+            dataGridPausado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPausado });
             // 
             // gridPausado
             // 
-            this.gridPausado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAtividadeIdPausado,
-            this.colNomeAtividadePausado,
-            this.colNomeProjetoPausado});
-            this.gridPausado.GridControl = this.dataGridPausado;
-            this.gridPausado.Name = "gridPausado";
-            this.gridPausado.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridPausado_RowClick);
+            gridPausado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdPausado, colNomeAtividadePausado, colNomeProjetoPausado, colButtonActionPausado });
+            gridPausado.GridControl = dataGridPausado;
+            gridPausado.Name = "gridPausado";
+            gridPausado.RowClick += gridPausado_RowClick;
             // 
             // colAtividadeIdPausado
             // 
-            this.colAtividadeIdPausado.FieldName = "AtividadeId";
-            this.colAtividadeIdPausado.Name = "colAtividadeIdPausado";
-            this.colAtividadeIdPausado.OptionsColumn.AllowEdit = false;
-            this.colAtividadeIdPausado.OptionsColumn.AllowMove = false;
-            this.colAtividadeIdPausado.OptionsColumn.AllowSize = false;
-            this.colAtividadeIdPausado.OptionsColumn.ReadOnly = true;
-            this.colAtividadeIdPausado.Visible = true;
-            this.colAtividadeIdPausado.VisibleIndex = 0;
+            colAtividadeIdPausado.FieldName = "AtividadeId";
+            colAtividadeIdPausado.Name = "colAtividadeIdPausado";
+            colAtividadeIdPausado.OptionsColumn.AllowEdit = false;
+            colAtividadeIdPausado.OptionsColumn.AllowMove = false;
+            colAtividadeIdPausado.OptionsColumn.AllowSize = false;
+            colAtividadeIdPausado.OptionsColumn.ReadOnly = true;
+            colAtividadeIdPausado.Visible = true;
+            colAtividadeIdPausado.VisibleIndex = 0;
             // 
             // colNomeAtividadePausado
             // 
-            this.colNomeAtividadePausado.FieldName = "NomeAtividade";
-            this.colNomeAtividadePausado.Name = "colNomeAtividadePausado";
-            this.colNomeAtividadePausado.OptionsColumn.AllowEdit = false;
-            this.colNomeAtividadePausado.OptionsColumn.AllowMove = false;
-            this.colNomeAtividadePausado.OptionsColumn.AllowSize = false;
-            this.colNomeAtividadePausado.OptionsColumn.ReadOnly = true;
-            this.colNomeAtividadePausado.Visible = true;
-            this.colNomeAtividadePausado.VisibleIndex = 1;
+            colNomeAtividadePausado.FieldName = "NomeAtividade";
+            colNomeAtividadePausado.Name = "colNomeAtividadePausado";
+            colNomeAtividadePausado.OptionsColumn.AllowEdit = false;
+            colNomeAtividadePausado.OptionsColumn.AllowMove = false;
+            colNomeAtividadePausado.OptionsColumn.AllowSize = false;
+            colNomeAtividadePausado.OptionsColumn.ReadOnly = true;
+            colNomeAtividadePausado.Visible = true;
+            colNomeAtividadePausado.VisibleIndex = 1;
             // 
             // colNomeProjetoPausado
             // 
-            this.colNomeProjetoPausado.FieldName = "NomeProjeto";
-            this.colNomeProjetoPausado.Name = "colNomeProjetoPausado";
-            this.colNomeProjetoPausado.OptionsColumn.AllowEdit = false;
-            this.colNomeProjetoPausado.OptionsColumn.AllowMove = false;
-            this.colNomeProjetoPausado.OptionsColumn.AllowSize = false;
-            this.colNomeProjetoPausado.OptionsColumn.ReadOnly = true;
-            this.colNomeProjetoPausado.Visible = true;
-            this.colNomeProjetoPausado.VisibleIndex = 2;
+            colNomeProjetoPausado.FieldName = "NomeProjeto";
+            colNomeProjetoPausado.Name = "colNomeProjetoPausado";
+            colNomeProjetoPausado.OptionsColumn.AllowEdit = false;
+            colNomeProjetoPausado.OptionsColumn.AllowMove = false;
+            colNomeProjetoPausado.OptionsColumn.AllowSize = false;
+            colNomeProjetoPausado.OptionsColumn.ReadOnly = true;
+            colNomeProjetoPausado.Visible = true;
+            colNomeProjetoPausado.VisibleIndex = 2;
+            // 
+            // colButtonActionPausado
+            // 
+            colButtonActionPausado.Caption = "Ação";
+            colButtonActionPausado.ColumnEdit = repositoryButtonActionPausado;
+            colButtonActionPausado.Name = "colButtonActionPausado";
+            colButtonActionPausado.Visible = true;
+            colButtonActionPausado.VisibleIndex = 3;
+            // 
+            // repositoryButtonActionPausado
+            // 
+            repositoryButtonActionPausado.AutoHeight = false;
+            repositoryButtonActionPausado.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonActionPausado.Name = "repositoryButtonActionPausado";
+            repositoryButtonActionPausado.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // groupPendente
             // 
-            this.groupPendente.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPendente.AppearanceCaption.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupPendente.AppearanceCaption.Options.UseFont = true;
-            this.groupPendente.Controls.Add(this.dataGridPendentes);
-            this.groupPendente.Location = new System.Drawing.Point(17, 17);
-            this.groupPendente.Margin = new System.Windows.Forms.Padding(15, 15, 15, 10);
-            this.groupPendente.Name = "groupPendente";
-            this.groupPendente.Size = new System.Drawing.Size(500, 590);
-            this.groupPendente.TabIndex = 3;
-            this.groupPendente.Text = "Pendentes";
+            groupPendente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupPendente.AppearanceCaption.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupPendente.AppearanceCaption.Options.UseFont = true;
+            groupPendente.Controls.Add(dataGridPendentes);
+            groupPendente.Location = new Point(17, 17);
+            groupPendente.Margin = new Padding(15, 15, 15, 10);
+            groupPendente.Name = "groupPendente";
+            groupPendente.Size = new Size(500, 590);
+            groupPendente.TabIndex = 3;
+            groupPendente.Text = "Pendentes";
             // 
             // dataGridPendentes
             // 
-            this.dataGridPendentes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridPendentes.DataSource = this.atualizaAtividadesExecucaoDTOBindingSource;
-            this.dataGridPendentes.Location = new System.Drawing.Point(12, 39);
-            this.dataGridPendentes.MainView = this.gridPendentes;
-            this.dataGridPendentes.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.dataGridPendentes.Name = "dataGridPendentes";
-            this.dataGridPendentes.Size = new System.Drawing.Size(476, 539);
-            this.dataGridPendentes.TabIndex = 6;
-            this.dataGridPendentes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridPendentes});
+            dataGridPendentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridPendentes.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridPendentes.Location = new Point(12, 39);
+            dataGridPendentes.MainView = gridPendentes;
+            dataGridPendentes.Margin = new Padding(10);
+            dataGridPendentes.Name = "dataGridPendentes";
+            dataGridPendentes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionPendentes });
+            dataGridPendentes.Size = new Size(476, 539);
+            dataGridPendentes.TabIndex = 6;
+            dataGridPendentes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPendentes });
             // 
             // gridPendentes
             // 
-            this.gridPendentes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAtividadeId,
-            this.colNomeAtividade,
-            this.colNomeProjeto});
-            this.gridPendentes.GridControl = this.dataGridPendentes;
-            this.gridPendentes.Name = "gridPendentes";
-            this.gridPendentes.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridPendentes_RowClick);
+            gridPendentes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeId, colNomeAtividade, colNomeProjeto, colButtonActionPendente });
+            gridPendentes.GridControl = dataGridPendentes;
+            gridPendentes.Name = "gridPendentes";
+            gridPendentes.RowClick += gridPendentes_RowClick;
             // 
             // colAtividadeId
             // 
-            this.colAtividadeId.FieldName = "AtividadeId";
-            this.colAtividadeId.Name = "colAtividadeId";
-            this.colAtividadeId.OptionsColumn.AllowEdit = false;
-            this.colAtividadeId.OptionsColumn.AllowMove = false;
-            this.colAtividadeId.OptionsColumn.AllowSize = false;
-            this.colAtividadeId.OptionsColumn.ReadOnly = true;
-            this.colAtividadeId.Visible = true;
-            this.colAtividadeId.VisibleIndex = 0;
+            colAtividadeId.FieldName = "AtividadeId";
+            colAtividadeId.Name = "colAtividadeId";
+            colAtividadeId.OptionsColumn.AllowEdit = false;
+            colAtividadeId.OptionsColumn.AllowMove = false;
+            colAtividadeId.OptionsColumn.AllowSize = false;
+            colAtividadeId.OptionsColumn.ReadOnly = true;
+            colAtividadeId.Visible = true;
+            colAtividadeId.VisibleIndex = 0;
             // 
             // colNomeAtividade
             // 
-            this.colNomeAtividade.FieldName = "NomeAtividade";
-            this.colNomeAtividade.Name = "colNomeAtividade";
-            this.colNomeAtividade.OptionsColumn.AllowEdit = false;
-            this.colNomeAtividade.OptionsColumn.AllowMove = false;
-            this.colNomeAtividade.OptionsColumn.ReadOnly = true;
-            this.colNomeAtividade.Visible = true;
-            this.colNomeAtividade.VisibleIndex = 1;
+            colNomeAtividade.FieldName = "NomeAtividade";
+            colNomeAtividade.Name = "colNomeAtividade";
+            colNomeAtividade.OptionsColumn.AllowEdit = false;
+            colNomeAtividade.OptionsColumn.AllowMove = false;
+            colNomeAtividade.OptionsColumn.ReadOnly = true;
+            colNomeAtividade.Visible = true;
+            colNomeAtividade.VisibleIndex = 1;
             // 
             // colNomeProjeto
             // 
-            this.colNomeProjeto.FieldName = "NomeProjeto";
-            this.colNomeProjeto.Name = "colNomeProjeto";
-            this.colNomeProjeto.OptionsColumn.AllowEdit = false;
-            this.colNomeProjeto.OptionsColumn.AllowSize = false;
-            this.colNomeProjeto.OptionsColumn.ReadOnly = true;
-            this.colNomeProjeto.Visible = true;
-            this.colNomeProjeto.VisibleIndex = 2;
+            colNomeProjeto.FieldName = "NomeProjeto";
+            colNomeProjeto.Name = "colNomeProjeto";
+            colNomeProjeto.OptionsColumn.AllowEdit = false;
+            colNomeProjeto.OptionsColumn.AllowSize = false;
+            colNomeProjeto.OptionsColumn.ReadOnly = true;
+            colNomeProjeto.Visible = true;
+            colNomeProjeto.VisibleIndex = 2;
+            // 
+            // colButtonActionPendente
+            // 
+            colButtonActionPendente.Caption = "Ação";
+            colButtonActionPendente.ColumnEdit = repositoryButtonActionPendentes;
+            colButtonActionPendente.Name = "colButtonActionPendente";
+            colButtonActionPendente.Visible = true;
+            colButtonActionPendente.VisibleIndex = 3;
+            // 
+            // repositoryButtonActionPendentes
+            // 
+            repositoryButtonActionPendentes.AutoHeight = false;
+            repositoryButtonActionPendentes.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonActionPendentes.Name = "repositoryButtonActionPendentes";
+            repositoryButtonActionPendentes.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // panelButtonsExecucao
             // 
-            this.panelButtonsExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelButtonsExecucao.Controls.Add(this.btnVisualizaAtividade);
-            this.panelButtonsExecucao.Controls.Add(this.btnFinalizar);
-            this.panelButtonsExecucao.Controls.Add(this.btnPausar);
-            this.panelButtonsExecucao.Controls.Add(this.btnExecutar);
-            this.panelButtonsExecucao.Controls.Add(this.btnVoltaPendente);
-            this.panelButtonsExecucao.Location = new System.Drawing.Point(22, 620);
-            this.panelButtonsExecucao.Name = "panelButtonsExecucao";
-            this.panelButtonsExecucao.Size = new System.Drawing.Size(1216, 70);
-            this.panelButtonsExecucao.TabIndex = 6;
-            // 
-            // btnVisualizaAtividade
-            // 
-            this.btnVisualizaAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnVisualizaAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.btnVisualizaAtividade.Appearance.Options.UseFont = true;
-            this.btnVisualizaAtividade.Location = new System.Drawing.Point(282, 10);
-            this.btnVisualizaAtividade.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.btnVisualizaAtividade.Name = "btnVisualizaAtividade";
-            this.btnVisualizaAtividade.Size = new System.Drawing.Size(165, 23);
-            this.btnVisualizaAtividade.TabIndex = 5;
-            this.btnVisualizaAtividade.Text = "Visualizar Atividade";
-            this.btnVisualizaAtividade.Visible = false;
+            panelButtonsExecucao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelButtonsExecucao.Controls.Add(btnFinalizar);
+            panelButtonsExecucao.Controls.Add(btnPausar);
+            panelButtonsExecucao.Controls.Add(btnExecutar);
+            panelButtonsExecucao.Controls.Add(btnVoltaPendente);
+            panelButtonsExecucao.Location = new Point(22, 620);
+            panelButtonsExecucao.Name = "panelButtonsExecucao";
+            panelButtonsExecucao.Size = new Size(1216, 70);
+            panelButtonsExecucao.TabIndex = 6;
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFinalizar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.btnFinalizar.Appearance.Options.UseFont = true;
-            this.btnFinalizar.Location = new System.Drawing.Point(10, 42);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
-            this.btnFinalizar.TabIndex = 2;
-            this.btnFinalizar.Text = "Finalizar";
-            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
+            btnFinalizar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnFinalizar.Appearance.Font = new Font("Courier New", 8.25F);
+            btnFinalizar.Appearance.Options.UseFont = true;
+            btnFinalizar.Location = new Point(10, 42);
+            btnFinalizar.Margin = new Padding(8);
+            btnFinalizar.Name = "btnFinalizar";
+            btnFinalizar.Size = new Size(75, 23);
+            btnFinalizar.TabIndex = 2;
+            btnFinalizar.Text = "Finalizar";
+            btnFinalizar.Click += btnFinalizar_Click;
             // 
             // btnPausar
             // 
-            this.btnPausar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPausar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.btnPausar.Appearance.Options.UseFont = true;
-            this.btnPausar.Location = new System.Drawing.Point(10, 10);
-            this.btnPausar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.btnPausar.Name = "btnPausar";
-            this.btnPausar.Size = new System.Drawing.Size(75, 23);
-            this.btnPausar.TabIndex = 4;
-            this.btnPausar.Text = "Pausar";
-            this.btnPausar.Click += new System.EventHandler(this.btnPausar_Click);
+            btnPausar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnPausar.Appearance.Font = new Font("Courier New", 8.25F);
+            btnPausar.Appearance.Options.UseFont = true;
+            btnPausar.Location = new Point(10, 10);
+            btnPausar.Margin = new Padding(8);
+            btnPausar.Name = "btnPausar";
+            btnPausar.Size = new Size(75, 23);
+            btnPausar.TabIndex = 4;
+            btnPausar.Text = "Pausar";
+            btnPausar.Click += btnPausar_Click;
             // 
             // btnExecutar
             // 
-            this.btnExecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExecutar.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.btnExecutar.Appearance.Options.UseFont = true;
-            this.btnExecutar.Location = new System.Drawing.Point(101, 42);
-            this.btnExecutar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.btnExecutar.Name = "btnExecutar";
-            this.btnExecutar.Size = new System.Drawing.Size(133, 23);
-            this.btnExecutar.TabIndex = 1;
-            this.btnExecutar.Text = "Executar";
-            this.btnExecutar.Click += new System.EventHandler(this.btnExecutar_Click);
+            btnExecutar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnExecutar.Appearance.Font = new Font("Courier New", 8.25F);
+            btnExecutar.Appearance.Options.UseFont = true;
+            btnExecutar.Location = new Point(101, 42);
+            btnExecutar.Margin = new Padding(8);
+            btnExecutar.Name = "btnExecutar";
+            btnExecutar.Size = new Size(165, 23);
+            btnExecutar.TabIndex = 1;
+            btnExecutar.Text = "Executar";
+            btnExecutar.Click += btnExecutar_Click;
             // 
             // btnVoltaPendente
             // 
-            this.btnVoltaPendente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnVoltaPendente.Appearance.Font = new System.Drawing.Font("Courier New", 8.25F);
-            this.btnVoltaPendente.Appearance.Options.UseFont = true;
-            this.btnVoltaPendente.Location = new System.Drawing.Point(101, 10);
-            this.btnVoltaPendente.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.btnVoltaPendente.Name = "btnVoltaPendente";
-            this.btnVoltaPendente.Size = new System.Drawing.Size(165, 23);
-            this.btnVoltaPendente.TabIndex = 3;
-            this.btnVoltaPendente.Text = "Voltar para Pendente";
-            this.btnVoltaPendente.Click += new System.EventHandler(this.btnVoltaPendente_Click);
+            btnVoltaPendente.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnVoltaPendente.Appearance.Font = new Font("Courier New", 8.25F);
+            btnVoltaPendente.Appearance.Options.UseFont = true;
+            btnVoltaPendente.Location = new Point(101, 10);
+            btnVoltaPendente.Margin = new Padding(8);
+            btnVoltaPendente.Name = "btnVoltaPendente";
+            btnVoltaPendente.Size = new Size(165, 23);
+            btnVoltaPendente.TabIndex = 3;
+            btnVoltaPendente.Text = "Voltar para Pendente";
+            btnVoltaPendente.Click += btnVoltaPendente_Click;
             // 
             // panelAtividadesExecucao
             // 
-            this.panelAtividadesExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAtividadesExecucao.Controls.Add(this.panelButtonsExecucao);
-            this.panelAtividadesExecucao.Controls.Add(this.groupPendente);
-            this.panelAtividadesExecucao.Controls.Add(this.groupPausado);
-            this.panelAtividadesExecucao.Controls.Add(this.groupExecutando);
-            this.panelAtividadesExecucao.Location = new System.Drawing.Point(10, 10);
-            this.panelAtividadesExecucao.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.panelAtividadesExecucao.Name = "panelAtividadesExecucao";
-            this.panelAtividadesExecucao.Size = new System.Drawing.Size(1260, 700);
-            this.panelAtividadesExecucao.TabIndex = 7;
+            panelAtividadesExecucao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelAtividadesExecucao.Controls.Add(panelButtonsExecucao);
+            panelAtividadesExecucao.Controls.Add(groupPendente);
+            panelAtividadesExecucao.Controls.Add(groupPausado);
+            panelAtividadesExecucao.Controls.Add(groupExecutando);
+            panelAtividadesExecucao.Location = new Point(10, 10);
+            panelAtividadesExecucao.Margin = new Padding(10);
+            panelAtividadesExecucao.Name = "panelAtividadesExecucao";
+            panelAtividadesExecucao.Size = new Size(1260, 700);
+            panelAtividadesExecucao.TabIndex = 7;
             // 
-            // HomeUserControl
+            // VisualizaExecucaoUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelAtividadesExecucao);
-            this.Name = "HomeUserControl";
-            this.Size = new System.Drawing.Size(1280, 720);
-            this.Load += new System.EventHandler(this.HomeUserControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.atualizaAtividadesExecucaoDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupExecutando)).EndInit();
-            this.groupExecutando.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridExecutando)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridExecutando)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupPausado)).EndInit();
-            this.groupPausado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPausado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridPausado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupPendente)).EndInit();
-            this.groupPendente.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPendentes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridPendentes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelButtonsExecucao)).EndInit();
-            this.panelButtonsExecucao.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelAtividadesExecucao)).EndInit();
-            this.panelAtividadesExecucao.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panelAtividadesExecucao);
+            Name = "VisualizaExecucaoUserControl";
+            Size = new Size(1280, 720);
+            Load += HomeUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)atualizaAtividadesExecucaoDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)groupExecutando).EndInit();
+            groupExecutando.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridExecutando).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridExecutando).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)groupPausado).EndInit();
+            groupPausado.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridPausado).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPausado).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPausado).EndInit();
+            ((System.ComponentModel.ISupportInitialize)groupPendente).EndInit();
+            groupPendente.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridPendentes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPendentes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPendentes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelButtonsExecucao).EndInit();
+            panelButtonsExecucao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).EndInit();
+            panelAtividadesExecucao.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -424,7 +445,6 @@
         private DevExpress.XtraEditors.GroupControl groupPausado;
         private DevExpress.XtraEditors.GroupControl groupPendente;
         private DevExpress.XtraEditors.PanelControl panelButtonsExecucao;
-        private DevExpress.XtraEditors.SimpleButton btnVisualizaAtividade;
         private DevExpress.XtraEditors.SimpleButton btnFinalizar;
         private DevExpress.XtraEditors.SimpleButton btnPausar;
         private DevExpress.XtraEditors.SimpleButton btnExecutar;
@@ -445,5 +465,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAtividadeIdPausado;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividadePausado;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeProjetoPausado;
+        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionPendente;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionPendentes;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionExecucao;
+        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionExecucao;
+        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionPausado;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionPausado;
     }
 }

@@ -28,299 +28,306 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisualizaAtividadesUserControl));
-            this.panelBotoes = new DevExpress.XtraEditors.PanelControl();
-            this.btnLimpar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
-            this.panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
-            this.comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
-            this.comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
-            this.dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
-            this.txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.atualizaGridAtividadeDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
-            this.gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).BeginInit();
-            this.panelBotoes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).BeginInit();
-            this.panelFiltroPesquisa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboStatusPesquisa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboProjetoPesquisa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.atualizaGridAtividadeDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridAtividadesCadastradas)).BeginInit();
-            this.SuspendLayout();
+            panelBotoes = new DevExpress.XtraEditors.PanelControl();
+            btnLimpar = new DevExpress.XtraEditors.SimpleButton();
+            btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
+            panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
+            comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
+            comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
+            dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
+            labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
+            txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
+            labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            atualizaGridAtividadeDTOBindingSource = new BindingSource(components);
+            searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
+            gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            colAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
+            colProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumnVisualizaAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemButtonAtividades = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ((System.ComponentModel.ISupportInitialize)panelBotoes).BeginInit();
+            panelBotoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
+            panelFiltroPesquisa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)atualizaGridAtividadeDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAtividades).BeginInit();
+            SuspendLayout();
             // 
             // panelBotoes
             // 
-            this.panelBotoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelBotoes.Controls.Add(this.btnLimpar);
-            this.panelBotoes.Controls.Add(this.btnIncluirAtividade);
-            this.panelBotoes.Location = new System.Drawing.Point(15, 184);
-            this.panelBotoes.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.panelBotoes.Name = "panelBotoes";
-            this.panelBotoes.Size = new System.Drawing.Size(123, 521);
-            this.panelBotoes.TabIndex = 3;
+            panelBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            panelBotoes.Controls.Add(btnLimpar);
+            panelBotoes.Controls.Add(btnIncluirAtividade);
+            panelBotoes.Location = new Point(15, 184);
+            panelBotoes.Margin = new Padding(15);
+            panelBotoes.Name = "panelBotoes";
+            panelBotoes.Size = new Size(123, 521);
+            panelBotoes.TabIndex = 3;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Appearance.Options.UseFont = true;
-            this.btnLimpar.Location = new System.Drawing.Point(17, 115);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(89, 23);
-            this.btnLimpar.TabIndex = 1;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            btnLimpar.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLimpar.Appearance.Options.UseFont = true;
+            btnLimpar.Location = new Point(17, 115);
+            btnLimpar.Margin = new Padding(15, 30, 15, 30);
+            btnLimpar.Name = "btnLimpar";
+            btnLimpar.Size = new Size(89, 23);
+            btnLimpar.TabIndex = 1;
+            btnLimpar.Text = "Limpar";
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnIncluirAtividade
             // 
-            this.btnIncluirAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIncluirAtividade.Appearance.Options.UseFont = true;
-            this.btnIncluirAtividade.Location = new System.Drawing.Point(17, 32);
-            this.btnIncluirAtividade.Margin = new System.Windows.Forms.Padding(15, 30, 15, 30);
-            this.btnIncluirAtividade.Name = "btnIncluirAtividade";
-            this.btnIncluirAtividade.Size = new System.Drawing.Size(89, 23);
-            this.btnIncluirAtividade.TabIndex = 0;
-            this.btnIncluirAtividade.Text = "Incluir";
-            this.btnIncluirAtividade.Click += new System.EventHandler(this.btnIncluirAtividade_Click);
+            btnIncluirAtividade.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIncluirAtividade.Appearance.Options.UseFont = true;
+            btnIncluirAtividade.Location = new Point(17, 32);
+            btnIncluirAtividade.Margin = new Padding(15, 30, 15, 30);
+            btnIncluirAtividade.Name = "btnIncluirAtividade";
+            btnIncluirAtividade.Size = new Size(89, 23);
+            btnIncluirAtividade.TabIndex = 0;
+            btnIncluirAtividade.Text = "Incluir";
+            btnIncluirAtividade.Click += btnIncluirAtividade_Click;
             // 
             // panelFiltroPesquisa
             // 
-            this.panelFiltroPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelFiltroPesquisa.Controls.Add(this.comboStatusPesquisa);
-            this.panelFiltroPesquisa.Controls.Add(this.comboProjetoPesquisa);
-            this.panelFiltroPesquisa.Controls.Add(this.dataCriacaoPesquisa);
-            this.panelFiltroPesquisa.Controls.Add(this.labelControl4);
-            this.panelFiltroPesquisa.Controls.Add(this.labelControl3);
-            this.panelFiltroPesquisa.Controls.Add(this.labelControl2);
-            this.panelFiltroPesquisa.Controls.Add(this.btnPesquisarAtividade);
-            this.panelFiltroPesquisa.Controls.Add(this.txtNomeAtividade);
-            this.panelFiltroPesquisa.Controls.Add(this.labelControl1);
-            this.panelFiltroPesquisa.Location = new System.Drawing.Point(15, 15);
-            this.panelFiltroPesquisa.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.panelFiltroPesquisa.Name = "panelFiltroPesquisa";
-            this.panelFiltroPesquisa.Size = new System.Drawing.Size(1250, 139);
-            this.panelFiltroPesquisa.TabIndex = 4;
+            panelFiltroPesquisa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            panelFiltroPesquisa.Controls.Add(comboStatusPesquisa);
+            panelFiltroPesquisa.Controls.Add(comboProjetoPesquisa);
+            panelFiltroPesquisa.Controls.Add(dataCriacaoPesquisa);
+            panelFiltroPesquisa.Controls.Add(labelControl4);
+            panelFiltroPesquisa.Controls.Add(labelControl3);
+            panelFiltroPesquisa.Controls.Add(labelControl2);
+            panelFiltroPesquisa.Controls.Add(btnPesquisarAtividade);
+            panelFiltroPesquisa.Controls.Add(txtNomeAtividade);
+            panelFiltroPesquisa.Controls.Add(labelControl1);
+            panelFiltroPesquisa.Location = new Point(15, 15);
+            panelFiltroPesquisa.Margin = new Padding(15);
+            panelFiltroPesquisa.Name = "panelFiltroPesquisa";
+            panelFiltroPesquisa.Size = new Size(1250, 139);
+            panelFiltroPesquisa.TabIndex = 4;
             // 
             // comboStatusPesquisa
             // 
-            this.comboStatusPesquisa.Location = new System.Drawing.Point(84, 58);
-            this.comboStatusPesquisa.Name = "comboStatusPesquisa";
-            this.comboStatusPesquisa.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboStatusPesquisa.Properties.Appearance.Options.UseFont = true;
-            this.comboStatusPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboStatusPesquisa.Properties.NullText = "";
-            this.comboStatusPesquisa.Properties.PopupSizeable = false;
-            this.comboStatusPesquisa.Size = new System.Drawing.Size(296, 32);
-            this.comboStatusPesquisa.TabIndex = 10;
+            comboStatusPesquisa.Location = new Point(84, 58);
+            comboStatusPesquisa.Name = "comboStatusPesquisa";
+            comboStatusPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboStatusPesquisa.Properties.Appearance.Options.UseFont = true;
+            comboStatusPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboStatusPesquisa.Properties.NullText = "";
+            comboStatusPesquisa.Properties.PopupSizeable = false;
+            comboStatusPesquisa.Size = new Size(296, 32);
+            comboStatusPesquisa.TabIndex = 10;
             // 
             // comboProjetoPesquisa
             // 
-            this.comboProjetoPesquisa.Location = new System.Drawing.Point(503, 12);
-            this.comboProjetoPesquisa.Name = "comboProjetoPesquisa";
-            this.comboProjetoPesquisa.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboProjetoPesquisa.Properties.Appearance.Options.UseFont = true;
-            this.comboProjetoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboProjetoPesquisa.Properties.NullText = "";
-            this.comboProjetoPesquisa.Size = new System.Drawing.Size(312, 32);
-            this.comboProjetoPesquisa.TabIndex = 9;
+            comboProjetoPesquisa.Location = new Point(503, 12);
+            comboProjetoPesquisa.Name = "comboProjetoPesquisa";
+            comboProjetoPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboProjetoPesquisa.Properties.Appearance.Options.UseFont = true;
+            comboProjetoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboProjetoPesquisa.Properties.NullText = "";
+            comboProjetoPesquisa.Size = new Size(312, 32);
+            comboProjetoPesquisa.TabIndex = 9;
             // 
             // dataCriacaoPesquisa
             // 
-            this.dataCriacaoPesquisa.EditValue = null;
-            this.dataCriacaoPesquisa.Location = new System.Drawing.Point(479, 57);
-            this.dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
-            this.dataCriacaoPesquisa.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataCriacaoPesquisa.Properties.Appearance.Options.UseFont = true;
-            this.dataCriacaoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dataCriacaoPesquisa.Size = new System.Drawing.Size(336, 30);
-            this.dataCriacaoPesquisa.TabIndex = 8;
+            dataCriacaoPesquisa.EditValue = null;
+            dataCriacaoPesquisa.Location = new Point(479, 57);
+            dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
+            dataCriacaoPesquisa.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataCriacaoPesquisa.Properties.Appearance.Options.UseFont = true;
+            dataCriacaoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacaoPesquisa.Size = new Size(336, 30);
+            dataCriacaoPesquisa.TabIndex = 8;
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(429, 63);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(32, 16);
-            this.labelControl4.TabIndex = 7;
-            this.labelControl4.Text = "Data";
+            labelControl4.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelControl4.Appearance.Options.UseFont = true;
+            labelControl4.Location = new Point(429, 63);
+            labelControl4.Margin = new Padding(15);
+            labelControl4.Name = "labelControl4";
+            labelControl4.Size = new Size(32, 16);
+            labelControl4.TabIndex = 7;
+            labelControl4.Text = "Data";
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(429, 17);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 16);
-            this.labelControl3.TabIndex = 5;
-            this.labelControl3.Text = "Projeto";
+            labelControl3.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelControl3.Appearance.Options.UseFont = true;
+            labelControl3.Location = new Point(429, 17);
+            labelControl3.Margin = new Padding(15);
+            labelControl3.Name = "labelControl3";
+            labelControl3.Size = new Size(56, 16);
+            labelControl3.TabIndex = 5;
+            labelControl3.Text = "Projeto";
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(17, 63);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 16);
-            this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "Status";
+            labelControl2.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelControl2.Appearance.Options.UseFont = true;
+            labelControl2.Location = new Point(17, 63);
+            labelControl2.Margin = new Padding(15);
+            labelControl2.Name = "labelControl2";
+            labelControl2.Size = new Size(48, 16);
+            labelControl2.TabIndex = 3;
+            labelControl2.Text = "Status";
             // 
             // btnPesquisarAtividade
             // 
-            this.btnPesquisarAtividade.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarAtividade.Appearance.Options.UseFont = true;
-            this.btnPesquisarAtividade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPesquisarAtividade.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarAtividade.ImageOptions.Image")));
-            this.btnPesquisarAtividade.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPesquisarAtividade.Location = new System.Drawing.Point(378, 97);
-            this.btnPesquisarAtividade.Name = "btnPesquisarAtividade";
-            this.btnPesquisarAtividade.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnPesquisarAtividade.Size = new System.Drawing.Size(107, 23);
-            this.btnPesquisarAtividade.TabIndex = 2;
-            this.btnPesquisarAtividade.Text = "Pesquisar";
-            this.btnPesquisarAtividade.Click += new System.EventHandler(this.btnPesquisarAtividade_Click);
+            btnPesquisarAtividade.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPesquisarAtividade.Appearance.Options.UseFont = true;
+            btnPesquisarAtividade.BackgroundImageLayout = ImageLayout.None;
+            btnPesquisarAtividade.ImageOptions.Image = (Image)resources.GetObject("btnPesquisarAtividade.ImageOptions.Image");
+            btnPesquisarAtividade.ImeMode = ImeMode.NoControl;
+            btnPesquisarAtividade.Location = new Point(378, 97);
+            btnPesquisarAtividade.Name = "btnPesquisarAtividade";
+            btnPesquisarAtividade.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            btnPesquisarAtividade.Size = new Size(107, 23);
+            btnPesquisarAtividade.TabIndex = 2;
+            btnPesquisarAtividade.Text = "Pesquisar";
+            btnPesquisarAtividade.Click += btnPesquisarAtividade_Click;
             // 
             // txtNomeAtividade
             // 
-            this.txtNomeAtividade.Location = new System.Drawing.Point(67, 13);
-            this.txtNomeAtividade.Name = "txtNomeAtividade";
-            this.txtNomeAtividade.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
-            this.txtNomeAtividade.Properties.MaxLength = 50;
-            this.txtNomeAtividade.Size = new System.Drawing.Size(313, 30);
-            this.txtNomeAtividade.TabIndex = 1;
+            txtNomeAtividade.Location = new Point(67, 13);
+            txtNomeAtividade.Name = "txtNomeAtividade";
+            txtNomeAtividade.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
+            txtNomeAtividade.Properties.MaxLength = 50;
+            txtNomeAtividade.Size = new Size(313, 30);
+            txtNomeAtividade.TabIndex = 1;
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(17, 17);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(32, 16);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Nome";
+            labelControl1.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelControl1.Appearance.Options.UseFont = true;
+            labelControl1.Location = new Point(17, 17);
+            labelControl1.Margin = new Padding(15);
+            labelControl1.Name = "labelControl1";
+            labelControl1.Size = new Size(32, 16);
+            labelControl1.TabIndex = 0;
+            labelControl1.Text = "Nome";
             // 
             // atualizaGridAtividadeDTOBindingSource
             // 
-            this.atualizaGridAtividadeDTOBindingSource.DataSource = typeof(JustDoTheWork.DTO.AtualizaGridAtividadeDTO);
+            atualizaGridAtividadeDTOBindingSource.DataSource = typeof(DTO.AtualizaGridAtividadeDTO);
             // 
             // searchLookUpEdit1View
             // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // GridCadastroAtividade
             // 
-            this.GridCadastroAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridCadastroAtividade.DataSource = this.atualizaGridAtividadeDTOBindingSource;
-            this.GridCadastroAtividade.Location = new System.Drawing.Point(168, 184);
-            this.GridCadastroAtividade.MainView = this.gridAtividadesCadastradas;
-            this.GridCadastroAtividade.Name = "GridCadastroAtividade";
-            this.GridCadastroAtividade.Size = new System.Drawing.Size(1097, 521);
-            this.GridCadastroAtividade.TabIndex = 6;
-            this.GridCadastroAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridAtividadesCadastradas});
+            GridCadastroAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            GridCadastroAtividade.DataSource = atualizaGridAtividadeDTOBindingSource;
+            GridCadastroAtividade.Location = new Point(168, 184);
+            GridCadastroAtividade.MainView = gridAtividadesCadastradas;
+            GridCadastroAtividade.Name = "GridCadastroAtividade";
+            GridCadastroAtividade.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonAtividades });
+            GridCadastroAtividade.Size = new Size(1097, 521);
+            GridCadastroAtividade.TabIndex = 6;
+            GridCadastroAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridAtividadesCadastradas });
             // 
             // gridAtividadesCadastradas
             // 
-            this.gridAtividadesCadastradas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colId,
-            this.colAtividade,
-            this.colProjeto});
-            this.gridAtividadesCadastradas.GridControl = this.GridCadastroAtividade;
-            this.gridAtividadesCadastradas.Name = "gridAtividadesCadastradas";
-            this.gridAtividadesCadastradas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridAtividadesCadastradas_RowClick);
+            gridAtividadesCadastradas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colAtividade, colProjeto, gridColumnVisualizaAtividade });
+            gridAtividadesCadastradas.GridControl = GridCadastroAtividade;
+            gridAtividadesCadastradas.Name = "gridAtividadesCadastradas";
             // 
             // colId
             // 
-            this.colId.FieldName = "Id";
-            this.colId.Name = "colId";
-            this.colId.OptionsColumn.AllowEdit = false;
-            this.colId.OptionsColumn.AllowMove = false;
-            this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Visible = true;
-            this.colId.VisibleIndex = 0;
+            colId.FieldName = "Id";
+            colId.Name = "colId";
+            colId.OptionsColumn.AllowEdit = false;
+            colId.OptionsColumn.AllowMove = false;
+            colId.OptionsColumn.ReadOnly = true;
+            colId.Visible = true;
+            colId.VisibleIndex = 0;
             // 
             // colAtividade
             // 
-            this.colAtividade.FieldName = "Atividade";
-            this.colAtividade.Name = "colAtividade";
-            this.colAtividade.OptionsColumn.AllowEdit = false;
-            this.colAtividade.OptionsColumn.AllowMove = false;
-            this.colAtividade.OptionsColumn.ReadOnly = true;
-            this.colAtividade.Visible = true;
-            this.colAtividade.VisibleIndex = 1;
+            colAtividade.FieldName = "Atividade";
+            colAtividade.Name = "colAtividade";
+            colAtividade.OptionsColumn.AllowEdit = false;
+            colAtividade.OptionsColumn.AllowMove = false;
+            colAtividade.OptionsColumn.ReadOnly = true;
+            colAtividade.Visible = true;
+            colAtividade.VisibleIndex = 1;
             // 
             // colProjeto
             // 
-            this.colProjeto.FieldName = "Projeto";
-            this.colProjeto.Name = "colProjeto";
-            this.colProjeto.OptionsColumn.AllowEdit = false;
-            this.colProjeto.OptionsColumn.AllowMove = false;
-            this.colProjeto.OptionsColumn.ReadOnly = true;
-            this.colProjeto.Visible = true;
-            this.colProjeto.VisibleIndex = 2;
+            colProjeto.FieldName = "Projeto";
+            colProjeto.Name = "colProjeto";
+            colProjeto.OptionsColumn.AllowEdit = false;
+            colProjeto.OptionsColumn.AllowMove = false;
+            colProjeto.OptionsColumn.ReadOnly = true;
+            colProjeto.Visible = true;
+            colProjeto.VisibleIndex = 2;
             // 
-            // RegisterUserControl
+            // gridColumnVisualizaAtividade
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Controls.Add(this.GridCadastroAtividade);
-            this.Controls.Add(this.panelFiltroPesquisa);
-            this.Controls.Add(this.panelBotoes);
-            this.Name = "RegisterUserControl";
-            this.Size = new System.Drawing.Size(1280, 720);
-            this.Load += new System.EventHandler(this.RegisterUserControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.panelBotoes)).EndInit();
-            this.panelBotoes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelFiltroPesquisa)).EndInit();
-            this.panelFiltroPesquisa.ResumeLayout(false);
-            this.panelFiltroPesquisa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboStatusPesquisa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboProjetoPesquisa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCriacaoPesquisa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNomeAtividade.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.atualizaGridAtividadeDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridCadastroAtividade)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridAtividadesCadastradas)).EndInit();
-            this.ResumeLayout(false);
+            gridColumnVisualizaAtividade.Caption = "Ação";
+            gridColumnVisualizaAtividade.ColumnEdit = repositoryItemButtonAtividades;
+            gridColumnVisualizaAtividade.Name = "gridColumnVisualizaAtividade";
+            gridColumnVisualizaAtividade.Visible = true;
+            gridColumnVisualizaAtividade.VisibleIndex = 3;
+            // 
+            // repositoryItemButtonAtividades
+            // 
+            repositoryItemButtonAtividades.AutoHeight = false;
+            repositoryItemButtonAtividades.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryItemButtonAtividades.Name = "repositoryItemButtonAtividades";
+            repositoryItemButtonAtividades.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // VisualizaAtividadesUserControl
+            // 
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.None;
+            Controls.Add(GridCadastroAtividade);
+            Controls.Add(panelFiltroPesquisa);
+            Controls.Add(panelBotoes);
+            Name = "VisualizaAtividadesUserControl";
+            Size = new Size(1280, 720);
+            Load += RegisterUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)panelBotoes).EndInit();
+            panelBotoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).EndInit();
+            panelFiltroPesquisa.ResumeLayout(false);
+            panelFiltroPesquisa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)atualizaGridAtividadeDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAtividades).EndInit();
+            ResumeLayout(false);
 
         }
 
@@ -346,5 +353,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colProjeto;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnVisualizaAtividade;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonAtividades;
     }
 }

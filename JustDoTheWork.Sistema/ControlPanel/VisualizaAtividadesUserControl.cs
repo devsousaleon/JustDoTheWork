@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
@@ -17,6 +19,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
+            repositoryItemButtonAtividades.ButtonPressed += RepositoryItemButtonEditAtividade_ButtonClick;
         }
 
         void RegisterUserControl_Load(object sender, EventArgs e)
@@ -36,23 +39,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
             var filtro = new AtividadePesquisaDTO
             {
                 Nome = txtNomeAtividade.Text,
-
-                Status = comboStatusPesquisa.EditValue != null
-                    ? (int?)comboStatusPesquisa.EditValue
-                    : null,
-
-                ProjetoId = comboProjetoPesquisa.EditValue != null
-                    ? (int?)comboProjetoPesquisa.EditValue
-                    : null,
-
-                DataCriacao = dataCriacaoPesquisa.EditValue != null
-                    ? (DateTime?)dataCriacaoPesquisa.DateTime
-                    : null
+                Status = comboStatusPesquisa.EditValue != null ? (int?)comboStatusPesquisa.EditValue : null,
+                ProjetoId = comboProjetoPesquisa.EditValue != null ? (int?)comboProjetoPesquisa.EditValue : null,
+                DataCriacao = dataCriacaoPesquisa.EditValue != null ? (DateTime?)dataCriacaoPesquisa.DateTime : null
             };
 
-            var dadosGrid = _atividadeController
-                .PesquisarParaGrid(filtro)
-                .ToList();
+            var dadosGrid = _atividadeController.PesquisarParaGrid(filtro).ToList();
 
             GridCadastroAtividade.DataSource = dadosGrid;
         }
@@ -90,10 +82,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             dataCriacaoPesquisa.EditValue = null;
         }
 
-        void gridAtividadesCadastradas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        void RepositoryItemButtonEditAtividade_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             IdSelecionado = Convert.ToInt32(gridAtividadesCadastradas.GetFocusedRowCellValue("Id"));
-
             FormVisualizaCadastro _formVisualizaCadastro = new(this);
             _formVisualizaCadastro.ShowDialog();
         }

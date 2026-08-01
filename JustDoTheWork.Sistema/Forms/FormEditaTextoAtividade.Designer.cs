@@ -672,6 +672,7 @@
             Controls.Add(barDockControlBottom);
             Controls.Add(barDockControlTop);
             IconOptions.LargeImage = (Image)resources.GetObject("FormEditaTextoAtividade.IconOptions.LargeImage");
+            MinimumSize = new Size(1280, 720);
             Name = "FormEditaTextoAtividade";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Editor";

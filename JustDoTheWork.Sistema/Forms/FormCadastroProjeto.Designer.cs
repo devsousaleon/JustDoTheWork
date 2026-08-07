@@ -48,7 +48,7 @@
             txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
             txtNomeProjeto.Properties.MaxLength = 50;
             txtNomeProjeto.Size = new Size(237, 32);
-            txtNomeProjeto.TabIndex = 1;
+            txtNomeProjeto.TabIndex = 0;
             // 
             // btnIncluirProjeto
             // 
@@ -58,7 +58,7 @@
             btnIncluirProjeto.Margin = new Padding(4, 3, 4, 3);
             btnIncluirProjeto.Name = "btnIncluirProjeto";
             btnIncluirProjeto.Size = new Size(88, 25);
-            btnIncluirProjeto.TabIndex = 2;
+            btnIncluirProjeto.TabIndex = 1;
             btnIncluirProjeto.Text = "Incluir";
             btnIncluirProjeto.Click += btnIncluirProjeto_Click;
             // 
@@ -70,7 +70,7 @@
             btnCancelar.Margin = new Padding(12, 11, 12, 11);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(88, 25);
-            btnCancelar.TabIndex = 3;
+            btnCancelar.TabIndex = 2;
             btnCancelar.Text = "Cancelar";
             btnCancelar.Click += btnCancelar_Click;
             // 

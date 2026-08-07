@@ -185,7 +185,7 @@
             txtNomeProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNomeProjeto.Properties.Appearance.Options.UseFont = true;
             txtNomeProjeto.Size = new Size(302, 32);
-            txtNomeProjeto.TabIndex = 22;
+            txtNomeProjeto.TabIndex = 2;
             // 
             // lblDataCriacaoAtividade
             // 
@@ -208,7 +208,7 @@
             DataCriacaoAtividade.Properties.Appearance.Options.UseFont = true;
             DataCriacaoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             DataCriacaoAtividade.Size = new Size(254, 32);
-            DataCriacaoAtividade.TabIndex = 20;
+            DataCriacaoAtividade.TabIndex = 1;
             // 
             // lblProjeto
             // 
@@ -240,7 +240,7 @@
             txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
             txtNomeAtividade.Size = new Size(342, 32);
-            txtNomeAtividade.TabIndex = 16;
+            txtNomeAtividade.TabIndex = 0;
             // 
             // xtraPageDescricaoAtividade
             // 
@@ -248,7 +248,7 @@
             xtraPageDescricaoAtividade.Appearance.Header.Options.UseFont = true;
             xtraPageDescricaoAtividade.Controls.Add(txtEditorAtividade);
             xtraPageDescricaoAtividade.Name = "xtraPageDescricaoAtividade";
-            xtraPageDescricaoAtividade.Size = new Size(862, 510);
+            xtraPageDescricaoAtividade.Size = new Size(862, 503);
             xtraPageDescricaoAtividade.Text = "Descrição da atividade";
             // 
             // txtEditorAtividade

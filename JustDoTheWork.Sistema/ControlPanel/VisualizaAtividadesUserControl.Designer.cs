@@ -88,7 +88,7 @@
             btnLimpar.Margin = new Padding(15, 30, 15, 30);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(89, 23);
-            btnLimpar.TabIndex = 1;
+            btnLimpar.TabIndex = 5;
             btnLimpar.Text = "Limpar";
             btnLimpar.Click += btnLimpar_Click;
             // 
@@ -100,7 +100,7 @@
             btnIncluirAtividade.Margin = new Padding(15, 30, 15, 30);
             btnIncluirAtividade.Name = "btnIncluirAtividade";
             btnIncluirAtividade.Size = new Size(89, 23);
-            btnIncluirAtividade.TabIndex = 0;
+            btnIncluirAtividade.TabIndex = 4;
             btnIncluirAtividade.Text = "Incluir";
             btnIncluirAtividade.Click += btnIncluirAtividade_Click;
             // 
@@ -133,7 +133,7 @@
             comboStatusPesquisa.Properties.NullText = "";
             comboStatusPesquisa.Properties.PopupSizeable = false;
             comboStatusPesquisa.Size = new Size(296, 32);
-            comboStatusPesquisa.TabIndex = 10;
+            comboStatusPesquisa.TabIndex = 2;
             // 
             // comboProjetoPesquisa
             // 
@@ -144,7 +144,7 @@
             comboProjetoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             comboProjetoPesquisa.Properties.NullText = "";
             comboProjetoPesquisa.Size = new Size(312, 32);
-            comboProjetoPesquisa.TabIndex = 9;
+            comboProjetoPesquisa.TabIndex = 1;
             // 
             // dataCriacaoPesquisa
             // 
@@ -156,7 +156,7 @@
             dataCriacaoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             dataCriacaoPesquisa.Size = new Size(336, 30);
-            dataCriacaoPesquisa.TabIndex = 8;
+            dataCriacaoPesquisa.TabIndex = 3;
             // 
             // labelControl4
             // 
@@ -214,7 +214,7 @@
             txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
             txtNomeAtividade.Properties.MaxLength = 50;
             txtNomeAtividade.Size = new Size(313, 30);
-            txtNomeAtividade.TabIndex = 1;
+            txtNomeAtividade.TabIndex = 0;
             // 
             // labelControl1
             // 

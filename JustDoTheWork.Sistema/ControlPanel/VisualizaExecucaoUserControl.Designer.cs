@@ -361,7 +361,7 @@
             btnPausar.Margin = new Padding(8);
             btnPausar.Name = "btnPausar";
             btnPausar.Size = new Size(75, 23);
-            btnPausar.TabIndex = 4;
+            btnPausar.TabIndex = 0;
             btnPausar.Text = "Pausar";
             btnPausar.Click += btnPausar_Click;
             // 
@@ -374,7 +374,7 @@
             btnExecutar.Margin = new Padding(8);
             btnExecutar.Name = "btnExecutar";
             btnExecutar.Size = new Size(165, 23);
-            btnExecutar.TabIndex = 1;
+            btnExecutar.TabIndex = 3;
             btnExecutar.Text = "Executar";
             btnExecutar.Click += btnExecutar_Click;
             // 
@@ -387,7 +387,7 @@
             btnVoltaPendente.Margin = new Padding(8);
             btnVoltaPendente.Name = "btnVoltaPendente";
             btnVoltaPendente.Size = new Size(165, 23);
-            btnVoltaPendente.TabIndex = 3;
+            btnVoltaPendente.TabIndex = 1;
             btnVoltaPendente.Text = "Voltar para Pendente";
             btnVoltaPendente.Click += btnVoltaPendente_Click;
             // 

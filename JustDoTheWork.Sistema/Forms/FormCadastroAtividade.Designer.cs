@@ -71,7 +71,7 @@
             btnEditaTextoAtividade.Margin = new Padding(8);
             btnEditaTextoAtividade.Name = "btnEditaTextoAtividade";
             btnEditaTextoAtividade.Size = new Size(181, 23);
-            btnEditaTextoAtividade.TabIndex = 4;
+            btnEditaTextoAtividade.TabIndex = 5;
             btnEditaTextoAtividade.Text = "Editar Texto Atividade";
             btnEditaTextoAtividade.Click += btnEditaTextoAtividade_Click;
             // 
@@ -81,7 +81,7 @@
             btnFecharAtividade.Margin = new Padding(15);
             btnFecharAtividade.Name = "btnFecharAtividade";
             btnFecharAtividade.Size = new Size(75, 23);
-            btnFecharAtividade.TabIndex = 5;
+            btnFecharAtividade.TabIndex = 4;
             btnFecharAtividade.Text = "Fechar";
             btnFecharAtividade.Click += btnFecharAtividade_Click;
             // 
@@ -91,7 +91,7 @@
             btnSalvarIncluirAtividade.Margin = new Padding(15);
             btnSalvarIncluirAtividade.Name = "btnSalvarIncluirAtividade";
             btnSalvarIncluirAtividade.Size = new Size(75, 23);
-            btnSalvarIncluirAtividade.TabIndex = 4;
+            btnSalvarIncluirAtividade.TabIndex = 3;
             btnSalvarIncluirAtividade.Text = "Incluir";
             btnSalvarIncluirAtividade.Click += btnIncluirAtividade_Click;
             // 
@@ -143,7 +143,7 @@
             comboProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             comboProjeto.Properties.NullText = "";
             comboProjeto.Size = new Size(302, 32);
-            comboProjeto.TabIndex = 9;
+            comboProjeto.TabIndex = 1;
             // 
             // btnAdicionarProjeto
             // 
@@ -151,7 +151,7 @@
             btnAdicionarProjeto.Location = new Point(898, 38);
             btnAdicionarProjeto.Name = "btnAdicionarProjeto";
             btnAdicionarProjeto.Size = new Size(24, 23);
-            btnAdicionarProjeto.TabIndex = 8;
+            btnAdicionarProjeto.TabIndex = 2;
             btnAdicionarProjeto.Click += btnAdicionarProjeto_Click;
             // 
             // lblProjeto

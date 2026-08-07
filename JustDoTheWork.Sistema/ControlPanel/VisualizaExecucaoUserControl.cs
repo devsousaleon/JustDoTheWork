@@ -1,19 +1,24 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
 using JustDoTheWork.UI.Core.Geral;
+using Timer = System.Windows.Forms.Timer;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
     public partial class VisualizaExecucaoUserControl : XtraUserControl
     {
-        private readonly AtividadeController _atividadeController;
-        private readonly ExecucaoController _execucaoController;
+        readonly AtividadeController _atividadeController;
+        readonly ExecucaoController _execucaoController;
+
+        readonly Timer _atualizaTimer;
 
         int _statusExecucaoSelecionado;
+
         public int IdSelecionadoAtividade { get; private set; }
 
         enum TipoExecucao { Inclusao, Edicao }
@@ -26,10 +31,18 @@ namespace JustDoTheWork.Sistema.ControlPanel
             repositoryButtonActionPendentes.ButtonPressed += RepositoryItemButtonEditPendente_ButtonClick;
             repositoryButtonActionExecucao.ButtonPressed += RepositoryItemButtonEditExecucao_ButtonClick;
             repositoryButtonActionPausado.ButtonPressed += RepositoryItemButtonEditPausado_ButtonClick;
-        }
+            
+            _atualizaTimer = new Timer(components) { Interval = 10000 };
+
+            _atualizaTimer.Tick += AtualizaGridTimer;
+
+        }        
 
         void HomeUserControl_Load(object sender, EventArgs e)
-            => CarregaGridAtividades();
+        { 
+            CarregaGridAtividades();
+            _atualizaTimer.Start();
+        }
 
         void CarregaGridAtividades()
         {
@@ -40,6 +53,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             dataGridPendentes.DataSource = dadosPendente;
             dataGridExecutando.DataSource = dadosExecutando;
             dataGridPausado.DataSource = dadosPausado;
+
+            IdSelecionadoAtividade = 0;
+            _statusExecucaoSelecionado = 0;
         }
 
         void btnExecutar_Click(object sender, EventArgs e)
@@ -86,7 +102,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
         void ExecutaAcaoAlterarStatus(int novoStatus, TipoExecucao acaoExecutada)
         {
             if (IdSelecionadoAtividade <= 0 || _statusExecucaoSelecionado == 0)
+            {
+                MessageService.Mensagem_Atencao("Selecione uma atividade.");
                 return;
+            }
 
             var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus);
 
@@ -124,5 +143,8 @@ namespace JustDoTheWork.Sistema.ControlPanel
             IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
             _statusExecucaoSelecionado = status;
         }
+
+        void AtualizaGridTimer(object sender, EventArgs e)
+            => CarregaGridAtividades();
     }
 }

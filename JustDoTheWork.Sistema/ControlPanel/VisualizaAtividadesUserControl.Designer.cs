@@ -303,6 +303,8 @@
             // 
             // VisualizaAtividadesUserControl
             // 
+            Appearance.BackColor = Color.FromArgb(32, 32, 32);
+            Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.None;

@@ -12,6 +12,7 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string ExclusaoPorId(int id);
         Atividade BuscarPorId(int id);
         IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro);
+        IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro);
         IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status);
     }
 }

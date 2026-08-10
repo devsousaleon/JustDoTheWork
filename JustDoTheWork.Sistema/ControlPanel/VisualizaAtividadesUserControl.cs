@@ -52,7 +52,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         void btnPesquisarAtividade_Click(object sender, EventArgs e)
             => AtualizaGrid();
 
-        public void AtualizaComboBoxProjeto()
+        void AtualizaComboBoxProjeto()
         {
             var dados = _projetoController.PesquisarParaCombo().ToList();
 

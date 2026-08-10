@@ -12,7 +12,12 @@
 
 		<RootNamespace>JustDoTheWork.Sistema</RootNamespace>
 		<AssemblyName>JustDoTheWork.Sistema</AssemblyName>
+		<ApplicationIcon>Icon.ico</ApplicationIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="Icon.ico" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\JustDoTheWork.Controller\JustDoTheWork.Controller.csproj" />

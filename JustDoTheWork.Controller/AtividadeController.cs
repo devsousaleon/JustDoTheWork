@@ -50,6 +50,17 @@ namespace JustDoTheWork.Controller
 
             return _iAtividadeRepository.PesquisarParaGrid(filtro);
         }
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO dtoFiltroPesquisaHistorico)
+        {
+            var filtro = new FiltroPesquisaHistoricoDTO
+            {
+                ProjetoId = dtoFiltroPesquisaHistorico.ProjetoId,
+                Status = dtoFiltroPesquisaHistorico.Status,
+                DataCriacaoAtividade = dtoFiltroPesquisaHistorico.DataCriacaoAtividade,
+            };
+
+            return _iAtividadeRepository.PesquisarParaGridVisualizaHistorico(filtro);
+        }
 
         public IEnumerable<LookUpDto> ObterStatusAtividade()
         {

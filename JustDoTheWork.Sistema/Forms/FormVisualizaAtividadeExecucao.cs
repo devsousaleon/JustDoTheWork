@@ -22,19 +22,10 @@ namespace JustDoTheWork.Sistema.Forms
 
         void CarregaInfoAtividadeExecucao()
         {
-            var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_homeUserControl.IdSelecionadoAtividade);            
-
-            if(dadosInfoExecucao != null)
-            {
-                dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
-                gridHistoricoExecucao.Columns["DataFimExecucao"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridHistoricoExecucao.Columns["DataFimExecucao"].DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-                gridHistoricoExecucao.Columns["DataInicioExecucao"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridHistoricoExecucao.Columns["DataInicioExecucao"].DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-            }
+            var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_homeUserControl.IdSelecionadoAtividade);
+            dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
 
             var dadosInfoAtividade = _execucaoController.InformaDadosAtividade(_homeUserControl.IdSelecionadoAtividade);
-
             txtEditorAtividade.LoadDocument(dadosInfoAtividade.DescricaoAtividade, DevExpress.XtraRichEdit.DocumentFormat.OpenXml);
             txtNomeAtividade.Text = dadosInfoAtividade.NomeAtividade;
             txtNomeProjeto.Text = dadosInfoAtividade.NomeProjeto;

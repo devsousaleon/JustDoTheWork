@@ -57,16 +57,8 @@ namespace JustDoTheWork.Sistema.Forms
         {
             if ((int)comboBoxStatus.EditValue == 6)
             {
-                var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_registerUserControl.IdSelecionado);  
-                
-                if(dadosInfoExecucao != null)
-                {
-                    dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
-                    gridHistoricoExecucao.Columns["DataFimExecucao"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                    gridHistoricoExecucao.Columns["DataFimExecucao"].DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-                    gridHistoricoExecucao.Columns["DataInicioExecucao"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                    gridHistoricoExecucao.Columns["DataInicioExecucao"].DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-                }                
+                var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_registerUserControl.IdSelecionado);
+                dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
             }
         }
 

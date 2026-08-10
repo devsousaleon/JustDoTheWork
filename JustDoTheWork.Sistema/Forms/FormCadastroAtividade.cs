@@ -35,7 +35,7 @@ namespace JustDoTheWork.Sistema.Forms
             if (comboProjeto.EditValue != null)
                 dtoAtividade.ProjetoId = (int)comboProjeto.EditValue;
 
-            dtoAtividade.DataCriacao = DateTime.Now;
+            dtoAtividade.DataCriacao = DateTime.Now.Date;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
             var mensagemRetornoInclusaoAtividade = _atividadeController.Cadastro(dtoAtividade);

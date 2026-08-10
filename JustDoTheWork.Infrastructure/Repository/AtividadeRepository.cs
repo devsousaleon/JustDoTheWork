@@ -170,13 +170,46 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
 
             using (var conn = _dbConnection.Create())
-            {
-                return conn.Query<AtualizaGridAtividadeDTO>(
-                    sql.ToString(),
-                    parametros
-                );
-            }
+                return conn.Query<AtualizaGridAtividadeDTO>(sql.ToString(), parametros);
         }
+
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro)
+        {
+            var sql = new StringBuilder();
+            sql.Append(@"SELECT
+                        a.nome AS NomeAtividade,
+                        p.nome AS NomeProjeto,
+                        e.DataInicio AS DataInicioExecucao,
+                        e.DataFim AS DataFimExecucao
+                        FROM atividade a
+                        INNER JOIN projeto p ON a.projetoid = p.id
+                        INNER JOIN execucao e ON a.Id = e.AtividadeId
+                        WHERE 1 = 1");
+
+            var parametros = new DynamicParameters();
+
+            if (filtro.Status > 0)
+            {
+                sql.Append(" AND a.status = @Status ");
+                parametros.Add("Status", filtro.Status);
+            }
+
+            if (filtro.ProjetoId > 0)
+            {
+                sql.Append(" AND a.projetoid = @ProjetoId ");
+                parametros.Add("ProjetoId", filtro.ProjetoId);
+            }
+
+            if (filtro.DataCriacaoAtividade.HasValue)
+            {
+                sql.Append(" AND a.datacriacao = @DataCriacaoAtividade ");
+                parametros.Add("DataCriacaoAtividade", filtro.DataCriacaoAtividade.Value.Date);
+            }
+
+            using (var conn = _dbConnection.Create())
+                return conn.Query<ResultadoPesquisaHistoricoDTO>(sql.ToString(), parametros);
+        }
+
         public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status)
         {
             var sql = @" select a.id as AtividadeId, a.nome as NomeAtividade, p.nome as NomeProjeto " +
@@ -231,5 +264,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
+
+        
     }
 }

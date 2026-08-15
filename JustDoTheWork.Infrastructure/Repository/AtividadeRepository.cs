@@ -49,6 +49,8 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
             return "";
         }
+
+                                                                                  
         public string Edicao(Atividade atividade)
         {
             var sql = @"UPDATE ATIVIDADE SET nome = @Nome, descricao = @Descricao, status = @Status,
@@ -141,7 +143,7 @@ namespace JustDoTheWork.Infrastructure.Repository
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
             {
-                sql.Append(" AND a.nome ILIKE @Nome ");
+                sql.Append(" AND a.nome LIKE @Nome ");
                 parametros.Add("@Nome", $"%{filtro.Nome}%");
             }
 
@@ -159,13 +161,13 @@ namespace JustDoTheWork.Infrastructure.Repository
 
             if (filtro.DataCriacao.HasValue)
             {
-                sql.Append(" AND a.datacriacao::date = @DataCriacao ");
+                sql.Append(" AND a.datacriacao = @DataCriacao ");
                 parametros.Add("DataCriacao", filtro.DataCriacao.Value.Date);
             }
 
             if (filtro.DataFinalizacao.HasValue)
             {
-                sql.Append(" AND a.datafinalizacao::date = @DataFinalizacao ");
+                sql.Append(" AND a.datafinalizacao = @DataFinalizacao ");
                 parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
             }
 

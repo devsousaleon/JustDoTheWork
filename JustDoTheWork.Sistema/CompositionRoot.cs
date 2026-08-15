@@ -32,5 +32,18 @@ namespace JustDoTheWork.Sistema.Composition
             IExecucaoRepository repository = new ExecucaoRepository(_dbconnection);
             return new ExecucaoController(repository);
         }
+        public static ModeloRelatorioController CriarModeloRelatorioController()
+        {
+            var _dbconnection = ConnectionDB();
+            IModeloRelatorioRepository repository = new ModeloRelatorioRepository(_dbconnection);
+            return new ModeloRelatorioController(repository);
+        }
+
+        public static TipoModeloController CriarTipoModeloController()
+        {
+            var _dbconnection = ConnectionDB();
+            ITipoModeloRepository repository = new TipoModeloRepository(_dbconnection);
+            return new TipoModeloController(repository);
+        }
     }
 }

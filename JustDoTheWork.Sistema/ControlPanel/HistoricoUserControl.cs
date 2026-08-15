@@ -1,7 +1,11 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Mvvm.Native;
+using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
+using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
@@ -9,12 +13,14 @@ namespace JustDoTheWork.Sistema.ControlPanel
     {
         private readonly ProjetoController _projetoController;
         private readonly AtividadeController _atividadeController;
+        private readonly ModeloRelatorioController _modeloRelatorioControler;
 
         public HistoricoUserControl()
         {
             InitializeComponent();
             _projetoController = CompositionRoot.CriarProjetoController();
             _atividadeController = CompositionRoot.CriarAtividadeController();
+            _modeloRelatorioControler = CompositionRoot.CriarModeloRelatorioController();
         }
 
         void HistoricoUserControl_Load(object sender, EventArgs e)
@@ -68,7 +74,21 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         void btnImprimirHistorico_Click(object sender, EventArgs e)
         {
+            var buscaTextoModelo = _modeloRelatorioControler.BuscaModeloHistoricoExecucao();
 
+            if (buscaTextoModelo == null)
+            {
+                MessageService.Mensagem_Atencao("Não foi encontrado modelo ativo para impressão!");
+                return;
+            }
+
+            using var conversor = new RichEditControl();
+            conversor.LoadDocument(buscaTextoModelo, DocumentFormat.OpenXml);
+            
+            var textoRtf = conversor.RtfText;
+
+            FormEditaTextoAtividade formEditaTextoAtividade = new(textoRtf);
+            formEditaTextoAtividade.ShowDialog();
         }
     }
 }

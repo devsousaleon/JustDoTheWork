@@ -42,7 +42,6 @@
             btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             btnImprimirHistorico = new DevExpress.XtraEditors.SimpleButton();
             gridControlHistorico = new DevExpress.XtraGrid.GridControl();
-            resultadoPesquisaHistoricoDTOBindingSource1 = new BindingSource(components);
             gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
             colNomeAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)panelBotoes).BeginInit();
             panelBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaHistoricoDTOBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).BeginInit();
@@ -81,7 +79,7 @@
             panelFiltroPesquisa.Location = new Point(15, 15);
             panelFiltroPesquisa.Margin = new Padding(15);
             panelFiltroPesquisa.Name = "panelFiltroPesquisa";
-            panelFiltroPesquisa.Size = new Size(1250, 139);
+            panelFiltroPesquisa.Size = new Size(1250, 140);
             panelFiltroPesquisa.TabIndex = 7;
             // 
             // comboProjetoPesquisa
@@ -191,7 +189,7 @@
             panelBotoes.Location = new Point(15, 184);
             panelBotoes.Margin = new Padding(15);
             panelBotoes.Name = "panelBotoes";
-            panelBotoes.Size = new Size(123, 521);
+            panelBotoes.Size = new Size(150, 520);
             panelBotoes.TabIndex = 6;
             // 
             // btnLimpar
@@ -201,7 +199,7 @@
             btnLimpar.Location = new Point(17, 115);
             btnLimpar.Margin = new Padding(15, 30, 15, 30);
             btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(89, 23);
+            btnLimpar.Size = new Size(116, 23);
             btnLimpar.TabIndex = 2;
             btnLimpar.Text = "Limpar";
             btnLimpar.Click += btnLimpar_Click;
@@ -213,7 +211,7 @@
             btnImprimirHistorico.Location = new Point(17, 32);
             btnImprimirHistorico.Margin = new Padding(15, 30, 15, 30);
             btnImprimirHistorico.Name = "btnImprimirHistorico";
-            btnImprimirHistorico.Size = new Size(89, 23);
+            btnImprimirHistorico.Size = new Size(116, 23);
             btnImprimirHistorico.TabIndex = 1;
             btnImprimirHistorico.Text = "Imprimir";
             btnImprimirHistorico.Click += btnImprimirHistorico_Click;
@@ -221,18 +219,13 @@
             // gridControlHistorico
             // 
             gridControlHistorico.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gridControlHistorico.DataSource = resultadoPesquisaHistoricoDTOBindingSource1;
-            gridControlHistorico.Location = new Point(156, 184);
+            gridControlHistorico.Location = new Point(183, 184);
             gridControlHistorico.MainView = gridHistoricoExecucao;
             gridControlHistorico.Name = "gridControlHistorico";
             gridControlHistorico.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemDateTimeOffsetEdit1, repositoryItemDateTimeOffsetEdit2 });
-            gridControlHistorico.Size = new Size(1109, 521);
+            gridControlHistorico.Size = new Size(1082, 520);
             gridControlHistorico.TabIndex = 8;
             gridControlHistorico.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridHistoricoExecucao });
-            // 
-            // resultadoPesquisaHistoricoDTOBindingSource1
-            // 
-            resultadoPesquisaHistoricoDTOBindingSource1.DataSource = typeof(DTO.ResultadoPesquisaHistoricoDTO);
             // 
             // gridHistoricoExecucao
             // 
@@ -311,7 +304,6 @@
             ((System.ComponentModel.ISupportInitialize)panelBotoes).EndInit();
             panelBotoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).EndInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaHistoricoDTOBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).EndInit();
@@ -334,7 +326,6 @@
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private BindingSource resultadoPesquisaHistoricoDTOBindingSource;
-        private BindingSource resultadoPesquisaHistoricoDTOBindingSource1;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeProjeto;
         private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;

@@ -121,7 +121,7 @@ namespace JustDoTheWork.Infrastructure.Repository
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
             {
-                sql.Append("AND nome ILIKE @Nome ");
+                sql.Append("AND nome LIKE @Nome ");
                 parametros.Add("Nome", $"%{filtro.Nome}%");
             }
 

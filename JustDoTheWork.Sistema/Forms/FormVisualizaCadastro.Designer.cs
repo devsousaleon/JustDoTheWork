@@ -52,14 +52,14 @@
             gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
             colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemDateTimeOffsetEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
             colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemDateTimeOffsetEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
             panelControl2 = new DevExpress.XtraEditors.PanelControl();
             btnAvancar = new DevExpress.XtraEditors.SimpleButton();
             btnExcluir = new DevExpress.XtraEditors.SimpleButton();
             btnFechar = new DevExpress.XtraEditors.SimpleButton();
             btnSalvar = new DevExpress.XtraEditors.SimpleButton();
-            repositoryItemDateTimeOffsetEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
-            repositoryItemDateTimeOffsetEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tabControlVisualizaAtividade).BeginInit();
@@ -76,10 +76,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
-            panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
+            panelControl2.SuspendLayout();
             SuspendLayout();
             // 
             // panelControl1
@@ -318,6 +318,12 @@
             colDataFimExecucao.Visible = true;
             colDataFimExecucao.VisibleIndex = 2;
             // 
+            // repositoryItemDateTimeOffsetEdit1
+            // 
+            repositoryItemDateTimeOffsetEdit1.AutoHeight = false;
+            repositoryItemDateTimeOffsetEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemDateTimeOffsetEdit1.Name = "repositoryItemDateTimeOffsetEdit1";
+            // 
             // colDataInicioExecucao
             // 
             colDataInicioExecucao.ColumnEdit = repositoryItemDateTimeOffsetEdit2;
@@ -329,6 +335,12 @@
             colDataInicioExecucao.OptionsColumn.ReadOnly = true;
             colDataInicioExecucao.Visible = true;
             colDataInicioExecucao.VisibleIndex = 1;
+            // 
+            // repositoryItemDateTimeOffsetEdit2
+            // 
+            repositoryItemDateTimeOffsetEdit2.AutoHeight = false;
+            repositoryItemDateTimeOffsetEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemDateTimeOffsetEdit2.Name = "repositoryItemDateTimeOffsetEdit2";
             // 
             // panelControl2
             // 
@@ -390,18 +402,6 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.Click += btnSalvar_Click;
             // 
-            // repositoryItemDateTimeOffsetEdit1
-            // 
-            repositoryItemDateTimeOffsetEdit1.AutoHeight = false;
-            repositoryItemDateTimeOffsetEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            repositoryItemDateTimeOffsetEdit1.Name = "repositoryItemDateTimeOffsetEdit1";
-            // 
-            // repositoryItemDateTimeOffsetEdit2
-            // 
-            repositoryItemDateTimeOffsetEdit2.AutoHeight = false;
-            repositoryItemDateTimeOffsetEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            repositoryItemDateTimeOffsetEdit2.Name = "repositoryItemDateTimeOffsetEdit2";
-            // 
             // FormVisualizaCadastro
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
@@ -435,10 +435,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).EndInit();
             ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
-            panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
+            panelControl2.ResumeLayout(false);
             ResumeLayout(false);
 
         }

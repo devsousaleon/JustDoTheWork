@@ -77,7 +77,7 @@
             panelBotoes.Location = new Point(15, 184);
             panelBotoes.Margin = new Padding(15);
             panelBotoes.Name = "panelBotoes";
-            panelBotoes.Size = new Size(123, 521);
+            panelBotoes.Size = new Size(150, 520);
             panelBotoes.TabIndex = 3;
             // 
             // btnLimpar
@@ -87,7 +87,7 @@
             btnLimpar.Location = new Point(17, 115);
             btnLimpar.Margin = new Padding(15, 30, 15, 30);
             btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(89, 23);
+            btnLimpar.Size = new Size(116, 23);
             btnLimpar.TabIndex = 5;
             btnLimpar.Text = "Limpar";
             btnLimpar.Click += btnLimpar_Click;
@@ -99,7 +99,7 @@
             btnIncluirAtividade.Location = new Point(17, 32);
             btnIncluirAtividade.Margin = new Padding(15, 30, 15, 30);
             btnIncluirAtividade.Name = "btnIncluirAtividade";
-            btnIncluirAtividade.Size = new Size(89, 23);
+            btnIncluirAtividade.Size = new Size(116, 23);
             btnIncluirAtividade.TabIndex = 4;
             btnIncluirAtividade.Text = "Incluir";
             btnIncluirAtividade.Click += btnIncluirAtividade_Click;
@@ -120,7 +120,7 @@
             panelFiltroPesquisa.Location = new Point(15, 15);
             panelFiltroPesquisa.Margin = new Padding(15);
             panelFiltroPesquisa.Name = "panelFiltroPesquisa";
-            panelFiltroPesquisa.Size = new Size(1250, 139);
+            panelFiltroPesquisa.Size = new Size(1250, 140);
             panelFiltroPesquisa.TabIndex = 4;
             // 
             // comboStatusPesquisa
@@ -242,11 +242,11 @@
             // 
             GridCadastroAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             GridCadastroAtividade.DataSource = atualizaGridAtividadeDTOBindingSource;
-            GridCadastroAtividade.Location = new Point(168, 184);
+            GridCadastroAtividade.Location = new Point(183, 184);
             GridCadastroAtividade.MainView = gridAtividadesCadastradas;
             GridCadastroAtividade.Name = "GridCadastroAtividade";
             GridCadastroAtividade.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonAtividades });
-            GridCadastroAtividade.Size = new Size(1097, 521);
+            GridCadastroAtividade.Size = new Size(1082, 520);
             GridCadastroAtividade.TabIndex = 6;
             GridCadastroAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridAtividadesCadastradas });
             // 

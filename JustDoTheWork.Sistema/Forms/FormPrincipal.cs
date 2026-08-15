@@ -16,6 +16,7 @@ namespace JustDoTheWork.Sistema.Forms
             CarregaDadosTabControl(tabTarefas, new VisualizaExecucaoUserControl());
             CarregaDadosTabControl(tabCadastro, new VisualizaAtividadesUserControl());
             CarregaDadosTabControl(tabHistorico, new HistoricoUserControl());
+            CarregaDadosTabControl(tabCadastroModeloRelatorio, new CadastroModeloRelatorioUserControl());
         }
 
         void CarregaDadosTabControl(XtraTabPage aba, XtraUserControl control)

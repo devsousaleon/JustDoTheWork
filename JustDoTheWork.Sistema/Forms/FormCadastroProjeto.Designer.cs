@@ -54,8 +54,8 @@
             // 
             btnIncluirProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnIncluirProjeto.Appearance.Options.UseFont = true;
-            btnIncluirProjeto.Location = new Point(15, 127);
-            btnIncluirProjeto.Margin = new Padding(4, 3, 4, 3);
+            btnIncluirProjeto.Location = new Point(12, 122);
+            btnIncluirProjeto.Margin = new Padding(10);
             btnIncluirProjeto.Name = "btnIncluirProjeto";
             btnIncluirProjeto.Size = new Size(88, 25);
             btnIncluirProjeto.TabIndex = 1;
@@ -66,8 +66,8 @@
             // 
             btnCancelar.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.Appearance.Options.UseFont = true;
-            btnCancelar.Location = new Point(118, 127);
-            btnCancelar.Margin = new Padding(12, 11, 12, 11);
+            btnCancelar.Location = new Point(120, 122);
+            btnCancelar.Margin = new Padding(10);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(88, 25);
             btnCancelar.TabIndex = 2;

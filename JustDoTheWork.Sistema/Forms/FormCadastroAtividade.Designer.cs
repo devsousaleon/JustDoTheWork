@@ -190,7 +190,7 @@
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(998, 668);
+            ClientSize = new Size(998, 666);
             Controls.Add(panelControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             IconOptions.Image = (Image)resources.GetObject("FormCadastroAtividade.IconOptions.Image");

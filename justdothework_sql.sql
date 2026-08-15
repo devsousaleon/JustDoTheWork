@@ -1,3 +1,5 @@
+/* POSTGRES */
+
 CREATE DATABASE JustDoTheWork;
 
 CREATE TABLE Atividade(
@@ -26,8 +28,88 @@ CREATE TABLE Projeto(
 	Nome VARCHAR(50) NOT NULL
 );
 
+
 ALTER TABLE Atividade
 ADD CONSTRAINT FK_Projeto_Atividade FOREIGN KEY(ProjetoId) REFERENCES Projeto(Id)
 
 ALTER TABLE Execucao
 ADD CONSTRAINT FK_Atividade_Execucao FOREIGN KEY(AtividadeId) REFERENCES Atividade(Id)
+
+CREATE TABLE ModeloRelatorio(
+
+	Id SERIAL PRIMARY KEY,
+	Descricao VARCHAR(50) NOT NULL,
+	TipoModeloId INT NOT NULL,
+	Texto TEXT,
+	Ativo BOOLEAN NOT NULL
+);
+
+CREATE TABLE TipoModelo(
+
+	Id SERIAL PRIMARY KEY,
+	Descricao VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE ModeloRelatorio
+ADD CONSTRAINT FK_TipoModelo_ModeloRelatorio FOREIGN KEY(TipoModeloId) REFERENCES TipoModelo(Id)
+
+INSERT INTO TipoModelo VALUES ('Histórico Execução')
+
+/* SQL SERVER */
+
+CREATE DATABASE JustDoTheWork;
+
+CREATE TABLE Atividade(
+
+	Id INT IDENTITY PRIMARY KEY,
+	Nome VARCHAR(50) NOT NULL, 
+	Descricao VARCHAR(MAX),
+	Status INT NOT NULL,
+	ProjetoId INT, 
+	DataCriacao DATETIME NOT NULL,
+	DataFinalizacao DATETIME NULL
+);
+
+CREATE TABLE Execucao(
+
+	Id INT IDENTITY PRIMARY KEY,
+	DataInicio DATETIME NOT NULL,
+	DataFim DATETIME NULL,
+	AtividadeId INT NOT NULL
+
+);
+
+CREATE TABLE Projeto(
+
+	Id INT IDENTITY PRIMARY KEY,
+	Nome VARCHAR(50) NOT NULL
+);
+
+
+ALTER TABLE Atividade
+ADD CONSTRAINT FK_Projeto_Atividade FOREIGN KEY(ProjetoId) REFERENCES Projeto(Id)
+
+ALTER TABLE Execucao
+ADD CONSTRAINT FK_Atividade_Execucao FOREIGN KEY(AtividadeId) REFERENCES Atividade(Id)
+
+
+CREATE TABLE ModeloRelatorio(
+
+	Id INT IDENTITY PRIMARY KEY,
+	Descricao VARCHAR(50) NOT NULL,
+	TipoModeloId INT NOT NULL,
+	Texto VARBINARY(MAX),
+	Ativo BIT NOT NULL
+);
+
+CREATE TABLE TipoModelo(
+
+	Id INT IDENTITY PRIMARY KEY,
+	Descricao VARCHAR(50) NOT NULL
+
+);
+
+ALTER TABLE ModeloRelatorio
+ADD CONSTRAINT FK_TipoModelo_ModeloRelatorio FOREIGN KEY(TipoModeloId) REFERENCES TipoModelo(Id)
+
+INSERT INTO TipoModelo VALUES ('Histórico Execução')

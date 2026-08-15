@@ -4,6 +4,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
+using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -61,17 +62,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void BuscaTipoModelo()
-        {
-            var resultadoBusca = _tipoModeloController.PesquisarParaCombo().ToList();
-
-            if (resultadoBusca == null)
-                return;
-
-            comboTipoModelo.Properties.DataSource = resultadoBusca;
-            comboTipoModelo.Properties.DisplayMember = "Descricao";
-            comboTipoModelo.Properties.ValueMember = "Id";
-            comboTipoModelo.Properties.NullText = "Selecione um modelo";
-        }
+            => UIMethodsService.AtualizaComboBoxTipoModelo(_tipoModeloController, comboTipoModelo);
 
         void CarregaDadosModelo()
         {

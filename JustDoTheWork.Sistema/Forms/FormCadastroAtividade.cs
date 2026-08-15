@@ -2,6 +2,7 @@
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
+using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -65,17 +66,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         public void AtualizaComboBoxProjeto()
-        {
-            var dados = _projetoController.PesquisarParaCombo().ToList();
-
-            if (dados == null)
-                return;
-
-            comboProjeto.Properties.DataSource = dados;
-            comboProjeto.Properties.DisplayMember = "Nome";
-            comboProjeto.Properties.ValueMember = "Id";
-            comboProjeto.Properties.NullText = "Selecione um projeto";
-        }
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjeto);
 
         void btnEditaTextoAtividade_Click(object sender, EventArgs e)
         {

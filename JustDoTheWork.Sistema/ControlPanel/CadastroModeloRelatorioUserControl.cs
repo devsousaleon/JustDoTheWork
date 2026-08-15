@@ -3,6 +3,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.UI.Core;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
@@ -21,9 +22,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         void CadastroModeloRelatorioUserControl_Load(object sender, EventArgs e)
-        {
-            BuscaTipoModelo();
-        }
+            => BuscaTipoModelo();
 
         void btnIncluirModelo_Click(object sender, EventArgs e)
         {
@@ -54,17 +53,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         void BuscaTipoModelo()
-        {
-            var resultadoBusca = _tipoModeloController.PesquisarParaCombo().ToList();
-
-            if (resultadoBusca == null)
-                return;
-
-            comboTipoModelo.Properties.DataSource = resultadoBusca;
-            comboTipoModelo.Properties.DisplayMember = "Descricao";
-            comboTipoModelo.Properties.ValueMember = "Id";
-            comboTipoModelo.Properties.NullText = "Selecione um modelo";
-        }
+            => UIMethodsService.AtualizaComboBoxTipoModelo(_tipoModeloController, comboTipoModelo);
 
         void RepositoryItemButtonEditAction_ButtonClick(object sender, ButtonPressedEventArgs e)
         {

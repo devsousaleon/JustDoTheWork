@@ -5,6 +5,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.ControlPanel
@@ -30,26 +31,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         void AtualizaComboBoxProjeto()
-        {
-            var dados = _projetoController.PesquisarParaCombo().ToList();
-
-            if (dados == null)
-                return;
-
-            comboProjetoPesquisa.Properties.DataSource = dados;
-            comboProjetoPesquisa.Properties.DisplayMember = "Nome";
-            comboProjetoPesquisa.Properties.ValueMember = "Id";
-            comboProjetoPesquisa.Properties.NullText = "Selecione um projeto";
-        }
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjetoPesquisa);
 
         void AtualizaComboBoxStatus()
-        {
-            comboStatusPesquisa.Properties.DataSource = _atividadeController.ObterStatusAtividade();
-
-            comboStatusPesquisa.Properties.DisplayMember = "Status";
-            comboStatusPesquisa.Properties.ValueMember = "Id";
-            comboStatusPesquisa.Properties.NullText = "Selecione uma opção";
-        }
+            => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboStatusPesquisa);
 
         void btnPesquisarHistorico_Click(object sender, EventArgs e)
         {

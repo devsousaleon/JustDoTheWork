@@ -4,6 +4,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
+using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms
@@ -63,26 +64,10 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void AtualizaComboBoxProjeto()
-        {
-            var dados = _projetoController.PesquisarParaCombo().ToList();
-
-            if (dados == null)
-                return;
-
-            comboBoxProjeto.Properties.DataSource = dados;
-            comboBoxProjeto.Properties.DisplayMember = "Nome";
-            comboBoxProjeto.Properties.ValueMember = "Id";
-            comboBoxProjeto.Properties.NullText = "Selecione um projeto";
-        }
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboBoxProjeto);
 
         void AtualizaComboBoxStatus()
-        {
-            comboBoxStatus.Properties.DataSource = _atividadeController.ObterStatusAtividade();
-
-            comboBoxStatus.Properties.DisplayMember = "Status";
-            comboBoxStatus.Properties.ValueMember = "Id";
-            comboBoxStatus.Properties.NullText = "Selecione uma opção";
-        }
+            => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboBoxStatus);
 
         void btnFechar_Click(object sender, EventArgs e)
             => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas!");

@@ -36,6 +36,7 @@ namespace JustDoTheWork.UI.Core.Geral
                 MessageBoxIcon.Information
             );
         }
+
         public static DialogResult Mensagem_Pergunta(string pergunta)
         {
             return XtraMessageBox.Show

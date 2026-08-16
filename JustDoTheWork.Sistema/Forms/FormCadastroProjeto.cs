@@ -1,7 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
-using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.UI.Core.Geral;
 
 namespace JustDoTheWork.Sistema.Forms

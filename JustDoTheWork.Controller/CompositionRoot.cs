@@ -1,19 +1,24 @@
-﻿using JustDoTheWork.Controller;
-using JustDoTheWork.Infrastructure;
+﻿using JustDoTheWork.Infrastructure;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using JustDoTheWork.Infrastructure.Repository;
-using System.Configuration;
 
-namespace JustDoTheWork.Sistema.Composition
+namespace JustDoTheWork.Controller
 {
     public static class CompositionRoot
     {
-        private static DBConnection ConnectionDB()
+        private static DBConnection? _dbConnection;
+
+        public static void Configurar(string connectionString)
         {
-            //var connectionStringPostgres = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
-            var connectionStringSqlServer = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
-            return new DBConnection(connectionStringSqlServer);
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentException("A connection string não pode ser vazia.", nameof(connectionString));
+
+            _dbConnection = new DBConnection(connectionString);
         }
+
+        private static DBConnection ConnectionDB()
+            => _dbConnection ?? throw new InvalidOperationException("O CompositionRoot precisa ser configurado antes da criação dos controllers.");
+
         public static AtividadeController CriarAtividadeController()
         {
             var _dbconnection = ConnectionDB();

@@ -2,7 +2,6 @@
 using DevExpress.XtraRichEdit;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
-using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.ControlPanel;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;

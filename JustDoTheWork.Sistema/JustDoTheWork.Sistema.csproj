@@ -22,7 +22,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\JustDoTheWork.Controller\JustDoTheWork.Controller.csproj" />
 		<ProjectReference Include="..\JustDoTheWork.DTO\JustDoTheWork.DTO.csproj" />
-		<ProjectReference Include="..\JustDoTheWork.Infrastructure\JustDoTheWork.Infrastructure.csproj" />
 		<ProjectReference Include="..\JustDoTheWork.UI.Core\JustDoTheWork.UI.Core.csproj" />
 	</ItemGroup>
 
@@ -35,6 +34,7 @@
 		<PackageReference Include="DevExpress.RichEdit.Core" Version="25.2.5" />
 
 		<PackageReference Include="DevExpress.Win.Design" Version="25.2.5" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
 	</ItemGroup>
 
 </Project>

@@ -1,9 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
-using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
 using JustDoTheWork.UI.Core.Geral;
 using Timer = System.Windows.Forms.Timer;

@@ -1,9 +1,7 @@
-﻿using DevExpress.Mvvm.Native;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
-using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;

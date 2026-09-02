@@ -1,13 +1,17 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using System.Data;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface IExecucaoRepository
     {
-        string Inclusao(Execucao execucao);
-        string FinalizaExecucao(Execucao execucao);
-        IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId);
-        VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId);
+        Result Inclusao(Execucao execucao);
+        Result FinalizaExecucao(Execucao execucao);
+        IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int atividadeId);
+        VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int atividadeId);
+        bool ExisteExecucaoAberta(int atividadeId, IDbTransaction transacao);
+        void Incluir(Execucao execucao, IDbTransaction transacao);
+        void FinalizarAberta(int atividadeId, DateTime dataFim, IDbTransaction transacao);
     }
 }

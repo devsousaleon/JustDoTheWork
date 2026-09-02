@@ -12,12 +12,18 @@ namespace JustDoTheWork.Infrastructure
         {
             _connectionString = connectionString;
         }
+
         public IDbConnection Create()
         {
-            //var conn = new NpgsqlConnection(_connectionString);
-            var conn = new SqlConnection(_connectionString);
-            conn.Open();
-            return conn;
+            var connection = EhPostgres(_connectionString)
+                ? (IDbConnection)new NpgsqlConnection(_connectionString)
+                : new SqlConnection(_connectionString);
+
+            connection.Open();
+            return connection;
         }
+
+        private static bool EhPostgres(string connectionString)
+            => connectionString.IndexOf("Host=", StringComparison.OrdinalIgnoreCase) >= 0;
     }
 }

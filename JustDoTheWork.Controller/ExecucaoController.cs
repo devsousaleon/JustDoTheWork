@@ -6,33 +6,42 @@ namespace JustDoTheWork.Controller
 {
     public class ExecucaoController
     {
-        private readonly IExecucaoRepository _iExecucaoRepository;
+        private readonly IExecucaoRepository _repository;
 
         public ExecucaoController(IExecucaoRepository repository)
         {
-            _iExecucaoRepository = repository;
+            _repository = repository;
         }
-        public string Inclusao(int Id)
+
+        public Result Inclusao(int id)
         {
             var execucao = new Execucao
             {
-                AtividadeId = Id
+                AtividadeId = id
             };
 
-            return _iExecucaoRepository.Inclusao(execucao);
+            return _repository.Inclusao(execucao);
         }
-        public string FinalizaExecucao(int Id)
+
+        public Result FinalizaExecucao(int id)
         {
-            var execucao = new Execucao { AtividadeId = Id, DataFim = DateTime.Now };
-            return _iExecucaoRepository.FinalizaExecucao(execucao);
+            var execucao = new Execucao
+            {
+                AtividadeId = id,
+                DataFim = DateTime.Now
+            };
+
+            return _repository.FinalizaExecucao(execucao);
         }
-        public IEnumerable<ExecucaoDTO> InformaDadosExecucao(int AtividadeId)
+
+        public IEnumerable<ExecucaoDTO> InformaDadosExecucao(int atividadeId)
         {
-            return _iExecucaoRepository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
+            return _repository.BuscarPorExecucoesPorAtividadeId(atividadeId);
         }
-        public VisualizaExecucaoAtividadeDTO InformaDadosAtividade(int AtividadeId)
+
+        public VisualizaExecucaoAtividadeDTO InformaDadosAtividade(int atividadeId)
         {
-            return _iExecucaoRepository.BuscaInfoAtividadeExecucao(AtividadeId);
+            return _repository.BuscaInfoAtividadeExecucao(atividadeId);
         }
     }
 }

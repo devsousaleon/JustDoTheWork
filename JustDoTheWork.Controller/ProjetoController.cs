@@ -7,39 +7,34 @@ namespace JustDoTheWork.Controller
 {
     public class ProjetoController
     {
-        private readonly IProjetoRepository _iProjetoRepository;
+        private readonly IProjetoRepository _repository;
 
         public ProjetoController(IProjetoRepository repository)
         {
-            _iProjetoRepository = repository;
+            _repository = repository;
         }
 
-        public string Inclusao(ProjetoDTO dtoProjeto)
+        public Result Inclusao(ProjetoDTO dtoProjeto)
         {
-            var mensagem = "";
-
             if (string.IsNullOrWhiteSpace(dtoProjeto.Nome))
-                return "O nome do projeto é obrigatório!";
+                return Result.Falha("O nome do projeto é obrigatório!");
 
             var projeto = new Projeto
             {
                 Nome = dtoProjeto.Nome
             };
 
-            mensagem = _iProjetoRepository.Inclusao(projeto);
-
-            return mensagem;
+            return _repository.Inclusao(projeto);
         }
 
         public IEnumerable<ProjetoComboDto> PesquisarParaCombo()
         {
-            var projetos = _iProjetoRepository.Pesquisar(new ProjetoFilter());
-
-            return projetos.Select(p => new ProjetoComboDto
-            {
-                Id = p.Id,
-                Nome = p.Nome
-            });
+            return _repository.Pesquisar(new ProjetoFilter())
+                .Select(p => new ProjetoComboDto
+                {
+                    Id = p.Id,
+                    Nome = p.Nome
+                });
         }
     }
 }

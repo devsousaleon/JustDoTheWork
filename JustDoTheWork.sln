@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.DTO", "JustDo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.UI.Core", "JustDoTheWork.UI.Core\JustDoTheWork.UI.Core.csproj", "{C1C8E85E-7A38-44E1-B355-CC24F11A3140}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDoTheWork.Tests", "JustDoTheWork.Tests\JustDoTheWork.Tests.csproj", "{8A7B9C2D-4E5F-4A1B-9C3D-6E7F8A9B0C1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1C8E85E-7A38-44E1-B355-CC24F11A3140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A7B9C2D-4E5F-4A1B-9C3D-6E7F8A9B0C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7B9C2D-4E5F-4A1B-9C3D-6E7F8A9B0C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7B9C2D-4E5F-4A1B-9C3D-6E7F8A9B0C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7B9C2D-4E5F-4A1B-9C3D-6E7F8A9B0C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

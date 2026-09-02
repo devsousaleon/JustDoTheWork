@@ -13,12 +13,12 @@ namespace JustDoTheWork.Infrastructure.Repository
             _dbConnection = dbConnection;
         }
 
-        IEnumerable<TipoModelo> ITipoModeloRepository.PesquisarParaCombo()
+        public IEnumerable<TipoModelo> PesquisarParaCombo()
         {
-            var sql = "SELECT * FROM TipoModelo";
+            const string sql = @"SELECT * FROM TipoModelo";
 
             using var conn = _dbConnection.Create();
-                return conn.Query<TipoModelo>(sql.ToString());
+            return conn.Query<TipoModelo>(sql);
         }
     }
 }

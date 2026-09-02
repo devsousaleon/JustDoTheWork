@@ -31,11 +31,11 @@ namespace JustDoTheWork.Sistema.Forms
                 Texto = richEditVisualizaTextoModelo.Document.GetOpenXmlBytes(richEditVisualizaTextoModelo.Document.Range)
             };
 
-            var resposta = _modeloRelatorioController.Inclusao(dados);
+            var resultado = _modeloRelatorioController.Inclusao(dados);
 
-            if (!string.IsNullOrWhiteSpace(resposta))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(resposta);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 

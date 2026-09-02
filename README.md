@@ -33,44 +33,59 @@ O projeto foi desenvolvido utilizando boas práticas de separação de responsab
 Uma tarefa pode transitar pelos seguintes estados:
 
 ```text
-Criada
-  ↓
+Em Análise
+   ↓
+Pendente
+   ↓
 Em Execução
-  ↓
+   ↓
 Pausada
-  ↓
+   ↓
 Em Execução
-  ↓
+   ↓
 Concluída
 ```
 
-As regras de negócio garantem que apenas transições válidas sejam executadas.
+As regras de transição são centralizadas em `TransicaoStatusAtividade` (camada de domínio) e aplicadas de forma transacional no `AtividadeController.AlterarStatus`, garantindo que apenas uma atividade fique em execução por vez.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 * C#
-* .NET 8
-* Entity Framework
-* Postgres
-* DevExpress
-* Windows Desktop Application
+* .NET 8 (Windows Forms)
+* Dapper (micro-ORM)
+* SQL Server / PostgreSQL
+* DevExpress (WinForms)
+* xUnit (testes unitários)
 
 ---
 
 ## 💾 Persistência de Dados
 
-A persistência de dados foi implementada utilizando PostgreSQL como banco de dados relacional.
+O acesso aos dados é realizado através de consultas SQL escritas diretamente na aplicação (Dapper), com suporte a **SQL Server** (padrão) e **PostgreSQL** (detectado automaticamente quando a connection string contém `Host=`).
 
-O acesso aos dados é realizado através de consultas SQL escritas diretamente na aplicação, proporcionando:
+As operações de escrita são executadas dentro de transações gerenciadas pelo padrão `UnitOfWork`.
 
-- Controle total sobre as consultas executadas
-- Maior previsibilidade de desempenho
-- Flexibilidade para criação de consultas específicas
-- Integração direta com o banco de dados
+### 📌 Configuração do banco
 
-A estrutura foi desenvolvida para garantir a integridade dos dados e suportar a evolução das regras de negócio do sistema.
+A connection string NÃO deve ser versionada. Configure a variável de ambiente abaixo antes de executar:
+
+```text
+JUSTDOTHEWORK_SQLSERVER=Server=localhost;Database=JustDoTheWork;User id=sa;Password=SuaSenha;TrustServerCertificate=True
+```
+
+Ou edite a connection string `SqlServer` em `JustDoTheWork.Sistema/App.config`. O script `justdothework_sql.sql` contém o DDL para as duas opções de banco.
+
+---
+
+## 🧪 Testes
+
+A lógica de domínio (transições de estado, duração de execução e filtros de data) possui cobertura em `JustDoTheWork.Tests`:
+
+```bash
+dotnet test
+```
 
 ---
 

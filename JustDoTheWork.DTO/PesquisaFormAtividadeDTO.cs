@@ -8,6 +8,7 @@
         public int Status { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataFinalizacao { get; set; }
+        public int? EstimativaMinutos { get; set; }
         public int ProjetoId { get; set; }
     }
 }

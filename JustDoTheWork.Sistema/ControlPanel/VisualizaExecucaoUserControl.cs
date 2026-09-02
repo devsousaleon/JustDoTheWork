@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
+using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Sistema.Composition;
 using JustDoTheWork.Sistema.Forms;
 using JustDoTheWork.UI.Core.Geral;
@@ -13,7 +14,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
     public partial class VisualizaExecucaoUserControl : XtraUserControl
     {
         readonly AtividadeController _atividadeController;
-        readonly ExecucaoController _execucaoController;
 
         readonly Timer _atualizaTimer;
 
@@ -21,13 +21,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         public int IdSelecionadoAtividade { get; private set; }
 
-        enum TipoExecucao { Inclusao, Edicao }
-
         public VisualizaExecucaoUserControl()
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
-            _execucaoController = CompositionRoot.CriarExecucaoController();
             repositoryButtonActionPendentes.ButtonPressed += RepositoryItemButtonEditPendente_ButtonClick;
             repositoryButtonActionExecucao.ButtonPressed += RepositoryItemButtonEditExecucao_ButtonClick;
             repositoryButtonActionPausado.ButtonPressed += RepositoryItemButtonEditPausado_ButtonClick;
@@ -46,9 +43,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         void CarregaGridAtividades()
         {
-            var dadosPendente = _atividadeController.AtualizaGridAtividades(2).ToList();
-            var dadosExecutando = _atividadeController.AtualizaGridAtividades(3).ToList();
-            var dadosPausado = _atividadeController.AtualizaGridAtividades(4).ToList();
+            var dadosPendente = _atividadeController.AtualizaGridAtividades(StatusAtividade.Pendente).ToList();
+            var dadosExecutando = _atividadeController.AtualizaGridAtividades(StatusAtividade.Executando).ToList();
+            var dadosPausado = _atividadeController.AtualizaGridAtividades(StatusAtividade.Pausado).ToList();
 
             dataGridPendentes.DataSource = dadosPendente;
             dataGridExecutando.DataSource = dadosExecutando;
@@ -59,16 +56,16 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         void btnExecutar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(3, TipoExecucao.Inclusao);
+            => ExecutaAcaoAlterarStatus((int)StatusAtividade.Executando);
 
         void btnPausar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(4, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus((int)StatusAtividade.Pausado);
 
         void btnVoltaPendente_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(2, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus((int)StatusAtividade.Pendente);
 
         void btnFinalizar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus((int)StatusAtividade.Finalizado);
 
         void gridExecutando_RowClick(object sender, RowClickEventArgs e)
             => InformaIdSelecionadoAtividade(gridExecutando, 3);
@@ -99,7 +96,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _formVisualizaAtividadeExecucao.ShowDialog();
         }
 
-        void ExecutaAcaoAlterarStatus(int novoStatus, TipoExecucao acaoExecutada)
+        void ExecutaAcaoAlterarStatus(int novoStatus)
         {
             if (IdSelecionadoAtividade <= 0 || _statusExecucaoSelecionado == 0)
             {
@@ -107,34 +104,14 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 return;
             }
 
-            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus);
+            var resultado = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus);
 
-            if (!string.IsNullOrWhiteSpace(mensagemRetornoAlteracaoStatus))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(mensagemRetornoAlteracaoStatus);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 
-            if (acaoExecutada == TipoExecucao.Edicao)
-            {
-                var mensagemRetornoFinalizaExecucao = _execucaoController.FinalizaExecucao(IdSelecionadoAtividade);
-
-                if (!string.IsNullOrWhiteSpace(mensagemRetornoFinalizaExecucao))
-                {
-                    MessageService.Mensagem_Erro(mensagemRetornoFinalizaExecucao);
-                    return;
-                }
-            }
-            else if (acaoExecutada == TipoExecucao.Inclusao)
-            {
-                var mensagemRetornoExecucao = _execucaoController.Inclusao(IdSelecionadoAtividade);
-
-                if (!string.IsNullOrWhiteSpace(mensagemRetornoExecucao))
-                {
-                    MessageService.Mensagem_Erro(mensagemRetornoExecucao);
-                    return;
-                }
-            }
             CarregaGridAtividades();
         }
 

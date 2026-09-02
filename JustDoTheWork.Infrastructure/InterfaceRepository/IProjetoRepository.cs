@@ -5,9 +5,9 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface IProjetoRepository
     {
-        string Inclusao(Projeto projeto);
-        string Edicao(Projeto projeto);
-        string ExclusaoPorId(int id);
+        Result Inclusao(Projeto projeto);
+        Result Edicao(Projeto projeto);
+        Result ExclusaoPorId(int id);
         Projeto BuscarPorId(int id);
         IEnumerable<Projeto> Pesquisar(ProjetoFilter filtro);
     }

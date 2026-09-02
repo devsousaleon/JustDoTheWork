@@ -3,6 +3,7 @@ using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using System.Data;
 using System.Text;
 
 namespace JustDoTheWork.Infrastructure.Repository
@@ -11,262 +12,226 @@ namespace JustDoTheWork.Infrastructure.Repository
     {
         private readonly DBConnection _dbConnection;
 
-        public AtividadeRepository(DBConnection _dbConnection)
+        public AtividadeRepository(DBConnection dbConnection)
         {
-            this._dbConnection = _dbConnection;
+            _dbConnection = dbConnection;
         }
-        public string Inclusao(Atividade atividade)
+
+        public Result Inclusao(Atividade atividade)
         {
             const string sql = @"INSERT INTO Atividade(nome, descricao, status, datacriacao, datafinalizacao, projetoid)
                                VALUES(@Nome, @Descricao, @Status, @DataCriacao, @DataFinalizacao, @ProjetoId);";
 
-            using (var connection = _dbConnection.Create())
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, atividade, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade! " + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, atividade, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
             }
-            return "";
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao incluir atividade.", ex);
+            }
         }
 
-                                                                                  
-        public string Edicao(Atividade atividade)
+        public Result Edicao(Atividade atividade)
         {
-            var sql = @"UPDATE ATIVIDADE SET nome = @Nome, descricao = @Descricao, status = @Status,
-                      datafinalizacao = @DataFinalizacao, projetoid = @ProjetoId where id = @Id";
+            const string sql = @"UPDATE Atividade SET nome = @Nome, descricao = @Descricao, status = @Status,
+                      datafinalizacao = @DataFinalizacao, projetoid = @ProjetoId WHERE id = @Id";
 
-            using (var connection = _dbConnection.Create())
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, atividade, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a edição da atividade! " + ex.Message;
-                        }
-
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, atividade, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
             }
-            return "";
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao editar atividade.", ex);
+            }
         }
-        public string ExclusaoPorId(int Id)
+
+        public Result ExclusaoPorId(int id)
         {
-            var sql = @"DELETE FROM atividade where id = @Id";
+            const string sql = @"DELETE FROM Atividade WHERE id = @Id";
 
-            using (var connection = _dbConnection.Create())
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id }, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar excluir a atividade! " + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, new { Id = id }, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
             }
-            return "";
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao excluir atividade.", ex);
+            }
         }
+
         public Atividade BuscarPorId(int id)
         {
-            const string sql = @"SELECT * FROM atividade WHERE id = @Id";
+            const string sql = @"SELECT * FROM Atividade WHERE id = @Id";
 
-            using (var conn = _dbConnection.Create())
-            {
-                return conn.QueryFirstOrDefault<Atividade>(
-                    sql,
-                    new { Id = id }
-                );
-            }
+            using var conn = _dbConnection.Create();
+            return conn.QueryFirstOrDefault<Atividade>(sql, new { Id = id });
         }
+
         public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro)
         {
             var sql = new StringBuilder();
-            sql.Append(@"SELECT a.id AS Id,
-                         a.nome AS Atividade,
-                         p.nome AS Projeto FROM atividade a
-                         INNER JOIN projeto p ON a.projetoid = p.id WHERE 1 = 1");
+            sql.Append(@"SELECT a.id AS Id, a.nome AS Atividade, p.nome AS Projeto
+                         FROM Atividade a
+                         INNER JOIN Projeto p ON a.projetoid = p.id WHERE 1 = 1");
 
             var parametros = new DynamicParameters();
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
             {
-                sql.Append(" AND a.nome LIKE @Nome ");
-                parametros.Add("@Nome", $"%{filtro.Nome}%");
+                sql.Append(" AND a.nome LIKE @Nome");
+                parametros.Add("Nome", $"%{filtro.Nome}%");
             }
 
             if (filtro.Status > 0)
             {
-                sql.Append(" AND a.status = @Status ");
+                sql.Append(" AND a.status = @Status");
                 parametros.Add("Status", filtro.Status);
             }
 
             if (filtro.ProjetoId > 0)
             {
-                sql.Append(" AND a.projetoid = @ProjetoId ");
+                sql.Append(" AND a.projetoid = @ProjetoId");
                 parametros.Add("ProjetoId", filtro.ProjetoId);
             }
 
             if (filtro.DataCriacao.HasValue)
             {
-                sql.Append(" AND a.datacriacao = @DataCriacao ");
+                sql.Append(" AND a.datacriacao = @DataCriacao");
                 parametros.Add("DataCriacao", filtro.DataCriacao.Value.Date);
             }
 
             if (filtro.DataFinalizacao.HasValue)
             {
-                sql.Append(" AND a.datafinalizacao = @DataFinalizacao ");
+                sql.Append(" AND a.datafinalizacao = @DataFinalizacao");
                 parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
             }
 
-            using (var conn = _dbConnection.Create())
-                return conn.Query<AtualizaGridAtividadeDTO>(sql.ToString(), parametros);
+            using var conn = _dbConnection.Create();
+            return conn.Query<AtualizaGridAtividadeDTO>(sql.ToString(), parametros);
         }
 
         public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro)
         {
             var sql = new StringBuilder();
-            sql.Append(@"SELECT
-                        a.nome AS NomeAtividade,
-                        p.nome AS NomeProjeto,
-                        e.DataInicio AS DataInicioExecucao,
-                        e.DataFim AS DataFimExecucao
-                        FROM atividade a
-                        INNER JOIN projeto p ON a.projetoid = p.id
-                        INNER JOIN execucao e ON a.Id = e.AtividadeId
+            sql.Append(@"SELECT a.nome AS NomeAtividade, p.nome AS NomeProjeto,
+                        e.DataInicio AS DataInicioExecucao, e.DataFim AS DataFimExecucao,
+                        DATEDIFF(SECOND, e.DataInicio, COALESCE(e.DataFim, GETDATE())) AS DuracaoSegundos
+                        FROM Atividade a
+                        INNER JOIN Projeto p ON a.projetoid = p.id
+                        INNER JOIN Execucao e ON a.Id = e.AtividadeId
                         WHERE 1 = 1");
 
             var parametros = new DynamicParameters();
 
             if (filtro.Status > 0)
             {
-                sql.Append(" AND a.status = @Status ");
+                sql.Append(" AND a.status = @Status");
                 parametros.Add("Status", filtro.Status);
             }
 
             if (filtro.ProjetoId > 0)
             {
-                sql.Append(" AND a.projetoid = @ProjetoId ");
+                sql.Append(" AND a.projetoid = @ProjetoId");
                 parametros.Add("ProjetoId", filtro.ProjetoId);
             }
 
             if (filtro.DataCriacaoAtividade.HasValue)
             {
-                sql.Append(" AND a.datacriacao = @DataCriacaoAtividade ");
+                sql.Append(" AND a.datacriacao = @DataCriacaoAtividade");
                 parametros.Add("DataCriacaoAtividade", filtro.DataCriacaoAtividade.Value.Date);
             }
 
-            using (var conn = _dbConnection.Create())
-                return conn.Query<ResultadoPesquisaHistoricoDTO>(sql.ToString(), parametros);
+            using var conn = _dbConnection.Create();
+            return conn.Query<ResultadoPesquisaHistoricoDTO>(sql.ToString(), parametros);
         }
 
-        public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status)
+        public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(StatusAtividade status)
         {
-            var sql = @" select a.id as AtividadeId, a.nome as NomeAtividade, p.nome as NomeProjeto " +
-                      " from atividade a " +
-                      " inner join projeto p on p.id = a.projetoid " +
-                      " where a.status = @Status";
+            const string sql = @"SELECT a.id AS AtividadeId, a.nome AS NomeAtividade, p.nome AS NomeProjeto
+                                 FROM Atividade a
+                                 INNER JOIN Projeto p ON p.id = a.projetoid
+                                 WHERE a.status = @Status";
 
-            using (var conn = _dbConnection.Create())
-            {
-                return conn.Query<AtualizaAtividadesExecucaoDTO>(
-                    sql.ToString(),
-                    new {Status}
-                );
-            }
+            using var conn = _dbConnection.Create();
+            return conn.Query<AtualizaAtividadesExecucaoDTO>(sql, new { Status = (int)status });
         }
-        public string ExecutaAtividade(int Id, int Status)
+
+        public IEnumerable<DashboardProjetoTempoDTO> BuscarTempoPorProjetoNoDia(DateTime dia)
         {
-            var sql = @"UPDATE atividade 
-                        SET status = @Status, 
-                            datafinalizacao =
-                                        CASE 
-                                            WHEN @Status = 6 THEN @DataFinalizacao ELSE datafinalizacao 
-                                        END 
-                        WHERE id = @Id";
+            var (inicio, fim) = FiltroDataDia.Intervalo(dia);
 
-            using (var connection = _dbConnection.Create())
-            {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id, status = Status, DataFinalizacao = DateTime.Now }, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a execução desta atividade!" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
-            }
-            return "";
+            const string sql = @"SELECT p.nome AS NomeProjeto,
+                                 SUM(DATEDIFF(SECOND, e.datainicio, COALESCE(e.datafim, GETDATE()))) AS SegundosExecucao
+                                 FROM Projeto p
+                                 INNER JOIN Atividade a ON a.projetoid = p.id
+                                 INNER JOIN Execucao e ON e.atividadeid = a.id
+                                 WHERE e.datainicio >= @Inicio AND e.datainicio < @Fim
+                                 GROUP BY p.nome";
+
+            using var conn = _dbConnection.Create();
+            return conn.Query<DashboardProjetoTempoDTO>(sql, new { Inicio = inicio, Fim = fim });
         }
 
-        
+        public DashboardDiaDTO BuscarResumoDia(DateTime dia)
+        {
+            var (inicio, fim) = FiltroDataDia.Intervalo(dia);
+
+            const string sql = @"SELECT
+                                 (SELECT COUNT(DISTINCT a.id) FROM Atividade a
+                                  INNER JOIN Execucao e ON e.atividadeid = a.id
+                                  WHERE a.status = @StatusFinalizado
+                                  AND e.datafim >= @Inicio AND e.datafim < @Fim) AS AtividadesFinalizadas,
+                                 (SELECT SUM(DATEDIFF(SECOND, e.datainicio, COALESCE(e.datafim, GETDATE())))
+                                  FROM Execucao e
+                                  WHERE e.datainicio >= @Inicio AND e.datainicio < @Fim) AS SegundosEmExecucao,
+                                 (SELECT COUNT(*) FROM Execucao e
+                                  WHERE e.datainicio >= @Inicio AND e.datainicio < @Fim) AS IntervalosFechados";
+
+            using var conn = _dbConnection.Create();
+            return conn.QueryFirstOrDefault<DashboardDiaDTO>(sql, new
+            {
+                StatusFinalizado = (int)StatusAtividade.Finalizado,
+                Inicio = inicio,
+                Fim = fim
+            });
+        }
+
+        public int? BuscarAtividadeEmExecucaoExceto(int atividadeId, IDbTransaction transacao)
+        {
+            const string sql = @"SELECT TOP 1 id FROM Atividade
+                                 WHERE status = @Status AND id <> @AtividadeId";
+
+            return transacao.Connection!.QueryFirstOrDefault<int?>(sql, new
+            {
+                Status = (int)StatusAtividade.Executando,
+                AtividadeId = atividadeId
+            }, transacao);
+        }
+
+        public void AlterarStatus(int id, StatusAtividade status, DateTime? dataFinalizacao, IDbTransaction transacao)
+        {
+            const string sql = @"UPDATE Atividade SET status = @Status, datafinalizacao = @DataFinalizacao WHERE id = @Id";
+
+            transacao.Connection!.Execute(sql, new
+            {
+                Id = id,
+                Status = (int)status,
+                DataFinalizacao = dataFinalizacao
+            }, transacao);
+        }
     }
 }

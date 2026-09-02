@@ -11,156 +11,107 @@ namespace JustDoTheWork.Infrastructure.Repository
     {
         private readonly DBConnection _dbConnection;
 
-        public ModeloRelatorioRepository(DBConnection _dbConnection)
+        public ModeloRelatorioRepository(DBConnection dbConnection)
         {
-            this._dbConnection = _dbConnection;
-        }
-        public string Inclusao(ModeloRelatorio projeto)
-        {
-            var sql = "INSERT INTO ModeloRelatorio (descricao, tipomodeloid, texto, ativo) VALUES(@Descricao, @TipoModeloId, @Texto, @Ativo)";
-
-            using (var connection =  _dbConnection.Create())
-            {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao incluir o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
-            }
-            return "";
+            _dbConnection = dbConnection;
         }
 
-        public string Edicao(ModeloRelatorio projeto)
+        public Result Inclusao(ModeloRelatorio modelo)
         {
-            var sql = "UPDATE ModeloRelatorio SET Descricao = @Descricao, TipoModeloId = @TipoModeloId, Texto = @Texto, Ativo = @Ativo where Id = @Id";
+            const string sql = @"INSERT INTO ModeloRelatorio(descricao, tipomodeloid, texto, ativo)
+                               VALUES(@Descricao, @TipoModeloId, @Texto, @Ativo)";
 
-            using (var connection = _dbConnection.Create())
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao editar o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, modelo, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
             }
-
-            return "";
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao incluir modelo de relatório.", ex);
+            }
         }
 
-        public string ExclusaoPorId(int Id)
+        public Result Edicao(ModeloRelatorio modelo)
         {
-            var sql = "DELETE FROM ModeloRelatorio where Id = @Id";
+            const string sql = @"UPDATE ModeloRelatorio SET Descricao = @Descricao, TipoModeloId = @TipoModeloId,
+                               Texto = @Texto, Ativo = @Ativo WHERE Id = @Id";
 
-            using (var connection = _dbConnection.Create())
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id }, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao excluir o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, modelo, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
             }
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao editar modelo de relatório.", ex);
+            }
+        }
 
-            return "";
+        public Result ExclusaoPorId(int id)
+        {
+            const string sql = @"DELETE FROM ModeloRelatorio WHERE Id = @Id";
+
+            try
+            {
+                using var uow = new UnitOfWork(_dbConnection);
+                uow.Begin();
+                uow.Connection.Execute(sql, new { Id = id }, uow.Transaction);
+                uow.Commit();
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Falha("Erro ao excluir modelo de relatório.", ex);
+            }
         }
 
         public ModeloRelatorioDTO BuscarPorId(int id)
         {
-            var sql = @"SELECT * FROM modelorelatorio WHERE id = @Id";
+            const string sql = @"SELECT * FROM ModeloRelatorio WHERE id = @Id";
 
-            using var connection = _dbConnection.Create();
-                return connection.QueryFirstOrDefault<ModeloRelatorioDTO>(sql, new { Id = id });
+            using var conn = _dbConnection.Create();
+            return conn.QueryFirstOrDefault<ModeloRelatorioDTO>(sql, new { Id = id });
         }
 
         public byte[]? BuscaModeloHistoricoExecucao()
         {
-            var sql = @"SELECT Texto FROM ModeloRelatorio WHERE TipoModeloId = 1 AND Ativo = 1";
+            const string sql = @"SELECT Texto FROM ModeloRelatorio WHERE TipoModeloId = 1 AND Ativo = 1";
 
-            using var connection = _dbConnection.Create();
-                return connection.QueryFirstOrDefault<byte[]>(sql);
+            using var conn = _dbConnection.Create();
+            return conn.QueryFirstOrDefault<byte[]>(sql);
         }
 
-        public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO)
+        public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtro)
         {
             var sql = new StringBuilder();
+            sql.Append(@"SELECT mr.Id, mr.Descricao, tm.Descricao AS TipoModelo, mr.Ativo
+                        FROM ModeloRelatorio mr
+                        INNER JOIN TipoModelo tm ON tm.Id = mr.TipoModeloId
+                        WHERE 1 = 1");
+
             var parametros = new DynamicParameters();
 
-            sql.Append(@"SELECT
-                            mr.Id, mr.Descricao,
-                            tm.Descricao AS TipoModelo, mr.Ativo
-                            FROM ModeloRelatorio mr
-                            INNER JOIN TipoModelo tm ON tm.Id = mr.TipoModeloId
-                            WHERE 1 = 1");
-
-            if (!string.IsNullOrEmpty(filtroPesquisaModeloRelatorioDTO.DescricaoModelo))
+            if (!string.IsNullOrEmpty(filtro.DescricaoModelo))
             {
                 sql.Append(" AND mr.Descricao LIKE @DescricaoModelo");
-                parametros.Add("@DescricaoModelo", filtroPesquisaModeloRelatorioDTO.DescricaoModelo.Trim());
+                parametros.Add("DescricaoModelo", $"%{filtro.DescricaoModelo.Trim()}%");
             }
 
-            if (filtroPesquisaModeloRelatorioDTO.TipoModelo > 0)
+            if (filtro.TipoModelo > 0)
             {
                 sql.Append(" AND mr.TipoModeloId = @TipoModelo");
-                parametros.Add("@TipoModelo", filtroPesquisaModeloRelatorioDTO.TipoModelo);
+                parametros.Add("TipoModelo", filtro.TipoModelo);
             }
 
-            using var connection = _dbConnection.Create();
-                return connection.Query<ResultadoPesquisaModeloRelatorioDTO>(sql.ToString(), parametros);
+            using var conn = _dbConnection.Create();
+            return conn.Query<ResultadoPesquisaModeloRelatorioDTO>(sql.ToString(), parametros);
         }
     }
 }

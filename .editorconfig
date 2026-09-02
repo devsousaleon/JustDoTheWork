@@ -1,0 +1,27 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+[*.cs]
+dotnet_sort_system_directives_first = true
+csharp_style_namespace_declarations = file_scoped:error
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_prefer_method_group_conversion = true:suggestion
+
+# Membros e tipos explícitos em vez de duvidosos
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_constructors = false:none
+
+# Usar 'const' quando possível
+dotnet_style_prefer_const = true:suggestion
+
+# Requerer precedência de null/operadores em análise
+dotnet_style_readonly_field = true:suggestion
+
+[*.{xml,config,csproj,props,targets}]
+indent_size = 2

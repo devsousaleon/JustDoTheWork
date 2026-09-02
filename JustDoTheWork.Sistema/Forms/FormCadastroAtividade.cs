@@ -39,11 +39,11 @@ namespace JustDoTheWork.Sistema.Forms
             dtoAtividade.DataCriacao = DateTime.Now.Date;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
-            var mensagemRetornoInclusaoAtividade = _atividadeController.Cadastro(dtoAtividade);
+            var resultado = _atividadeController.Cadastro(dtoAtividade);
 
-            if (!string.IsNullOrEmpty(mensagemRetornoInclusaoAtividade))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(mensagemRetornoInclusaoAtividade);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 

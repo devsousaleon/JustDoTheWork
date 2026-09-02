@@ -81,11 +81,11 @@ namespace JustDoTheWork.Sistema.Forms
 
             dtoAtividade.Id = _registerUserControl.IdSelecionado;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
-            var retornoMensagemEdicaoAtividade = _atividadeController.EditaInformacaoAtividade(dtoAtividade, (int)comboBoxStatus.EditValue);
+            var resultado = _atividadeController.EditaInformacaoAtividade(dtoAtividade, (int)comboBoxStatus.EditValue);
 
-            if (!string.IsNullOrWhiteSpace(retornoMensagemEdicaoAtividade))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(retornoMensagemEdicaoAtividade);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 
@@ -125,11 +125,11 @@ namespace JustDoTheWork.Sistema.Forms
 
             if(result == DialogResult.Yes)
             {
-                var mensagemRetornoExclusaoAtividade = _atividadeController.Exclusao(_registerUserControl.IdSelecionado);
+                var resultado = _atividadeController.Exclusao(_registerUserControl.IdSelecionado);
 
-                if (!string.IsNullOrWhiteSpace(mensagemRetornoExclusaoAtividade))
+                if (!resultado.Sucesso)
                 {
-                    MessageService.Mensagem_Erro(mensagemRetornoExclusaoAtividade);
+                    MessageService.Mensagem_Erro(resultado.Mensagem);
                     return;
                 }
 
@@ -145,11 +145,11 @@ namespace JustDoTheWork.Sistema.Forms
             dtoAtividade.Id = _registerUserControl.IdSelecionado;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 
-            var RetornoMensagemAvancaAtividade = _atividadeController.EditaInfoAvancaAtividade(dtoAtividade);
+            var resultado = _atividadeController.EditaInfoAvancaAtividade(dtoAtividade);
 
-            if (!string.IsNullOrWhiteSpace(RetornoMensagemAvancaAtividade))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(RetornoMensagemAvancaAtividade);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 

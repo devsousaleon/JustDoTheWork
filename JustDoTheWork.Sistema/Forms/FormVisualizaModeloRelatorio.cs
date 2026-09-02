@@ -40,11 +40,11 @@ namespace JustDoTheWork.Sistema.Forms
                 Texto = richEditVisualizaTextoModelo.Document.GetOpenXmlBytes(richEditVisualizaTextoModelo.Document.Range)
             };
 
-            var resposta = _modeloRelatorioController.Edicao(dados);
+            var resultado = _modeloRelatorioController.Edicao(dados);
 
-            if (!string.IsNullOrWhiteSpace(resposta))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(resposta);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 
@@ -81,11 +81,11 @@ namespace JustDoTheWork.Sistema.Forms
         {
             if (MessageService.Mensagem_Pergunta("Deseja realmente excluir este modelo?") == DialogResult.Yes)
             {
-                var resposta = _modeloRelatorioController.Exclusao(_cadastroModeloRelatorioUserControl.IdSelecionado);
+                var resultado = _modeloRelatorioController.Exclusao(_cadastroModeloRelatorioUserControl.IdSelecionado);
 
-                if (!string.IsNullOrWhiteSpace(resposta))
+                if (!resultado.Sucesso)
                 {
-                    MessageService.Mensagem_Atencao(resposta);
+                    MessageService.Mensagem_Atencao(resultado.Mensagem);
                     return;
                 }                    
 

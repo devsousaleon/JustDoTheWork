@@ -29,11 +29,11 @@ namespace JustDoTheWork.Sistema.Forms
         {
             var dtoProjeto = (ProjetoDTO)_dadosProjetoBindingSource.DataSource;
 
-            var mensagemRetornoInclusaoProjeto = _controller.Inclusao(dtoProjeto);
+            var resultado = _controller.Inclusao(dtoProjeto);
 
-            if (!string.IsNullOrWhiteSpace(mensagemRetornoInclusaoProjeto))
+            if (!resultado.Sucesso)
             {
-                MessageService.Mensagem_Atencao(mensagemRetornoInclusaoProjeto);
+                MessageService.Mensagem_Atencao(resultado.Mensagem);
                 return;
             }
 

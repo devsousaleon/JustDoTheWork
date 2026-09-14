@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.Controller;
 using JustDoTheWork.Sistema.Forms;
+using System.Configuration;
 
 namespace JustDoTheWork.Sistema
 {
@@ -8,16 +9,18 @@ namespace JustDoTheWork.Sistema
         [STAThread]
         static void Main()
         {
-            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SqlServer"]?.ConnectionString;
-
-            if (string.IsNullOrWhiteSpace(connectionString))
-                throw new System.Configuration.ConfigurationErrorsException("A connection string 'SqlServer' não foi encontrada no App.config.");
-
-            CompositionRoot.Configurar(connectionString);
+            var databaseConfiguration = ConfigurationManager.ConnectionStrings["SqlServer"] ?? ConfigurationManager.ConnectionStrings["Postgres"];
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal());
+
+            if (databaseConfiguration is null || string.IsNullOrWhiteSpace(databaseConfiguration.ConnectionString))
+                Application.Run(new FormConfigBanco());
+            else
+            {
+                CompositionRoot.Configurar(databaseConfiguration.ConnectionString, databaseConfiguration.ProviderName);
+                Application.Run(new FormPrincipal());
+            }
         }
     }
 }

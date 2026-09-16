@@ -4,40 +4,51 @@ namespace JustDoTheWork.UI.Core.Geral
 {
     public static class MessageService
     {
-        public static void Mensagem_Erro(string mensagemErro)
+        public static void Erro(string mensagemErro)
         {
             XtraMessageBox.Show
             (
                 mensagemErro,
-                "Identificado erro em execução",
+                "Erro",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error
             );
         }
 
-        public static void Mensagem_Atencao(string mensagemAtencao)
+        public static void Atencao(string mensagemAtencao)
         {
             XtraMessageBox.Show
             (
                 mensagemAtencao,
-                "Atenção a ação executada",
+                "Atenção!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning
             );
         }
 
-        public static void Mensagem_Sucesso(string acaoRealizada)
+        public static void Sucesso(string acaoRealizada)
         {
             XtraMessageBox.Show
             (
                 acaoRealizada,
-                "Sucesso em execução",
+                "Sucesso!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
         }
 
-        public static DialogResult Mensagem_Pergunta(string pergunta)
+        public static void Informacao(string mensagem)
+        {
+            XtraMessageBox.Show
+            (
+                mensagem,
+                "Informação!",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation
+            );
+        }
+
+        public static DialogResult Pergunta(string pergunta)
         {
             return XtraMessageBox.Show
             (
@@ -48,9 +59,9 @@ namespace JustDoTheWork.UI.Core.Geral
             );
         }
 
-        public static void Acao_FecharForm_CancelarExecucao(XtraForm form, string mensagem)
+        public static void Cancelar(XtraForm form, string mensagem)
         {
-            DialogResult result = MessageService.Mensagem_Pergunta(mensagem);
+            DialogResult result = MessageService.Pergunta(mensagem);
 
             if (result == DialogResult.Yes)
                 form.Close();

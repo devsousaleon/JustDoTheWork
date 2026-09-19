@@ -22,7 +22,7 @@ namespace JustDoTheWork.Sistema.Forms
             => ConfiguracaoBindingSource();
 
         void btnCancelar_Click(object sender, EventArgs e)
-            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
+            => MessageService.Cancelar(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
         
         void btnIncluirProjeto_Click(object sender, EventArgs e)
         {
@@ -32,11 +32,11 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoInclusaoProjeto))
             {
-                MessageService.Mensagem_Atencao(mensagemRetornoInclusaoProjeto);
+                MessageService.Atencao(mensagemRetornoInclusaoProjeto);
                 return;
             }
 
-            MessageService.Mensagem_Sucesso("Projeto cadastrado com sucesso!");
+            MessageService.Sucesso("Projeto cadastrado com sucesso!");
             _formCadastro.AtualizaComboBoxProjeto();
             this.Close();
         }

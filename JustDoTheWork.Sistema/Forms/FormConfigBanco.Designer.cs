@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfigBanco));
             panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            btnTestarConexao = new DevExpress.XtraEditors.SimpleButton();
             btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             btnSalvarConfigBanco = new DevExpress.XtraEditors.SimpleButton();
             lblSenhaBanco = new DevExpress.XtraEditors.LabelControl();
@@ -44,7 +45,6 @@
             txtServidor = new DevExpress.XtraEditors.TextEdit();
             lblTipoBanco = new DevExpress.XtraEditors.LabelControl();
             comboBoxEditTipoBanco = new DevExpress.XtraEditors.ComboBoxEdit();
-            btnTestarConexao = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtSenhaBanco.Properties).BeginInit();
@@ -74,6 +74,16 @@
             panelControl1.Name = "panelControl1";
             panelControl1.Size = new Size(574, 217);
             panelControl1.TabIndex = 0;
+            // 
+            // btnTestarConexao
+            // 
+            btnTestarConexao.Location = new Point(202, 183);
+            btnTestarConexao.Margin = new Padding(10);
+            btnTestarConexao.Name = "btnTestarConexao";
+            btnTestarConexao.Size = new Size(110, 23);
+            btnTestarConexao.TabIndex = 12;
+            btnTestarConexao.Text = "Testar Conexão";
+            btnTestarConexao.Click += btnTestarConexao_Click;
             // 
             // btnCancelar
             // 
@@ -110,6 +120,7 @@
             txtSenhaBanco.Location = new Point(388, 120);
             txtSenhaBanco.Margin = new Padding(10);
             txtSenhaBanco.Name = "txtSenhaBanco";
+            txtSenhaBanco.Properties.UseSystemPasswordChar = true;
             txtSenhaBanco.Size = new Size(174, 28);
             txtSenhaBanco.TabIndex = 8;
             // 
@@ -193,16 +204,6 @@
             comboBoxEditTipoBanco.TabIndex = 0;
             comboBoxEditTipoBanco.SelectedIndexChanged += comboBoxEditTipoBanco_SelectedIndexChanged;
             comboBoxEditTipoBanco.KeyDown += comboBoxEditTipoBanco_KeyDown;
-            // 
-            // btnTestarConexao
-            // 
-            btnTestarConexao.Location = new Point(202, 183);
-            btnTestarConexao.Margin = new Padding(10);
-            btnTestarConexao.Name = "btnTestarConexao";
-            btnTestarConexao.Size = new Size(110, 23);
-            btnTestarConexao.TabIndex = 12;
-            btnTestarConexao.Text = "Testar Conexão";
-            btnTestarConexao.Click += btnTestarConexao_Click;
             // 
             // FormConfigBanco
             // 

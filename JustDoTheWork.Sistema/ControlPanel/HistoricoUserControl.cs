@@ -40,7 +40,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             {
                 ProjetoId = comboProjetoPesquisa.EditValue != null ? (int?)comboProjetoPesquisa.EditValue : null,
                 Status = comboStatusPesquisa.EditValue != null ? (int?)comboStatusPesquisa.EditValue : null,
-                DataCriacaoAtividade = DataCriacao.EditValue != null ? (DateTime?)DataCriacao.DateTime.Date : null
+                DataCriacaoAtividade = DataCriacao.EditValue != null ? DataCriacao.DateTime.Date : null
             };
 
             var resultadoFiltro = _atividadeController.PesquisarParaGridVisualizaHistorico(filtroPesquisa);
@@ -61,7 +61,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
             if (buscaTextoModelo == null)
             {
-                MessageService.Mensagem_Atencao("Não foi encontrado modelo ativo para impressão!");
+                MessageService.Atencao("Não foi encontrado modelo ativo para impressão!");
                 return;
             }
 

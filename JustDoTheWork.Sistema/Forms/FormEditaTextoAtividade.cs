@@ -21,7 +21,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void btnCancelarEdit_Click(object sender, EventArgs e)
-            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a edição do texto da atividade? \nAs ações realizadas não serão salvas e serão perdidas!");
+            => MessageService.Cancelar(this, "Deseja realmente fechar a edição do texto da atividade? \nAs ações realizadas não serão salvas e serão perdidas!");
         
         void FormEditaTextoAtividade_Load(object sender, EventArgs e)
             => txtEditorAtividade.RtfText = NovoTextoDescricaoAtividade ?? "";

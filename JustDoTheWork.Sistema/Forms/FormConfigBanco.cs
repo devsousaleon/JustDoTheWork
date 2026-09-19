@@ -31,7 +31,7 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (mensagem != "")
             {
-                MessageService.Mensagem_Atencao(mensagem);
+                MessageService.Atencao(mensagem);
                 return;
             }
             
@@ -43,13 +43,13 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (mensagem != "")
             {
-                MessageService.Mensagem_Atencao(mensagem);
+                MessageService.Atencao(mensagem);
                 return;
             }
 
             SalvarConnectionString(nomeConnectionString, connectionString, providerName);
 
-            MessageService.Mensagem_Sucesso("Configuração realizada corretamente!\nO Sistema será encerrado e poderá ser iniciado novamente já configurado.");
+            MessageService.Sucesso("Configuração realizada corretamente!\nO Sistema será encerrado e poderá ser iniciado novamente já configurado.");
             Application.Exit();
         }
 
@@ -91,7 +91,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void btnCancelar_Click(object sender, EventArgs e)
-            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente cancelar esta configuração?\nNenhuma informação não salva será perdida e precisará ser configurada novamente.");
+            => MessageService.Cancelar(this, "Deseja realmente cancelar esta configuração?\nNenhuma informação não salva será perdida e precisará ser configurada novamente.");
 
         string ValidarDados()
         {
@@ -151,9 +151,9 @@ namespace JustDoTheWork.Sistema.Forms
             string mensagem = TestarConexao();
 
             if (mensagem != "")
-                MessageService.Mensagem_Erro(mensagem);
+                MessageService.Erro(mensagem);
             else
-                MessageService.Mensagem_Sucesso("Conexão estabelecida com sucesso!");
+                MessageService.Sucesso("Conexão estabelecida com sucesso!");
         }
     }
 }

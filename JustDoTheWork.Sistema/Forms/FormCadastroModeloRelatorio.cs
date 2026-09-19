@@ -34,7 +34,7 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (!string.IsNullOrWhiteSpace(resposta))
             {
-                MessageService.Mensagem_Atencao(resposta);
+                MessageService.Atencao(resposta);
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void btnFecharCadastroModelo_Click(object sender, EventArgs e)
-            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar o cadastro deste modelo? \nAs ações realizadas não serão salvas!");
+            => MessageService.Cancelar(this, "Deseja realmente fechar o cadastro deste modelo? \nAs ações realizadas não serão salvas!");
 
         void btnAbreEdicaoModelo_Click(object sender, EventArgs e)
         {

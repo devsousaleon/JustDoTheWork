@@ -43,7 +43,7 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (!string.IsNullOrWhiteSpace(resposta))
             {
-                MessageService.Mensagem_Atencao(resposta);
+                MessageService.Atencao(resposta);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void btnFecharCadastroModelo_Click(object sender, EventArgs e)
-            => MessageService.Acao_FecharForm_CancelarExecucao(this, "Deseja realmente fechar a visualização deste modelo? \nAs ações realizadas não serão salvas!");
+            => MessageService.Cancelar(this, "Deseja realmente fechar a visualização deste modelo? \nAs ações realizadas não serão salvas!");
 
         void btnAbreEdicaoModelo_Click(object sender, EventArgs e)
         {
@@ -78,13 +78,13 @@ namespace JustDoTheWork.Sistema.Forms
 
         void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (MessageService.Mensagem_Pergunta("Deseja realmente excluir este modelo?") == DialogResult.Yes)
+            if (MessageService.Pergunta("Deseja realmente excluir este modelo?") == DialogResult.Yes)
             {
                 var resposta = _modeloRelatorioController.Exclusao(_cadastroModeloRelatorioUserControl.IdSelecionado);
 
                 if (!string.IsNullOrWhiteSpace(resposta))
                 {
-                    MessageService.Mensagem_Atencao(resposta);
+                    MessageService.Atencao(resposta);
                     return;
                 }                    
 

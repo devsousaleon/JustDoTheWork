@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroAtividade));
             panelControl1 = new DevExpress.XtraEditors.PanelControl();
             btnEditaTextoAtividade = new DevExpress.XtraEditors.SimpleButton();
@@ -41,6 +42,7 @@
             lblProjeto = new DevExpress.XtraEditors.LabelControl();
             lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
+            BindingSourceAtividade = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupControl2).BeginInit();
@@ -49,6 +51,7 @@
             groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjeto.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BindingSourceAtividade).BeginInit();
             SuspendLayout();
             // 
             // panelControl1
@@ -136,6 +139,7 @@
             // 
             // comboProjeto
             // 
+            comboProjeto.DataBindings.Add(new Binding("EditValue", BindingSourceAtividade, "ProjetoId", true));
             comboProjeto.Location = new Point(590, 37);
             comboProjeto.Name = "comboProjeto";
             comboProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -178,6 +182,7 @@
             // 
             // txtNomeAtividade
             // 
+            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", BindingSourceAtividade, "Nome", true));
             txtNomeAtividade.Location = new Point(85, 40);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -186,11 +191,15 @@
             txtNomeAtividade.Size = new Size(322, 32);
             txtNomeAtividade.TabIndex = 0;
             // 
+            // BindingSourceAtividade
+            // 
+            BindingSourceAtividade.DataSource = typeof(DTO.AtividadeDTO);
+            // 
             // FormCadastroAtividade
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(998, 666);
+            ClientSize = new Size(998, 664);
             Controls.Add(panelControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             IconOptions.Image = (Image)resources.GetObject("FormCadastroAtividade.IconOptions.Image");
@@ -209,6 +218,7 @@
             groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjeto.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BindingSourceAtividade).EndInit();
             ResumeLayout(false);
 
         }
@@ -227,5 +237,6 @@
         private DevExpress.XtraEditors.LookUpEdit comboProjeto;
         private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
         private DevExpress.XtraEditors.SimpleButton btnEditaTextoAtividade;
+        private BindingSource BindingSourceAtividade;
     }
 }

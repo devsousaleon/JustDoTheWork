@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            atualizaAtividadesExecucaoDTOBindingSource = new BindingSource(components);
+            bindingSourceAtualizaAtividadeDTOExecucao = new BindingSource(components);
             groupExecutando = new DevExpress.XtraEditors.GroupControl();
             dataGridExecutando = new DevExpress.XtraGrid.GridControl();
             gridExecutando = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -60,7 +60,7 @@
             btnExecutar = new DevExpress.XtraEditors.SimpleButton();
             btnVoltaPendente = new DevExpress.XtraEditors.SimpleButton();
             panelAtividadesExecucao = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)atualizaAtividadesExecucaoDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceAtualizaAtividadeDTOExecucao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)groupExecutando).BeginInit();
             groupExecutando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridExecutando).BeginInit();
@@ -82,9 +82,9 @@
             panelAtividadesExecucao.SuspendLayout();
             SuspendLayout();
             // 
-            // atualizaAtividadesExecucaoDTOBindingSource
+            // bindingSourceAtualizaAtividadeDTOExecucao
             // 
-            atualizaAtividadesExecucaoDTOBindingSource.DataSource = typeof(DTO.AtualizaAtividadesExecucaoDTO);
+            bindingSourceAtualizaAtividadeDTOExecucao.DataSource = typeof(DTO.AtualizaGridAtividadeDTO);
             // 
             // groupExecutando
             // 
@@ -102,7 +102,7 @@
             // dataGridExecutando
             // 
             dataGridExecutando.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridExecutando.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridExecutando.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
             dataGridExecutando.Location = new Point(12, 39);
             dataGridExecutando.MainView = gridExecutando;
             dataGridExecutando.Margin = new Padding(10);
@@ -121,7 +121,7 @@
             // 
             // colAtividadeIdExecutando
             // 
-            colAtividadeIdExecutando.FieldName = "AtividadeId";
+            colAtividadeIdExecutando.FieldName = "Id";
             colAtividadeIdExecutando.Name = "colAtividadeIdExecutando";
             colAtividadeIdExecutando.OptionsColumn.AllowEdit = false;
             colAtividadeIdExecutando.OptionsColumn.AllowMove = false;
@@ -132,7 +132,7 @@
             // 
             // colNomeAtividadeExecutando
             // 
-            colNomeAtividadeExecutando.FieldName = "NomeAtividade";
+            colNomeAtividadeExecutando.FieldName = "Atividade";
             colNomeAtividadeExecutando.Name = "colNomeAtividadeExecutando";
             colNomeAtividadeExecutando.OptionsColumn.AllowEdit = false;
             colNomeAtividadeExecutando.OptionsColumn.AllowMove = false;
@@ -143,7 +143,7 @@
             // 
             // colNomeProjetoExecutando
             // 
-            colNomeProjetoExecutando.FieldName = "NomeProjeto";
+            colNomeProjetoExecutando.FieldName = "Projeto";
             colNomeProjetoExecutando.Name = "colNomeProjetoExecutando";
             colNomeProjetoExecutando.OptionsColumn.AllowEdit = false;
             colNomeProjetoExecutando.OptionsColumn.AllowMove = false;
@@ -183,7 +183,7 @@
             // dataGridPausado
             // 
             dataGridPausado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridPausado.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridPausado.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
             dataGridPausado.Location = new Point(12, 39);
             dataGridPausado.MainView = gridPausado;
             dataGridPausado.Margin = new Padding(10);
@@ -202,7 +202,7 @@
             // 
             // colAtividadeIdPausado
             // 
-            colAtividadeIdPausado.FieldName = "AtividadeId";
+            colAtividadeIdPausado.FieldName = "Id";
             colAtividadeIdPausado.Name = "colAtividadeIdPausado";
             colAtividadeIdPausado.OptionsColumn.AllowEdit = false;
             colAtividadeIdPausado.OptionsColumn.AllowMove = false;
@@ -213,7 +213,7 @@
             // 
             // colNomeAtividadePausado
             // 
-            colNomeAtividadePausado.FieldName = "NomeAtividade";
+            colNomeAtividadePausado.FieldName = "Atividade";
             colNomeAtividadePausado.Name = "colNomeAtividadePausado";
             colNomeAtividadePausado.OptionsColumn.AllowEdit = false;
             colNomeAtividadePausado.OptionsColumn.AllowMove = false;
@@ -224,7 +224,7 @@
             // 
             // colNomeProjetoPausado
             // 
-            colNomeProjetoPausado.FieldName = "NomeProjeto";
+            colNomeProjetoPausado.FieldName = "Projeto";
             colNomeProjetoPausado.Name = "colNomeProjetoPausado";
             colNomeProjetoPausado.OptionsColumn.AllowEdit = false;
             colNomeProjetoPausado.OptionsColumn.AllowMove = false;
@@ -264,7 +264,7 @@
             // dataGridPendentes
             // 
             dataGridPendentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridPendentes.DataSource = atualizaAtividadesExecucaoDTOBindingSource;
+            dataGridPendentes.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
             dataGridPendentes.Location = new Point(12, 39);
             dataGridPendentes.MainView = gridPendentes;
             dataGridPendentes.Margin = new Padding(10);
@@ -283,7 +283,7 @@
             // 
             // colAtividadeId
             // 
-            colAtividadeId.FieldName = "AtividadeId";
+            colAtividadeId.FieldName = "Id";
             colAtividadeId.Name = "colAtividadeId";
             colAtividadeId.OptionsColumn.AllowEdit = false;
             colAtividadeId.OptionsColumn.AllowMove = false;
@@ -294,7 +294,7 @@
             // 
             // colNomeAtividade
             // 
-            colNomeAtividade.FieldName = "NomeAtividade";
+            colNomeAtividade.FieldName = "Atividade";
             colNomeAtividade.Name = "colNomeAtividade";
             colNomeAtividade.OptionsColumn.AllowEdit = false;
             colNomeAtividade.OptionsColumn.AllowMove = false;
@@ -304,7 +304,7 @@
             // 
             // colNomeProjeto
             // 
-            colNomeProjeto.FieldName = "NomeProjeto";
+            colNomeProjeto.FieldName = "Projeto";
             colNomeProjeto.Name = "colNomeProjeto";
             colNomeProjeto.OptionsColumn.AllowEdit = false;
             colNomeProjeto.OptionsColumn.AllowSize = false;
@@ -412,7 +412,7 @@
             Name = "VisualizaExecucaoUserControl";
             Size = new Size(1280, 720);
             Load += HomeUserControl_Load;
-            ((System.ComponentModel.ISupportInitialize)atualizaAtividadesExecucaoDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceAtualizaAtividadeDTOExecucao).EndInit();
             ((System.ComponentModel.ISupportInitialize)groupExecutando).EndInit();
             groupExecutando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridExecutando).EndInit();
@@ -440,7 +440,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn atividadeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeAtividadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProjetoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource atualizaAtividadesExecucaoDTOBindingSource;
+        private System.Windows.Forms.BindingSource bindingSourceAtualizaAtividadeDTOExecucao;
         private DevExpress.XtraEditors.GroupControl groupExecutando;
         private DevExpress.XtraEditors.GroupControl groupPausado;
         private DevExpress.XtraEditors.GroupControl groupPendente;

@@ -12,7 +12,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
     {
         readonly AtividadeController _atividadeController;
         readonly ExecucaoController _execucaoController;
-
         readonly Timer _atualizaTimer;
 
         int _statusExecucaoSelecionado;
@@ -57,16 +56,16 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         void btnExecutar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(3, TipoExecucao.Inclusao);
+            => ExecutaAcaoAlterarStatus(3,"Inclusao");
 
         void btnPausar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(4, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus(4, "Edicao");
 
         void btnVoltaPendente_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(2, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus(2, "Edicao");
 
         void btnFinalizar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(6, TipoExecucao.Edicao);
+            => ExecutaAcaoAlterarStatus(6, "Edicao");
 
         void gridExecutando_RowClick(object sender, RowClickEventArgs e)
             => InformaIdSelecionadoAtividade(gridExecutando, 3);
@@ -97,52 +96,32 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _formVisualizaAtividadeExecucao.ShowDialog();
         }
 
-        void ExecutaAcaoAlterarStatus(int novoStatus, TipoExecucao acaoExecutada)
+        void ExecutaAcaoAlterarStatus(int novoStatus, string acaoExecutada)
         {
             if (IdSelecionadoAtividade <= 0 || _statusExecucaoSelecionado == 0)
             {
-                MessageService.Mensagem_Atencao("Selecione uma atividade.");
+                MessageService.Atencao("Selecione uma atividade.");
                 return;
             }
 
-            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus);
+            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus, acaoExecutada);
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoAlteracaoStatus))
             {
-                MessageService.Mensagem_Atencao(mensagemRetornoAlteracaoStatus);
+                MessageService.Atencao(mensagemRetornoAlteracaoStatus);
                 return;
             }
 
-            if (acaoExecutada == TipoExecucao.Edicao)
-            {
-                var mensagemRetornoFinalizaExecucao = _execucaoController.FinalizaExecucao(IdSelecionadoAtividade);
-
-                if (!string.IsNullOrWhiteSpace(mensagemRetornoFinalizaExecucao))
-                {
-                    MessageService.Mensagem_Erro(mensagemRetornoFinalizaExecucao);
-                    return;
-                }
-            }
-            else if (acaoExecutada == TipoExecucao.Inclusao)
-            {
-                var mensagemRetornoExecucao = _execucaoController.Inclusao(IdSelecionadoAtividade);
-
-                if (!string.IsNullOrWhiteSpace(mensagemRetornoExecucao))
-                {
-                    MessageService.Mensagem_Erro(mensagemRetornoExecucao);
-                    return;
-                }
-            }
             CarregaGridAtividades();
         }
 
         void InformaIdSelecionadoAtividade(GridView gridView, int status) 
         {
-            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
+            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id"));
             _statusExecucaoSelecionado = status;
         }
 
         void AtualizaGridTimer(object sender, EventArgs e)
             => CarregaGridAtividades();
-    }
+    }        
 }

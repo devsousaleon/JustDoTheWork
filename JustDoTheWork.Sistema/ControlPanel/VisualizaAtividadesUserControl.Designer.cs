@@ -35,6 +35,7 @@
             btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
+            bindingSourcePesquisaAtividade = new BindingSource(components);
             comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
             dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
             labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -43,7 +44,6 @@
             btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            atualizaGridAtividadeDTOBindingSource = new BindingSource(components);
             searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
             gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -57,11 +57,11 @@
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourcePesquisaAtividade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)atualizaGridAtividadeDTOBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).BeginInit();
             ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).BeginInit();
@@ -125,6 +125,8 @@
             // 
             // comboStatusPesquisa
             // 
+            comboStatusPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "Status", true));
+            comboStatusPesquisa.EnterMoveNextControl = true;
             comboStatusPesquisa.Location = new Point(84, 58);
             comboStatusPesquisa.Name = "comboStatusPesquisa";
             comboStatusPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -135,8 +137,14 @@
             comboStatusPesquisa.Size = new Size(296, 32);
             comboStatusPesquisa.TabIndex = 2;
             // 
+            // bindingSourcePesquisaAtividade
+            // 
+            bindingSourcePesquisaAtividade.DataSource = typeof(DTO.AtividadePesquisaDTO);
+            // 
             // comboProjetoPesquisa
             // 
+            comboProjetoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "ProjetoId", true));
+            comboProjetoPesquisa.EnterMoveNextControl = true;
             comboProjetoPesquisa.Location = new Point(503, 12);
             comboProjetoPesquisa.Name = "comboProjetoPesquisa";
             comboProjetoPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -148,6 +156,7 @@
             // 
             // dataCriacaoPesquisa
             // 
+            dataCriacaoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "DataCriacao", true));
             dataCriacaoPesquisa.EditValue = null;
             dataCriacaoPesquisa.Location = new Point(479, 57);
             dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
@@ -208,6 +217,8 @@
             // 
             // txtNomeAtividade
             // 
+            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "Nome", true));
+            txtNomeAtividade.EnterMoveNextControl = true;
             txtNomeAtividade.Location = new Point(67, 13);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -227,10 +238,6 @@
             labelControl1.TabIndex = 0;
             labelControl1.Text = "Nome";
             // 
-            // atualizaGridAtividadeDTOBindingSource
-            // 
-            atualizaGridAtividadeDTOBindingSource.DataSource = typeof(DTO.AtualizaGridAtividadeDTO);
-            // 
             // searchLookUpEdit1View
             // 
             searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -241,7 +248,6 @@
             // GridCadastroAtividade
             // 
             GridCadastroAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            GridCadastroAtividade.DataSource = atualizaGridAtividadeDTOBindingSource;
             GridCadastroAtividade.Location = new Point(183, 184);
             GridCadastroAtividade.MainView = gridAtividadesCadastradas;
             GridCadastroAtividade.Name = "GridCadastroAtividade";
@@ -320,11 +326,11 @@
             panelFiltroPesquisa.ResumeLayout(false);
             panelFiltroPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourcePesquisaAtividade).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)atualizaGridAtividadeDTOBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).EndInit();
             ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).EndInit();
@@ -346,7 +352,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.DateEdit dataCriacaoPesquisa;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private System.Windows.Forms.BindingSource atualizaGridAtividadeDTOBindingSource;
+        private System.Windows.Forms.BindingSource bindingSourcePesquisaAtividade;
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;

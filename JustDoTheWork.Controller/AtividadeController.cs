@@ -1,18 +1,23 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
+using JustDoTheWork.Infrastructure;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using JustDoTheWork.Infrastructure.Repository;
 
 namespace JustDoTheWork.Controller
 {
     public class AtividadeController
     {
         private readonly IAtividadeRepository _iAtividadeRepository;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public AtividadeController(IAtividadeRepository repository)
+        public AtividadeController(IAtividadeRepository repository, JustDoTheWorkDbContextFactory dbContextFactory)
         {
             _iAtividadeRepository = repository;
+            _dbContextFactory = dbContextFactory;
         }
+
         public string Cadastro(AtividadeDTO dtoAtividade)
         {
             var mensagem = "";
@@ -37,61 +42,23 @@ namespace JustDoTheWork.Controller
 
             return mensagem;
         }
-        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dtoAtividadePesquisa)
-        {
-            var filtro = new AtividadeFilter
-            {
-                Nome = dtoAtividadePesquisa.Nome,
-                ProjetoId = dtoAtividadePesquisa.ProjetoId,
-                Status = dtoAtividadePesquisa.Status,
-                DataCriacao = dtoAtividadePesquisa.DataCriacao,
-                DataFinalizacao = dtoAtividadePesquisa.DataFinalizacao
-            };
 
-            return _iAtividadeRepository.PesquisarParaGrid(filtro);
-        }
-        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO dtoFiltroPesquisaHistorico)
-        {
-            var filtro = new FiltroPesquisaHistoricoDTO
-            {
-                ProjetoId = dtoFiltroPesquisaHistorico.ProjetoId,
-                Status = dtoFiltroPesquisaHistorico.Status,
-                DataCriacaoAtividade = dtoFiltroPesquisaHistorico.DataCriacaoAtividade,
-            };
-
-            return _iAtividadeRepository.PesquisarParaGridVisualizaHistorico(filtro);
-        }
-
-        public IEnumerable<LookUpDto> ObterStatusAtividade()
+        public IEnumerable<StatusDTO> ObterStatusAtividade()
         {
             return Enum
                 .GetValues(typeof(StatusAtividade))
                 .Cast<StatusAtividade>()
-                .Select(s => new LookUpDto
+                .Select(s => new StatusDTO
                 {
                     Id = (int)s,
                     Status = s.ToString()
                 });
         }
 
-        public PesquisaFormAtividadeDTO ObtemDadosFormAtividade(int idObterDadosForm)
-        {
-           var resposta = _iAtividadeRepository.BuscarPorId(idObterDadosForm);
+        public string Exclusao(int idExclusao)
+            => _iAtividadeRepository.ExclusaoPorId(idExclusao);
 
-            var dados = new PesquisaFormAtividadeDTO
-            {
-                Nome = resposta.Nome,
-                Status = (int)resposta.Status,
-                Descricao = resposta.Descricao,
-                DataCriacao = resposta.DataCriacao,
-                DataFinalizacao = resposta.DataFinalizacao,
-                ProjetoId = resposta.ProjetoId
-            };
-
-            return dados;
-        }
-
-        public string EditaInformacaoAtividade(AtividadeDTO dtoAtividade, int StatusAtual)
+        public string Edicao(AtividadeDTO dtoAtividade, int StatusAtual)
         {
             if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
@@ -113,7 +80,8 @@ namespace JustDoTheWork.Controller
             return _iAtividadeRepository.Edicao(atividade);
 
         }
-        public string EditaInfoAvancaAtividade(AtividadeDTO dtoAtividade)
+
+        public string AvancarAtividade(AtividadeDTO dtoAtividade)
         {
             if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
@@ -135,23 +103,92 @@ namespace JustDoTheWork.Controller
             return _iAtividadeRepository.Edicao(atividade);
         }
 
-        public string Exclusao(int idExclusao)
+        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dtoAtividadePesquisa)
+            => _iAtividadeRepository.PesquisarParaGrid(dtoAtividadePesquisa);
+
+        public AtividadeDTO ObtemDadosFormAtividade(int idObterDadosForm)
         {
-            return _iAtividadeRepository.ExclusaoPorId(idExclusao);
+            var resposta = _iAtividadeRepository.BuscarPorId(idObterDadosForm);
+
+            var dados = new AtividadeDTO
+            {
+                Nome = resposta.Nome,
+                Status = resposta.Status,
+                Descricao = resposta.Descricao,
+                DataCriacao = resposta.DataCriacao,
+                DataFinalizacao = resposta.DataFinalizacao,
+                ProjetoId = resposta.ProjetoId
+            };
+
+            return dados;
         }
 
-        public IEnumerable<AtualizaAtividadesExecucaoDTO> AtualizaGridAtividades(int Status)
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO dtoFiltroPesquisaHistorico)
         {
-            return _iAtividadeRepository.BuscaParaGridAtividades(Status);
+            var filtro = new FiltroPesquisaHistoricoDTO
+            {
+                ProjetoId = dtoFiltroPesquisaHistorico.ProjetoId,
+                Status = dtoFiltroPesquisaHistorico.Status,
+                DataCriacaoAtividade = dtoFiltroPesquisaHistorico.DataCriacaoAtividade,
+            };
+
+            return _iAtividadeRepository.PesquisarParaGridVisualizaHistorico(filtro);
         }
 
-        public string AlterarStatus(int idAlteraStatus, int statusAtual, int novoStatus)
+        public IEnumerable<AtualizaGridAtividadeDTO> AtualizaGridAtividades(int Status)
+            => _iAtividadeRepository.BuscaParaGridAtividades(Status);
+
+        public string AlterarStatus(int idAtividade, int statusAtual, int novoStatus, string tipoExecucao)
         {
             if (!TransicaoPermitida(statusAtual, novoStatus))
                 return "Essa ação não é permitida para esse status.";
 
-            return _iAtividadeRepository.ExecutaAtividade(idAlteraStatus, novoStatus);
+            string mensagem = "";
+
+            var execucaoRepository = new ExecucaoRepository();
+            var execucao = new Execucao();
+
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            
+            mensagem = _iAtividadeRepository.ExecutaAtividade(idAtividade, novoStatus, context);
+
+            if (mensagem != "")
+            {
+                transacao.Rollback();
+                return mensagem;
+            }
+
+            if (tipoExecucao == "Edicao")
+            {                
+                execucao = new Execucao { AtividadeId = idAtividade, DataFim = DateTime.Now };
+
+                mensagem = execucaoRepository.FinalizaExecucao(execucao, context);
+
+                if (mensagem != "")
+                {
+                    transacao.Rollback();
+                    return mensagem;
+                }
+            }
+
+            if (tipoExecucao == "Inclusao")
+            {
+                execucao = new Execucao { AtividadeId = idAtividade, DataInicio = DateTime.Now };
+
+                mensagem = execucaoRepository.Inclusao(execucao, context);
+
+                if (mensagem != "")
+                {
+                    transacao.Rollback();
+                    return mensagem;
+                }
+            }
+
+            transacao.Commit();
+            return mensagem;
         }
+
         private bool TransicaoPermitida(int transicaoAtual, int transicaoNova)
         {
             switch (transicaoAtual)

@@ -60,6 +60,7 @@
             btnExcluir = new DevExpress.XtraEditors.SimpleButton();
             btnFechar = new DevExpress.XtraEditors.SimpleButton();
             btnSalvar = new DevExpress.XtraEditors.SimpleButton();
+            bindingSourceAtividade = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tabControlVisualizaAtividade).BeginInit();
@@ -80,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
             panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceAtividade).BeginInit();
             SuspendLayout();
             // 
             // panelControl1
@@ -88,7 +90,7 @@
             panelControl1.Controls.Add(tabControlVisualizaAtividade);
             panelControl1.Location = new Point(12, 12);
             panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(1254, 605);
+            panelControl1.Size = new Size(1254, 603);
             panelControl1.TabIndex = 0;
             // 
             // tabControlVisualizaAtividade
@@ -97,7 +99,7 @@
             tabControlVisualizaAtividade.Location = new Point(5, 5);
             tabControlVisualizaAtividade.Name = "tabControlVisualizaAtividade";
             tabControlVisualizaAtividade.SelectedTabPage = tabControlInfoAtividade;
-            tabControlVisualizaAtividade.Size = new Size(1244, 595);
+            tabControlVisualizaAtividade.Size = new Size(1244, 593);
             tabControlVisualizaAtividade.TabIndex = 2;
             tabControlVisualizaAtividade.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tabControlInfoAtividade, tabControlHistoricoExecucao });
             // 
@@ -106,11 +108,12 @@
             tabControlInfoAtividade.Controls.Add(txtEditorAtividade);
             tabControlInfoAtividade.Controls.Add(groupControl1);
             tabControlInfoAtividade.Name = "tabControlInfoAtividade";
-            tabControlInfoAtividade.Size = new Size(1242, 564);
+            tabControlInfoAtividade.Size = new Size(1242, 562);
             tabControlInfoAtividade.Text = "Dados Atividade";
             // 
             // txtEditorAtividade
             // 
+            txtEditorAtividade.DataBindings.Add(new Binding("DocxBytes", bindingSourceAtividade, "Descricao", true));
             txtEditorAtividade.Location = new Point(4, 173);
             txtEditorAtividade.Margin = new Padding(10);
             txtEditorAtividade.Name = "txtEditorAtividade";
@@ -166,8 +169,10 @@
             // 
             // DataFinalizacao
             // 
+            DataFinalizacao.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "DataFinalizacao", true));
             DataFinalizacao.EditValue = null;
             DataFinalizacao.Enabled = false;
+            DataFinalizacao.EnterMoveNextControl = true;
             DataFinalizacao.Location = new Point(646, 76);
             DataFinalizacao.Name = "DataFinalizacao";
             DataFinalizacao.Properties.Appearance.Font = new Font("Courier New", 12F);
@@ -189,8 +194,10 @@
             // 
             // DataCriacao
             // 
+            DataCriacao.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "DataCriacao", true));
             DataCriacao.EditValue = null;
             DataCriacao.Enabled = false;
+            DataCriacao.EnterMoveNextControl = true;
             DataCriacao.Location = new Point(646, 39);
             DataCriacao.Name = "DataCriacao";
             DataCriacao.Properties.Appearance.Font = new Font("Courier New", 12F);
@@ -201,7 +208,9 @@
             // 
             // comboBoxStatus
             // 
+            comboBoxStatus.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "Status", true));
             comboBoxStatus.Enabled = false;
+            comboBoxStatus.EnterMoveNextControl = true;
             comboBoxStatus.Location = new Point(105, 114);
             comboBoxStatus.Name = "comboBoxStatus";
             comboBoxStatus.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -224,6 +233,8 @@
             // 
             // comboBoxProjeto
             // 
+            comboBoxProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "ProjetoId", true));
+            comboBoxProjeto.EnterMoveNextControl = true;
             comboBoxProjeto.Location = new Point(105, 75);
             comboBoxProjeto.Name = "comboBoxProjeto";
             comboBoxProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -257,6 +268,8 @@
             // 
             // txtNomeAtividade
             // 
+            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "Nome", true));
+            txtNomeAtividade.EnterMoveNextControl = true;
             txtNomeAtividade.Location = new Point(65, 38);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -269,7 +282,7 @@
             // 
             tabControlHistoricoExecucao.Controls.Add(dataGridHistoricoExecucao);
             tabControlHistoricoExecucao.Name = "tabControlHistoricoExecucao";
-            tabControlHistoricoExecucao.Size = new Size(1242, 564);
+            tabControlHistoricoExecucao.Size = new Size(1242, 570);
             tabControlHistoricoExecucao.Text = "Histórico de execução";
             // 
             // dataGridHistoricoExecucao
@@ -349,7 +362,7 @@
             panelControl2.Controls.Add(btnExcluir);
             panelControl2.Controls.Add(btnFechar);
             panelControl2.Controls.Add(btnSalvar);
-            panelControl2.Location = new Point(12, 633);
+            panelControl2.Location = new Point(12, 631);
             panelControl2.Name = "panelControl2";
             panelControl2.Size = new Size(1254, 43);
             panelControl2.TabIndex = 1;
@@ -402,11 +415,15 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.Click += btnSalvar_Click;
             // 
+            // bindingSourceAtividade
+            // 
+            bindingSourceAtividade.DataSource = typeof(DTO.AtividadeDTO);
+            // 
             // FormVisualizaCadastro
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1278, 688);
+            ClientSize = new Size(1278, 686);
             Controls.Add(panelControl2);
             Controls.Add(panelControl1);
             FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
@@ -439,6 +456,7 @@
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
             panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)bindingSourceAtividade).EndInit();
             ResumeLayout(false);
 
         }
@@ -475,5 +493,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit2;
+        private BindingSource bindingSourceAtividade;
     }
 }

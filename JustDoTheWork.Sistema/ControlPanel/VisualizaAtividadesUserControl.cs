@@ -19,6 +19,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
             repositoryItemButtonAtividades.ButtonPressed += RepositoryItemButtonEditAtividade_ButtonClick;
+            bindingSourcePesquisaAtividade.DataSource = new AtividadePesquisaDTO();
         }
 
         void RegisterUserControl_Load(object sender, EventArgs e)
@@ -34,19 +35,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         public void AtualizaGrid()
-        {
-            var filtro = new AtividadePesquisaDTO
-            {
-                Nome = txtNomeAtividade.Text,
-                Status = comboStatusPesquisa.EditValue != null ? (int?)comboStatusPesquisa.EditValue : null,
-                ProjetoId = comboProjetoPesquisa.EditValue != null ? (int?)comboProjetoPesquisa.EditValue : null,
-                DataCriacao = dataCriacaoPesquisa.EditValue != null ? (DateTime?)dataCriacaoPesquisa.DateTime : null
-            };
-
-            var dadosGrid = _atividadeController.PesquisarParaGrid(filtro).ToList();
-
-            GridCadastroAtividade.DataSource = dadosGrid;
-        }
+            => GridCadastroAtividade.DataSource = _atividadeController.PesquisarParaGrid(bindingSourcePesquisaAtividade.Current as AtividadePesquisaDTO).ToList();
 
         void btnPesquisarAtividade_Click(object sender, EventArgs e)
             => AtualizaGrid();
@@ -58,12 +47,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboStatusPesquisa);
 
         void btnLimpar_Click(object sender, EventArgs e)
-        {
-            txtNomeAtividade.Text = "";
-            comboProjetoPesquisa.EditValue = null;
-            comboStatusPesquisa.EditValue = null;
-            dataCriacaoPesquisa.EditValue = null;
-        }
+            => bindingSourcePesquisaAtividade.DataSource = new AtividadePesquisaDTO();
 
         void RepositoryItemButtonEditAtividade_ButtonClick(object sender, ButtonPressedEventArgs e)
         {

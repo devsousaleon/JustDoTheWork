@@ -1,272 +1,186 @@
-﻿using Dapper;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class AtividadeRepository : IAtividadeRepository
     {
-        private readonly DBConnection _dbConnection;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public AtividadeRepository(DBConnection _dbConnection)
+        public AtividadeRepository(JustDoTheWorkDbContextFactory dbContextFactory)
         {
-            this._dbConnection = _dbConnection;
+            _dbContextFactory = dbContextFactory;
         }
+
         public string Inclusao(Atividade atividade)
         {
-            const string sql = @"INSERT INTO Atividade(nome, descricao, status, datacriacao, datafinalizacao, projetoid)
-                               VALUES(@Nome, @Descricao, @Status, @DataCriacao, @DataFinalizacao, @ProjetoId);";
-
-            using (var connection = _dbConnection.Create())
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, atividade, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade! " + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                context.Atividades.Add(atividade);                
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            return "";
+            catch (Exception exception)
+            {
+                transacao.Rollback();
+                return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade! " + exception.Message;
+            }
         }
-
-                                                                                  
         public string Edicao(Atividade atividade)
         {
-            var sql = @"UPDATE ATIVIDADE SET nome = @Nome, descricao = @Descricao, status = @Status,
-                      datafinalizacao = @DataFinalizacao, projetoid = @ProjetoId where id = @Id";
-
-            using (var connection = _dbConnection.Create())
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, atividade, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a edição da atividade! " + ex.Message;
-                        }
-
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                var atividadeExistente = context.Atividades.Find(atividade.Id)!;
+                atividadeExistente.Nome = atividade.Nome;
+                atividadeExistente.Descricao = atividade.Descricao;
+                atividadeExistente.Status = atividade.Status;
+                atividadeExistente.DataFinalizacao = atividade.DataFinalizacao;
+                atividadeExistente.ProjetoId = atividade.ProjetoId;
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            return "";
+            catch (Exception exception)
+            {
+                transacao.Rollback();
+                return "Ocorreu um erro ao tentar realizar a edição da atividade! " + exception.Message;
+            }
         }
-        public string ExclusaoPorId(int Id)
+        public string ExclusaoPorId(int id)
         {
-            var sql = @"DELETE FROM atividade where id = @Id";
-
-            using (var connection = _dbConnection.Create())
-            {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id }, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar excluir a atividade! " + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
+            {                 
+                var atividade = context.Atividades.Find(id)!;
+                context.Atividades.Remove(atividade);
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            return "";
+            catch (Exception exception)
+            {
+                transacao.Rollback();
+                return "Ocorreu um erro ao tentar excluir a atividade! " + exception.Message;
+            }
         }
         public Atividade BuscarPorId(int id)
         {
-            const string sql = @"SELECT * FROM atividade WHERE id = @Id";
-
-            using (var conn = _dbConnection.Create())
-            {
-                return conn.QueryFirstOrDefault<Atividade>(
-                    sql,
-                    new { Id = id }
-                );
-            }
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.Atividades.AsNoTracking().FirstOrDefault(atividade => atividade.Id == id)!;
         }
-        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadeFilter filtro)
+        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO filtro)
         {
-            var sql = new StringBuilder();
-            sql.Append(@"SELECT a.id AS Id,
-                         a.nome AS Atividade,
-                         p.nome AS Projeto FROM atividade a
-                         INNER JOIN projeto p ON a.projetoid = p.id WHERE 1 = 1");
-
-            var parametros = new DynamicParameters();
+            using var context = _dbContextFactory.CreateDbContext();
+            var atividades = context.Atividades.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
+                atividades = atividades.Where(atividade => atividade.Nome.Contains(filtro.Nome));
+
+            if (filtro.Status is > 0)
             {
-                sql.Append(" AND a.nome LIKE @Nome ");
-                parametros.Add("@Nome", $"%{filtro.Nome}%");
+                var status = (StatusAtividade)filtro.Status;
+                atividades = atividades.Where(atividade => atividade.Status == status);
             }
 
-            if (filtro.Status > 0)
-            {
-                sql.Append(" AND a.status = @Status ");
-                parametros.Add("Status", filtro.Status);
-            }
-
-            if (filtro.ProjetoId > 0)
-            {
-                sql.Append(" AND a.projetoid = @ProjetoId ");
-                parametros.Add("ProjetoId", filtro.ProjetoId);
-            }
+            if (filtro.ProjetoId is > 0)
+                atividades = atividades.Where(atividade => atividade.ProjetoId == filtro.ProjetoId);
 
             if (filtro.DataCriacao.HasValue)
             {
-                sql.Append(" AND a.datacriacao = @DataCriacao ");
-                parametros.Add("DataCriacao", filtro.DataCriacao.Value.Date);
+                var inicio = filtro.DataCriacao.Value;
+                var fim = inicio.AddDays(1);
+                atividades = atividades.Where(atividade => atividade.DataCriacao >= inicio && atividade.DataCriacao < fim);
             }
 
-            if (filtro.DataFinalizacao.HasValue)
-            {
-                sql.Append(" AND a.datafinalizacao = @DataFinalizacao ");
-                parametros.Add("DataFinalizacao", filtro.DataFinalizacao.Value.Date);
-            }
-
-            using (var conn = _dbConnection.Create())
-                return conn.Query<AtualizaGridAtividadeDTO>(sql.ToString(), parametros);
+            return (
+                from atividade in atividades
+                join projeto in context.Projetos.AsNoTracking()
+                    on atividade.ProjetoId equals projeto.Id
+                select new AtualizaGridAtividadeDTO
+                {
+                    Id = atividade.Id,
+                    Atividade = atividade.Nome,
+                    Projeto = projeto.Nome
+                }).ToList();
         }
-
         public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro)
         {
-            var sql = new StringBuilder();
-            sql.Append(@"SELECT
-                        a.nome AS NomeAtividade,
-                        p.nome AS NomeProjeto,
-                        e.DataInicio AS DataInicioExecucao,
-                        e.DataFim AS DataFimExecucao
-                        FROM atividade a
-                        INNER JOIN projeto p ON a.projetoid = p.id
-                        INNER JOIN execucao e ON a.Id = e.AtividadeId
-                        WHERE 1 = 1");
+            using var context = _dbContextFactory.CreateDbContext();
+            var atividades = context.Atividades.AsNoTracking().AsQueryable();
 
-            var parametros = new DynamicParameters();
-
-            if (filtro.Status > 0)
+            if (filtro.Status is > 0)
             {
-                sql.Append(" AND a.status = @Status ");
-                parametros.Add("Status", filtro.Status);
+                var status = (StatusAtividade)filtro.Status.Value;
+                atividades = atividades.Where(atividade => atividade.Status == status);
             }
 
-            if (filtro.ProjetoId > 0)
-            {
-                sql.Append(" AND a.projetoid = @ProjetoId ");
-                parametros.Add("ProjetoId", filtro.ProjetoId);
-            }
+            if (filtro.ProjetoId is > 0)
+                atividades = atividades.Where(atividade => atividade.ProjetoId == filtro.ProjetoId.Value);
 
             if (filtro.DataCriacaoAtividade.HasValue)
             {
-                sql.Append(" AND a.datacriacao = @DataCriacaoAtividade ");
-                parametros.Add("DataCriacaoAtividade", filtro.DataCriacaoAtividade.Value.Date);
+                var inicio = filtro.DataCriacaoAtividade.Value.Date;
+                var fim = inicio.AddDays(1);
+                atividades = atividades.Where(atividade => atividade.DataCriacao >= inicio && atividade.DataCriacao < fim);
             }
 
-            using (var conn = _dbConnection.Create())
-                return conn.Query<ResultadoPesquisaHistoricoDTO>(sql.ToString(), parametros);
+            return (
+                from atividade in atividades
+                join projeto in context.Projetos.AsNoTracking()
+                    on atividade.ProjetoId equals projeto.Id
+                join execucao in context.Execucoes.AsNoTracking()
+                    on atividade.Id equals execucao.AtividadeId
+                select new ResultadoPesquisaHistoricoDTO
+                {
+                    NomeAtividade = atividade.Nome,
+                    NomeProjeto = projeto.Nome,
+                    DataInicioExecucao = execucao.DataInicio,
+                    DataFimExecucao = execucao.DataFim
+                }).ToList();
         }
-
-        public IEnumerable<AtualizaAtividadesExecucaoDTO> BuscaParaGridAtividades(int Status)
+        public IEnumerable<AtualizaGridAtividadeDTO> BuscaParaGridAtividades(int status)
         {
-            var sql = @" select a.id as AtividadeId, a.nome as NomeAtividade, p.nome as NomeProjeto " +
-                      " from atividade a " +
-                      " inner join projeto p on p.id = a.projetoid " +
-                      " where a.status = @Status";
+            using var context = _dbContextFactory.CreateDbContext();
+            var statusAtividade = (StatusAtividade)status;
 
-            using (var conn = _dbConnection.Create())
-            {
-                return conn.Query<AtualizaAtividadesExecucaoDTO>(
-                    sql.ToString(),
-                    new {Status}
-                );
-            }
+            return (
+                from atividade in context.Atividades.AsNoTracking()
+                join projeto in context.Projetos.AsNoTracking()
+                    on atividade.ProjetoId equals projeto.Id
+                where atividade.Status == statusAtividade
+                select new AtualizaGridAtividadeDTO
+                {
+                    Id = atividade.Id,
+                    Atividade = atividade.Nome,
+                    Projeto = projeto.Nome
+                }).ToList();
         }
-        public string ExecutaAtividade(int Id, int Status)
+        public string ExecutaAtividade(int id, int status, JustDoTheWorkDbContext context)
         {
-            var sql = @"UPDATE atividade 
-                        SET status = @Status, 
-                            datafinalizacao =
-                                        CASE 
-                                            WHEN @Status = 6 THEN @DataFinalizacao ELSE datafinalizacao 
-                                        END 
-                        WHERE id = @Id";
+            try
+            {                
+                var atividadeExistente = context.Atividades.Find(id)!;
+                atividadeExistente.Status = (StatusAtividade)status;
 
-            using (var connection = _dbConnection.Create())
-            {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id, status = Status, DataFinalizacao = DateTime.Now }, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Ocorreu um erro ao tentar realizar a execução desta atividade!" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                if (atividadeExistente.Status == StatusAtividade.Finalizado)
+                    atividadeExistente.DataFinalizacao = DateTime.Now;
+
+                context.SaveChanges();
+                return "";
             }
-            return "";
+            catch (Exception exception)
+            {
+                return "Ocorreu um erro ao tentar realizar a execução desta atividade! " + exception.Message;
+            }
         }
-
-        
     }
 }

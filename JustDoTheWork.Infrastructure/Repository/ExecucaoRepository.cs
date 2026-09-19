@@ -7,105 +7,71 @@ namespace JustDoTheWork.Infrastructure.Repository
 {
     public class ExecucaoRepository : IExecucaoRepository
     {
-        private readonly DBConnection _dbConnection;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public ExecucaoRepository(DBConnection _dbConnection)
+        public ExecucaoRepository(JustDoTheWorkDbContextFactory? dbContextFactory = null)
         {
-            this._dbConnection = _dbConnection;
+            _dbContextFactory = dbContextFactory;
         }
-        public string Inclusao(Execucao execucao)
-        {
-            var sql = @"INSERT INTO execucao(datainicio, datafim, atividadeid)
-                      VALUES(@DataInicio, @DataFim, @AtividadeId)";
 
-            using (var connection = _dbConnection.Create())
+        public string Inclusao(Execucao execucao, JustDoTheWorkDbContext context)
+        {
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, execucao, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao iniciar a execução! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                context.Execucoes.Add(execucao);
+                context.SaveChanges();
             }
+            catch (Exception exception)
+            {
+                return "Erro ao iniciar a execução! \n" + exception.Message;
+            }
+
             return "";
         }
-        public string FinalizaExecucao(Execucao execucao)
-        {
-            var sql = @"UPDATE execucao SET datafim = @DataFim WHERE atividadeid = @AtividadeId AND datafim IS NULL";
 
-            using (var connection = _dbConnection.Create())
+        public string FinalizaExecucao(Execucao execucao, JustDoTheWorkDbContext context)
+        {
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, execucao, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao pausar a execução! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                var execucaoSalva = context.Execucoes.FirstOrDefault(e => e.AtividadeId == execucao.AtividadeId && e.DataFim == null);
+                execucaoSalva.DataFim = execucao.DataFim;
+                context.SaveChanges();
+                return "";
             }
-            return "";
+            catch (Exception exception)
+            {
+                return "Erro ao finalizar/pausar a execução! \n" + exception.Message;
+            }
         }
+
         public IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId)
         {
-            var sql = " SELECT " +
-                      " datainicio AS DataInicioExecucao, " +
-                      " datafim AS DataFimExecucao, " +
-                      " atividadeid AS AtividadeId FROM execucao " +                      
-                      " WHERE atividadeid = @AtividadeId";
-            using (var connection = _dbConnection.Create())
-            {
-                return connection.Query<ExecucaoDTO>(sql.ToString(), new { AtividadeId });
-            }
+            return null;
+            //var sql = " SELECT " +
+            //          " datainicio AS DataInicioExecucao, " +
+            //          " datafim AS DataFimExecucao, " +
+            //          " atividadeid AS AtividadeId FROM execucao " +                      
+            //          " WHERE atividadeid = @AtividadeId";
+            //using (var connection = _dbConnection.Create())
+            //{
+            //    return connection.Query<ExecucaoDTO>(sql.ToString(), new { AtividadeId });
+            //}
         }
         public VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId)
         {
-            var sql = @"SELECT " +
-                      " a.nome AS NomeAtividade, " +
-                      " a.descricao AS DescricaoAtividade, " +
-                      " a.datacriacao AS DataCriacaoAtividade, " +
-                      " p.nome AS NomeProjeto FROM atividade a " +
-                      " INNER JOIN projeto p on p.id = a.projetoid " +
-                      " WHERE a.id = @AtividadeId";
+            return null;
+            //var sql = @"SELECT " +
+            //          " a.nome AS NomeAtividade, " +
+            //          " a.descricao AS DescricaoAtividade, " +
+            //          " a.datacriacao AS DataCriacaoAtividade, " +
+            //          " p.nome AS NomeProjeto FROM atividade a " +
+            //          " INNER JOIN projeto p on p.id = a.projetoid " +
+            //          " WHERE a.id = @AtividadeId";
 
-            using (var connection = _dbConnection.Create())
-            {
-                return connection.QueryFirstOrDefault<VisualizaExecucaoAtividadeDTO>(sql.ToString(), new { AtividadeId });
-            }
+            //using (var connection = _dbConnection.Create())
+            //{
+            //    return connection.QueryFirstOrDefault<VisualizaExecucaoAtividadeDTO>(sql.ToString(), new { AtividadeId });
+            //}
         }
     }
 }

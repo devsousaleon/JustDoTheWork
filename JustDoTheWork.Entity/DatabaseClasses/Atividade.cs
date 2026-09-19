@@ -1,12 +1,12 @@
-﻿using JustDoTheWork.Entity.Domains;
+﻿using JustDoTheWork.Entity.DatabaseClasses;
+using JustDoTheWork.Entity.Domains;
 
 namespace JustDoTheWork.Entity
 {
-    public class Atividade
+    public class Atividade : BaseClass
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
-        public byte[] Descricao { get; set; }
+        public byte[]? Descricao { get; set; }
         public StatusAtividade Status { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime? DataFinalizacao { get; set; }

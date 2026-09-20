@@ -1,8 +1,8 @@
-﻿namespace JustDoTheWork.DTO
+﻿using JustDoTheWork.Entity;
+
+namespace JustDoTheWork.DTO
 {
-    public class ProjetoDTO
+    public class ProjetoDTO : Projeto
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
     }
 }

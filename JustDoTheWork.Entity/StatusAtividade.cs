@@ -1,4 +1,4 @@
-﻿namespace JustDoTheWork.Entity.Domains
+﻿namespace JustDoTheWork.Entity
 {
     public enum StatusAtividade
     {

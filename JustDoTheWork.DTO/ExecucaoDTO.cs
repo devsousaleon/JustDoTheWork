@@ -1,9 +1,8 @@
-﻿namespace JustDoTheWork.DTO
+﻿using JustDoTheWork.Entity;
+
+namespace JustDoTheWork.DTO
 {
-    public class ExecucaoDTO
+    public class ExecucaoDTO : Execucao
     {
-        public int AtividadeId { get; set; }
-        public DateTime? DataFimExecucao { get; set; }
-        public DateTime DataInicioExecucao { get; set; }
     }
 }

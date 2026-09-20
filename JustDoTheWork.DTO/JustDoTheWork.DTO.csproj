@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ProjetoComboBox.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JustDoTheWork.Entity\JustDoTheWork.Entity.csproj" />
   </ItemGroup>
 

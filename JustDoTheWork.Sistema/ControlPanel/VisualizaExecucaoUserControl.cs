@@ -11,26 +11,21 @@ namespace JustDoTheWork.Sistema.ControlPanel
     public partial class VisualizaExecucaoUserControl : XtraUserControl
     {
         readonly AtividadeController _atividadeController;
-        readonly ExecucaoController _execucaoController;
         readonly Timer _atualizaTimer;
 
         int _statusExecucaoSelecionado;
 
         public int IdSelecionadoAtividade { get; private set; }
 
-        enum TipoExecucao { Inclusao, Edicao }
-
         public VisualizaExecucaoUserControl()
         {
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
-            _execucaoController = CompositionRoot.CriarExecucaoController();
             repositoryButtonActionPendentes.ButtonPressed += RepositoryItemButtonEditPendente_ButtonClick;
             repositoryButtonActionExecucao.ButtonPressed += RepositoryItemButtonEditExecucao_ButtonClick;
             repositoryButtonActionPausado.ButtonPressed += RepositoryItemButtonEditPausado_ButtonClick;
             
             _atualizaTimer = new Timer(components) { Interval = 10000 };
-
             _atualizaTimer.Tick += AtualizaGridTimer;
 
         }        
@@ -87,7 +82,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         void InstanciaFormPorIdSelecionado(GridView gridView)
         {
-            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("AtividadeId"));
+            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id"));
 
             if (IdSelecionadoAtividade <= 0)
                 return;

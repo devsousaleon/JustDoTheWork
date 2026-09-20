@@ -1,5 +1,4 @@
 ﻿using JustDoTheWork.Entity.DatabaseClasses;
-using JustDoTheWork.Entity.Domains;
 
 namespace JustDoTheWork.Entity
 {

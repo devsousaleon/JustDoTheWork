@@ -1,6 +1,5 @@
 using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
-using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +31,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 return "Ocorreu um erro ao tentar realizar a ação de inclusão da atividade! " + exception.Message;
             }
         }
+
         public string Edicao(Atividade atividade)
         {
             using var context = _dbContextFactory.CreateDbContext();

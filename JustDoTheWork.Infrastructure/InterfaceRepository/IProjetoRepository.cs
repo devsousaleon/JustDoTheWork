@@ -1,5 +1,5 @@
-﻿using JustDoTheWork.Entity;
-using JustDoTheWork.Entity.Domains;
+﻿using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
@@ -9,6 +9,6 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string Edicao(Projeto projeto);
         string ExclusaoPorId(int id);
         Projeto BuscarPorId(int id);
-        IEnumerable<Projeto> Pesquisar(ProjetoFilter filtro);
+        IEnumerable<ProjetoDTO> Pesquisar(ProjetoDTO filtro);
     }
 }

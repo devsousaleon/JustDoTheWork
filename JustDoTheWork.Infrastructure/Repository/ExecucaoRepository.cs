@@ -1,7 +1,7 @@
-﻿using Dapper;
-using JustDoTheWork.DTO;
+﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
@@ -46,32 +46,35 @@ namespace JustDoTheWork.Infrastructure.Repository
 
         public IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId)
         {
-            return null;
-            //var sql = " SELECT " +
-            //          " datainicio AS DataInicioExecucao, " +
-            //          " datafim AS DataFimExecucao, " +
-            //          " atividadeid AS AtividadeId FROM execucao " +                      
-            //          " WHERE atividadeid = @AtividadeId";
-            //using (var connection = _dbConnection.Create())
-            //{
-            //    return connection.Query<ExecucaoDTO>(sql.ToString(), new { AtividadeId });
-            //}
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.Execucoes.AsNoTracking()
+                             .Where(e => e.AtividadeId == AtividadeId)
+                             .Select(e => new ExecucaoDTO
+                             {
+                                 AtividadeId = e.AtividadeId,
+                                 DataFim = e.DataFim,
+                                 DataInicio = e.DataInicio
+                             }).ToList();
         }
         public VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId)
         {
-            return null;
-            //var sql = @"SELECT " +
-            //          " a.nome AS NomeAtividade, " +
-            //          " a.descricao AS DescricaoAtividade, " +
-            //          " a.datacriacao AS DataCriacaoAtividade, " +
-            //          " p.nome AS NomeProjeto FROM atividade a " +
-            //          " INNER JOIN projeto p on p.id = a.projetoid " +
-            //          " WHERE a.id = @AtividadeId";
+            using var context = _dbContextFactory.CreateDbContext();
 
-            //using (var connection = _dbConnection.Create())
-            //{
-            //    return connection.QueryFirstOrDefault<VisualizaExecucaoAtividadeDTO>(sql.ToString(), new { AtividadeId });
-            //}
+            return context.Atividades
+                .AsNoTracking()
+                .Where(a => a.Id == AtividadeId)
+                .Join(
+                    context.Projetos.AsNoTracking(),
+                    a => a.ProjetoId,
+                    p => p.Id,
+                    (a, p) => new VisualizaExecucaoAtividadeDTO
+                    {
+                        NomeAtividade = a.Nome,
+                        DescricaoAtividade = a.Descricao,
+                        DataCriacaoAtividade = a.DataCriacao,
+                        NomeProjeto = p.Nome
+                    })
+                .FirstOrDefault();
         }
     }
 }

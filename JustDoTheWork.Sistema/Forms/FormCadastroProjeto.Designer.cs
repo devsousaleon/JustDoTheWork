@@ -28,19 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroProjeto));
             txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
             btnIncluirProjeto = new DevExpress.XtraEditors.SimpleButton();
             btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             panelControl1 = new DevExpress.XtraEditors.PanelControl();
             lblNomeProjeto = new DevExpress.XtraEditors.LabelControl();
+            bindingSourceProjetoDTO = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceProjetoDTO).BeginInit();
             SuspendLayout();
             // 
             // txtNomeProjeto
             // 
+            txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceProjetoDTO, "Nome", true));
             txtNomeProjeto.Location = new Point(76, 19);
             txtNomeProjeto.Margin = new Padding(4, 3, 4, 3);
             txtNomeProjeto.Name = "txtNomeProjeto";
@@ -97,12 +101,16 @@
             lblNomeProjeto.TabIndex = 4;
             lblNomeProjeto.Text = "Nome";
             // 
+            // bindingSourceProjetoDTO
+            // 
+            bindingSourceProjetoDTO.DataSource = typeof(DTO.ProjetoDTO);
+            // 
             // FormCadastroProjeto
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(348, 181);
+            ClientSize = new Size(348, 179);
             Controls.Add(panelControl1);
             Font = new Font("Courier New", 8.25F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -114,11 +122,11 @@
             Name = "FormCadastroProjeto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inclusão de Projeto";
-            Load += FormAdicionaProjeto_Load;
             ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
             panelControl1.ResumeLayout(false);
             panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceProjetoDTO).EndInit();
             ResumeLayout(false);
 
         }
@@ -129,5 +137,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCancelar;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl lblNomeProjeto;
+        private BindingSource bindingSourceProjetoDTO;
     }
 }

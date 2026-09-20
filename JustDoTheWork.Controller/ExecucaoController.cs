@@ -11,13 +11,11 @@ namespace JustDoTheWork.Controller
         {
             _iExecucaoRepository = repository;
         }
+
         public IEnumerable<ExecucaoDTO> InformaDadosExecucao(int AtividadeId)
-        {
-            return _iExecucaoRepository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
-        }
+            => _iExecucaoRepository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
+
         public VisualizaExecucaoAtividadeDTO InformaDadosAtividade(int AtividadeId)
-        {
-            return _iExecucaoRepository.BuscaInfoAtividadeExecucao(AtividadeId);
-        }
+            => _iExecucaoRepository.BuscaInfoAtividadeExecucao(AtividadeId);
     }
 }

@@ -8,7 +8,6 @@ namespace JustDoTheWork.Sistema.Forms
     public partial class FormCadastroProjeto : XtraForm
     {
         private readonly ProjetoController _controller;
-        BindingSource _dadosProjetoBindingSource;
         FormCadastroAtividade _formCadastro;
 
         public FormCadastroProjeto(FormCadastroAtividade _formCadastro)
@@ -16,19 +15,15 @@ namespace JustDoTheWork.Sistema.Forms
             InitializeComponent();
             _controller = CompositionRoot.CriarProjetoController();
             this._formCadastro = _formCadastro;
+            bindingSourceProjetoDTO.DataSource = new ProjetoDTO();
         }
-
-        void FormAdicionaProjeto_Load(object sender, EventArgs e)
-            => ConfiguracaoBindingSource();
 
         void btnCancelar_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
         
         void btnIncluirProjeto_Click(object sender, EventArgs e)
         {
-            var dtoProjeto = (ProjetoDTO)_dadosProjetoBindingSource.DataSource;
-
-            var mensagemRetornoInclusaoProjeto = _controller.Inclusao(dtoProjeto);
+            var mensagemRetornoInclusaoProjeto = _controller.Inclusao(bindingSourceProjetoDTO.Current as ProjetoDTO);
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoInclusaoProjeto))
             {
@@ -39,14 +34,6 @@ namespace JustDoTheWork.Sistema.Forms
             MessageService.Sucesso("Projeto cadastrado com sucesso!");
             _formCadastro.AtualizaComboBoxProjeto();
             this.Close();
-        }
-        
-        void ConfiguracaoBindingSource()
-        {
-            _dadosProjetoBindingSource = new BindingSource();
-            _dadosProjetoBindingSource.DataSource = new ProjetoDTO();
-
-            txtNomeProjeto.DataBindings.Add("Text", _dadosProjetoBindingSource, "Nome", true, DataSourceUpdateMode.OnPropertyChanged);
         }
     }
 }

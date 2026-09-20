@@ -1,8 +1,9 @@
-﻿namespace JustDoTheWork.Entity
+﻿using JustDoTheWork.Entity.DatabaseClasses;
+
+namespace JustDoTheWork.Entity
 {
-    public class Execucao
+    public class Execucao : BaseClass
     {
-        public int Id { get; set; }
         public DateTime DataInicio { get; set; } = DateTime.Now;
         public DateTime? DataFim { get; set; }
         public int AtividadeId { get; set; }

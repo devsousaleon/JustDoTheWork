@@ -34,8 +34,7 @@ namespace JustDoTheWork.Controller
         }
         public static ProjetoController CriarProjetoController()
         {
-            var _dbconnection = ConnectionDB();
-            IProjetoRepository repository = new ProjetoRepository(_dbconnection);
+            IProjetoRepository repository = new ProjetoRepository(_dbContextFactory);
             return new ProjetoController(repository);
         }
         public static ExecucaoController CriarExecucaoController()

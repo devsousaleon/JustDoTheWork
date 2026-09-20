@@ -1,6 +1,5 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
-using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 
 namespace JustDoTheWork.Controller
@@ -31,15 +30,7 @@ namespace JustDoTheWork.Controller
             return mensagem;
         }
 
-        public IEnumerable<ProjetoComboDto> PesquisarParaCombo()
-        {
-            var projetos = _iProjetoRepository.Pesquisar(new ProjetoFilter());
-
-            return projetos.Select(p => new ProjetoComboDto
-            {
-                Id = p.Id,
-                Nome = p.Nome
-            });
-        }
+        public IEnumerable<ProjetoDTO> PesquisarParaCombo()
+            => _iProjetoRepository.Pesquisar(new ProjetoDTO());
     }
 }

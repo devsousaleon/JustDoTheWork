@@ -1,8 +1,9 @@
-﻿namespace JustDoTheWork.Entity
+﻿using JustDoTheWork.Entity.DatabaseClasses;
+
+namespace JustDoTheWork.Entity
 {
-    public class Projeto
+    public class Projeto : BaseClass
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
     }
 }

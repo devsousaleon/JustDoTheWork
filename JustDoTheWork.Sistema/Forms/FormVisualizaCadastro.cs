@@ -43,6 +43,7 @@ namespace JustDoTheWork.Sistema.Forms
             if (bindingSourceAtividade.Current is AtividadeDTO a && (int)a.Status >= 2)
                 btnAvancar.Visible = false;
         }
+
         void CarregaDadosExecucao()
         {
             if (bindingSourceAtividade.Current is AtividadeDTO a && (int)a.Status == 6)

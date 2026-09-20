@@ -21,14 +21,8 @@ namespace JustDoTheWork.Sistema.Forms
 
         void CarregaInfoAtividadeExecucao()
         {
-            var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_homeUserControl.IdSelecionadoAtividade);
-            dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
-
-            var dadosInfoAtividade = _execucaoController.InformaDadosAtividade(_homeUserControl.IdSelecionadoAtividade);
-            txtEditorAtividade.LoadDocument(dadosInfoAtividade.DescricaoAtividade, DevExpress.XtraRichEdit.DocumentFormat.OpenXml);
-            txtNomeAtividade.Text = dadosInfoAtividade.NomeAtividade;
-            txtNomeProjeto.Text = dadosInfoAtividade.NomeProjeto;
-            DataCriacaoAtividade.EditValue = dadosInfoAtividade.DataCriacaoAtividade;
+            bindingSourceExecucaoDTO.DataSource = _execucaoController.InformaDadosExecucao(_homeUserControl.IdSelecionadoAtividade);
+            bindingSourceVisualizaExecucaoAtividadeDTO.DataSource = _execucaoController.InformaDadosAtividade(_homeUserControl.IdSelecionadoAtividade);
         }
     }
 }

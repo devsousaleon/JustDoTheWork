@@ -35,7 +35,7 @@
             xtraTabInfoAtividade = new DevExpress.XtraTab.XtraTabPage();
             groupHistoricoExecucao = new DevExpress.XtraEditors.GroupControl();
             dataGridHistoricoExecucao = new DevExpress.XtraGrid.GridControl();
-            execucaoDTOBindingSource = new BindingSource(components);
+            bindingSourceExecucaoDTO = new BindingSource(components);
             gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
             colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,6 +51,7 @@
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             xtraPageDescricaoAtividade = new DevExpress.XtraTab.XtraTabPage();
             txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
+            bindingSourceVisualizaExecucaoAtividadeDTO = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)xtraTabControlAtividadesExecucao).BeginInit();
@@ -59,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)groupHistoricoExecucao).BeginInit();
             groupHistoricoExecucao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceExecucaoDTO).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).BeginInit();
@@ -69,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)DataCriacaoAtividade.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
             xtraPageDescricaoAtividade.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceVisualizaExecucaoAtividadeDTO).BeginInit();
             SuspendLayout();
             // 
             // panelControl1
@@ -112,7 +114,7 @@
             // 
             // dataGridHistoricoExecucao
             // 
-            dataGridHistoricoExecucao.DataSource = execucaoDTOBindingSource;
+            dataGridHistoricoExecucao.DataSource = bindingSourceExecucaoDTO;
             dataGridHistoricoExecucao.Location = new Point(12, 39);
             dataGridHistoricoExecucao.MainView = gridHistoricoExecucao;
             dataGridHistoricoExecucao.Margin = new Padding(10);
@@ -122,9 +124,9 @@
             dataGridHistoricoExecucao.TabIndex = 1;
             dataGridHistoricoExecucao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridHistoricoExecucao });
             // 
-            // execucaoDTOBindingSource
+            // bindingSourceExecucaoDTO
             // 
-            execucaoDTOBindingSource.DataSource = typeof(DTO.ExecucaoDTO);
+            bindingSourceExecucaoDTO.DataSource = typeof(DTO.ExecucaoDTO);
             // 
             // gridHistoricoExecucao
             // 
@@ -198,6 +200,7 @@
             // 
             // txtNomeProjeto
             // 
+            txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceVisualizaExecucaoAtividadeDTO, "NomeProjeto", true));
             txtNomeProjeto.Enabled = false;
             txtNomeProjeto.Location = new Point(105, 81);
             txtNomeProjeto.Name = "txtNomeProjeto";
@@ -220,6 +223,7 @@
             // 
             // DataCriacaoAtividade
             // 
+            DataCriacaoAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceVisualizaExecucaoAtividadeDTO, "DataCriacaoAtividade", true));
             DataCriacaoAtividade.EditValue = null;
             DataCriacaoAtividade.Enabled = false;
             DataCriacaoAtividade.Location = new Point(583, 40);
@@ -254,6 +258,7 @@
             // 
             // txtNomeAtividade
             // 
+            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceVisualizaExecucaoAtividadeDTO, "NomeAtividade", true));
             txtNomeAtividade.Enabled = false;
             txtNomeAtividade.Location = new Point(65, 40);
             txtNomeAtividade.Name = "txtNomeAtividade";
@@ -274,6 +279,7 @@
             // 
             // txtEditorAtividade
             // 
+            txtEditorAtividade.DataBindings.Add(new Binding("DocxBytes", bindingSourceVisualizaExecucaoAtividadeDTO, "DescricaoAtividade", true));
             txtEditorAtividade.Location = new Point(10, 10);
             txtEditorAtividade.Margin = new Padding(10);
             txtEditorAtividade.Name = "txtEditorAtividade";
@@ -282,11 +288,15 @@
             txtEditorAtividade.Size = new Size(842, 488);
             txtEditorAtividade.TabIndex = 19;
             // 
+            // bindingSourceVisualizaExecucaoAtividadeDTO
+            // 
+            bindingSourceVisualizaExecucaoAtividadeDTO.DataSource = typeof(DTO.VisualizaExecucaoAtividadeDTO);
+            // 
             // FormVisualizaAtividadeExecucao
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(898, 564);
+            ClientSize = new Size(898, 560);
             Controls.Add(panelControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             IconOptions.LargeImage = (Image)resources.GetObject("FormVisualizaAtividadeExecucao.IconOptions.LargeImage");
@@ -304,7 +314,7 @@
             ((System.ComponentModel.ISupportInitialize)groupHistoricoExecucao).EndInit();
             groupHistoricoExecucao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridHistoricoExecucao).EndInit();
-            ((System.ComponentModel.ISupportInitialize)execucaoDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceExecucaoDTO).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).EndInit();
@@ -315,6 +325,7 @@
             ((System.ComponentModel.ISupportInitialize)DataCriacaoAtividade.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
             xtraPageDescricaoAtividade.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)bindingSourceVisualizaExecucaoAtividadeDTO).EndInit();
             ResumeLayout(false);
 
         }
@@ -337,7 +348,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataFimDataGridViewTextBoxColumn;
         private DevExpress.XtraEditors.TextEdit txtNomeProjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCriacaoAtividadeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource execucaoDTOBindingSource;
+        private System.Windows.Forms.BindingSource bindingSourceExecucaoDTO;
         private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
         private DevExpress.XtraGrid.GridControl dataGridHistoricoExecucao;
         private DevExpress.XtraGrid.Views.Grid.GridView gridHistoricoExecucao;
@@ -346,5 +357,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit2;
+        private BindingSource bindingSourceVisualizaExecucaoAtividadeDTO;
     }
 }

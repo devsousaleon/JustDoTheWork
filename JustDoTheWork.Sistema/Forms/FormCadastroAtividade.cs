@@ -16,6 +16,7 @@ namespace JustDoTheWork.Sistema.Forms
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
+            BindingSourceAtividade.DataSource = new AtividadeDTO();
         }
 
         void FormRegister_Load(object sender, EventArgs e)

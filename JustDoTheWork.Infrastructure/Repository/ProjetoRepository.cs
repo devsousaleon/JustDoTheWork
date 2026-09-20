@@ -1,137 +1,95 @@
-﻿using Dapper;
+﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
-using JustDoTheWork.Entity.Domains;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class ProjetoRepository : IProjetoRepository
     {
-        private readonly DBConnection _dbConnection;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public ProjetoRepository(DBConnection _dbConnection)
+        public ProjetoRepository(JustDoTheWorkDbContextFactory? dbContextFactory = null)
         {
-            this._dbConnection = _dbConnection;
+            _dbContextFactory = dbContextFactory;
         }
+
         public string Inclusao(Projeto projeto)
         {
-            var sql = @"INSERT INTO projeto(nome) VALUES(@Nome)";
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+
             try
             {
-                using (var connection = _dbConnection.Create())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao incluir projeto! " + ex.Message;
-                        }
-                    }
-                }
+                context.Add(projeto);
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                return "Erro de conexão com banco de dados. " + exception.Message;
+                transacao.Rollback();
+                return "Erro ao incluir projeto! " + ex.Message;
             }
-
-            return "";
         }
+
         public string Edicao(Projeto projeto)
         {
-            var sql = @"UPDATE projeto SET nome = @nome WHERE id = @Id";
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
             try
             {
-                using (var connection = _dbConnection.Create())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao editar dados do projeto! " + ex.Message;
-                        }
-                    }
-                }
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                return "Erro de conexão com banco de dados. " + exception.Message;
+                transacao.Rollback();
+                return "Erro ao editar dados do projeto! " + ex.Message;
             }
-            return "";
         }
+
         public string ExclusaoPorId(int id)
         {
-            var sql = @"DELETE FROM projeto WHERE id = @Id";
-
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
             try
             {
-                using (var connection = _dbConnection.Create())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { Id = id }, transaction);
-                            transaction.Commit();
-                        }
-                        catch(Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao excluir projeto! " + ex.Message;
-                        }
-                    }
-                }
+                var projeto = context.Projetos.Find(id)!;
+                context.Projetos.Remove(projeto);
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                return "Erro de conexão com banco de dados. " + exception.Message;
+                transacao.Rollback();
+                return "Erro ao excluir projeto! " + ex.Message;
             }
-            return "";
         }
+
         public Projeto BuscarPorId(int id)
         {
-            var sql = @"SELECT * FROM projeto WHERE id = @Id";
-
-            using (var connection = _dbConnection.Create())
-            {
-                return connection.QueryFirstOrDefault<Projeto>(
-                    sql,
-                    new { Id = id }
-                );
-            }
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.Projetos.AsNoTracking().Where(p => p.Id == id).FirstOrDefault();
         }
-        public IEnumerable<Projeto> Pesquisar(ProjetoFilter filtro)
-        {
-            var sql = new StringBuilder();
-            sql.Append("SELECT * FROM projeto WHERE 1 = 1 ");
 
-            var parametros = new DynamicParameters();
+        public IEnumerable<ProjetoDTO> Pesquisar(ProjetoDTO filtro)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            var projetos = context.Projetos.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filtro.Nome))
-            {
-                sql.Append("AND nome LIKE @Nome ");
-                parametros.Add("Nome", $"%{filtro.Nome}%");
-            }
+                projetos = projetos.Where(p => p.Nome.Contains(filtro.Nome));
 
-            using (var conn = _dbConnection.Create())
-            {
-                return conn.Query<Projeto>(
-                    sql.ToString(),
-                    parametros
-                );
-            }
+            return (
+                from projeto in projetos
+                select new ProjetoDTO
+                {
+                    Id = projeto.Id,
+                    Nome = projeto.Nome
+                }).ToList();
         }
     }
 }

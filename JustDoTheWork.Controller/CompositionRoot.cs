@@ -6,23 +6,15 @@ namespace JustDoTheWork.Controller
 {
     public static class CompositionRoot
     {
-        private static DBConnection? _dbConnection;
         private static JustDoTheWorkDbContextFactory? _dbContextFactory;
-
-        public static void Configurar(string connectionString)
-            => Configurar(connectionString, "Microsoft.Data.SqlClient");
 
         public static void Configurar(string connectionString, string providerName)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new ArgumentException("A connection string não pode ser vazia.", nameof(connectionString));
 
-            _dbConnection = new DBConnection(connectionString, providerName);
             _dbContextFactory = new JustDoTheWorkDbContextFactory(connectionString, providerName);
         }
-
-        private static DBConnection ConnectionDB()
-            => _dbConnection ?? throw new InvalidOperationException("O CompositionRoot precisa ser configurado antes da criação dos controllers.");
 
         private static JustDoTheWorkDbContextFactory DbContextFactory()
             => _dbContextFactory ?? throw new InvalidOperationException("O CompositionRoot precisa ser configurado antes da criação dos controllers.");
@@ -44,14 +36,12 @@ namespace JustDoTheWork.Controller
         }
         public static ModeloRelatorioController CriarModeloRelatorioController()
         {
-            var _dbconnection = ConnectionDB();
-            IModeloRelatorioRepository repository = new ModeloRelatorioRepository(_dbconnection);
+            IModeloRelatorioRepository repository = new ModeloRelatorioRepository(_dbContextFactory);
             return new ModeloRelatorioController(repository);
         }
         public static TipoModeloController CriarTipoModeloController()
         {
-            var _dbconnection = ConnectionDB();
-            ITipoModeloRepository repository = new TipoModeloRepository(_dbconnection);
+            ITipoModeloRepository repository = new TipoModeloRepository(_dbContextFactory);
             return new TipoModeloController(repository);
         }
         public static BancoController CriarBancoController()

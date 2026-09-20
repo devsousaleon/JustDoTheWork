@@ -36,9 +36,7 @@ namespace JustDoTheWork.Controller
         }
 
         public ModeloRelatorioDTO PreencheDadosTela(int id)
-        {
-            return _iModeloRepository.BuscarPorId(id);
-        }
+            => _iModeloRepository.BuscarPorId(id);
 
         public string Edicao(ModeloRelatorioDTO modeloRelatorioDTO)
         {
@@ -61,13 +59,9 @@ namespace JustDoTheWork.Controller
         }
 
         public string Exclusao(int Id)
-        {
-            return _iModeloRepository.ExclusaoPorId(Id);
-        }
+            => _iModeloRepository.ExclusaoPorId(Id);
 
         public byte[]? BuscaModeloHistoricoExecucao()
-        {
-            return _iModeloRepository.BuscaModeloHistoricoExecucao();
-        }
+            => _iModeloRepository.BuscaModeloHistoricoExecucao();
     }
 }

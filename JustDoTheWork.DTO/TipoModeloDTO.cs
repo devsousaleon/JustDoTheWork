@@ -2,7 +2,7 @@
 
 namespace JustDoTheWork.DTO
 {
-    public class ModeloRelatorioDTO : ModeloRelatorio
+    public class TipoModeloDTO : TipoModelo
     {
     }
 }

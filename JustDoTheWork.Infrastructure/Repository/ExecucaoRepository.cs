@@ -20,13 +20,12 @@ namespace JustDoTheWork.Infrastructure.Repository
             {
                 context.Execucoes.Add(execucao);
                 context.SaveChanges();
+                return "";
             }
             catch (Exception exception)
             {
                 return "Erro ao iniciar a execução! \n" + exception.Message;
-            }
-
-            return "";
+            }            
         }
 
         public string FinalizaExecucao(Execucao execucao, JustDoTheWorkDbContext context)

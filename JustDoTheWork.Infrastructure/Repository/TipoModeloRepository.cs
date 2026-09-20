@@ -1,24 +1,22 @@
-﻿using Dapper;
-using JustDoTheWork.Entity.DatabaseClasses;
+﻿using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class TipoModeloRepository : ITipoModeloRepository
     {
-        private readonly DBConnection _dbConnection;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public TipoModeloRepository(DBConnection dbConnection)
+        public TipoModeloRepository(JustDoTheWorkDbContextFactory dbContextFactory)
         {
-            _dbConnection = dbConnection;
+            _dbContextFactory = dbContextFactory;
         }
 
         IEnumerable<TipoModelo> ITipoModeloRepository.PesquisarParaCombo()
         {
-            var sql = "SELECT * FROM TipoModelo";
-
-            using var conn = _dbConnection.Create();
-                return conn.Query<TipoModelo>(sql.ToString());
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.TiposModelo.AsNoTracking().ToList();
         }
     }
 }

@@ -54,6 +54,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 return "Ocorreu um erro ao tentar realizar a edição da atividade! " + exception.Message;
             }
         }
+
         public string ExclusaoPorId(int id)
         {
             using var context = _dbContextFactory.CreateDbContext();
@@ -72,6 +73,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 return "Ocorreu um erro ao tentar excluir a atividade! " + exception.Message;
             }
         }
+
         public Atividade BuscarPorId(int id)
         {
             using var context = _dbContextFactory.CreateDbContext();

@@ -1,166 +1,120 @@
-﻿using Dapper;
-using JustDoTheWork.DTO;
-using JustDoTheWork.Entity;
+﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class ModeloRelatorioRepository : IModeloRelatorioRepository
     {
-        private readonly DBConnection _dbConnection;
+        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
-        public ModeloRelatorioRepository(DBConnection _dbConnection)
+        public ModeloRelatorioRepository(JustDoTheWorkDbContextFactory? dbContextFactory = null)
         {
-            this._dbConnection = _dbConnection;
-        }
-        public string Inclusao(ModeloRelatorio projeto)
-        {
-            var sql = "INSERT INTO ModeloRelatorio (descricao, tipomodeloid, texto, ativo) VALUES(@Descricao, @TipoModeloId, @Texto, @Ativo)";
-
-            using (var connection =  _dbConnection.Create())
-            {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao incluir o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
-            }
-            return "";
+            _dbContextFactory = dbContextFactory;
         }
 
-        public string Edicao(ModeloRelatorio projeto)
+        public string Inclusao(ModeloRelatorio modeloRelatorio)
         {
-            var sql = "UPDATE ModeloRelatorio SET Descricao = @Descricao, TipoModeloId = @TipoModeloId, Texto = @Texto, Ativo = @Ativo where Id = @Id";
-
-            using (var connection = _dbConnection.Create())
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, projeto, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao editar o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                context.ModelosRelatorio.Add(modeloRelatorio);
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
+            catch (Exception ex)
+            {
+                transacao.Rollback();
+                return "Erro ao incluir o modelo! \n" + ex.Message;
+            }
+        }
 
-            return "";
+        public string Edicao(ModeloRelatorio modeloRelatorio)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
+            {
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                transacao.Rollback();
+                return "Erro ao editar o modelo! \n" + ex.Message;
+            }
         }
 
         public string ExclusaoPorId(int Id)
         {
-            var sql = "DELETE FROM ModeloRelatorio where Id = @Id";
-
-            using (var connection = _dbConnection.Create())
+            using var context = _dbContextFactory.CreateDbContext();
+            using var transacao = context.Database.BeginTransaction();
+            try
             {
-                try
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            connection.Execute(sql, new { id = Id }, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return "Erro ao excluir o modelo! \n" + ex.Message;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    return "Erro de conexão com banco de dados. " + exception.Message;
-                }
-                finally
-                {
-                    connection.Dispose();
-                }
+                var modelosRelatorio = context.ModelosRelatorio.Find(Id)!;
+                context.ModelosRelatorio.Remove(modelosRelatorio);
+                context.SaveChanges();
+                transacao.Commit();
+                return "";
             }
-
-            return "";
+            catch (Exception ex)
+            {
+                transacao.Rollback();
+                return "Erro ao excluir o modelo! \n" + ex.Message;
+            }
         }
 
         public ModeloRelatorioDTO BuscarPorId(int id)
         {
-            var sql = @"SELECT * FROM modelorelatorio WHERE id = @Id";
-
-            using var connection = _dbConnection.Create();
-                return connection.QueryFirstOrDefault<ModeloRelatorioDTO>(sql, new { Id = id });
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.ModelosRelatorio
+                          .AsNoTracking()
+                          .Where(mr => mr.Id == id)
+                          .Select(mr => new ModeloRelatorioDTO
+                          { 
+                              Descricao = mr.Descricao,
+                              Texto = mr.Texto,
+                              Ativo = mr.Ativo,
+                              TipoModeloId = mr.TipoModeloId
+                          }).FirstOrDefault();
         }
 
         public byte[]? BuscaModeloHistoricoExecucao()
         {
-            var sql = @"SELECT Texto FROM ModeloRelatorio WHERE TipoModeloId = 1 AND Ativo = 1";
+            using var context = _dbContextFactory.CreateDbContext();
 
-            using var connection = _dbConnection.Create();
-                return connection.QueryFirstOrDefault<byte[]>(sql);
+            return context.ModelosRelatorio
+                          .AsNoTracking()
+                          .Where(mr => mr.Ativo && mr.TipoModeloId == 1)
+                          .Select(mr => mr.Texto)
+                          .FirstOrDefault();
         }
 
         public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO)
         {
-            var sql = new StringBuilder();
-            var parametros = new DynamicParameters();
-
-            sql.Append(@"SELECT
-                            mr.Id, mr.Descricao,
-                            tm.Descricao AS TipoModelo, mr.Ativo
-                            FROM ModeloRelatorio mr
-                            INNER JOIN TipoModelo tm ON tm.Id = mr.TipoModeloId
-                            WHERE 1 = 1");
+            using var context = _dbContextFactory.CreateDbContext();
+            var modelos = context.ModelosRelatorio.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrEmpty(filtroPesquisaModeloRelatorioDTO.DescricaoModelo))
-            {
-                sql.Append(" AND mr.Descricao LIKE @DescricaoModelo");
-                parametros.Add("@DescricaoModelo", filtroPesquisaModeloRelatorioDTO.DescricaoModelo.Trim());
-            }
+                modelos = modelos.Where(mr => mr.Descricao.Contains(filtroPesquisaModeloRelatorioDTO.DescricaoModelo));
 
             if (filtroPesquisaModeloRelatorioDTO.TipoModelo > 0)
-            {
-                sql.Append(" AND mr.TipoModeloId = @TipoModelo");
-                parametros.Add("@TipoModelo", filtroPesquisaModeloRelatorioDTO.TipoModelo);
-            }
+                modelos = modelos.Where(mr => mr.TipoModeloId == filtroPesquisaModeloRelatorioDTO.TipoModelo);
 
-            using var connection = _dbConnection.Create();
-                return connection.Query<ResultadoPesquisaModeloRelatorioDTO>(sql.ToString(), parametros);
+            return (from modelo in modelos
+                   join tipomodelo in context.TiposModelo.AsNoTracking()
+                   on modelo.TipoModeloId equals tipomodelo.Id
+                   select new ResultadoPesquisaModeloRelatorioDTO
+                   {
+                       Id = modelo.Id,
+                       Descricao = modelo.Descricao,
+                       TipoModelo = tipomodelo.Descricao,
+                       Ativo = modelo.Ativo
+                   }).ToList();
         }
     }
 }

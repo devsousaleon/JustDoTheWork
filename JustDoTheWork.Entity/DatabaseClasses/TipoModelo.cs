@@ -1,8 +1,7 @@
 ﻿namespace JustDoTheWork.Entity.DatabaseClasses
 {
-    public class TipoModelo
+    public class TipoModelo : BaseClass
     {
-        public int Id { get; set; }
         public string Descricao { get; set; }
     }
 }

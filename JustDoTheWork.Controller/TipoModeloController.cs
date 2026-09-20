@@ -12,11 +12,11 @@ namespace JustDoTheWork.Controller
             _repository = tipoModeloRepository;
         }
 
-        public IEnumerable<TipoModeloComboDTO> PesquisarParaCombo()
+        public IEnumerable<TipoModeloDTO> PesquisarParaCombo()
         {
             var resultado = _repository.PesquisarParaCombo();
 
-            return resultado.Select(m => new TipoModeloComboDTO
+            return resultado.Select(m => new TipoModeloDTO
             {
                 Id = m.Id,
                 Descricao = m.Descricao

@@ -78,11 +78,12 @@
             // 
             // accordionControlMenu
             // 
+            accordionControlMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             accordionControlMenu.AnimationType = DevExpress.XtraBars.Navigation.AnimationType.Spline;
             accordionControlMenu.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElementCadastro, accordionControlElementRelatorio });
             accordionControlMenu.Location = new Point(5, 9);
             accordionControlMenu.Name = "accordionControlMenu";
-            accordionControlMenu.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Minimal;
+            accordionControlMenu.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Overlay;
             accordionControlMenu.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             accordionControlMenu.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             accordionControlMenu.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;

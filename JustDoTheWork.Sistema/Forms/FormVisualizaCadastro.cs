@@ -35,9 +35,9 @@ namespace JustDoTheWork.Sistema.Forms
         {
             bindingSourceAtividade.DataSource = _atividadeController.ObtemDadosFormAtividade(_registerUserControl.IdSelecionado);
 
-            bool finalizado = (int)comboBoxStatus.EditValue == 6;
+            bool finalizado = (int)comboStatusPesquisa.EditValue == 6;
 
-            DataFinalizacao.Visible = finalizado;
+            dataFinalizacao.Visible = finalizado;
             lblDataFinalizacao.Visible = finalizado;
 
             if (bindingSourceAtividade.Current is AtividadeDTO a && (int)a.Status >= 2)
@@ -54,10 +54,10 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         void AtualizaComboBoxProjeto()
-            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboBoxProjeto);
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjetoPesquisa);
 
         void AtualizaComboBoxStatus()
-            => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboBoxStatus);
+            => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboStatusPesquisa);
 
         void btnFechar_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas!");
@@ -66,12 +66,12 @@ namespace JustDoTheWork.Sistema.Forms
         {
             var dtoAtividade = bindingSourceAtividade.Current as AtividadeDTO;
 
-            if (comboBoxProjeto.EditValue != null)
-                dtoAtividade.ProjetoId = (int)comboBoxProjeto.EditValue;
+            if (comboProjetoPesquisa.EditValue != null)
+                dtoAtividade.ProjetoId = (int)comboProjetoPesquisa.EditValue;
 
             dtoAtividade.Id = _registerUserControl.IdSelecionado;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
-            var retornoMensagemEdicaoAtividade = _atividadeController.Edicao(dtoAtividade, (int)comboBoxStatus.EditValue);
+            var retornoMensagemEdicaoAtividade = _atividadeController.Edicao(dtoAtividade, (int)comboStatusPesquisa.EditValue);
 
             if (!string.IsNullOrWhiteSpace(retornoMensagemEdicaoAtividade))
             {
@@ -85,7 +85,7 @@ namespace JustDoTheWork.Sistema.Forms
         
         void btnExcluir_Click(object sender, EventArgs e)
         {
-            switch ((int)comboBoxStatus.EditValue)
+            switch ((int)comboStatusPesquisa.EditValue)
             {
                 case 2:
                 case 3:
@@ -120,7 +120,7 @@ namespace JustDoTheWork.Sistema.Forms
         void btnAvancar_Click(object sender, EventArgs e)
         {
             var dtoAtividade = bindingSourceAtividade.Current as AtividadeDTO;
-            dtoAtividade.ProjetoId = (int)comboBoxProjeto.EditValue;
+            dtoAtividade.ProjetoId = (int)comboProjetoPesquisa.EditValue;
             dtoAtividade.Id = _registerUserControl.IdSelecionado;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
 

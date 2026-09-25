@@ -38,12 +38,12 @@
             bindingSourcePesquisaAtividade = new BindingSource(components);
             comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
             dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
-            labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            lblData = new DevExpress.XtraEditors.LabelControl();
+            lblProjeto = new DevExpress.XtraEditors.LabelControl();
+            lblStatus = new DevExpress.XtraEditors.LabelControl();
             btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
-            labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
             searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
             gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -111,12 +111,12 @@
             panelFiltroPesquisa.Controls.Add(comboStatusPesquisa);
             panelFiltroPesquisa.Controls.Add(comboProjetoPesquisa);
             panelFiltroPesquisa.Controls.Add(dataCriacaoPesquisa);
-            panelFiltroPesquisa.Controls.Add(labelControl4);
-            panelFiltroPesquisa.Controls.Add(labelControl3);
-            panelFiltroPesquisa.Controls.Add(labelControl2);
+            panelFiltroPesquisa.Controls.Add(lblData);
+            panelFiltroPesquisa.Controls.Add(lblProjeto);
+            panelFiltroPesquisa.Controls.Add(lblStatus);
             panelFiltroPesquisa.Controls.Add(btnPesquisarAtividade);
             panelFiltroPesquisa.Controls.Add(txtNomeAtividade);
-            panelFiltroPesquisa.Controls.Add(labelControl1);
+            panelFiltroPesquisa.Controls.Add(lblNomeAtividade);
             panelFiltroPesquisa.Location = new Point(15, 15);
             panelFiltroPesquisa.Margin = new Padding(15);
             panelFiltroPesquisa.Name = "panelFiltroPesquisa";
@@ -145,7 +145,7 @@
             // 
             comboProjetoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "ProjetoId", true));
             comboProjetoPesquisa.EnterMoveNextControl = true;
-            comboProjetoPesquisa.Location = new Point(503, 12);
+            comboProjetoPesquisa.Location = new Point(567, 13);
             comboProjetoPesquisa.Name = "comboProjetoPesquisa";
             comboProjetoPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboProjetoPesquisa.Properties.Appearance.Options.UseFont = true;
@@ -158,47 +158,47 @@
             // 
             dataCriacaoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "DataCriacao", true));
             dataCriacaoPesquisa.EditValue = null;
-            dataCriacaoPesquisa.Location = new Point(479, 57);
+            dataCriacaoPesquisa.Location = new Point(567, 56);
             dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
             dataCriacaoPesquisa.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataCriacaoPesquisa.Properties.Appearance.Options.UseFont = true;
             dataCriacaoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            dataCriacaoPesquisa.Size = new Size(336, 30);
+            dataCriacaoPesquisa.Size = new Size(312, 30);
             dataCriacaoPesquisa.TabIndex = 3;
             // 
-            // labelControl4
+            // lblData
             // 
-            labelControl4.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl4.Appearance.Options.UseFont = true;
-            labelControl4.Location = new Point(429, 63);
-            labelControl4.Margin = new Padding(15);
-            labelControl4.Name = "labelControl4";
-            labelControl4.Size = new Size(32, 16);
-            labelControl4.TabIndex = 7;
-            labelControl4.Text = "Data";
+            lblData.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblData.Appearance.Options.UseFont = true;
+            lblData.Location = new Point(429, 63);
+            lblData.Margin = new Padding(15);
+            lblData.Name = "lblData";
+            lblData.Size = new Size(120, 16);
+            lblData.TabIndex = 7;
+            lblData.Text = "Data de criação";
             // 
-            // labelControl3
+            // lblProjeto
             // 
-            labelControl3.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl3.Appearance.Options.UseFont = true;
-            labelControl3.Location = new Point(429, 17);
-            labelControl3.Margin = new Padding(15);
-            labelControl3.Name = "labelControl3";
-            labelControl3.Size = new Size(56, 16);
-            labelControl3.TabIndex = 5;
-            labelControl3.Text = "Projeto";
+            lblProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblProjeto.Appearance.Options.UseFont = true;
+            lblProjeto.Location = new Point(429, 17);
+            lblProjeto.Margin = new Padding(15);
+            lblProjeto.Name = "lblProjeto";
+            lblProjeto.Size = new Size(120, 16);
+            lblProjeto.TabIndex = 5;
+            lblProjeto.Text = "Nome do Projeto";
             // 
-            // labelControl2
+            // lblStatus
             // 
-            labelControl2.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl2.Appearance.Options.UseFont = true;
-            labelControl2.Location = new Point(17, 63);
-            labelControl2.Margin = new Padding(15);
-            labelControl2.Name = "labelControl2";
-            labelControl2.Size = new Size(48, 16);
-            labelControl2.TabIndex = 3;
-            labelControl2.Text = "Status";
+            lblStatus.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatus.Appearance.Options.UseFont = true;
+            lblStatus.Location = new Point(17, 63);
+            lblStatus.Margin = new Padding(15);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(48, 16);
+            lblStatus.TabIndex = 3;
+            lblStatus.Text = "Status";
             // 
             // btnPesquisarAtividade
             // 
@@ -219,24 +219,24 @@
             // 
             txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "Nome", true));
             txtNomeAtividade.EnterMoveNextControl = true;
-            txtNomeAtividade.Location = new Point(67, 13);
+            txtNomeAtividade.Location = new Point(84, 13);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNomeAtividade.Properties.Appearance.Options.UseFont = true;
             txtNomeAtividade.Properties.MaxLength = 50;
-            txtNomeAtividade.Size = new Size(313, 30);
+            txtNomeAtividade.Size = new Size(296, 30);
             txtNomeAtividade.TabIndex = 0;
             // 
-            // labelControl1
+            // lblNomeAtividade
             // 
-            labelControl1.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl1.Appearance.Options.UseFont = true;
-            labelControl1.Location = new Point(17, 17);
-            labelControl1.Margin = new Padding(15);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new Size(32, 16);
-            labelControl1.TabIndex = 0;
-            labelControl1.Text = "Nome";
+            lblNomeAtividade.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNomeAtividade.Appearance.Options.UseFont = true;
+            lblNomeAtividade.Location = new Point(17, 17);
+            lblNomeAtividade.Margin = new Padding(15);
+            lblNomeAtividade.Name = "lblNomeAtividade";
+            lblNomeAtividade.Size = new Size(32, 16);
+            lblNomeAtividade.TabIndex = 0;
+            lblNomeAtividade.Text = "Nome";
             // 
             // searchLookUpEdit1View
             // 
@@ -344,12 +344,12 @@
         private DevExpress.XtraEditors.PanelControl panelBotoes;
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
         private DevExpress.XtraEditors.SimpleButton btnIncluirAtividade;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblNomeAtividade;
         private DevExpress.XtraEditors.TextEdit txtNomeAtividade;
         private DevExpress.XtraEditors.SimpleButton btnPesquisarAtividade;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl lblStatus;
+        private DevExpress.XtraEditors.LabelControl lblProjeto;
+        private DevExpress.XtraEditors.LabelControl lblData;
         private DevExpress.XtraEditors.DateEdit dataCriacaoPesquisa;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private System.Windows.Forms.BindingSource bindingSourcePesquisaAtividade;

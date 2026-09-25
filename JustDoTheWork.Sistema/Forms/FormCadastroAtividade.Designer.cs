@@ -37,21 +37,21 @@
             groupControl2 = new DevExpress.XtraEditors.GroupControl();
             txtEditorAtividade = new DevExpress.XtraRichEdit.RichEditControl();
             groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            comboProjeto = new DevExpress.XtraEditors.LookUpEdit();
+            comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
+            BindingSourceAtividade = new BindingSource(components);
             btnAdicionarProjeto = new DevExpress.XtraEditors.SimpleButton();
             lblProjeto = new DevExpress.XtraEditors.LabelControl();
             lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
-            BindingSourceAtividade = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)comboProjeto.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BindingSourceAtividade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
             SuspendLayout();
             // 
             // panelControl1
@@ -125,7 +125,7 @@
             // 
             groupControl1.AppearanceCaption.Font = new Font("Courier New", 9.75F, FontStyle.Bold);
             groupControl1.AppearanceCaption.Options.UseFont = true;
-            groupControl1.Controls.Add(comboProjeto);
+            groupControl1.Controls.Add(comboProjetoPesquisa);
             groupControl1.Controls.Add(btnAdicionarProjeto);
             groupControl1.Controls.Add(lblProjeto);
             groupControl1.Controls.Add(lblNomeAtividade);
@@ -137,17 +137,21 @@
             groupControl1.TabIndex = 2;
             groupControl1.Text = "Dados da atividade";
             // 
-            // comboProjeto
+            // comboProjetoPesquisa
             // 
-            comboProjeto.DataBindings.Add(new Binding("EditValue", BindingSourceAtividade, "ProjetoId", true));
-            comboProjeto.Location = new Point(590, 37);
-            comboProjeto.Name = "comboProjeto";
-            comboProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboProjeto.Properties.Appearance.Options.UseFont = true;
-            comboProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            comboProjeto.Properties.NullText = "";
-            comboProjeto.Size = new Size(302, 32);
-            comboProjeto.TabIndex = 1;
+            comboProjetoPesquisa.DataBindings.Add(new Binding("EditValue", BindingSourceAtividade, "ProjetoId", true));
+            comboProjetoPesquisa.Location = new Point(590, 37);
+            comboProjetoPesquisa.Name = "comboProjetoPesquisa";
+            comboProjetoPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboProjetoPesquisa.Properties.Appearance.Options.UseFont = true;
+            comboProjetoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboProjetoPesquisa.Properties.NullText = "";
+            comboProjetoPesquisa.Size = new Size(302, 32);
+            comboProjetoPesquisa.TabIndex = 1;
+            // 
+            // BindingSourceAtividade
+            // 
+            BindingSourceAtividade.DataSource = typeof(DTO.AtividadeDTO);
             // 
             // btnAdicionarProjeto
             // 
@@ -191,10 +195,6 @@
             txtNomeAtividade.Size = new Size(322, 32);
             txtNomeAtividade.TabIndex = 0;
             // 
-            // BindingSourceAtividade
-            // 
-            BindingSourceAtividade.DataSource = typeof(DTO.AtividadeDTO);
-            // 
             // FormCadastroAtividade
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
@@ -216,9 +216,9 @@
             ((System.ComponentModel.ISupportInitialize)groupControl1).EndInit();
             groupControl1.ResumeLayout(false);
             groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)comboProjeto.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)BindingSourceAtividade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
             ResumeLayout(false);
 
         }
@@ -234,7 +234,7 @@
         private DevExpress.XtraEditors.SimpleButton btnFecharAtividade;
         private DevExpress.XtraEditors.SimpleButton btnSalvarIncluirAtividade;
         private DevExpress.XtraEditors.SimpleButton btnAdicionarProjeto;
-        private DevExpress.XtraEditors.LookUpEdit comboProjeto;
+        private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private DevExpress.XtraRichEdit.RichEditControl txtEditorAtividade;
         private DevExpress.XtraEditors.SimpleButton btnEditaTextoAtividade;
         private BindingSource BindingSourceAtividade;

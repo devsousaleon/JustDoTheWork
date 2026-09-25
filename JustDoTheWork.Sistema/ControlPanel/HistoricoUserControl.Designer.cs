@@ -33,7 +33,7 @@
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
             comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
-            DataCriacao = new DevExpress.XtraEditors.DateEdit();
+            dataCriacao = new DevExpress.XtraEditors.DateEdit();
             lblData = new DevExpress.XtraEditors.LabelControl();
             lblProjeto = new DevExpress.XtraEditors.LabelControl();
             lblStatus = new DevExpress.XtraEditors.LabelControl();
@@ -54,8 +54,8 @@
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)DataCriacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)DataCriacao.Properties.CalendarTimeProperties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties.CalendarTimeProperties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelBotoes).BeginInit();
             panelBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).BeginInit();
@@ -71,7 +71,7 @@
             panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             panelFiltroPesquisa.Controls.Add(comboProjetoPesquisa);
             panelFiltroPesquisa.Controls.Add(comboStatusPesquisa);
-            panelFiltroPesquisa.Controls.Add(DataCriacao);
+            panelFiltroPesquisa.Controls.Add(dataCriacao);
             panelFiltroPesquisa.Controls.Add(lblData);
             panelFiltroPesquisa.Controls.Add(lblProjeto);
             panelFiltroPesquisa.Controls.Add(lblStatus);
@@ -105,17 +105,17 @@
             comboStatusPesquisa.Size = new Size(296, 32);
             comboStatusPesquisa.TabIndex = 9;
             // 
-            // DataCriacao
+            // dataCriacao
             // 
-            DataCriacao.EditValue = null;
-            DataCriacao.Location = new Point(451, 10);
-            DataCriacao.Name = "DataCriacao";
-            DataCriacao.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DataCriacao.Properties.Appearance.Options.UseFont = true;
-            DataCriacao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            DataCriacao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            DataCriacao.Size = new Size(336, 30);
-            DataCriacao.TabIndex = 8;
+            dataCriacao.EditValue = null;
+            dataCriacao.Location = new Point(451, 10);
+            dataCriacao.Name = "dataCriacao";
+            dataCriacao.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataCriacao.Properties.Appearance.Options.UseFont = true;
+            dataCriacao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacao.Size = new Size(336, 30);
+            dataCriacao.TabIndex = 8;
             // 
             // lblData
             // 
@@ -299,8 +299,8 @@
             panelFiltroPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)DataCriacao.Properties.CalendarTimeProperties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)DataCriacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties.CalendarTimeProperties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelBotoes).EndInit();
             panelBotoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).EndInit();
@@ -314,7 +314,7 @@
 
         #endregion
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
-        private DevExpress.XtraEditors.DateEdit DataCriacao;
+        private DevExpress.XtraEditors.DateEdit dataCriacao;
         private DevExpress.XtraEditors.LabelControl lblData;
         private DevExpress.XtraEditors.LabelControl lblProjeto;
         private DevExpress.XtraEditors.LabelControl lblStatus;

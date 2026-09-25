@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroModeloRelatorioUserControl));
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             btnPesquisarModelo = new DevExpress.XtraEditors.SimpleButton();
-            labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            lblTipoModelo = new DevExpress.XtraEditors.LabelControl();
             comboTipoModelo = new DevExpress.XtraEditors.LookUpEdit();
             txtDescricaoModelo = new DevExpress.XtraEditors.TextEdit();
             lblDescricaoModelo = new DevExpress.XtraEditors.LabelControl();
@@ -65,7 +65,7 @@
             panelFiltroPesquisa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             panelFiltroPesquisa.Controls.Add(btnPesquisarModelo);
-            panelFiltroPesquisa.Controls.Add(labelControl1);
+            panelFiltroPesquisa.Controls.Add(lblTipoModelo);
             panelFiltroPesquisa.Controls.Add(comboTipoModelo);
             panelFiltroPesquisa.Controls.Add(txtDescricaoModelo);
             panelFiltroPesquisa.Controls.Add(lblDescricaoModelo);
@@ -90,18 +90,18 @@
             btnPesquisarModelo.Text = "Pesquisar";
             btnPesquisarModelo.Click += btnPesquisarModelo_Click;
             // 
-            // labelControl1
+            // lblTipoModelo
             // 
-            labelControl1.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl1.Appearance.ForeColor = Color.White;
-            labelControl1.Appearance.Options.UseFont = true;
-            labelControl1.Appearance.Options.UseForeColor = true;
-            labelControl1.Location = new Point(17, 78);
-            labelControl1.Margin = new Padding(15);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new Size(88, 16);
-            labelControl1.TabIndex = 9;
-            labelControl1.Text = "Tipo Modelo";
+            lblTipoModelo.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTipoModelo.Appearance.ForeColor = Color.White;
+            lblTipoModelo.Appearance.Options.UseFont = true;
+            lblTipoModelo.Appearance.Options.UseForeColor = true;
+            lblTipoModelo.Location = new Point(17, 78);
+            lblTipoModelo.Margin = new Padding(15);
+            lblTipoModelo.Name = "lblTipoModelo";
+            lblTipoModelo.Size = new Size(88, 16);
+            lblTipoModelo.TabIndex = 9;
+            lblTipoModelo.Text = "Tipo Modelo";
             // 
             // comboTipoModelo
             // 
@@ -280,7 +280,7 @@
         private DevExpress.XtraEditors.LabelControl lblDescricaoModelo;
         private DevExpress.XtraEditors.TextEdit txtDescricaoModelo;
         private DevExpress.XtraEditors.LookUpEdit comboTipoModelo;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblTipoModelo;
         private DevExpress.XtraEditors.SimpleButton btnIncluirModelo;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
         private DevExpress.XtraEditors.SimpleButton btnPesquisarModelo;

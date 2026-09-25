@@ -38,6 +38,13 @@ namespace JustDoTheWork.Infrastructure.Repository
             using var transacao = context.Database.BeginTransaction();
             try
             {
+                var modeloExistente = context.ModelosRelatorio.Find(modeloRelatorio.Id)!;
+
+                modeloExistente.Ativo = modeloRelatorio.Ativo;
+                modeloExistente.Descricao = modeloRelatorio.Descricao;
+                modeloExistente.Texto = modeloRelatorio.Texto;
+                modeloExistente.TipoModeloId = modeloRelatorio.TipoModeloId;
+
                 context.SaveChanges();
                 transacao.Commit();
                 return "";

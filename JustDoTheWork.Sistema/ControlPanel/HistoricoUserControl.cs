@@ -40,7 +40,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             {
                 ProjetoId = comboProjetoPesquisa.EditValue != null ? (int?)comboProjetoPesquisa.EditValue : null,
                 Status = comboStatusPesquisa.EditValue != null ? (int?)comboStatusPesquisa.EditValue : null,
-                DataCriacaoAtividade = DataCriacao.EditValue != null ? DataCriacao.DateTime.Date : null
+                DataCriacaoAtividade = dataCriacao.EditValue != null ? dataCriacao.DateTime.Date : null
             };
 
             var resultadoFiltro = _atividadeController.PesquisarParaGridVisualizaHistorico(filtroPesquisa);
@@ -52,7 +52,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         {
             comboProjetoPesquisa.EditValue = null;
             comboStatusPesquisa.EditValue = null;
-            DataCriacao.EditValue = null;
+            dataCriacao.EditValue = null;
         }
 
         void btnImprimirHistorico_Click(object sender, EventArgs e)

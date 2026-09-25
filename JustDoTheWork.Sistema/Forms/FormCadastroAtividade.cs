@@ -31,8 +31,8 @@ namespace JustDoTheWork.Sistema.Forms
         {
             var dtoAtividade = BindingSourceAtividade.Current as AtividadeDTO;
 
-            if (comboProjeto.EditValue != null)
-                dtoAtividade.ProjetoId = (int)comboProjeto.EditValue;
+            if (comboProjetoPesquisa.EditValue != null)
+                dtoAtividade.ProjetoId = (int)comboProjetoPesquisa.EditValue;
 
             dtoAtividade.DataCriacao = DateTime.Now.Date;
             dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
@@ -56,7 +56,7 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         public void AtualizaComboBoxProjeto()
-            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjeto);
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjetoPesquisa);
 
         void btnEditaTextoAtividade_Click(object sender, EventArgs e)
         {

@@ -38,7 +38,7 @@
             richEditVisualizaTextoModelo = new DevExpress.XtraRichEdit.RichEditControl();
             groupInfoModelo = new DevExpress.XtraEditors.GroupControl();
             checkAtivo = new DevExpress.XtraEditors.CheckEdit();
-            labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            lblTipoModelo = new DevExpress.XtraEditors.LabelControl();
             comboTipoModelo = new DevExpress.XtraEditors.LookUpEdit();
             txtDescricaoModelo = new DevExpress.XtraEditors.TextEdit();
             lblDescricaoModelo = new DevExpress.XtraEditors.LabelControl();
@@ -129,7 +129,7 @@
             // groupInfoModelo
             // 
             groupInfoModelo.Controls.Add(checkAtivo);
-            groupInfoModelo.Controls.Add(labelControl1);
+            groupInfoModelo.Controls.Add(lblTipoModelo);
             groupInfoModelo.Controls.Add(comboTipoModelo);
             groupInfoModelo.Controls.Add(txtDescricaoModelo);
             groupInfoModelo.Controls.Add(lblDescricaoModelo);
@@ -151,18 +151,18 @@
             checkAtivo.Size = new Size(75, 22);
             checkAtivo.TabIndex = 14;
             // 
-            // labelControl1
+            // lblTipoModelo
             // 
-            labelControl1.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelControl1.Appearance.ForeColor = Color.White;
-            labelControl1.Appearance.Options.UseFont = true;
-            labelControl1.Appearance.Options.UseForeColor = true;
-            labelControl1.Location = new Point(17, 96);
-            labelControl1.Margin = new Padding(15);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new Size(88, 16);
-            labelControl1.TabIndex = 13;
-            labelControl1.Text = "Tipo Modelo";
+            lblTipoModelo.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTipoModelo.Appearance.ForeColor = Color.White;
+            lblTipoModelo.Appearance.Options.UseFont = true;
+            lblTipoModelo.Appearance.Options.UseForeColor = true;
+            lblTipoModelo.Location = new Point(17, 96);
+            lblTipoModelo.Margin = new Padding(15);
+            lblTipoModelo.Name = "lblTipoModelo";
+            lblTipoModelo.Size = new Size(88, 16);
+            lblTipoModelo.TabIndex = 13;
+            lblTipoModelo.Text = "Tipo Modelo";
             // 
             // comboTipoModelo
             // 
@@ -178,12 +178,12 @@
             // 
             // txtDescricaoModelo
             // 
-            txtDescricaoModelo.Location = new Point(107, 37);
+            txtDescricaoModelo.Location = new Point(122, 37);
             txtDescricaoModelo.Name = "txtDescricaoModelo";
             txtDescricaoModelo.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescricaoModelo.Properties.Appearance.Options.UseFont = true;
             txtDescricaoModelo.Properties.MaxLength = 50;
-            txtDescricaoModelo.Size = new Size(329, 30);
+            txtDescricaoModelo.Size = new Size(314, 30);
             txtDescricaoModelo.TabIndex = 11;
             // 
             // lblDescricaoModelo
@@ -235,7 +235,7 @@
         private DevExpress.XtraEditors.GroupControl groupTextoModelo;
         private DevExpress.XtraRichEdit.RichEditControl richEditVisualizaTextoModelo;
         private DevExpress.XtraEditors.CheckEdit checkAtivo;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblTipoModelo;
         private DevExpress.XtraEditors.LookUpEdit comboTipoModelo;
         private DevExpress.XtraEditors.TextEdit txtDescricaoModelo;
         private DevExpress.XtraEditors.LabelControl lblDescricaoModelo;

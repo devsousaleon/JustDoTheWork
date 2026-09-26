@@ -57,6 +57,7 @@
             colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
             repositoryItemDateTimeOffsetEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
             panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            btnCancelarAtividade = new DevExpress.XtraEditors.SimpleButton();
             btnAvancar = new DevExpress.XtraEditors.SimpleButton();
             btnExcluir = new DevExpress.XtraEditors.SimpleButton();
             btnFechar = new DevExpress.XtraEditors.SimpleButton();
@@ -90,7 +91,7 @@
             panelControl1.Controls.Add(tabControlVisualizaAtividade);
             panelControl1.Location = new Point(12, 12);
             panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(1254, 603);
+            panelControl1.Size = new Size(1254, 601);
             panelControl1.TabIndex = 0;
             // 
             // tabControlVisualizaAtividade
@@ -99,7 +100,7 @@
             tabControlVisualizaAtividade.Location = new Point(5, 5);
             tabControlVisualizaAtividade.Name = "tabControlVisualizaAtividade";
             tabControlVisualizaAtividade.SelectedTabPage = tabControlInfoAtividade;
-            tabControlVisualizaAtividade.Size = new Size(1244, 593);
+            tabControlVisualizaAtividade.Size = new Size(1244, 591);
             tabControlVisualizaAtividade.TabIndex = 2;
             tabControlVisualizaAtividade.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tabControlInfoAtividade, tabControlHistoricoExecucao });
             // 
@@ -108,7 +109,7 @@
             tabControlInfoAtividade.Controls.Add(txtEditorAtividade);
             tabControlInfoAtividade.Controls.Add(groupControl1);
             tabControlInfoAtividade.Name = "tabControlInfoAtividade";
-            tabControlInfoAtividade.Size = new Size(1242, 562);
+            tabControlInfoAtividade.Size = new Size(1242, 560);
             tabControlInfoAtividade.Text = "Dados Atividade";
             // 
             // txtEditorAtividade
@@ -287,7 +288,7 @@
             // 
             tabControlHistoricoExecucao.Controls.Add(dataGridHistoricoExecucao);
             tabControlHistoricoExecucao.Name = "tabControlHistoricoExecucao";
-            tabControlHistoricoExecucao.Size = new Size(1242, 562);
+            tabControlHistoricoExecucao.Size = new Size(1242, 560);
             tabControlHistoricoExecucao.Text = "Histórico de execução";
             // 
             // dataGridHistoricoExecucao
@@ -363,14 +364,28 @@
             // panelControl2
             // 
             panelControl2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelControl2.Controls.Add(btnCancelarAtividade);
             panelControl2.Controls.Add(btnAvancar);
             panelControl2.Controls.Add(btnExcluir);
             panelControl2.Controls.Add(btnFechar);
             panelControl2.Controls.Add(btnSalvar);
-            panelControl2.Location = new Point(12, 631);
+            panelControl2.Location = new Point(12, 629);
             panelControl2.Name = "panelControl2";
             panelControl2.Size = new Size(1254, 43);
             panelControl2.TabIndex = 1;
+            // 
+            // btnCancelarAtividade
+            // 
+            btnCancelarAtividade.Appearance.Font = new Font("Courier New", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelarAtividade.Appearance.Options.UseFont = true;
+            btnCancelarAtividade.Location = new Point(192, 10);
+            btnCancelarAtividade.Margin = new Padding(8);
+            btnCancelarAtividade.Name = "btnCancelarAtividade";
+            btnCancelarAtividade.Size = new Size(75, 23);
+            btnCancelarAtividade.TabIndex = 10;
+            btnCancelarAtividade.Text = "Cancelar";
+            btnCancelarAtividade.Visible = false;
+            btnCancelarAtividade.Click += btnCancelarAtividade_Click;
             // 
             // btnAvancar
             // 
@@ -424,7 +439,7 @@
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1278, 686);
+            ClientSize = new Size(1278, 684);
             Controls.Add(panelControl2);
             Controls.Add(panelControl1);
             FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
@@ -495,5 +510,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit2;
         private BindingSource bindingSourceAtividade;
+        private DevExpress.XtraEditors.SimpleButton btnCancelarAtividade;
     }
 }

@@ -102,6 +102,28 @@ namespace JustDoTheWork.Controller
             return _iAtividadeRepository.Edicao(atividade);
         }
 
+        public string CancelarAtividade(AtividadeDTO dtoAtividade)
+        {
+            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
+                return "Necessário informar o nome da atividade para salvar!";
+
+            if (dtoAtividade.Descricao == null)
+                return "Necessário informar os requisitos para esta atividade!";
+
+            var atividade = new Atividade
+            {
+                Id = dtoAtividade.Id,
+                Nome = dtoAtividade.Nome,
+                Descricao = dtoAtividade.Descricao,
+                Status = StatusAtividade.Cancelado,
+                DataCriacao = dtoAtividade.DataCriacao,
+                DataFinalizacao = DateTime.Now,
+                ProjetoId = dtoAtividade.ProjetoId
+            };
+
+            return _iAtividadeRepository.Edicao(atividade);
+        }
+
         public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dtoAtividadePesquisa)
             => _iAtividadeRepository.PesquisarParaGrid(dtoAtividadePesquisa);
 

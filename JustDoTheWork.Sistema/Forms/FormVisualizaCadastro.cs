@@ -27,7 +27,7 @@ namespace JustDoTheWork.Sistema.Forms
         {
             AtualizaComboBoxStatus();
             AtualizaComboBoxProjeto();
-            CarregaDadosAtividade();            
+            CarregaDadosAtividade();
             CarregaDadosExecucao();
         }
 
@@ -40,13 +40,17 @@ namespace JustDoTheWork.Sistema.Forms
             dataFinalizacao.Visible = finalizado;
             lblDataFinalizacao.Visible = finalizado;
 
-            if (bindingSourceAtividade.Current is AtividadeDTO a && (int)a.Status >= 2)
-                btnAvancar.Visible = false;
+            var status = (int)(bindingSourceAtividade.Current as AtividadeDTO).Status;
+            var permiteAvancarOuExcluir = status < 2;
+
+            btnAvancar.Visible = permiteAvancarOuExcluir;
+            btnExcluir.Visible = permiteAvancarOuExcluir;
+            btnCancelarAtividade.Visible = status >= 2 && status != 5;
         }
 
         void CarregaDadosExecucao()
         {
-            if (bindingSourceAtividade.Current is AtividadeDTO a && (int)a.Status == 6)
+            if ((int)(bindingSourceAtividade.Current as AtividadeDTO).Status == 6)
             {
                 var dadosInfoExecucao = _execucaoController.InformaDadosExecucao(_registerUserControl.IdSelecionado);
                 dataGridHistoricoExecucao.DataSource = dadosInfoExecucao;
@@ -81,28 +85,11 @@ namespace JustDoTheWork.Sistema.Forms
 
             this.Close();
             _registerUserControl.AtualizaGrid();
-        } 
-        
+        }
+
         void btnExcluir_Click(object sender, EventArgs e)
         {
-            switch ((int)comboStatusPesquisa.EditValue)
-            {
-                case 2:
-                case 3:
-                case 4:
-                    MessageService.Atencao("Não é possível excluir esta atividade \nHá execuções em andamento, pendente ou pausado!");
-                    return;
-
-                case 5:
-                    MessageService.Atencao("Não é possível excluir atividade cancelada!");
-                    return;
-
-                case 6:
-                    MessageService.Atencao("Não é possível excluir atividade finalizada!");
-                    return;
-            }
-
-            if(MessageService.Pergunta("Deseja realmente excluir esta atividade? \nOs dados informados serão perdidos!") == DialogResult.Yes)
+            if (MessageService.Pergunta("Deseja realmente excluir esta atividade? \nOs dados informados serão perdidos!") == DialogResult.Yes)
             {
                 var mensagemRetornoExclusaoAtividade = _atividadeController.Exclusao(_registerUserControl.IdSelecionado);
 
@@ -114,7 +101,7 @@ namespace JustDoTheWork.Sistema.Forms
 
                 this.Close();
                 _registerUserControl.AtualizaGrid();
-            }            
+            }
         }
 
         void btnAvancar_Click(object sender, EventArgs e)
@@ -133,6 +120,24 @@ namespace JustDoTheWork.Sistema.Forms
             }
 
             MessageService.Sucesso("Atividade se encontra pendente! \nProcesso realizado com sucesso.");
+            this.Close();
+            _registerUserControl.AtualizaGrid();
+        }
+
+        private void btnCancelarAtividade_Click(object sender, EventArgs e)
+        {
+            var dtoAtividade = bindingSourceAtividade.Current as AtividadeDTO;
+            dtoAtividade.Id = _registerUserControl.IdSelecionado;
+
+            var retornoMensagemCancela = _atividadeController.CancelarAtividade(dtoAtividade);
+
+            if (!string.IsNullOrWhiteSpace(retornoMensagemCancela))
+            {
+                MessageService.Atencao(retornoMensagemCancela);
+                return;
+            }
+
+            MessageService.Sucesso("Atividade cancelada! \nProcesso realizado com sucesso.");
             this.Close();
             _registerUserControl.AtualizaGrid();
         }

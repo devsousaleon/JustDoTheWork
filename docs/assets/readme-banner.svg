@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-labelledby="title description">
+  <title id="title">JustDoTheWork — versão 1.5.0</title>
+  <desc id="description">Banner com tema escuro, ícones de planejamento, execução e histórico, representando as etapas do trabalho.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111c2a"/>
+      <stop offset="1" stop-color="#10171d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#89e1b6"/>
+      <stop offset="1" stop-color="#8bbfff"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#8bbfff" opacity="0.07"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="480" rx="24" fill="url(#background)"/>
+  <rect width="1280" height="480" rx="24" fill="url(#dots)"/>
+  <rect x="1" y="1" width="1278" height="478" rx="23" fill="none" stroke="#2b3c49"/>
+  <path d="M56 53h30" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+  <text x="100" y="59" fill="#a3b7c5" font-family="Consolas, monospace" font-size="15" letter-spacing="3">WORKFLOW / DESKTOP</text>
+  <rect x="1087" y="36" width="137" height="35" rx="17" fill="#17382c" stroke="#365c4b"/>
+  <circle cx="1108" cy="53.5" r="4" fill="#89e1b6"/>
+  <text x="1122" y="59" fill="#abebc9" font-family="Consolas, monospace" font-size="15">v1.5.0</text>
+
+  <text x="54" y="146" fill="#f2f6fa" font-family="Segoe UI, Arial, sans-serif" font-size="65" font-weight="700" letter-spacing="-2">JustDoTheWork<tspan fill="#89e1b6">.</tspan></text>
+  <text x="57" y="190" fill="#b1c0ce" font-family="Segoe UI, Arial, sans-serif" font-size="23">Da análise ao trabalho concluído. Cada etapa tem seu lugar.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="231" width="352" height="164" rx="17" fill="#172332" stroke="#304256"/>
+    <text x="80" y="262" fill="#8bbfff" font-family="Consolas, monospace" font-size="13" letter-spacing="1.5">01 / PLANEJAMENTO</text>
+    <rect x="80" y="279" width="47" height="47" rx="12" fill="#20344a"/>
+    <g stroke="#8bbfff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="93" y="291" width="21" height="25" rx="3"/>
+      <path d="M99 288h9v6h-9z" fill="#20344a"/>
+      <path d="m98 301 2 2 4-4m-6 11 2 2 4-4m3-7h3m-3 9h3"/>
+    </g>
+    <text x="144" y="311" fill="#f1f5f9" font-size="29" font-weight="600">Planeje</text>
+    <text x="80" y="357" fill="#b2c0d0" font-size="17">Projetos, atividades e requisitos.</text>
+    <path d="M427 311h15m-5-5 6 5-6 5" stroke="#516e82" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="464" y="231" width="352" height="164" rx="17" fill="#152b27" stroke="#315146"/>
+    <text x="488" y="262" fill="#89e1b6" font-family="Consolas, monospace" font-size="13" letter-spacing="1.5">02 / AÇÃO</text>
+    <rect x="488" y="279" width="47" height="47" rx="12" fill="#204437"/>
+    <g stroke="#89e1b6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="511.5" cy="304" r="13"/>
+      <path d="M511.5 292v-4m-4-1h8m-3.5 9v8l6 4m5-16 3 3"/>
+    </g>
+    <text x="552" y="311" fill="#f1f5f9" font-size="29" font-weight="600">Execute</text>
+    <text x="488" y="357" fill="#b4cabc" font-size="17">Inicie, pause, retome e finalize.</text>
+    <path d="M835 311h15m-5-5 6 5-6 5" stroke="#516e82" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="872" y="231" width="352" height="164" rx="17" fill="#252331" stroke="#454052"/>
+    <text x="896" y="262" fill="#c1a2ea" font-family="Consolas, monospace" font-size="13" letter-spacing="1.5">03 / HISTÓRICO</text>
+    <rect x="896" y="279" width="47" height="47" rx="12" fill="#393047"/>
+    <g stroke="#c1a2ea" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M907 292v23h25m-20-4v-7m7 7v-13m7 13v-19"/>
+      <path d="m910 299 8-5 8-4"/>
+    </g>
+    <text x="960" y="311" fill="#f1f5f9" font-size="29" font-weight="600">Acompanhe</text>
+    <text x="896" y="357" fill="#c3bbd0" font-size="17">Períodos de execução e modelos.</text>
+  </g>
+
+  <path d="M56 422h1168" stroke="#2b3c49"/>
+  <text x="56" y="450" fill="#95a9ba" font-family="Consolas, monospace" font-size="14">C# · .NET 8 · WinForms · DevExpress</text>
+  <text x="1224" y="450" text-anchor="end" fill="#95a9ba" font-family="Consolas, monospace" font-size="14">SQL Server + PostgreSQL</text>
+</svg>

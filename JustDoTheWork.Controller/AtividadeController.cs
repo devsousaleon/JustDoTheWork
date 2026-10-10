@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using JustDoTheWork.Infrastructure.Repository;
@@ -8,36 +9,36 @@ namespace JustDoTheWork.Controller
 {
     public class AtividadeController
     {
-        private readonly IAtividadeRepository _iAtividadeRepository;
+        private readonly IAtividadeRepository _atividadeRepository;
         private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
 
         public AtividadeController(IAtividadeRepository repository, JustDoTheWorkDbContextFactory dbContextFactory)
         {
-            _iAtividadeRepository = repository;
+            _atividadeRepository = repository;
             _dbContextFactory = dbContextFactory;
         }
 
-        public string Cadastro(AtividadeDTO dtoAtividade)
+        public string Inclusao(AtividadeDTO atividadeDTO)
         {
             var mensagem = "";
 
-            if (dtoAtividade == null)
+            if (atividadeDTO == null)
                 return "Dados inválidos para inclusão!";
 
-            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
+            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
                 return "É necessário informar o nome da atividade!";
 
-            if (dtoAtividade.ProjetoId == 0)
+            if (atividadeDTO.ProjetoId == 0)
                 return "É necessário vincular a atividade a um projeto!";
 
             var atividade = new Atividade
             {
-                Nome = dtoAtividade.Nome,
-                Descricao = dtoAtividade.Descricao,
+                Nome = atividadeDTO.Nome,
+                Descricao = atividadeDTO.Descricao,
                 Status = StatusAtividade.Analise,
-                ProjetoId = dtoAtividade.ProjetoId
+                ProjetoId = atividadeDTO.ProjetoId
             };
-            mensagem = _iAtividadeRepository.Inclusao(atividade);
+            mensagem = _atividadeRepository.Inclusao(atividade);
 
             return mensagem;
         }
@@ -55,109 +56,109 @@ namespace JustDoTheWork.Controller
         }
 
         public string Exclusao(int idExclusao)
-            => _iAtividadeRepository.ExclusaoPorId(idExclusao);
+            => _atividadeRepository.ExclusaoPorId(idExclusao);
 
-        public string Edicao(AtividadeDTO dtoAtividade, int StatusAtual)
+        public string Edicao(AtividadeDTO atividadeDTO, int statusAtual)
         {
-            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
+            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (dtoAtividade.Descricao == null && dtoAtividade.Status != StatusAtividade.Analise)
+            if (atividadeDTO.Descricao == null && atividadeDTO.Status != StatusAtividade.Analise)
                 return "Necessário informar a descrição da atividade!";
 
             var atividade = new Atividade
             {
-                Id = dtoAtividade.Id,
-                Nome = dtoAtividade.Nome,
-                Descricao = dtoAtividade.Descricao,
-                Status = (StatusAtividade)StatusAtual,
-                DataCriacao = dtoAtividade.DataCriacao,
-                DataFinalizacao = dtoAtividade.DataFinalizacao,
-                ProjetoId = dtoAtividade.ProjetoId
+                Id = atividadeDTO.Id,
+                Nome = atividadeDTO.Nome,
+                Descricao = atividadeDTO.Descricao,
+                Status = (StatusAtividade)statusAtual,
+                DataCriacao = atividadeDTO.DataCriacao,
+                DataFinalizacao = atividadeDTO.DataFinalizacao,
+                ProjetoId = atividadeDTO.ProjetoId
             };
 
-            return _iAtividadeRepository.Edicao(atividade);
+            return _atividadeRepository.Edicao(atividade);
 
         }
 
-        public string AvancarAtividade(AtividadeDTO dtoAtividade)
+        public string AvancarAtividade(AtividadeDTO atividadeDTO)
         {
-            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
+            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (dtoAtividade.Descricao == null)
+            if (atividadeDTO.Descricao == null)
                 return "Necessário informar os requisitos para esta atividade!";
 
             var atividade = new Atividade
             {
-                Id = dtoAtividade.Id,
-                Nome = dtoAtividade.Nome,
-                Descricao = dtoAtividade.Descricao,
+                Id = atividadeDTO.Id,
+                Nome = atividadeDTO.Nome,
+                Descricao = atividadeDTO.Descricao,
                 Status = StatusAtividade.Pendente,
-                DataCriacao = dtoAtividade.DataCriacao,
-                DataFinalizacao = dtoAtividade.DataFinalizacao,
-                ProjetoId = dtoAtividade.ProjetoId
+                DataCriacao = atividadeDTO.DataCriacao,
+                DataFinalizacao = atividadeDTO.DataFinalizacao,
+                ProjetoId = atividadeDTO.ProjetoId
             };
 
-            return _iAtividadeRepository.Edicao(atividade);
+            return _atividadeRepository.Edicao(atividade);
         }
 
-        public string CancelarAtividade(AtividadeDTO dtoAtividade)
+        public string CancelarAtividade(AtividadeDTO atividadeDTO)
         {
-            if (string.IsNullOrWhiteSpace(dtoAtividade.Nome))
+            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
                 return "Necessário informar o nome da atividade para salvar!";
 
-            if (dtoAtividade.Descricao == null)
+            if (atividadeDTO.Descricao == null)
                 return "Necessário informar os requisitos para esta atividade!";
 
             var atividade = new Atividade
             {
-                Id = dtoAtividade.Id,
-                Nome = dtoAtividade.Nome,
-                Descricao = dtoAtividade.Descricao,
+                Id = atividadeDTO.Id,
+                Nome = atividadeDTO.Nome,
+                Descricao = atividadeDTO.Descricao,
                 Status = StatusAtividade.Cancelado,
-                DataCriacao = dtoAtividade.DataCriacao,
+                DataCriacao = atividadeDTO.DataCriacao,
                 DataFinalizacao = DateTime.Now,
-                ProjetoId = dtoAtividade.ProjetoId
+                ProjetoId = atividadeDTO.ProjetoId
             };
 
-            return _iAtividadeRepository.Edicao(atividade);
+            return _atividadeRepository.Edicao(atividade);
         }
 
-        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO dtoAtividadePesquisa)
-            => _iAtividadeRepository.PesquisarParaGrid(dtoAtividadePesquisa);
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtroPesquisaAtividadeDTO)
+            => _atividadeRepository.Pesquisar(filtroPesquisaAtividadeDTO);
 
-        public AtividadeDTO ObtemDadosFormAtividade(int idObterDadosForm)
+        public AtividadeDTO BuscarPorId(int id)
         {
-            var resposta = _iAtividadeRepository.BuscarPorId(idObterDadosForm);
+            var atividade = _atividadeRepository.BuscarPorId(id);
 
-            var dados = new AtividadeDTO
+            var atividadeDTO = new AtividadeDTO
             {
-                Nome = resposta.Nome,
-                Status = resposta.Status,
-                Descricao = resposta.Descricao,
-                DataCriacao = resposta.DataCriacao,
-                DataFinalizacao = resposta.DataFinalizacao,
-                ProjetoId = resposta.ProjetoId
+                Nome = atividade.Nome,
+                Status = atividade.Status,
+                Descricao = atividade.Descricao,
+                DataCriacao = atividade.DataCriacao,
+                DataFinalizacao = atividade.DataFinalizacao,
+                ProjetoId = atividade.ProjetoId
             };
 
-            return dados;
+            return atividadeDTO;
         }
 
-        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO dtoFiltroPesquisaHistorico)
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtroPesquisaHistoricoDTO)
         {
             var filtro = new FiltroPesquisaHistoricoDTO
             {
-                ProjetoId = dtoFiltroPesquisaHistorico.ProjetoId,
-                Status = dtoFiltroPesquisaHistorico.Status,
-                DataCriacaoAtividade = dtoFiltroPesquisaHistorico.DataCriacaoAtividade,
+                ProjetoId = filtroPesquisaHistoricoDTO.ProjetoId,
+                Status = filtroPesquisaHistoricoDTO.Status,
+                DataCriacaoAtividade = filtroPesquisaHistoricoDTO.DataCriacaoAtividade,
             };
 
-            return _iAtividadeRepository.PesquisarParaGridVisualizaHistorico(filtro);
+            return _atividadeRepository.PesquisarHistorico(filtro);
         }
 
-        public IEnumerable<AtualizaGridAtividadeDTO> AtualizaGridAtividades(int Status)
-            => _iAtividadeRepository.BuscaParaGridAtividades(Status);
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status)
+            => _atividadeRepository.PesquisarPorStatus(status);
 
         public string AlterarStatus(int idAtividade, int statusAtual, int novoStatus, string tipoExecucao)
         {
@@ -172,7 +173,7 @@ namespace JustDoTheWork.Controller
             using var context = _dbContextFactory.CreateDbContext();
             using var transacao = context.Database.BeginTransaction();
             
-            mensagem = _iAtividadeRepository.ExecutaAtividade(idAtividade, novoStatus, context);
+            mensagem = _atividadeRepository.AlterarStatus(idAtividade, novoStatus, context);
 
             if (mensagem != "")
             {
@@ -184,7 +185,7 @@ namespace JustDoTheWork.Controller
             {                
                 execucao = new Execucao { AtividadeId = idAtividade, DataFim = DateTime.Now };
 
-                mensagem = execucaoRepository.FinalizaExecucao(execucao, context);
+                mensagem = execucaoRepository.FinalizarExecucao(execucao, context);
 
                 if (mensagem != "")
                 {

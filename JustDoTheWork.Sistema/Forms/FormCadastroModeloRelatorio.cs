@@ -18,40 +18,40 @@ namespace JustDoTheWork.Sistema.Forms
             _modeloRelatorioController = CompositionRoot.CriarModeloRelatorioController();
         }
         void FormCadastroModeloRelatorio_Load(object sender, EventArgs e)
-            => BuscaTipoModelo();
+            => AtualizaComboBoxTipoModelo();
 
-        void btnIncluirCadastroModelo_Click(object sender, EventArgs e)
+        void btnSalvarCadastroModeloRelatorio_Click(object sender, EventArgs e)
         {
-            var dados = new ModeloRelatorioDTO
+            var modeloRelatorioDTO = new ModeloRelatorioDTO
             {
                 TipoModeloId = (int)comboTipoModelo.EditValue,
                 Descricao = txtDescricaoModelo.Text,
                 Ativo = checkAtivo.Checked,
-                Texto = richEditVisualizaTextoModelo.Document.GetOpenXmlBytes(richEditVisualizaTextoModelo.Document.Range)
+                Texto = richEditTextoModelo.Document.GetOpenXmlBytes(richEditTextoModelo.Document.Range)
             };
 
-            var resposta = _modeloRelatorioController.Inclusao(dados);
+            var mensagemRetornoCadastroModeloRelatorio = _modeloRelatorioController.Inclusao(modeloRelatorioDTO);
 
-            if (!string.IsNullOrWhiteSpace(resposta))
+            if (!string.IsNullOrWhiteSpace(mensagemRetornoCadastroModeloRelatorio))
             {
-                MessageService.Atencao(resposta);
+                MessageService.Atencao(mensagemRetornoCadastroModeloRelatorio);
                 return;
             }
 
             this.Close();
         }
 
-        void btnFecharCadastroModelo_Click(object sender, EventArgs e)
+        void btnFecharCadastroModeloRelatorio_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente fechar o cadastro deste modelo? \nAs ações realizadas não serão salvas!");
 
-        void btnAbreEdicaoModelo_Click(object sender, EventArgs e)
+        void btnEditarTextoModelo_Click(object sender, EventArgs e)
         {
-            var editaTextoAtividade = new FormEditaTextoAtividade(richEditVisualizaTextoModelo.RtfText);
-            editaTextoAtividade.ShowDialog();
-            richEditVisualizaTextoModelo.RtfText = editaTextoAtividade.NovoTextoDescricaoAtividade;
+            FormEditaTexto formEditaTexto = new FormEditaTexto(richEditTextoModelo.RtfText);
+            formEditaTexto.ShowDialog();
+            richEditTextoModelo.RtfText = formEditaTexto.TextoEditado;
         }
 
-        void BuscaTipoModelo()
+        void AtualizaComboBoxTipoModelo()
             => UIMethodsService.AtualizaComboBoxTipoModelo(_tipoModeloController, comboTipoModelo);
     }
 }

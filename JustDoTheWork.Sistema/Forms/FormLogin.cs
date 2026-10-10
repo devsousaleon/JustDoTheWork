@@ -16,13 +16,13 @@ namespace JustDoTheWork.Sistema.Forms
 {
     public partial class FormLogin : XtraForm
     {
-        private readonly UsuarioController usuarioController;
+        private readonly UsuarioController _usuarioController;
 
         public FormLogin()
         {
             InitializeComponent();
-            timer_Tick(null, EventArgs.Empty);
-            usuarioController = CompositionRoot.CriarUsuarioController();
+            timerBoasVindas_Tick(null, EventArgs.Empty);
+            _usuarioController = CompositionRoot.CriarUsuarioController();
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace JustDoTheWork.Sistema.Forms
             ConfigurarBotaoIcone(btnMinimizar);            
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void timerBoasVindas_Tick(object sender, EventArgs e)
         {
             lblBoasVindas.Text = $"Seja bem-vindo! {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
         }
@@ -68,10 +68,10 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            if(txtSenha.Text == "admin@123" && txtUsuario.Text == "adm")
+            if(txtSenha.Text == "admin@123" && txtLogon.Text == "adm")
                 AcessarSistema();
 
-            var resultado = usuarioController.BuscaUsuarioPorLogon(txtUsuario.Text);
+            var resultado = _usuarioController.BuscarPorLogon(txtLogon.Text);
 
             if (resultado is null || !VerificarSenha(txtSenha.Text, resultado.Senha))
             {
@@ -117,7 +117,7 @@ namespace JustDoTheWork.Sistema.Forms
 
         private string ValidarCampos()
         {
-            if (string.IsNullOrWhiteSpace(txtUsuario.Text))
+            if (string.IsNullOrWhiteSpace(txtLogon.Text))
                 return "Favor informar o nome do usuário!";
 
             if (string.IsNullOrWhiteSpace(txtSenha.Text))

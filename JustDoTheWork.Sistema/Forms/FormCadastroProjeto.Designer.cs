@@ -31,20 +31,20 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroProjeto));
             txtNomeProjeto = new DevExpress.XtraEditors.TextEdit();
-            btnIncluirProjeto = new DevExpress.XtraEditors.SimpleButton();
-            btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            btnSalvarCadastroProjeto = new DevExpress.XtraEditors.SimpleButton();
+            btnFecharCadastroProjeto = new DevExpress.XtraEditors.SimpleButton();
+            panelBackground = new DevExpress.XtraEditors.PanelControl();
             lblNomeProjeto = new DevExpress.XtraEditors.LabelControl();
-            bindingSourceProjetoDTO = new BindingSource(components);
+            bindingSourceProjeto = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)bindingSourceProjetoDTO).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelBackground).BeginInit();
+            panelBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceProjeto).BeginInit();
             SuspendLayout();
             // 
             // txtNomeProjeto
             // 
-            txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceProjetoDTO, "Nome", true));
+            txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceProjeto, "Nome", true));
             txtNomeProjeto.Location = new Point(76, 19);
             txtNomeProjeto.Margin = new Padding(4, 3, 4, 3);
             txtNomeProjeto.Name = "txtNomeProjeto";
@@ -54,41 +54,41 @@
             txtNomeProjeto.Size = new Size(237, 32);
             txtNomeProjeto.TabIndex = 0;
             // 
-            // btnIncluirProjeto
+            // btnSalvarCadastroProjeto
             // 
-            btnIncluirProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIncluirProjeto.Appearance.Options.UseFont = true;
-            btnIncluirProjeto.Location = new Point(12, 122);
-            btnIncluirProjeto.Margin = new Padding(10);
-            btnIncluirProjeto.Name = "btnIncluirProjeto";
-            btnIncluirProjeto.Size = new Size(88, 25);
-            btnIncluirProjeto.TabIndex = 1;
-            btnIncluirProjeto.Text = "Incluir";
-            btnIncluirProjeto.Click += btnIncluirProjeto_Click;
+            btnSalvarCadastroProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalvarCadastroProjeto.Appearance.Options.UseFont = true;
+            btnSalvarCadastroProjeto.Location = new Point(12, 122);
+            btnSalvarCadastroProjeto.Margin = new Padding(10);
+            btnSalvarCadastroProjeto.Name = "btnSalvarCadastroProjeto";
+            btnSalvarCadastroProjeto.Size = new Size(88, 25);
+            btnSalvarCadastroProjeto.TabIndex = 1;
+            btnSalvarCadastroProjeto.Text = "Incluir";
+            btnSalvarCadastroProjeto.Click += btnSalvarCadastroProjeto_Click;
             // 
-            // btnCancelar
+            // btnFecharCadastroProjeto
             // 
-            btnCancelar.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.Appearance.Options.UseFont = true;
-            btnCancelar.Location = new Point(120, 122);
-            btnCancelar.Margin = new Padding(10);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(88, 25);
-            btnCancelar.TabIndex = 2;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.Click += btnCancelar_Click;
+            btnFecharCadastroProjeto.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnFecharCadastroProjeto.Appearance.Options.UseFont = true;
+            btnFecharCadastroProjeto.Location = new Point(120, 122);
+            btnFecharCadastroProjeto.Margin = new Padding(10);
+            btnFecharCadastroProjeto.Name = "btnFecharCadastroProjeto";
+            btnFecharCadastroProjeto.Size = new Size(88, 25);
+            btnFecharCadastroProjeto.TabIndex = 2;
+            btnFecharCadastroProjeto.Text = "Cancelar";
+            btnFecharCadastroProjeto.Click += btnFecharCadastroProjeto_Click;
             // 
-            // panelControl1
+            // panelBackground
             // 
-            panelControl1.Controls.Add(lblNomeProjeto);
-            panelControl1.Controls.Add(txtNomeProjeto);
-            panelControl1.Controls.Add(btnIncluirProjeto);
-            panelControl1.Controls.Add(btnCancelar);
-            panelControl1.Location = new Point(12, 11);
-            panelControl1.Margin = new Padding(1);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(324, 159);
-            panelControl1.TabIndex = 4;
+            panelBackground.Controls.Add(lblNomeProjeto);
+            panelBackground.Controls.Add(txtNomeProjeto);
+            panelBackground.Controls.Add(btnSalvarCadastroProjeto);
+            panelBackground.Controls.Add(btnFecharCadastroProjeto);
+            panelBackground.Location = new Point(12, 11);
+            panelBackground.Margin = new Padding(1);
+            panelBackground.Name = "panelBackground";
+            panelBackground.Size = new Size(324, 159);
+            panelBackground.TabIndex = 4;
             // 
             // lblNomeProjeto
             // 
@@ -101,9 +101,9 @@
             lblNomeProjeto.TabIndex = 4;
             lblNomeProjeto.Text = "Nome";
             // 
-            // bindingSourceProjetoDTO
+            // bindingSourceProjeto
             // 
-            bindingSourceProjetoDTO.DataSource = typeof(DTO.ProjetoDTO);
+            bindingSourceProjeto.DataSource = typeof(DTO.ProjetoDTO);
             // 
             // FormCadastroProjeto
             // 
@@ -111,7 +111,7 @@
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(348, 179);
-            Controls.Add(panelControl1);
+            Controls.Add(panelBackground);
             Font = new Font("Courier New", 8.25F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             IconOptions.Image = (Image)resources.GetObject("FormCadastroProjeto.IconOptions.Image");
@@ -123,20 +123,20 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inclusão de Projeto";
             ((System.ComponentModel.ISupportInitialize)txtNomeProjeto.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)bindingSourceProjetoDTO).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelBackground).EndInit();
+            panelBackground.ResumeLayout(false);
+            panelBackground.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceProjeto).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.TextEdit txtNomeProjeto;
-        private DevExpress.XtraEditors.SimpleButton btnIncluirProjeto;
-        private DevExpress.XtraEditors.SimpleButton btnCancelar;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnSalvarCadastroProjeto;
+        private DevExpress.XtraEditors.SimpleButton btnFecharCadastroProjeto;
+        private DevExpress.XtraEditors.PanelControl panelBackground;
         private DevExpress.XtraEditors.LabelControl lblNomeProjeto;
-        private BindingSource bindingSourceProjetoDTO;
+        private BindingSource bindingSourceProjeto;
     }
 }

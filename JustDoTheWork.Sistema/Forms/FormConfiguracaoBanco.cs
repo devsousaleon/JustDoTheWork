@@ -6,18 +6,18 @@ using System.Configuration;
 
 namespace JustDoTheWork.Sistema.Forms
 {
-    public partial class FormConfigBanco : XtraForm
+    public partial class FormConfiguracaoBanco : XtraForm
     {
         private readonly BancoController _bancoController;
 
-        public FormConfigBanco()
+        public FormConfiguracaoBanco()
         {
             InitializeComponent();
             _bancoController = CompositionRoot.CriarBancoController();
-            bindingSourceBancoDTO.DataSource = new BancoDTO();
+            bindingSourceBanco.DataSource = new BancoDTO();
         }
 
-        void FormConfigBanco_Load(object sender, EventArgs e)
+        void FormConfiguracaoBanco_Load(object sender, EventArgs e)
         {
             txtServidor.Enabled = false;
             txtBanco.Enabled = false;
@@ -25,7 +25,7 @@ namespace JustDoTheWork.Sistema.Forms
             txtUsuarioBanco.Enabled = false;
         }
 
-        void btnSalvarConfigBanco_Click(object sender, EventArgs e)
+        void btnSalvarConfiguracaoBanco_Click(object sender, EventArgs e)
         {
             string mensagem = ValidarDados();
 
@@ -35,9 +35,9 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
             
-            string nomeConnectionString = comboBoxEditTipoBanco.SelectedIndex == 0 ? "SqlServer" : "Postgres";
+            string nomeConnectionString = comboTipoBanco.SelectedIndex == 0 ? "SqlServer" : "Postgres";
             string connectionString = CriaConnectionString();
-            string providerName = comboBoxEditTipoBanco.SelectedIndex == 0 ? "Microsoft.Data.SqlClient" : "Npgsql";
+            string providerName = comboTipoBanco.SelectedIndex == 0 ? "Microsoft.Data.SqlClient" : "Npgsql";
 
             mensagem = TestarConexao();
 
@@ -55,7 +55,7 @@ namespace JustDoTheWork.Sistema.Forms
 
         string CriaConnectionString()
         {
-            if (comboBoxEditTipoBanco.SelectedIndex == 0)
+            if (comboTipoBanco.SelectedIndex == 0)
             {
                 return $"Server={txtServidor.Text};" +
                        $"Database={txtBanco.Text};" +
@@ -63,7 +63,7 @@ namespace JustDoTheWork.Sistema.Forms
                        $"Password={txtSenhaBanco.Text};" +
                        $"TrustServerCertificate=True";
             }
-            else if (comboBoxEditTipoBanco.SelectedIndex == 1)
+            else if (comboTipoBanco.SelectedIndex == 1)
             {
                 return $"Host={txtServidor.Text};" +
                        $"Database={txtBanco.Text};" +
@@ -74,9 +74,9 @@ namespace JustDoTheWork.Sistema.Forms
                 return "Não há banco selecionado para criação da connectionString!";
         }
 
-        void comboBoxEditTipoBanco_SelectedIndexChanged(object sender, EventArgs e)
+        void comboTipoBanco_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool componenteAtivado = comboBoxEditTipoBanco.SelectedIndex != -1;
+            bool componenteAtivado = comboTipoBanco.SelectedIndex != -1;
 
             txtServidor.Enabled = componenteAtivado;
             txtBanco.Enabled = componenteAtivado;
@@ -84,18 +84,18 @@ namespace JustDoTheWork.Sistema.Forms
             txtUsuarioBanco.Enabled = componenteAtivado;
         }
 
-        void comboBoxEditTipoBanco_KeyDown(object sender, KeyEventArgs e)
+        void comboTipoBanco_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
-                comboBoxEditTipoBanco.SelectedIndex = -1;
+                comboTipoBanco.SelectedIndex = -1;
         }
 
-        void btnCancelar_Click(object sender, EventArgs e)
+        void btnFecharConfiguracaoBanco_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente cancelar esta configuração?\nNenhuma informação não salva será perdida e precisará ser configurada novamente.");
 
         string ValidarDados()
         {
-            if (comboBoxEditTipoBanco.SelectedIndex == -1)
+            if (comboTipoBanco.SelectedIndex == -1)
                 return "Necessário informar o tipo do banco de dados!";
 
             if (string.IsNullOrWhiteSpace(txtServidor.Text))
@@ -115,12 +115,12 @@ namespace JustDoTheWork.Sistema.Forms
 
         string TestarConexao()
         {
-            var dtoBanco = bindingSourceBancoDTO.Current as BancoDTO;
+            var bancoDTO = bindingSourceBanco.Current as BancoDTO;
 
-            if (comboBoxEditTipoBanco.SelectedIndex == 0)
-                return _bancoController.TestarConexaoSqlServer(dtoBanco);
-            else if (comboBoxEditTipoBanco.SelectedIndex == 1)
-                return _bancoController.TestarConexaoPostgres(dtoBanco);
+            if (comboTipoBanco.SelectedIndex == 0)
+                return _bancoController.TestarConexaoSqlServer(bancoDTO);
+            else if (comboTipoBanco.SelectedIndex == 1)
+                return _bancoController.TestarConexaoPostgres(bancoDTO);
             else
                 return "Erro ao tentar testar conexão!";
         }

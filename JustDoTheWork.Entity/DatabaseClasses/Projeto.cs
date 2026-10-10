@@ -1,6 +1,4 @@
-﻿using JustDoTheWork.Entity.DatabaseClasses;
-
-namespace JustDoTheWork.Entity
+﻿namespace JustDoTheWork.Entity.DatabaseClasses
 {
     public class Projeto : BaseClass
     {

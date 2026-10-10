@@ -33,36 +33,36 @@
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
             comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
-            dataCriacao = new DevExpress.XtraEditors.DateEdit();
-            lblData = new DevExpress.XtraEditors.LabelControl();
+            dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
+            lblDataCriacao = new DevExpress.XtraEditors.LabelControl();
             lblProjeto = new DevExpress.XtraEditors.LabelControl();
             lblStatus = new DevExpress.XtraEditors.LabelControl();
             btnPesquisarHistorico = new DevExpress.XtraEditors.SimpleButton();
-            panelBotoes = new DevExpress.XtraEditors.PanelControl();
+            panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             btnImprimirHistorico = new DevExpress.XtraEditors.SimpleButton();
             gridControlHistorico = new DevExpress.XtraGrid.GridControl();
-            gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridHistorico = new DevExpress.XtraGrid.Views.Grid.GridView();
             colNomeAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
             colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryItemDateTimeOffsetEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
+            repositoryDataFimExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
             colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryItemDateTimeOffsetEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
-            resultadoPesquisaHistoricoDTOBindingSource = new BindingSource(components);
+            repositoryDataInicioExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
+            bindingSourceResultadoPesquisaHistorico = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties.CalendarTimeProperties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelBotoes).BeginInit();
-            panelBotoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
+            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaHistoricoDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridHistorico).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryDataFimExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryDataInicioExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaHistorico).BeginInit();
             SuspendLayout();
             // 
             // panelFiltroPesquisa
@@ -71,8 +71,8 @@
             panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             panelFiltroPesquisa.Controls.Add(comboProjetoPesquisa);
             panelFiltroPesquisa.Controls.Add(comboStatusPesquisa);
-            panelFiltroPesquisa.Controls.Add(dataCriacao);
-            panelFiltroPesquisa.Controls.Add(lblData);
+            panelFiltroPesquisa.Controls.Add(dataCriacaoPesquisa);
+            panelFiltroPesquisa.Controls.Add(lblDataCriacao);
             panelFiltroPesquisa.Controls.Add(lblProjeto);
             panelFiltroPesquisa.Controls.Add(lblStatus);
             panelFiltroPesquisa.Controls.Add(btnPesquisarHistorico);
@@ -105,30 +105,30 @@
             comboStatusPesquisa.Size = new Size(296, 32);
             comboStatusPesquisa.TabIndex = 9;
             // 
-            // dataCriacao
-            // 
-            dataCriacao.EditValue = null;
-            dataCriacao.Location = new Point(451, 10);
-            dataCriacao.Name = "dataCriacao";
-            dataCriacao.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataCriacao.Properties.Appearance.Options.UseFont = true;
-            dataCriacao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            dataCriacao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            dataCriacao.Size = new Size(336, 30);
-            dataCriacao.TabIndex = 8;
-            // 
-            // lblData
-            // 
-            lblData.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblData.Appearance.ForeColor = Color.White;
-            lblData.Appearance.Options.UseFont = true;
-            lblData.Appearance.Options.UseForeColor = true;
-            lblData.Location = new Point(401, 17);
-            lblData.Margin = new Padding(15);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(32, 16);
-            lblData.TabIndex = 7;
-            lblData.Text = "Data";
+            // dataCriacaoPesquisa
+            //
+            dataCriacaoPesquisa.EditValue = null;
+            dataCriacaoPesquisa.Location = new Point(451, 10);
+            dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
+            dataCriacaoPesquisa.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataCriacaoPesquisa.Properties.Appearance.Options.UseFont = true;
+            dataCriacaoPesquisa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacaoPesquisa.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dataCriacaoPesquisa.Size = new Size(336, 30);
+            dataCriacaoPesquisa.TabIndex = 8;
+            //
+            // lblDataCriacao
+            //
+            lblDataCriacao.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDataCriacao.Appearance.ForeColor = Color.White;
+            lblDataCriacao.Appearance.Options.UseFont = true;
+            lblDataCriacao.Appearance.Options.UseForeColor = true;
+            lblDataCriacao.Location = new Point(401, 17);
+            lblDataCriacao.Margin = new Padding(15);
+            lblDataCriacao.Name = "lblDataCriacao";
+            lblDataCriacao.Size = new Size(32, 16);
+            lblDataCriacao.TabIndex = 7;
+            lblDataCriacao.Text = "Data";
             // 
             // lblProjeto
             // 
@@ -175,22 +175,22 @@
             btnPesquisarHistorico.Text = "Pesquisar";
             btnPesquisarHistorico.Click += btnPesquisarHistorico_Click;
             // 
-            // panelBotoes
-            // 
-            panelBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panelBotoes.Appearance.BackColor = Color.DarkSlateBlue;
-            panelBotoes.Appearance.BackColor2 = Color.DarkSlateBlue;
-            panelBotoes.Appearance.BorderColor = Color.DarkSlateBlue;
-            panelBotoes.Appearance.Options.UseBackColor = true;
-            panelBotoes.Appearance.Options.UseBorderColor = true;
-            panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            panelBotoes.Controls.Add(btnLimpar);
-            panelBotoes.Controls.Add(btnImprimirHistorico);
-            panelBotoes.Location = new Point(15, 184);
-            panelBotoes.Margin = new Padding(15);
-            panelBotoes.Name = "panelBotoes";
-            panelBotoes.Size = new Size(150, 520);
-            panelBotoes.TabIndex = 6;
+            // panelAcoes
+            //
+            panelAcoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelAcoes.Appearance.BackColor = Color.DarkSlateBlue;
+            panelAcoes.Appearance.BackColor2 = Color.DarkSlateBlue;
+            panelAcoes.Appearance.BorderColor = Color.DarkSlateBlue;
+            panelAcoes.Appearance.Options.UseBackColor = true;
+            panelAcoes.Appearance.Options.UseBorderColor = true;
+            panelAcoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            panelAcoes.Controls.Add(btnLimpar);
+            panelAcoes.Controls.Add(btnImprimirHistorico);
+            panelAcoes.Location = new Point(15, 184);
+            panelAcoes.Margin = new Padding(15);
+            panelAcoes.Name = "panelAcoes";
+            panelAcoes.Size = new Size(150, 520);
+            panelAcoes.TabIndex = 6;
             // 
             // btnLimpar
             // 
@@ -220,18 +220,18 @@
             // 
             gridControlHistorico.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gridControlHistorico.Location = new Point(183, 184);
-            gridControlHistorico.MainView = gridHistoricoExecucao;
+            gridControlHistorico.MainView = gridHistorico;
             gridControlHistorico.Name = "gridControlHistorico";
-            gridControlHistorico.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemDateTimeOffsetEdit1, repositoryItemDateTimeOffsetEdit2 });
+            gridControlHistorico.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryDataFimExecucao, repositoryDataInicioExecucao });
             gridControlHistorico.Size = new Size(1082, 520);
             gridControlHistorico.TabIndex = 8;
-            gridControlHistorico.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridHistoricoExecucao });
+            gridControlHistorico.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridHistorico });
             // 
-            // gridHistoricoExecucao
+            // gridHistorico
             // 
-            gridHistoricoExecucao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colNomeAtividade, colNomeProjeto, colDataInicioExecucao, colDataFimExecucao });
-            gridHistoricoExecucao.GridControl = gridControlHistorico;
-            gridHistoricoExecucao.Name = "gridHistoricoExecucao";
+            gridHistorico.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colNomeAtividade, colNomeProjeto, colDataInicioExecucao, colDataFimExecucao });
+            gridHistorico.GridControl = gridControlHistorico;
+            gridHistorico.Name = "gridHistorico";
             // 
             // colNomeAtividade
             // 
@@ -253,7 +253,7 @@
             // 
             // colDataInicioExecucao
             // 
-            colDataInicioExecucao.ColumnEdit = repositoryItemDateTimeOffsetEdit1;
+            colDataInicioExecucao.ColumnEdit = repositoryDataInicioExecucao;
             colDataInicioExecucao.FieldName = "DataInicioExecucao";
             colDataInicioExecucao.Name = "colDataInicioExecucao";
             colDataInicioExecucao.OptionsColumn.AllowEdit = false;
@@ -261,15 +261,15 @@
             colDataInicioExecucao.Visible = true;
             colDataInicioExecucao.VisibleIndex = 2;
             // 
-            // repositoryItemDateTimeOffsetEdit1
+            // repositoryDataFimExecucao
             // 
-            repositoryItemDateTimeOffsetEdit1.AutoHeight = false;
-            repositoryItemDateTimeOffsetEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            repositoryItemDateTimeOffsetEdit1.Name = "repositoryItemDateTimeOffsetEdit1";
+            repositoryDataFimExecucao.AutoHeight = false;
+            repositoryDataFimExecucao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryDataFimExecucao.Name = "repositoryDataFimExecucao";
             // 
             // colDataFimExecucao
             // 
-            colDataFimExecucao.ColumnEdit = repositoryItemDateTimeOffsetEdit2;
+            colDataFimExecucao.ColumnEdit = repositoryDataFimExecucao;
             colDataFimExecucao.FieldName = "DataFimExecucao";
             colDataFimExecucao.Name = "colDataFimExecucao";
             colDataFimExecucao.OptionsColumn.AllowEdit = false;
@@ -277,11 +277,11 @@
             colDataFimExecucao.Visible = true;
             colDataFimExecucao.VisibleIndex = 3;
             // 
-            // repositoryItemDateTimeOffsetEdit2
+            // repositoryDataInicioExecucao
             // 
-            repositoryItemDateTimeOffsetEdit2.AutoHeight = false;
-            repositoryItemDateTimeOffsetEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            repositoryItemDateTimeOffsetEdit2.Name = "repositoryItemDateTimeOffsetEdit2";
+            repositoryDataInicioExecucao.AutoHeight = false;
+            repositoryDataInicioExecucao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryDataInicioExecucao.Name = "repositoryDataInicioExecucao";
             // 
             // HistoricoUserControl
             // 
@@ -290,7 +290,7 @@
             BackgroundImageLayout = ImageLayout.None;
             Controls.Add(gridControlHistorico);
             Controls.Add(panelFiltroPesquisa);
-            Controls.Add(panelBotoes);
+            Controls.Add(panelAcoes);
             Name = "HistoricoUserControl";
             Size = new Size(1280, 720);
             Load += HistoricoUserControl_Load;
@@ -299,39 +299,39 @@
             panelFiltroPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties.CalendarTimeProperties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataCriacao.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelBotoes).EndInit();
-            panelBotoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
+            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlHistorico).EndInit();
-            ((System.ComponentModel.ISupportInitialize)gridHistoricoExecucao).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemDateTimeOffsetEdit2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaHistoricoDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridHistorico).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryDataFimExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryDataInicioExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaHistorico).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
-        private DevExpress.XtraEditors.DateEdit dataCriacao;
-        private DevExpress.XtraEditors.LabelControl lblData;
+        private DevExpress.XtraEditors.DateEdit dataCriacaoPesquisa;
+        private DevExpress.XtraEditors.LabelControl lblDataCriacao;
         private DevExpress.XtraEditors.LabelControl lblProjeto;
         private DevExpress.XtraEditors.LabelControl lblStatus;
         private DevExpress.XtraEditors.SimpleButton btnPesquisarHistorico;
-        private DevExpress.XtraEditors.PanelControl panelBotoes;
+        private DevExpress.XtraEditors.PanelControl panelAcoes;
         private DevExpress.XtraEditors.SimpleButton btnImprimirHistorico;
         private DevExpress.XtraGrid.GridControl gridControlHistorico;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridHistoricoExecucao;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridHistorico;
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
-        private BindingSource resultadoPesquisaHistoricoDTOBindingSource;
+        private BindingSource bindingSourceResultadoPesquisaHistorico;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeProjeto;
         private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;
         private DevExpress.XtraGrid.Columns.GridColumn colDataFimExecucao;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryItemDateTimeOffsetEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryDataFimExecucao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryDataInicioExecucao;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
     }
 }

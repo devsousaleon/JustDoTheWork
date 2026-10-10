@@ -1,5 +1,6 @@
 using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -79,7 +80,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             using var context = _dbContextFactory.CreateDbContext();
             return context.Atividades.AsNoTracking().FirstOrDefault(atividade => atividade.Id == id)!;
         }
-        public IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO filtro)
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtro)
         {
             using var context = _dbContextFactory.CreateDbContext();
             var atividades = context.Atividades.AsNoTracking().AsQueryable();
@@ -107,14 +108,14 @@ namespace JustDoTheWork.Infrastructure.Repository
                 from atividade in atividades
                 join projeto in context.Projetos.AsNoTracking()
                     on atividade.ProjetoId equals projeto.Id
-                select new AtualizaGridAtividadeDTO
+                select new ResultadoPesquisaAtividadeDTO
                 {
                     Id = atividade.Id,
                     Atividade = atividade.Nome,
                     Projeto = projeto.Nome
                 }).ToList();
         }
-        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro)
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtro)
         {
             using var context = _dbContextFactory.CreateDbContext();
             var atividades = context.Atividades.AsNoTracking().AsQueryable();
@@ -149,7 +150,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                     DataFimExecucao = execucao.DataFim
                 }).ToList();
         }
-        public IEnumerable<AtualizaGridAtividadeDTO> BuscaParaGridAtividades(int status)
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status)
         {
             using var context = _dbContextFactory.CreateDbContext();
             var statusAtividade = (StatusAtividade)status;
@@ -159,14 +160,14 @@ namespace JustDoTheWork.Infrastructure.Repository
                 join projeto in context.Projetos.AsNoTracking()
                     on atividade.ProjetoId equals projeto.Id
                 where atividade.Status == statusAtividade
-                select new AtualizaGridAtividadeDTO
+                select new ResultadoPesquisaAtividadeDTO
                 {
                     Id = atividade.Id,
                     Atividade = atividade.Nome,
                     Projeto = projeto.Nome
                 }).ToList();
         }
-        public string ExecutaAtividade(int id, int status, JustDoTheWorkDbContext context)
+        public string AlterarStatus(int id, int status, JustDoTheWorkDbContext context)
         {
             try
             {                

@@ -1,0 +1,33 @@
+root = true
+
+[*.cs]
+dotnet_naming_rule.tipos_pascal_case.severity = suggestion
+dotnet_naming_rule.tipos_pascal_case.symbols = tipos
+dotnet_naming_rule.tipos_pascal_case.style = pascal_case
+dotnet_naming_symbols.tipos.applicable_kinds = class, struct, enum, delegate
+
+dotnet_naming_rule.interfaces_com_i.severity = suggestion
+dotnet_naming_rule.interfaces_com_i.symbols = interfaces
+dotnet_naming_rule.interfaces_com_i.style = interface_pascal_case
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+
+dotnet_naming_rule.propriedades_pascal_case.severity = suggestion
+dotnet_naming_rule.propriedades_pascal_case.symbols = propriedades
+dotnet_naming_rule.propriedades_pascal_case.style = pascal_case
+dotnet_naming_symbols.propriedades.applicable_kinds = property
+
+dotnet_naming_rule.variaveis_camel_case.severity = suggestion
+dotnet_naming_rule.variaveis_camel_case.symbols = variaveis
+dotnet_naming_rule.variaveis_camel_case.style = camel_case
+dotnet_naming_symbols.variaveis.applicable_kinds = parameter, local
+
+dotnet_naming_rule.metodos_publicos_pascal_case.severity = suggestion
+dotnet_naming_rule.metodos_publicos_pascal_case.symbols = metodos_publicos
+dotnet_naming_rule.metodos_publicos_pascal_case.style = pascal_case
+dotnet_naming_symbols.metodos_publicos.applicable_kinds = method
+dotnet_naming_symbols.metodos_publicos.applicable_accessibilities = public, internal, protected, protected_internal
+
+dotnet_naming_styles.pascal_case.capitalization = pascal_case
+dotnet_naming_styles.interface_pascal_case.required_prefix = I
+dotnet_naming_styles.interface_pascal_case.capitalization = pascal_case
+dotnet_naming_styles.camel_case.capitalization = camel_case

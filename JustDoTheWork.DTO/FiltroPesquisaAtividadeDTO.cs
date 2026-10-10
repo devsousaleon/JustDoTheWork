@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.DTO
 {
-    public class AtividadePesquisaDTO
+    public class FiltroPesquisaAtividadeDTO
     {
         public string Nome { get; set; }
         public int? ProjetoId { get; set; }

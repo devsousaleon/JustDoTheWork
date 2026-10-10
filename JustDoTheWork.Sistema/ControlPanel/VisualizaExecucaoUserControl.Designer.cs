@@ -29,93 +29,95 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            bindingSourceAtualizaAtividadeDTOExecucao = new BindingSource(components);
+            bindingSourceResultadoPesquisaAtividade = new BindingSource(components);
             groupExecutando = new DevExpress.XtraEditors.GroupControl();
-            dataGridExecutando = new DevExpress.XtraGrid.GridControl();
+            gridControlExecutando = new DevExpress.XtraGrid.GridControl();
             gridExecutando = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeIdExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeAtividadeExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeProjetoExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
-            colButtonActionExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryButtonActionExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            colAcaoExecutando = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonAcaoExecutando = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             groupPausado = new DevExpress.XtraEditors.GroupControl();
-            dataGridPausado = new DevExpress.XtraGrid.GridControl();
+            gridControlPausado = new DevExpress.XtraGrid.GridControl();
             gridPausado = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeIdPausado = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeAtividadePausado = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeProjetoPausado = new DevExpress.XtraGrid.Columns.GridColumn();
-            colButtonActionPausado = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryButtonActionPausado = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            colAcaoPausado = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonAcaoPausado = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             groupPendente = new DevExpress.XtraEditors.GroupControl();
-            dataGridPendentes = new DevExpress.XtraGrid.GridControl();
+            gridControlPendentes = new DevExpress.XtraGrid.GridControl();
             gridPendentes = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
             colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
-            colButtonActionPendente = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryButtonActionPendentes = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            panelButtonsExecucao = new DevExpress.XtraEditors.PanelControl();
+            colAcaoPendente = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonAcaoPendente = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
             btnPausar = new DevExpress.XtraEditors.SimpleButton();
             btnExecutar = new DevExpress.XtraEditors.SimpleButton();
-            btnVoltaPendente = new DevExpress.XtraEditors.SimpleButton();
+            btnVoltarPendente = new DevExpress.XtraEditors.SimpleButton();
             panelAtividadesExecucao = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)bindingSourceAtualizaAtividadeDTOExecucao).BeginInit();
+            tableLayoutExecucao = new TableLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaAtividade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)groupExecutando).BeginInit();
             groupExecutando.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridExecutando).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlExecutando).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridExecutando).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionExecucao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoExecutando).BeginInit();
             ((System.ComponentModel.ISupportInitialize)groupPausado).BeginInit();
             groupPausado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridPausado).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlPausado).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPausado).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPausado).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPausado).BeginInit();
             ((System.ComponentModel.ISupportInitialize)groupPendente).BeginInit();
             groupPendente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridPendentes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlPendentes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPendentes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPendentes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelButtonsExecucao).BeginInit();
-            panelButtonsExecucao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPendente).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
+            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).BeginInit();
             panelAtividadesExecucao.SuspendLayout();
             SuspendLayout();
             // 
-            // bindingSourceAtualizaAtividadeDTOExecucao
+            // bindingSourceResultadoPesquisaAtividade
             // 
-            bindingSourceAtualizaAtividadeDTOExecucao.DataSource = typeof(DTO.AtualizaGridAtividadeDTO);
+            bindingSourceResultadoPesquisaAtividade.DataSource = typeof(DTO.ResultadoPesquisaAtividadeDTO);
             // 
             // groupExecutando
             // 
-            groupExecutando.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            groupExecutando.Dock = DockStyle.Fill;
+            groupExecutando.Padding = new Padding(10);
             groupExecutando.AppearanceCaption.Font = new Font("Courier New", 12F);
             groupExecutando.AppearanceCaption.Options.UseFont = true;
-            groupExecutando.Controls.Add(dataGridExecutando);
+            groupExecutando.Controls.Add(gridControlExecutando);
             groupExecutando.Location = new Point(523, 17);
-            groupExecutando.Margin = new Padding(15);
+            groupExecutando.Margin = new Padding(8);
             groupExecutando.Name = "groupExecutando";
             groupExecutando.Size = new Size(720, 280);
             groupExecutando.TabIndex = 4;
             groupExecutando.Text = "Em execução";
             // 
-            // dataGridExecutando
+            // gridControlExecutando
             // 
-            dataGridExecutando.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridExecutando.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
-            dataGridExecutando.Location = new Point(12, 39);
-            dataGridExecutando.MainView = gridExecutando;
-            dataGridExecutando.Margin = new Padding(10);
-            dataGridExecutando.Name = "dataGridExecutando";
-            dataGridExecutando.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionExecucao });
-            dataGridExecutando.Size = new Size(696, 229);
-            dataGridExecutando.TabIndex = 4;
-            dataGridExecutando.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridExecutando });
+            gridControlExecutando.Dock = DockStyle.Fill;
+            gridControlExecutando.DataSource = bindingSourceResultadoPesquisaAtividade;
+            gridControlExecutando.Location = new Point(12, 39);
+            gridControlExecutando.MainView = gridExecutando;
+            gridControlExecutando.Margin = new Padding(10);
+            gridControlExecutando.Name = "gridControlExecutando";
+            gridControlExecutando.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcaoExecutando });
+            gridControlExecutando.Size = new Size(696, 229);
+            gridControlExecutando.TabIndex = 4;
+            gridControlExecutando.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridExecutando });
             // 
             // gridExecutando
             // 
-            gridExecutando.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdExecutando, colNomeAtividadeExecutando, colNomeProjetoExecutando, colButtonActionExecucao });
-            gridExecutando.GridControl = dataGridExecutando;
+            gridExecutando.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdExecutando, colNomeAtividadeExecutando, colNomeProjetoExecutando, colAcaoExecutando });
+            gridExecutando.GridControl = gridControlExecutando;
             gridExecutando.Name = "gridExecutando";
             gridExecutando.RowClick += gridExecutando_RowClick;
             // 
@@ -152,51 +154,52 @@
             colNomeProjetoExecutando.Visible = true;
             colNomeProjetoExecutando.VisibleIndex = 2;
             // 
-            // colButtonActionExecucao
+            // colAcaoExecutando
             // 
-            colButtonActionExecucao.Caption = "Ação";
-            colButtonActionExecucao.ColumnEdit = repositoryButtonActionExecucao;
-            colButtonActionExecucao.Name = "colButtonActionExecucao";
-            colButtonActionExecucao.Visible = true;
-            colButtonActionExecucao.VisibleIndex = 3;
+            colAcaoExecutando.Caption = "Ação";
+            colAcaoExecutando.ColumnEdit = repositoryButtonAcaoExecutando;
+            colAcaoExecutando.Name = "colAcaoExecutando";
+            colAcaoExecutando.Visible = true;
+            colAcaoExecutando.VisibleIndex = 3;
             // 
-            // repositoryButtonActionExecucao
+            // repositoryButtonAcaoExecutando
             // 
-            repositoryButtonActionExecucao.AutoHeight = false;
-            repositoryButtonActionExecucao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryButtonActionExecucao.Name = "repositoryButtonActionExecucao";
-            repositoryButtonActionExecucao.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcaoExecutando.AutoHeight = false;
+            repositoryButtonAcaoExecutando.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcaoExecutando.Name = "repositoryButtonAcaoExecutando";
+            repositoryButtonAcaoExecutando.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // groupPausado
             // 
-            groupPausado.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupPausado.Dock = DockStyle.Fill;
+            groupPausado.Padding = new Padding(10);
             groupPausado.AppearanceCaption.Font = new Font("Courier New", 12F);
             groupPausado.AppearanceCaption.Options.UseFont = true;
-            groupPausado.Controls.Add(dataGridPausado);
+            groupPausado.Controls.Add(gridControlPausado);
             groupPausado.Location = new Point(523, 310);
-            groupPausado.Margin = new Padding(15, 15, 15, 10);
+            groupPausado.Margin = new Padding(8);
             groupPausado.Name = "groupPausado";
             groupPausado.Size = new Size(720, 297);
             groupPausado.TabIndex = 5;
             groupPausado.Text = "Pausado";
             // 
-            // dataGridPausado
+            // gridControlPausado
             // 
-            dataGridPausado.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridPausado.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
-            dataGridPausado.Location = new Point(12, 39);
-            dataGridPausado.MainView = gridPausado;
-            dataGridPausado.Margin = new Padding(10);
-            dataGridPausado.Name = "dataGridPausado";
-            dataGridPausado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionPausado });
-            dataGridPausado.Size = new Size(696, 246);
-            dataGridPausado.TabIndex = 3;
-            dataGridPausado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPausado });
+            gridControlPausado.Dock = DockStyle.Fill;
+            gridControlPausado.DataSource = bindingSourceResultadoPesquisaAtividade;
+            gridControlPausado.Location = new Point(12, 39);
+            gridControlPausado.MainView = gridPausado;
+            gridControlPausado.Margin = new Padding(10);
+            gridControlPausado.Name = "gridControlPausado";
+            gridControlPausado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcaoPausado });
+            gridControlPausado.Size = new Size(696, 246);
+            gridControlPausado.TabIndex = 3;
+            gridControlPausado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPausado });
             // 
             // gridPausado
             // 
-            gridPausado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdPausado, colNomeAtividadePausado, colNomeProjetoPausado, colButtonActionPausado });
-            gridPausado.GridControl = dataGridPausado;
+            gridPausado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdPausado, colNomeAtividadePausado, colNomeProjetoPausado, colAcaoPausado });
+            gridPausado.GridControl = gridControlPausado;
             gridPausado.Name = "gridPausado";
             gridPausado.RowClick += gridPausado_RowClick;
             // 
@@ -233,51 +236,52 @@
             colNomeProjetoPausado.Visible = true;
             colNomeProjetoPausado.VisibleIndex = 2;
             // 
-            // colButtonActionPausado
+            // colAcaoPausado
             // 
-            colButtonActionPausado.Caption = "Ação";
-            colButtonActionPausado.ColumnEdit = repositoryButtonActionPausado;
-            colButtonActionPausado.Name = "colButtonActionPausado";
-            colButtonActionPausado.Visible = true;
-            colButtonActionPausado.VisibleIndex = 3;
+            colAcaoPausado.Caption = "Ação";
+            colAcaoPausado.ColumnEdit = repositoryButtonAcaoPausado;
+            colAcaoPausado.Name = "colAcaoPausado";
+            colAcaoPausado.Visible = true;
+            colAcaoPausado.VisibleIndex = 3;
             // 
-            // repositoryButtonActionPausado
+            // repositoryButtonAcaoPausado
             // 
-            repositoryButtonActionPausado.AutoHeight = false;
-            repositoryButtonActionPausado.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryButtonActionPausado.Name = "repositoryButtonActionPausado";
-            repositoryButtonActionPausado.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcaoPausado.AutoHeight = false;
+            repositoryButtonAcaoPausado.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcaoPausado.Name = "repositoryButtonAcaoPausado";
+            repositoryButtonAcaoPausado.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // groupPendente
             // 
-            groupPendente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupPendente.Dock = DockStyle.Fill;
+            groupPendente.Padding = new Padding(10);
             groupPendente.AppearanceCaption.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupPendente.AppearanceCaption.Options.UseFont = true;
-            groupPendente.Controls.Add(dataGridPendentes);
+            groupPendente.Controls.Add(gridControlPendentes);
             groupPendente.Location = new Point(17, 17);
-            groupPendente.Margin = new Padding(15, 15, 15, 10);
+            groupPendente.Margin = new Padding(8);
             groupPendente.Name = "groupPendente";
             groupPendente.Size = new Size(500, 590);
             groupPendente.TabIndex = 3;
             groupPendente.Text = "Pendentes";
             // 
-            // dataGridPendentes
+            // gridControlPendentes
             // 
-            dataGridPendentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridPendentes.DataSource = bindingSourceAtualizaAtividadeDTOExecucao;
-            dataGridPendentes.Location = new Point(12, 39);
-            dataGridPendentes.MainView = gridPendentes;
-            dataGridPendentes.Margin = new Padding(10);
-            dataGridPendentes.Name = "dataGridPendentes";
-            dataGridPendentes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonActionPendentes });
-            dataGridPendentes.Size = new Size(476, 539);
-            dataGridPendentes.TabIndex = 6;
-            dataGridPendentes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPendentes });
+            gridControlPendentes.Dock = DockStyle.Fill;
+            gridControlPendentes.DataSource = bindingSourceResultadoPesquisaAtividade;
+            gridControlPendentes.Location = new Point(12, 39);
+            gridControlPendentes.MainView = gridPendentes;
+            gridControlPendentes.Margin = new Padding(10);
+            gridControlPendentes.Name = "gridControlPendentes";
+            gridControlPendentes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcaoPendente });
+            gridControlPendentes.Size = new Size(476, 539);
+            gridControlPendentes.TabIndex = 6;
+            gridControlPendentes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridPendentes });
             // 
             // gridPendentes
             // 
-            gridPendentes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeId, colNomeAtividade, colNomeProjeto, colButtonActionPendente });
-            gridPendentes.GridControl = dataGridPendentes;
+            gridPendentes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeId, colNomeAtividade, colNomeProjeto, colAcaoPendente });
+            gridPendentes.GridControl = gridControlPendentes;
             gridPendentes.Name = "gridPendentes";
             gridPendentes.RowClick += gridPendentes_RowClick;
             // 
@@ -312,32 +316,32 @@
             colNomeProjeto.Visible = true;
             colNomeProjeto.VisibleIndex = 2;
             // 
-            // colButtonActionPendente
+            // colAcaoPendente
             // 
-            colButtonActionPendente.Caption = "Ação";
-            colButtonActionPendente.ColumnEdit = repositoryButtonActionPendentes;
-            colButtonActionPendente.Name = "colButtonActionPendente";
-            colButtonActionPendente.Visible = true;
-            colButtonActionPendente.VisibleIndex = 3;
+            colAcaoPendente.Caption = "Ação";
+            colAcaoPendente.ColumnEdit = repositoryButtonAcaoPendente;
+            colAcaoPendente.Name = "colAcaoPendente";
+            colAcaoPendente.Visible = true;
+            colAcaoPendente.VisibleIndex = 3;
             // 
-            // repositoryButtonActionPendentes
+            // repositoryButtonAcaoPendente
             // 
-            repositoryButtonActionPendentes.AutoHeight = false;
-            repositoryButtonActionPendentes.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryButtonActionPendentes.Name = "repositoryButtonActionPendentes";
-            repositoryButtonActionPendentes.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcaoPendente.AutoHeight = false;
+            repositoryButtonAcaoPendente.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcaoPendente.Name = "repositoryButtonAcaoPendente";
+            repositoryButtonAcaoPendente.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // panelButtonsExecucao
+            // panelAcoes
             // 
-            panelButtonsExecucao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelButtonsExecucao.Controls.Add(btnFinalizar);
-            panelButtonsExecucao.Controls.Add(btnPausar);
-            panelButtonsExecucao.Controls.Add(btnExecutar);
-            panelButtonsExecucao.Controls.Add(btnVoltaPendente);
-            panelButtonsExecucao.Location = new Point(22, 620);
-            panelButtonsExecucao.Name = "panelButtonsExecucao";
-            panelButtonsExecucao.Size = new Size(1216, 70);
-            panelButtonsExecucao.TabIndex = 6;
+            panelAcoes.Dock = DockStyle.Bottom;
+            panelAcoes.Controls.Add(btnFinalizar);
+            panelAcoes.Controls.Add(btnPausar);
+            panelAcoes.Controls.Add(btnExecutar);
+            panelAcoes.Controls.Add(btnVoltarPendente);
+            panelAcoes.Location = new Point(22, 620);
+            panelAcoes.Name = "panelAcoes";
+            panelAcoes.Size = new Size(1216, 70);
+            panelAcoes.TabIndex = 6;
             // 
             // btnFinalizar
             // 
@@ -378,26 +382,41 @@
             btnExecutar.Text = "Executar";
             btnExecutar.Click += btnExecutar_Click;
             // 
-            // btnVoltaPendente
-            // 
-            btnVoltaPendente.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnVoltaPendente.Appearance.Font = new Font("Courier New", 8.25F);
-            btnVoltaPendente.Appearance.Options.UseFont = true;
-            btnVoltaPendente.Location = new Point(101, 10);
-            btnVoltaPendente.Margin = new Padding(8);
-            btnVoltaPendente.Name = "btnVoltaPendente";
-            btnVoltaPendente.Size = new Size(165, 23);
-            btnVoltaPendente.TabIndex = 1;
-            btnVoltaPendente.Text = "Voltar para Pendente";
-            btnVoltaPendente.Click += btnVoltaPendente_Click;
-            // 
+            // btnVoltarPendente
+            //
+            btnVoltarPendente.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnVoltarPendente.Appearance.Font = new Font("Courier New", 8.25F);
+            btnVoltarPendente.Appearance.Options.UseFont = true;
+            btnVoltarPendente.Location = new Point(101, 10);
+            btnVoltarPendente.Margin = new Padding(8);
+            btnVoltarPendente.Name = "btnVoltarPendente";
+            btnVoltarPendente.Size = new Size(165, 23);
+            btnVoltarPendente.TabIndex = 1;
+            btnVoltarPendente.Text = "Voltar para Pendente";
+            btnVoltarPendente.Click += btnVoltarPendente_Click;
+            //
+            // tableLayoutExecucao
+            //
+            tableLayoutExecucao.ColumnCount = 2;
+            tableLayoutExecucao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutExecucao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutExecucao.Controls.Add(groupPendente, 0, 0);
+            tableLayoutExecucao.Controls.Add(groupExecutando, 1, 0);
+            tableLayoutExecucao.Controls.Add(groupPausado, 1, 1);
+            tableLayoutExecucao.SetRowSpan(groupPendente, 2);
+            tableLayoutExecucao.Dock = DockStyle.Fill;
+            tableLayoutExecucao.Name = "tableLayoutExecucao";
+            tableLayoutExecucao.RowCount = 2;
+            tableLayoutExecucao.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutExecucao.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutExecucao.TabIndex = 0;
+            //
             // panelAtividadesExecucao
             // 
             panelAtividadesExecucao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelAtividadesExecucao.Controls.Add(panelButtonsExecucao);
-            panelAtividadesExecucao.Controls.Add(groupPendente);
-            panelAtividadesExecucao.Controls.Add(groupPausado);
-            panelAtividadesExecucao.Controls.Add(groupExecutando);
+            panelAtividadesExecucao.Padding = new Padding(10);
+            panelAtividadesExecucao.Controls.Add(tableLayoutExecucao);
+            panelAtividadesExecucao.Controls.Add(panelAcoes);
             panelAtividadesExecucao.Location = new Point(10, 10);
             panelAtividadesExecucao.Margin = new Padding(10);
             panelAtividadesExecucao.Name = "panelAtividadesExecucao";
@@ -411,25 +430,25 @@
             Controls.Add(panelAtividadesExecucao);
             Name = "VisualizaExecucaoUserControl";
             Size = new Size(1280, 720);
-            Load += HomeUserControl_Load;
-            ((System.ComponentModel.ISupportInitialize)bindingSourceAtualizaAtividadeDTOExecucao).EndInit();
+            Load += VisualizaExecucaoUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaAtividade).EndInit();
             ((System.ComponentModel.ISupportInitialize)groupExecutando).EndInit();
             groupExecutando.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridExecutando).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlExecutando).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridExecutando).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionExecucao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoExecutando).EndInit();
             ((System.ComponentModel.ISupportInitialize)groupPausado).EndInit();
             groupPausado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridPausado).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlPausado).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPausado).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPausado).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPausado).EndInit();
             ((System.ComponentModel.ISupportInitialize)groupPendente).EndInit();
             groupPendente.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridPendentes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlPendentes).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPendentes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonActionPendentes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelButtonsExecucao).EndInit();
-            panelButtonsExecucao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPendente).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
+            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).EndInit();
             panelAtividadesExecucao.ResumeLayout(false);
             ResumeLayout(false);
@@ -437,27 +456,28 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn atividadeIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAtividadeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeProjetoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource bindingSourceAtualizaAtividadeDTOExecucao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIdAtividade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNomeAtividadeTabela;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNomeProjetoTabela;
+        private System.Windows.Forms.BindingSource bindingSourceResultadoPesquisaAtividade;
         private DevExpress.XtraEditors.GroupControl groupExecutando;
         private DevExpress.XtraEditors.GroupControl groupPausado;
         private DevExpress.XtraEditors.GroupControl groupPendente;
-        private DevExpress.XtraEditors.PanelControl panelButtonsExecucao;
+        private DevExpress.XtraEditors.PanelControl panelAcoes;
         private DevExpress.XtraEditors.SimpleButton btnFinalizar;
         private DevExpress.XtraEditors.SimpleButton btnPausar;
         private DevExpress.XtraEditors.SimpleButton btnExecutar;
-        private DevExpress.XtraEditors.SimpleButton btnVoltaPendente;
+        private DevExpress.XtraEditors.SimpleButton btnVoltarPendente;
         private DevExpress.XtraEditors.PanelControl panelAtividadesExecucao;
-        private DevExpress.XtraGrid.GridControl dataGridPendentes;
+        private TableLayoutPanel tableLayoutExecucao;
+        private DevExpress.XtraGrid.GridControl gridControlPendentes;
         private DevExpress.XtraGrid.Views.Grid.GridView gridPendentes;
         private DevExpress.XtraGrid.Columns.GridColumn colAtividadeId;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeProjeto;
-        private DevExpress.XtraGrid.GridControl dataGridExecutando;
+        private DevExpress.XtraGrid.GridControl gridControlExecutando;
         private DevExpress.XtraGrid.Views.Grid.GridView gridExecutando;
-        private DevExpress.XtraGrid.GridControl dataGridPausado;
+        private DevExpress.XtraGrid.GridControl gridControlPausado;
         private DevExpress.XtraGrid.Views.Grid.GridView gridPausado;
         private DevExpress.XtraGrid.Columns.GridColumn colAtividadeIdExecutando;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividadeExecutando;
@@ -465,11 +485,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAtividadeIdPausado;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeAtividadePausado;
         private DevExpress.XtraGrid.Columns.GridColumn colNomeProjetoPausado;
-        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionPendente;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionPendentes;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionExecucao;
-        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionExecucao;
-        private DevExpress.XtraGrid.Columns.GridColumn colButtonActionPausado;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonActionPausado;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcaoPendente;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcaoPendente;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcaoExecutando;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcaoExecutando;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcaoPausado;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcaoPausado;
     }
 }

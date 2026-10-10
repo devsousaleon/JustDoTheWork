@@ -6,15 +6,15 @@ namespace JustDoTheWork.Controller
 {
     public class ModeloRelatorioController
     {
-        private readonly IModeloRelatorioRepository _iModeloRepository;
+        private readonly IModeloRelatorioRepository _modeloRelatorioRepository;
 
         public ModeloRelatorioController(IModeloRelatorioRepository repository)
         {
-            _iModeloRepository = repository;
+            _modeloRelatorioRepository = repository;
         }
 
-        public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> PesquisaModeloRelatorio(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO)
-            => _iModeloRepository.Pesquisar(filtroPesquisaModeloRelatorioDTO);
+        public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO)
+            => _modeloRelatorioRepository.Pesquisar(filtroPesquisaModeloRelatorioDTO);
 
         public string Inclusao(ModeloRelatorioDTO modeloRelatorioDTO)
         {
@@ -24,7 +24,7 @@ namespace JustDoTheWork.Controller
             if (modeloRelatorioDTO.TipoModeloId == 0)
                 return "Informe o tipo do modelo!";
 
-            var dados = new ModeloRelatorio
+            var modeloRelatorio = new ModeloRelatorio
             {
                 Descricao = modeloRelatorioDTO.Descricao,
                 TipoModeloId = modeloRelatorioDTO.TipoModeloId,
@@ -32,11 +32,11 @@ namespace JustDoTheWork.Controller
                 Ativo = modeloRelatorioDTO.Ativo
             };
 
-            return _iModeloRepository.Inclusao(dados);
+            return _modeloRelatorioRepository.Inclusao(modeloRelatorio);
         }
 
-        public ModeloRelatorioDTO PreencheDadosTela(int id)
-            => _iModeloRepository.BuscarPorId(id);
+        public ModeloRelatorioDTO BuscarPorId(int id)
+            => _modeloRelatorioRepository.BuscarPorId(id);
 
         public string Edicao(ModeloRelatorioDTO modeloRelatorioDTO)
         {
@@ -46,7 +46,7 @@ namespace JustDoTheWork.Controller
             if (modeloRelatorioDTO.TipoModeloId == 0)
                 return "Informe o tipo do modelo!";
 
-            var dados = new ModeloRelatorio
+            var modeloRelatorio = new ModeloRelatorio
             {
                 Id = modeloRelatorioDTO.Id,
                 Descricao = modeloRelatorioDTO.Descricao,
@@ -55,13 +55,13 @@ namespace JustDoTheWork.Controller
                 Ativo = modeloRelatorioDTO.Ativo
             };
 
-            return _iModeloRepository.Edicao(dados);
+            return _modeloRelatorioRepository.Edicao(modeloRelatorio);
         }
 
-        public string Exclusao(int Id)
-            => _iModeloRepository.ExclusaoPorId(Id);
+        public string Exclusao(int id)
+            => _modeloRelatorioRepository.ExclusaoPorId(id);
 
-        public byte[]? BuscaModeloHistoricoExecucao()
-            => _iModeloRepository.BuscaModeloHistoricoExecucao();
+        public byte[]? BuscarModeloHistoricoExecucao()
+            => _modeloRelatorioRepository.BuscarModeloHistoricoExecucao();
     }
 }

@@ -40,13 +40,13 @@ namespace JustDoTheWork.Sistema.ControlPanel
             btnIncluirUsuario = new DevExpress.XtraEditors.SimpleButton();
             btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             gridControlUsuario = new DevExpress.XtraGrid.GridControl();
-            resultadoPesquisaUsuarioDTOBindingSource = new BindingSource(components);
+            bindingSourceResultadoPesquisaUsuario = new BindingSource(components);
             gridUsuario = new DevExpress.XtraGrid.Views.Grid.GridView();
             colNome = new DevExpress.XtraGrid.Columns.GridColumn();
             colLogon = new DevExpress.XtraGrid.Columns.GridColumn();
             colTipoUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             colAcao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryButtonGrid = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            repositoryButtonAcao = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtNomeUsuario.Properties).BeginInit();
@@ -54,9 +54,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
             panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlUsuario).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaUsuarioDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaUsuario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridUsuario).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).BeginInit();
             SuspendLayout();
             //
             // panelFiltroPesquisa
@@ -174,18 +174,18 @@ namespace JustDoTheWork.Sistema.ControlPanel
             // gridControlUsuario
             //
             gridControlUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gridControlUsuario.DataSource = resultadoPesquisaUsuarioDTOBindingSource;
+            gridControlUsuario.DataSource = bindingSourceResultadoPesquisaUsuario;
             gridControlUsuario.Location = new Point(183, 185);
             gridControlUsuario.MainView = gridUsuario;
             gridControlUsuario.Name = "gridControlUsuario";
-            gridControlUsuario.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonGrid });
+            gridControlUsuario.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcao });
             gridControlUsuario.Size = new Size(1082, 520);
             gridControlUsuario.TabIndex = 2;
             gridControlUsuario.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridUsuario });
             //
-            // resultadoPesquisaUsuarioDTOBindingSource
+            // bindingSourceResultadoPesquisaUsuario
             //
-            resultadoPesquisaUsuarioDTOBindingSource.DataSource = typeof(DTO.ResultadoPesquisaUsuarioDTO);
+            bindingSourceResultadoPesquisaUsuario.DataSource = typeof(DTO.ResultadoPesquisaUsuarioDTO);
             //
             // gridUsuario
             //
@@ -232,7 +232,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             // colAcao
             //
             colAcao.Caption = "Ação";
-            colAcao.ColumnEdit = repositoryButtonGrid;
+            colAcao.ColumnEdit = repositoryButtonAcao;
             colAcao.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
             colAcao.MaxWidth = 90;
             colAcao.MinWidth = 70;
@@ -242,13 +242,13 @@ namespace JustDoTheWork.Sistema.ControlPanel
             colAcao.VisibleIndex = 3;
             colAcao.Width = 80;
             //
-            // repositoryButtonGrid
+            // repositoryButtonAcao
             //
-            repositoryButtonGrid.AutoHeight = false;
-            repositoryButtonGrid.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryButtonGrid.Name = "repositoryButtonGrid";
-            repositoryButtonGrid.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            repositoryButtonGrid.ButtonClick += repositoryButtonGrid_ButtonClick;
+            repositoryButtonAcao.AutoHeight = false;
+            repositoryButtonAcao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcao.Name = "repositoryButtonAcao";
+            repositoryButtonAcao.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcao.ButtonClick += repositoryButtonAcao_ButtonClick;
             //
             // CadastroUsuarioUserControl
             //
@@ -268,9 +268,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
             ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
             panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlUsuario).EndInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaUsuarioDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaUsuario).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridUsuario).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryButtonGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).EndInit();
             ResumeLayout(false);
         }
 
@@ -286,12 +286,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
         private DevExpress.XtraEditors.SimpleButton btnIncluirUsuario;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
         private DevExpress.XtraGrid.GridControl gridControlUsuario;
-        private BindingSource resultadoPesquisaUsuarioDTOBindingSource;
+        private BindingSource bindingSourceResultadoPesquisaUsuario;
         private DevExpress.XtraGrid.Views.Grid.GridView gridUsuario;
         private DevExpress.XtraGrid.Columns.GridColumn colNome;
         private DevExpress.XtraGrid.Columns.GridColumn colLogon;
         private DevExpress.XtraGrid.Columns.GridColumn colTipoUsuario;
         private DevExpress.XtraGrid.Columns.GridColumn colAcao;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonGrid;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcao;
     }
 }

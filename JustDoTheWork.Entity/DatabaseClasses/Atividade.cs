@@ -1,6 +1,6 @@
-﻿using JustDoTheWork.Entity.DatabaseClasses;
+﻿using JustDoTheWork.Entity;
 
-namespace JustDoTheWork.Entity
+namespace JustDoTheWork.Entity.DatabaseClasses
 {
     public class Atividade : BaseClass
     {

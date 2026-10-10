@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
 

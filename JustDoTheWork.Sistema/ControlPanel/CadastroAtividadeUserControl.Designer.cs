@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.ControlPanel
 {
-    partial class VisualizaAtividadesUserControl
+    partial class CadastroAtividadeUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,56 +29,56 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisualizaAtividadesUserControl));
-            panelBotoes = new DevExpress.XtraEditors.PanelControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroAtividadeUserControl));
+            panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             btnIncluirAtividade = new DevExpress.XtraEditors.SimpleButton();
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
             comboStatusPesquisa = new DevExpress.XtraEditors.LookUpEdit();
-            bindingSourcePesquisaAtividade = new BindingSource(components);
+            bindingSourceFiltroPesquisaAtividade = new BindingSource(components);
             comboProjetoPesquisa = new DevExpress.XtraEditors.LookUpEdit();
             dataCriacaoPesquisa = new DevExpress.XtraEditors.DateEdit();
-            lblData = new DevExpress.XtraEditors.LabelControl();
+            lblDataCriacao = new DevExpress.XtraEditors.LabelControl();
             lblProjeto = new DevExpress.XtraEditors.LabelControl();
             lblStatus = new DevExpress.XtraEditors.LabelControl();
             btnPesquisarAtividade = new DevExpress.XtraEditors.SimpleButton();
             txtNomeAtividade = new DevExpress.XtraEditors.TextEdit();
             lblNomeAtividade = new DevExpress.XtraEditors.LabelControl();
-            searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            GridCadastroAtividade = new DevExpress.XtraGrid.GridControl();
-            gridAtividadesCadastradas = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridProjetoPesquisa = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridControlAtividade = new DevExpress.XtraGrid.GridControl();
+            gridAtividade = new DevExpress.XtraGrid.Views.Grid.GridView();
             colId = new DevExpress.XtraGrid.Columns.GridColumn();
             colAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
             colProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
-            gridColumnVisualizaAtividade = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryItemButtonAtividades = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ((System.ComponentModel.ISupportInitialize)panelBotoes).BeginInit();
-            panelBotoes.SuspendLayout();
+            colAcao = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonAcao = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
+            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSourcePesquisaAtividade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceFiltroPesquisaAtividade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAtividades).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridProjetoPesquisa).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlAtividade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridAtividade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).BeginInit();
             SuspendLayout();
             // 
-            // panelBotoes
+            // panelAcoes
             // 
-            panelBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panelBotoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            panelBotoes.Controls.Add(btnLimpar);
-            panelBotoes.Controls.Add(btnIncluirAtividade);
-            panelBotoes.Location = new Point(15, 184);
-            panelBotoes.Margin = new Padding(15);
-            panelBotoes.Name = "panelBotoes";
-            panelBotoes.Size = new Size(150, 520);
-            panelBotoes.TabIndex = 3;
+            panelAcoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelAcoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            panelAcoes.Controls.Add(btnLimpar);
+            panelAcoes.Controls.Add(btnIncluirAtividade);
+            panelAcoes.Location = new Point(15, 184);
+            panelAcoes.Margin = new Padding(15);
+            panelAcoes.Name = "panelAcoes";
+            panelAcoes.Size = new Size(150, 520);
+            panelAcoes.TabIndex = 3;
             // 
             // btnLimpar
             // 
@@ -111,7 +111,7 @@
             panelFiltroPesquisa.Controls.Add(comboStatusPesquisa);
             panelFiltroPesquisa.Controls.Add(comboProjetoPesquisa);
             panelFiltroPesquisa.Controls.Add(dataCriacaoPesquisa);
-            panelFiltroPesquisa.Controls.Add(lblData);
+            panelFiltroPesquisa.Controls.Add(lblDataCriacao);
             panelFiltroPesquisa.Controls.Add(lblProjeto);
             panelFiltroPesquisa.Controls.Add(lblStatus);
             panelFiltroPesquisa.Controls.Add(btnPesquisarAtividade);
@@ -125,7 +125,7 @@
             // 
             // comboStatusPesquisa
             // 
-            comboStatusPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "Status", true));
+            comboStatusPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourceFiltroPesquisaAtividade, "Status", true));
             comboStatusPesquisa.EnterMoveNextControl = true;
             comboStatusPesquisa.Location = new Point(84, 58);
             comboStatusPesquisa.Name = "comboStatusPesquisa";
@@ -137,13 +137,13 @@
             comboStatusPesquisa.Size = new Size(296, 32);
             comboStatusPesquisa.TabIndex = 2;
             // 
-            // bindingSourcePesquisaAtividade
+            // bindingSourceFiltroPesquisaAtividade
             // 
-            bindingSourcePesquisaAtividade.DataSource = typeof(DTO.AtividadePesquisaDTO);
+            bindingSourceFiltroPesquisaAtividade.DataSource = typeof(DTO.FiltroPesquisaAtividadeDTO);
             // 
             // comboProjetoPesquisa
             // 
-            comboProjetoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "ProjetoId", true));
+            comboProjetoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourceFiltroPesquisaAtividade, "ProjetoId", true));
             comboProjetoPesquisa.EnterMoveNextControl = true;
             comboProjetoPesquisa.Location = new Point(567, 13);
             comboProjetoPesquisa.Name = "comboProjetoPesquisa";
@@ -156,7 +156,7 @@
             // 
             // dataCriacaoPesquisa
             // 
-            dataCriacaoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "DataCriacao", true));
+            dataCriacaoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourceFiltroPesquisaAtividade, "DataCriacao", true));
             dataCriacaoPesquisa.EditValue = null;
             dataCriacaoPesquisa.Location = new Point(567, 56);
             dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
@@ -167,16 +167,16 @@
             dataCriacaoPesquisa.Size = new Size(312, 30);
             dataCriacaoPesquisa.TabIndex = 3;
             // 
-            // lblData
+            // lblDataCriacao
             // 
-            lblData.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblData.Appearance.Options.UseFont = true;
-            lblData.Location = new Point(429, 63);
-            lblData.Margin = new Padding(15);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(120, 16);
-            lblData.TabIndex = 7;
-            lblData.Text = "Data de criação";
+            lblDataCriacao.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDataCriacao.Appearance.Options.UseFont = true;
+            lblDataCriacao.Location = new Point(429, 63);
+            lblDataCriacao.Margin = new Padding(15);
+            lblDataCriacao.Name = "lblDataCriacao";
+            lblDataCriacao.Size = new Size(120, 16);
+            lblDataCriacao.TabIndex = 7;
+            lblDataCriacao.Text = "Data de criação";
             // 
             // lblProjeto
             // 
@@ -217,7 +217,7 @@
             // 
             // txtNomeAtividade
             // 
-            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourcePesquisaAtividade, "Nome", true));
+            txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceFiltroPesquisaAtividade, "Nome", true));
             txtNomeAtividade.EnterMoveNextControl = true;
             txtNomeAtividade.Location = new Point(84, 13);
             txtNomeAtividade.Name = "txtNomeAtividade";
@@ -238,29 +238,29 @@
             lblNomeAtividade.TabIndex = 0;
             lblNomeAtividade.Text = "Nome";
             // 
-            // searchLookUpEdit1View
+            // gridProjetoPesquisa
             // 
-            searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            gridProjetoPesquisa.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            gridProjetoPesquisa.Name = "gridProjetoPesquisa";
+            gridProjetoPesquisa.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridProjetoPesquisa.OptionsView.ShowGroupPanel = false;
             // 
-            // GridCadastroAtividade
+            // gridControlAtividade
             // 
-            GridCadastroAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            GridCadastroAtividade.Location = new Point(183, 184);
-            GridCadastroAtividade.MainView = gridAtividadesCadastradas;
-            GridCadastroAtividade.Name = "GridCadastroAtividade";
-            GridCadastroAtividade.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonAtividades });
-            GridCadastroAtividade.Size = new Size(1082, 520);
-            GridCadastroAtividade.TabIndex = 6;
-            GridCadastroAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridAtividadesCadastradas });
+            gridControlAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridControlAtividade.Location = new Point(183, 184);
+            gridControlAtividade.MainView = gridAtividade;
+            gridControlAtividade.Name = "gridControlAtividade";
+            gridControlAtividade.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcao });
+            gridControlAtividade.Size = new Size(1082, 520);
+            gridControlAtividade.TabIndex = 6;
+            gridControlAtividade.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridAtividade });
             // 
-            // gridAtividadesCadastradas
+            // gridAtividade
             // 
-            gridAtividadesCadastradas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colAtividade, colProjeto, gridColumnVisualizaAtividade });
-            gridAtividadesCadastradas.GridControl = GridCadastroAtividade;
-            gridAtividadesCadastradas.Name = "gridAtividadesCadastradas";
+            gridAtividade.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colAtividade, colProjeto, colAcao });
+            gridAtividade.GridControl = gridControlAtividade;
+            gridAtividade.Name = "gridAtividade";
             // 
             // colId
             // 
@@ -292,56 +292,56 @@
             colProjeto.Visible = true;
             colProjeto.VisibleIndex = 2;
             // 
-            // gridColumnVisualizaAtividade
+            // colAcao
             // 
-            gridColumnVisualizaAtividade.Caption = "Ação";
-            gridColumnVisualizaAtividade.ColumnEdit = repositoryItemButtonAtividades;
-            gridColumnVisualizaAtividade.Name = "gridColumnVisualizaAtividade";
-            gridColumnVisualizaAtividade.Visible = true;
-            gridColumnVisualizaAtividade.VisibleIndex = 3;
+            colAcao.Caption = "Ação";
+            colAcao.ColumnEdit = repositoryButtonAcao;
+            colAcao.Name = "colAcao";
+            colAcao.Visible = true;
+            colAcao.VisibleIndex = 3;
             // 
-            // repositoryItemButtonAtividades
+            // repositoryButtonAcao
             // 
-            repositoryItemButtonAtividades.AutoHeight = false;
-            repositoryItemButtonAtividades.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryItemButtonAtividades.Name = "repositoryItemButtonAtividades";
-            repositoryItemButtonAtividades.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcao.AutoHeight = false;
+            repositoryButtonAcao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcao.Name = "repositoryButtonAcao";
+            repositoryButtonAcao.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // VisualizaAtividadesUserControl
+            // CadastroAtividadeUserControl
             // 
             Appearance.BackColor = Color.FromArgb(32, 32, 32);
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.None;
-            Controls.Add(GridCadastroAtividade);
+            Controls.Add(gridControlAtividade);
             Controls.Add(panelFiltroPesquisa);
-            Controls.Add(panelBotoes);
-            Name = "VisualizaAtividadesUserControl";
+            Controls.Add(panelAcoes);
+            Name = "CadastroAtividadeUserControl";
             Size = new Size(1280, 720);
-            Load += RegisterUserControl_Load;
-            ((System.ComponentModel.ISupportInitialize)panelBotoes).EndInit();
-            panelBotoes.ResumeLayout(false);
+            Load += CadastroAtividadeUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
+            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).EndInit();
             panelFiltroPesquisa.ResumeLayout(false);
             panelFiltroPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboStatusPesquisa.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSourcePesquisaAtividade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceFiltroPesquisaAtividade).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboProjetoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties.CalendarTimeProperties).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataCriacaoPesquisa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNomeAtividade.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).EndInit();
-            ((System.ComponentModel.ISupportInitialize)GridCadastroAtividade).EndInit();
-            ((System.ComponentModel.ISupportInitialize)gridAtividadesCadastradas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAtividades).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridProjetoPesquisa).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlAtividade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridAtividade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelBotoes;
+        private DevExpress.XtraEditors.PanelControl panelAcoes;
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
         private DevExpress.XtraEditors.SimpleButton btnIncluirAtividade;
         private DevExpress.XtraEditors.LabelControl lblNomeAtividade;
@@ -349,19 +349,19 @@
         private DevExpress.XtraEditors.SimpleButton btnPesquisarAtividade;
         private DevExpress.XtraEditors.LabelControl lblStatus;
         private DevExpress.XtraEditors.LabelControl lblProjeto;
-        private DevExpress.XtraEditors.LabelControl lblData;
+        private DevExpress.XtraEditors.LabelControl lblDataCriacao;
         private DevExpress.XtraEditors.DateEdit dataCriacaoPesquisa;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private System.Windows.Forms.BindingSource bindingSourcePesquisaAtividade;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridProjetoPesquisa;
+        private System.Windows.Forms.BindingSource bindingSourceFiltroPesquisaAtividade;
         private DevExpress.XtraEditors.LookUpEdit comboProjetoPesquisa;
         private DevExpress.XtraEditors.LookUpEdit comboStatusPesquisa;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
-        private DevExpress.XtraGrid.GridControl GridCadastroAtividade;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridAtividadesCadastradas;
+        private DevExpress.XtraGrid.GridControl gridControlAtividade;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colAtividade;
         private DevExpress.XtraGrid.Columns.GridColumn colProjeto;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnVisualizaAtividade;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonAtividades;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcao;
     }
 }

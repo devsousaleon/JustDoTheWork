@@ -7,23 +7,23 @@ namespace JustDoTheWork.Sistema.Forms
 {
     public partial class FormCadastroProjeto : XtraForm
     {
-        private readonly ProjetoController _controller;
-        FormCadastroAtividade _formCadastro;
+        private readonly ProjetoController _projetoController;
+        FormCadastroAtividade _formCadastroAtividade;
 
-        public FormCadastroProjeto(FormCadastroAtividade _formCadastro)
+        public FormCadastroProjeto(FormCadastroAtividade formCadastroAtividade)
         {
             InitializeComponent();
-            _controller = CompositionRoot.CriarProjetoController();
-            this._formCadastro = _formCadastro;
-            bindingSourceProjetoDTO.DataSource = new ProjetoDTO();
+            _projetoController = CompositionRoot.CriarProjetoController();
+            this._formCadastroAtividade = formCadastroAtividade;
+            bindingSourceProjeto.DataSource = new ProjetoDTO();
         }
 
-        void btnCancelar_Click(object sender, EventArgs e)
+        void btnFecharCadastroProjeto_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente fechar a inclusão deste projeto? \nAs ações realizadas não serão salvas e serão perdidas!");
         
-        void btnIncluirProjeto_Click(object sender, EventArgs e)
+        void btnSalvarCadastroProjeto_Click(object sender, EventArgs e)
         {
-            var mensagemRetornoInclusaoProjeto = _controller.Inclusao(bindingSourceProjetoDTO.Current as ProjetoDTO);
+            var mensagemRetornoInclusaoProjeto = _projetoController.Inclusao(bindingSourceProjeto.Current as ProjetoDTO);
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoInclusaoProjeto))
             {
@@ -32,7 +32,7 @@ namespace JustDoTheWork.Sistema.Forms
             }
 
             MessageService.Sucesso("Projeto cadastrado com sucesso!");
-            _formCadastro.AtualizaComboBoxProjeto();
+            _formCadastroAtividade.AtualizaComboBoxProjeto();
             this.Close();
         }
     }

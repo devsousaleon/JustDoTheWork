@@ -2,6 +2,7 @@ using DevExpress.XtraEditors.Controls;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.UI.Core;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
@@ -12,6 +13,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         public CadastroUsuarioUserControl()
         {
             InitializeComponent();
+            DesignGrid.Configurar(gridUsuario, (colNome, 480), (colLogon, 300), (colTipoUsuario, 280));
             _usuarioController = CompositionRoot.CriarUsuarioController();
         }
 
@@ -29,7 +31,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 Logon = txtLogon.Text
             };
 
-            resultadoPesquisaUsuarioDTOBindingSource.DataSource = _usuarioController.PesquisaUsuario(filtro).ToList();
+            bindingSourceResultadoPesquisaUsuario.DataSource = _usuarioController.Pesquisar(filtro).ToList();
         }
 
         void btnIncluirUsuario_Click(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             AtualizaGrid();
         }
 
-        void repositoryButtonGrid_ButtonClick(object sender, ButtonPressedEventArgs e)
+        void repositoryButtonAcao_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             if (gridUsuario.GetFocusedRow() is not ResultadoPesquisaUsuarioDTO usuarioSelecionado)
                 return;

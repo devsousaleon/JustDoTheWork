@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.Sistema.Forms
 {
-    partial class FormConfigBanco
+    partial class FormConfiguracaoBanco
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfigBanco));
-            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfiguracaoBanco));
+            panelBackground = new DevExpress.XtraEditors.PanelControl();
             btnTestarConexao = new DevExpress.XtraEditors.SimpleButton();
-            btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            btnSalvarConfigBanco = new DevExpress.XtraEditors.SimpleButton();
+            btnFecharConfiguracaoBanco = new DevExpress.XtraEditors.SimpleButton();
+            btnSalvarConfiguracaoBanco = new DevExpress.XtraEditors.SimpleButton();
             lblSenhaBanco = new DevExpress.XtraEditors.LabelControl();
             txtSenhaBanco = new DevExpress.XtraEditors.TextEdit();
-            bindingSourceBancoDTO = new BindingSource(components);
+            bindingSourceBanco = new BindingSource(components);
             lblUsuarioBanco = new DevExpress.XtraEditors.LabelControl();
             txtUsuarioBanco = new DevExpress.XtraEditors.TextEdit();
             lblBanco = new DevExpress.XtraEditors.LabelControl();
@@ -44,36 +44,36 @@
             lblServidor = new DevExpress.XtraEditors.LabelControl();
             txtServidor = new DevExpress.XtraEditors.TextEdit();
             lblTipoBanco = new DevExpress.XtraEditors.LabelControl();
-            comboBoxEditTipoBanco = new DevExpress.XtraEditors.ComboBoxEdit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
+            comboTipoBanco = new DevExpress.XtraEditors.ComboBoxEdit();
+            ((System.ComponentModel.ISupportInitialize)panelBackground).BeginInit();
+            panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtSenhaBanco.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSourceBancoDTO).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceBanco).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtUsuarioBanco.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtBanco.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtServidor.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)comboBoxEditTipoBanco.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboTipoBanco.Properties).BeginInit();
             SuspendLayout();
             // 
-            // panelControl1
+            // panelBackground
             // 
-            panelControl1.Controls.Add(btnTestarConexao);
-            panelControl1.Controls.Add(btnCancelar);
-            panelControl1.Controls.Add(btnSalvarConfigBanco);
-            panelControl1.Controls.Add(lblSenhaBanco);
-            panelControl1.Controls.Add(txtSenhaBanco);
-            panelControl1.Controls.Add(lblUsuarioBanco);
-            panelControl1.Controls.Add(txtUsuarioBanco);
-            panelControl1.Controls.Add(lblBanco);
-            panelControl1.Controls.Add(txtBanco);
-            panelControl1.Controls.Add(lblServidor);
-            panelControl1.Controls.Add(txtServidor);
-            panelControl1.Controls.Add(lblTipoBanco);
-            panelControl1.Controls.Add(comboBoxEditTipoBanco);
-            panelControl1.Location = new Point(12, 12);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(574, 217);
-            panelControl1.TabIndex = 0;
+            panelBackground.Controls.Add(btnTestarConexao);
+            panelBackground.Controls.Add(btnFecharConfiguracaoBanco);
+            panelBackground.Controls.Add(btnSalvarConfiguracaoBanco);
+            panelBackground.Controls.Add(lblSenhaBanco);
+            panelBackground.Controls.Add(txtSenhaBanco);
+            panelBackground.Controls.Add(lblUsuarioBanco);
+            panelBackground.Controls.Add(txtUsuarioBanco);
+            panelBackground.Controls.Add(lblBanco);
+            panelBackground.Controls.Add(txtBanco);
+            panelBackground.Controls.Add(lblServidor);
+            panelBackground.Controls.Add(txtServidor);
+            panelBackground.Controls.Add(lblTipoBanco);
+            panelBackground.Controls.Add(comboTipoBanco);
+            panelBackground.Location = new Point(12, 12);
+            panelBackground.Name = "panelBackground";
+            panelBackground.Size = new Size(574, 217);
+            panelBackground.TabIndex = 0;
             // 
             // btnTestarConexao
             // 
@@ -85,25 +85,25 @@
             btnTestarConexao.Text = "Testar Conexão";
             btnTestarConexao.Click += btnTestarConexao_Click;
             // 
-            // btnCancelar
+            // btnFecharConfiguracaoBanco
             // 
-            btnCancelar.Location = new Point(107, 183);
-            btnCancelar.Margin = new Padding(10);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 11;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.Click += btnCancelar_Click;
+            btnFecharConfiguracaoBanco.Location = new Point(107, 183);
+            btnFecharConfiguracaoBanco.Margin = new Padding(10);
+            btnFecharConfiguracaoBanco.Name = "btnFecharConfiguracaoBanco";
+            btnFecharConfiguracaoBanco.Size = new Size(75, 23);
+            btnFecharConfiguracaoBanco.TabIndex = 11;
+            btnFecharConfiguracaoBanco.Text = "Cancelar";
+            btnFecharConfiguracaoBanco.Click += btnFecharConfiguracaoBanco_Click;
             // 
-            // btnSalvarConfigBanco
+            // btnSalvarConfiguracaoBanco
             // 
-            btnSalvarConfigBanco.Location = new Point(12, 182);
-            btnSalvarConfigBanco.Margin = new Padding(10);
-            btnSalvarConfigBanco.Name = "btnSalvarConfigBanco";
-            btnSalvarConfigBanco.Size = new Size(75, 23);
-            btnSalvarConfigBanco.TabIndex = 10;
-            btnSalvarConfigBanco.Text = "Salvar";
-            btnSalvarConfigBanco.Click += btnSalvarConfigBanco_Click;
+            btnSalvarConfiguracaoBanco.Location = new Point(12, 182);
+            btnSalvarConfiguracaoBanco.Margin = new Padding(10);
+            btnSalvarConfiguracaoBanco.Name = "btnSalvarConfiguracaoBanco";
+            btnSalvarConfiguracaoBanco.Size = new Size(75, 23);
+            btnSalvarConfiguracaoBanco.TabIndex = 10;
+            btnSalvarConfiguracaoBanco.Text = "Salvar";
+            btnSalvarConfiguracaoBanco.Click += btnSalvarConfiguracaoBanco_Click;
             // 
             // lblSenhaBanco
             // 
@@ -116,7 +116,7 @@
             // 
             // txtSenhaBanco
             // 
-            txtSenhaBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBancoDTO, "Senha", true));
+            txtSenhaBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Senha", true));
             txtSenhaBanco.Location = new Point(388, 120);
             txtSenhaBanco.Margin = new Padding(10);
             txtSenhaBanco.Name = "txtSenhaBanco";
@@ -124,9 +124,9 @@
             txtSenhaBanco.Size = new Size(174, 28);
             txtSenhaBanco.TabIndex = 8;
             // 
-            // bindingSourceBancoDTO
+            // bindingSourceBanco
             // 
-            bindingSourceBancoDTO.DataSource = typeof(DTO.BancoDTO);
+            bindingSourceBanco.DataSource = typeof(DTO.BancoDTO);
             // 
             // lblUsuarioBanco
             // 
@@ -139,7 +139,7 @@
             // 
             // txtUsuarioBanco
             // 
-            txtUsuarioBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBancoDTO, "Usuario", true));
+            txtUsuarioBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Usuario", true));
             txtUsuarioBanco.Location = new Point(388, 72);
             txtUsuarioBanco.Margin = new Padding(10);
             txtUsuarioBanco.Name = "txtUsuarioBanco";
@@ -157,7 +157,7 @@
             // 
             // txtBanco
             // 
-            txtBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBancoDTO, "Banco", true));
+            txtBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Banco", true));
             txtBanco.Location = new Point(72, 120);
             txtBanco.Margin = new Padding(10);
             txtBanco.Name = "txtBanco";
@@ -175,7 +175,7 @@
             // 
             // txtServidor
             // 
-            txtServidor.DataBindings.Add(new Binding("EditValue", bindingSourceBancoDTO, "Servidor", true));
+            txtServidor.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Servidor", true));
             txtServidor.Location = new Point(72, 72);
             txtServidor.Margin = new Padding(10);
             txtServidor.Name = "txtServidor";
@@ -191,50 +191,50 @@
             lblTipoBanco.TabIndex = 1;
             lblTipoBanco.Text = "Tipo";
             // 
-            // comboBoxEditTipoBanco
+            // comboTipoBanco
             // 
-            comboBoxEditTipoBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBancoDTO, "Tipo", true));
-            comboBoxEditTipoBanco.EditValue = "Selecione um banco";
-            comboBoxEditTipoBanco.Location = new Point(72, 31);
-            comboBoxEditTipoBanco.Name = "comboBoxEditTipoBanco";
-            comboBoxEditTipoBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            comboBoxEditTipoBanco.Properties.Items.AddRange(new object[] { "Sql Server", "Postgres" });
-            comboBoxEditTipoBanco.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            comboBoxEditTipoBanco.Size = new Size(167, 28);
-            comboBoxEditTipoBanco.TabIndex = 0;
-            comboBoxEditTipoBanco.SelectedIndexChanged += comboBoxEditTipoBanco_SelectedIndexChanged;
-            comboBoxEditTipoBanco.KeyDown += comboBoxEditTipoBanco_KeyDown;
+            comboTipoBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Tipo", true));
+            comboTipoBanco.EditValue = "Selecione um banco";
+            comboTipoBanco.Location = new Point(72, 31);
+            comboTipoBanco.Name = "comboTipoBanco";
+            comboTipoBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboTipoBanco.Properties.Items.AddRange(new object[] { "Sql Server", "Postgres" });
+            comboTipoBanco.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboTipoBanco.Size = new Size(167, 28);
+            comboTipoBanco.TabIndex = 0;
+            comboTipoBanco.SelectedIndexChanged += comboTipoBanco_SelectedIndexChanged;
+            comboTipoBanco.KeyDown += comboTipoBanco_KeyDown;
             // 
-            // FormConfigBanco
+            // FormConfiguracaoBanco
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(598, 235);
             ControlBox = false;
-            Controls.Add(panelControl1);
+            Controls.Add(panelBackground);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("FormConfigBanco.IconOptions.SvgImage");
-            Name = "FormConfigBanco";
+            IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("FormConfiguracaoBanco.IconOptions.SvgImage");
+            Name = "FormConfiguracaoBanco";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configuração do Banco de Dados";
-            Load += FormConfigBanco_Load;
-            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            panelControl1.PerformLayout();
+            Load += FormConfiguracaoBanco_Load;
+            ((System.ComponentModel.ISupportInitialize)panelBackground).EndInit();
+            panelBackground.ResumeLayout(false);
+            panelBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)txtSenhaBanco.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSourceBancoDTO).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceBanco).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtUsuarioBanco.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtBanco.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtServidor.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)comboBoxEditTipoBanco.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboTipoBanco.Properties).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl panelBackground;
         private DevExpress.XtraEditors.LabelControl lblTipoBanco;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditTipoBanco;
+        private DevExpress.XtraEditors.ComboBoxEdit comboTipoBanco;
         private DevExpress.XtraEditors.LabelControl lblSenhaBanco;
         private DevExpress.XtraEditors.TextEdit txtSenhaBanco;
         private DevExpress.XtraEditors.LabelControl lblUsuarioBanco;
@@ -243,9 +243,9 @@
         private DevExpress.XtraEditors.TextEdit txtBanco;
         private DevExpress.XtraEditors.LabelControl lblServidor;
         private DevExpress.XtraEditors.TextEdit txtServidor;
-        private DevExpress.XtraEditors.SimpleButton btnSalvarConfigBanco;
-        private DevExpress.XtraEditors.SimpleButton btnCancelar;
-        private BindingSource bindingSourceBancoDTO;
+        private DevExpress.XtraEditors.SimpleButton btnSalvarConfiguracaoBanco;
+        private DevExpress.XtraEditors.SimpleButton btnFecharConfiguracaoBanco;
+        private BindingSource bindingSourceBanco;
         private DevExpress.XtraEditors.SimpleButton btnTestarConexao;
     }
 }

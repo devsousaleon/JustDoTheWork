@@ -5,17 +5,17 @@ namespace JustDoTheWork.Controller
 {
     public class ExecucaoController
     {
-        private readonly IExecucaoRepository _iExecucaoRepository;
+        private readonly IExecucaoRepository _execucaoRepository;
 
         public ExecucaoController(IExecucaoRepository repository)
         {
-            _iExecucaoRepository = repository;
+            _execucaoRepository = repository;
         }
 
-        public IEnumerable<ExecucaoDTO> InformaDadosExecucao(int AtividadeId)
-            => _iExecucaoRepository.BuscarPorExecucoesPorAtividadeId(AtividadeId);
+        public IEnumerable<ExecucaoDTO> BuscarPorAtividadeId(int atividadeId)
+            => _execucaoRepository.BuscarPorAtividadeId(atividadeId);
 
-        public VisualizaExecucaoAtividadeDTO InformaDadosAtividade(int AtividadeId)
-            => _iExecucaoRepository.BuscaInfoAtividadeExecucao(AtividadeId);
+        public VisualizaExecucaoAtividadeDTO BuscarDadosAtividade(int atividadeId)
+            => _execucaoRepository.BuscarDadosAtividade(atividadeId);
     }
 }

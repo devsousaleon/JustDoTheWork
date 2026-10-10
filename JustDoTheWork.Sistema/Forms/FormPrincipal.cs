@@ -28,9 +28,9 @@ namespace JustDoTheWork.Sistema.Forms
             tabTarefas.ShowCloseButton = DefaultBoolean.False;
         }
 
-        void CarregaDadosTabControl(XtraTabControl xtratabControlMain, XtraUserControl xtraUserControl, string nomeTab)
+        void CarregaDadosTabControl(XtraTabControl tabControl, XtraUserControl xtraUserControl, string nomeTab)
         {
-            foreach (XtraTabPage aba in xtraTabControlMain.TabPages)
+            foreach (XtraTabPage aba in tabControlPrincipal.TabPages)
             {
                 if (string.Equals(aba.Text, nomeTab, StringComparison.OrdinalIgnoreCase))
                 {
@@ -39,13 +39,13 @@ namespace JustDoTheWork.Sistema.Forms
                 }
             }
 
-            XtraTabPage novaAba = xtratabControlMain.TabPages.Add();
+            XtraTabPage novaAba = tabControl.TabPages.Add();
 
             novaAba.Controls.Clear();
             xtraUserControl.Dock = DockStyle.Fill;
             novaAba.Controls.Add(xtraUserControl);
             novaAba.Text = nomeTab;
-            xtraTabControlMain.SelectedTabPage = novaAba;
+            tabControlPrincipal.SelectedTabPage = novaAba;
 
             accordionControlMenu.OptionsMinimizing.State = AccordionControlState.Minimized;
         }
@@ -57,14 +57,14 @@ namespace JustDoTheWork.Sistema.Forms
 
             switch (elemento.Tag)
             {
-                case "Atividades": CarregaDadosTabControl(xtraTabControlMain, new VisualizaAtividadesUserControl(), "Cadastro de Atividades"); return;
-                case "ModelosRelatorio": CarregaDadosTabControl(xtraTabControlMain, new CadastroModeloRelatorioUserControl(), "Modelos de Relatório"); return;
-                case "Usuarios": CarregaDadosTabControl(xtraTabControlMain, new CadastroUsuarioUserControl(), "Cadastro de Usuários"); return;
-                case "RelatorioExecucao": CarregaDadosTabControl(xtraTabControlMain, new HistoricoUserControl(), "Execuções realizadas"); return;
+                case "Atividades": CarregaDadosTabControl(tabControlPrincipal, new CadastroAtividadeUserControl(), "Cadastro de Atividades"); return;
+                case "ModelosRelatorio": CarregaDadosTabControl(tabControlPrincipal, new CadastroModeloRelatorioUserControl(), "Modelos de Relatório"); return;
+                case "Usuarios": CarregaDadosTabControl(tabControlPrincipal, new CadastroUsuarioUserControl(), "Cadastro de Usuários"); return;
+                case "RelatorioExecucao": CarregaDadosTabControl(tabControlPrincipal, new HistoricoUserControl(), "Execuções realizadas"); return;
             }
         }
 
-        private void xtraTabControlMain_CloseButtonClick(object sender, EventArgs e)
+        private void tabControlPrincipal_CloseButtonClick(object sender, EventArgs e)
         {
             if (e is not ClosePageButtonEventArgs argumentos)
                 return;
@@ -75,7 +75,7 @@ namespace JustDoTheWork.Sistema.Forms
             if (aba == tabTarefas)
                 return;
 
-            xtraTabControlMain.TabPages.Remove(aba);
+            tabControlPrincipal.TabPages.Remove(aba);
             aba.Dispose();
         }
     }

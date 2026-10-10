@@ -7,22 +7,23 @@ using JustDoTheWork.UI.Core;
 
 namespace JustDoTheWork.Sistema.ControlPanel
 {
-    public partial class VisualizaAtividadesUserControl : XtraUserControl
+    public partial class CadastroAtividadeUserControl : XtraUserControl
     {
         public int IdSelecionado { get; private set; }
         private readonly AtividadeController _atividadeController;
         private readonly ProjetoController _projetoController;
 
-        public VisualizaAtividadesUserControl()
+        public CadastroAtividadeUserControl()
         {
             InitializeComponent();
+            DesignGrid.Configurar(gridAtividade, (colId, 70), (colAtividade, 520), (colProjeto, 350));
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
-            repositoryItemButtonAtividades.ButtonPressed += RepositoryItemButtonEditAtividade_ButtonClick;
-            bindingSourcePesquisaAtividade.DataSource = new AtividadePesquisaDTO();
+            repositoryButtonAcao.ButtonPressed += repositoryButtonAcao_ButtonPressed;
+            bindingSourceFiltroPesquisaAtividade.DataSource = new FiltroPesquisaAtividadeDTO();
         }
 
-        void RegisterUserControl_Load(object sender, EventArgs e)
+        void CadastroAtividadeUserControl_Load(object sender, EventArgs e)
         {
             AtualizaComboBoxProjeto();
             AtualizaComboBoxStatus();
@@ -30,12 +31,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         void btnIncluirAtividade_Click(object sender, EventArgs e)
         {
-            FormCadastroAtividade _formCadastro = new();
-            _formCadastro.ShowDialog();
+            FormCadastroAtividade formCadastroAtividade = new();
+            formCadastroAtividade.ShowDialog();
         }
 
         public void AtualizaGrid()
-            => GridCadastroAtividade.DataSource = _atividadeController.PesquisarParaGrid(bindingSourcePesquisaAtividade.Current as AtividadePesquisaDTO).ToList();
+            => gridControlAtividade.DataSource = _atividadeController.Pesquisar(bindingSourceFiltroPesquisaAtividade.Current as FiltroPesquisaAtividadeDTO).ToList();
 
         void btnPesquisarAtividade_Click(object sender, EventArgs e)
             => AtualizaGrid();
@@ -47,13 +48,13 @@ namespace JustDoTheWork.Sistema.ControlPanel
             => UIMethodsService.AtualizaComboBoxStatus(_atividadeController, comboStatusPesquisa);
 
         void btnLimpar_Click(object sender, EventArgs e)
-            => bindingSourcePesquisaAtividade.DataSource = new AtividadePesquisaDTO();
+            => bindingSourceFiltroPesquisaAtividade.DataSource = new FiltroPesquisaAtividadeDTO();
 
-        void RepositoryItemButtonEditAtividade_ButtonClick(object sender, ButtonPressedEventArgs e)
+        void repositoryButtonAcao_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
-            IdSelecionado = Convert.ToInt32(gridAtividadesCadastradas.GetFocusedRowCellValue("Id"));
-            FormVisualizaCadastro _formVisualizaCadastro = new(this);
-            _formVisualizaCadastro.ShowDialog();
+            IdSelecionado = Convert.ToInt32(gridAtividade.GetFocusedRowCellValue("Id"));
+            FormVisualizaAtividade formVisualizaAtividade = new(this);
+            formVisualizaAtividade.ShowDialog();
         }
     }
 }

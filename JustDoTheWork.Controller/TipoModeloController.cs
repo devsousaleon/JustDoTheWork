@@ -5,16 +5,16 @@ namespace JustDoTheWork.Controller
 {
     public class TipoModeloController
     {
-        private readonly ITipoModeloRepository _repository; 
+        private readonly ITipoModeloRepository _tipoModeloRepository;
 
-        public TipoModeloController(ITipoModeloRepository tipoModeloRepository)
+        public TipoModeloController(ITipoModeloRepository repository)
         {
-            _repository = tipoModeloRepository;
+            _tipoModeloRepository = repository;
         }
 
         public IEnumerable<TipoModeloDTO> PesquisarParaCombo()
         {
-            var resultado = _repository.PesquisarParaCombo();
+            var resultado = _tipoModeloRepository.PesquisarParaCombo();
 
             return resultado.Select(m => new TipoModeloDTO
             {

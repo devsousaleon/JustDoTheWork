@@ -5,9 +5,9 @@ namespace JustDoTheWork.UI.Core
 {
     public static class UIMethodsService
     {
-        public static void AtualizaComboBoxProjeto(ProjetoController _projetoController, LookUpEdit comboProjeto)
+        public static void AtualizaComboBoxProjeto(ProjetoController projetoController, LookUpEdit comboProjeto)
         {
-            var dados = _projetoController.PesquisarParaCombo().ToList();
+            var dados = projetoController.PesquisarParaCombo().ToList();
 
             if (dados == null)
                 return;
@@ -18,18 +18,18 @@ namespace JustDoTheWork.UI.Core
             comboProjeto.Properties.NullText = "Selecione um projeto";
         }
 
-        public static void AtualizaComboBoxStatus(AtividadeController _atividadeController, LookUpEdit comboStatus)
+        public static void AtualizaComboBoxStatus(AtividadeController atividadeController, LookUpEdit comboStatus)
         {
-            comboStatus.Properties.DataSource = _atividadeController.ObterStatusAtividade();
+            comboStatus.Properties.DataSource = atividadeController.ObterStatusAtividade();
 
             comboStatus.Properties.DisplayMember = "Status";
             comboStatus.Properties.ValueMember = "Id";
             comboStatus.Properties.NullText = "Selecione uma opção";
         }
 
-        public static void AtualizaComboBoxTipoModelo(TipoModeloController _tipoModeloController, LookUpEdit comboTipoModelo)
+        public static void AtualizaComboBoxTipoModelo(TipoModeloController tipoModeloController, LookUpEdit comboTipoModelo)
         {
-            var resultadoBusca = _tipoModeloController.PesquisarParaCombo().ToList();
+            var resultadoBusca = tipoModeloController.PesquisarParaCombo().ToList();
 
             if (resultadoBusca == null)
                 return;

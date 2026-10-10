@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +29,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             }            
         }
 
-        public string FinalizaExecucao(Execucao execucao, JustDoTheWorkDbContext context)
+        public string FinalizarExecucao(Execucao execucao, JustDoTheWorkDbContext context)
         {
             try
             {
@@ -43,11 +44,11 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
         }
 
-        public IEnumerable<ExecucaoDTO> BuscarPorExecucoesPorAtividadeId(int AtividadeId)
+        public IEnumerable<ExecucaoDTO> BuscarPorAtividadeId(int atividadeId)
         {
             using var context = _dbContextFactory.CreateDbContext();
             return context.Execucoes.AsNoTracking()
-                             .Where(e => e.AtividadeId == AtividadeId)
+                             .Where(e => e.AtividadeId == atividadeId)
                              .Select(e => new ExecucaoDTO
                              {
                                  AtividadeId = e.AtividadeId,
@@ -55,13 +56,13 @@ namespace JustDoTheWork.Infrastructure.Repository
                                  DataInicio = e.DataInicio
                              }).ToList();
         }
-        public VisualizaExecucaoAtividadeDTO BuscaInfoAtividadeExecucao(int AtividadeId)
+        public VisualizaExecucaoAtividadeDTO BuscarDadosAtividade(int atividadeId)
         {
             using var context = _dbContextFactory.CreateDbContext();
 
             return context.Atividades
                 .AsNoTracking()
-                .Where(a => a.Id == AtividadeId)
+                .Where(a => a.Id == atividadeId)
                 .Join(
                     context.Projetos.AsNoTracking(),
                     a => a.ProjetoId,

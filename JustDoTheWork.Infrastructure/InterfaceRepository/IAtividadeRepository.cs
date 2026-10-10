@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
@@ -7,11 +8,11 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
     {
         string Inclusao(Atividade atividade);
         string Edicao(Atividade atividade);
-        string ExecutaAtividade(int Id, int Status, JustDoTheWorkDbContext context);
+        string AlterarStatus(int id, int status, JustDoTheWorkDbContext context);
         string ExclusaoPorId(int id);
         Atividade BuscarPorId(int id);
-        IEnumerable<AtualizaGridAtividadeDTO> PesquisarParaGrid(AtividadePesquisaDTO filtro);
-        IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarParaGridVisualizaHistorico(FiltroPesquisaHistoricoDTO filtro);
-        IEnumerable<AtualizaGridAtividadeDTO> BuscaParaGridAtividades(int Status);
+        IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtro);
+        IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtro);
+        IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status);
     }
 }

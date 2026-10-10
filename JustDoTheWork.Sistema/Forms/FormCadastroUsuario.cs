@@ -32,7 +32,7 @@ namespace JustDoTheWork.Sistema.Forms
             if (_idUsuario == 0)
                 return;
 
-            var usuarioDTO = _usuarioController.BuscaUsuarioPorId(_idUsuario);
+            var usuarioDTO = _usuarioController.BuscarPorId(_idUsuario);
 
             if (usuarioDTO is null)
             {

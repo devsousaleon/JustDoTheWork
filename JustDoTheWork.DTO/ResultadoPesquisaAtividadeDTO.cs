@@ -1,6 +1,6 @@
 ﻿namespace JustDoTheWork.DTO
 {
-    public class AtualizaGridAtividadeDTO
+    public class ResultadoPesquisaAtividadeDTO
     {
         public int Id { get; set; }
         public string Atividade { get; set; }

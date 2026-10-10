@@ -1,4 +1,5 @@
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

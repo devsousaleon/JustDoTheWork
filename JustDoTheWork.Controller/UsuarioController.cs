@@ -6,30 +6,30 @@ namespace JustDoTheWork.Controller
 {
     public class UsuarioController
     {
-        private readonly IUsuarioRepository _iUsuarioRepository;
-        string mensagem;
+        private readonly IUsuarioRepository _usuarioRepository;
+        string _mensagem;
 
         public UsuarioController(IUsuarioRepository repository)
         {
-            _iUsuarioRepository = repository;
+            _usuarioRepository = repository;
         }
 
         public IEnumerable<TipoUsuario> ObterTiposUsuario()
         {
             var tiposUsuario = new[] { "Historiador", "Desenvolvedor", "QA Tester", "Tech Lead" };
 
-            return _iUsuarioRepository.BuscarTiposUsuario()
+            return _usuarioRepository.BuscarTiposUsuario()
                 .Where(tipo => tiposUsuario.Contains(tipo.Tipo, StringComparer.OrdinalIgnoreCase))
                 .OrderBy(tipo => Array.FindIndex(tiposUsuario, nome => string.Equals(nome, tipo.Tipo, StringComparison.OrdinalIgnoreCase)))
                 .ToList();
         }
 
-        public IEnumerable<ResultadoPesquisaUsuarioDTO> PesquisaUsuario(FiltroPesquisaUsuarioDTO filtro)
-            => _iUsuarioRepository.Pesquisar(filtro);
+        public IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro)
+            => _usuarioRepository.Pesquisar(filtro);
 
-        public UsuarioDTO? BuscaUsuarioPorId(int id)
+        public UsuarioDTO? BuscarPorId(int id)
         {
-            var usuario = _iUsuarioRepository.BuscarPorId(id);
+            var usuario = _usuarioRepository.BuscarPorId(id);
 
             if (usuario is null)
                 return null;
@@ -65,9 +65,9 @@ namespace JustDoTheWork.Controller
                 Senha = usuarioDTO.Senha,
                 TipoUsuarioId = usuarioDTO.TipoUsuarioId
             };
-            mensagem = _iUsuarioRepository.Inclusao(usuario);
+            _mensagem = _usuarioRepository.Inclusao(usuario);
 
-            return mensagem;
+            return _mensagem;
         }
 
         public string Edicao(UsuarioDTO usuarioDTO)
@@ -90,15 +90,15 @@ namespace JustDoTheWork.Controller
                 TipoUsuarioId = usuarioDTO.TipoUsuarioId
             };
 
-            return _iUsuarioRepository.Edicao(usuario);
+            return _usuarioRepository.Edicao(usuario);
         }
 
         public string Exclusao(int idExclusao)
-            => _iUsuarioRepository.ExclusaoPorId(idExclusao);
+            => _usuarioRepository.ExclusaoPorId(idExclusao);
 
-        public UsuarioDTO BuscaUsuarioPorLogon(string logon)
+        public UsuarioDTO BuscarPorLogon(string logon)
         {
-            var usuario = _iUsuarioRepository.BuscarPorLogon(logon);
+            var usuario = _usuarioRepository.BuscarPorLogon(logon);
 
             if (usuario is null)
                 return null;

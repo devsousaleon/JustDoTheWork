@@ -30,72 +30,72 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
-            panelControl = new DevExpress.XtraEditors.PanelControl();
-            panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
+            panelBackground = new DevExpress.XtraEditors.PanelControl();
+            panelLogin = new DevExpress.XtraEditors.PanelControl();
+            separatorSenha = new DevExpress.XtraEditors.SeparatorControl();
             btnEsqueciSenha = new DevExpress.XtraEditors.SimpleButton();
             btnEntrar = new DevExpress.XtraEditors.SimpleButton();
             lblSenha = new DevExpress.XtraEditors.LabelControl();
             txtSenha = new DevExpress.XtraEditors.TextEdit();
-            lblUsuario = new DevExpress.XtraEditors.LabelControl();
-            separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
+            lblLogon = new DevExpress.XtraEditors.LabelControl();
+            separatorUsuario = new DevExpress.XtraEditors.SeparatorControl();
             lblCriarExecutarFinalizar = new DevExpress.XtraEditors.LabelControl();
-            txtUsuario = new DevExpress.XtraEditors.TextEdit();
+            txtLogon = new DevExpress.XtraEditors.TextEdit();
             lblJustDoTheWork = new DevExpress.XtraEditors.LabelControl();
-            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            panelCabecalho = new DevExpress.XtraEditors.PanelControl();
             lblBoasVindas = new DevExpress.XtraEditors.LabelControl();
             btnMinimizar = new DevExpress.XtraEditors.SimpleButton();
             btnFecharSistema = new DevExpress.XtraEditors.SimpleButton();
-            timer = new System.Windows.Forms.Timer(components);
+            timerBoasVindas = new System.Windows.Forms.Timer(components);
             bindingSourceUsuario = new BindingSource(components);
-            ((System.ComponentModel.ISupportInitialize)panelControl).BeginInit();
-            panelControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
-            panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)separatorControl2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelBackground).BeginInit();
+            panelBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)panelLogin).BeginInit();
+            panelLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)separatorSenha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtSenha.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)separatorControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtUsuario.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)separatorUsuario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLogon.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelCabecalho).BeginInit();
+            panelCabecalho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceUsuario).BeginInit();
             SuspendLayout();
             // 
-            // panelControl
-            // 
-            panelControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelControl.Controls.Add(panelControl2);
-            panelControl.Controls.Add(panelControl1);
-            panelControl.Location = new Point(12, 12);
-            panelControl.Name = "panelControl";
-            panelControl.Size = new Size(760, 558);
-            panelControl.TabIndex = 0;
-            // 
-            // panelControl2
-            // 
-            panelControl2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelControl2.Controls.Add(separatorControl2);
-            panelControl2.Controls.Add(btnEsqueciSenha);
-            panelControl2.Controls.Add(btnEntrar);
-            panelControl2.Controls.Add(lblSenha);
-            panelControl2.Controls.Add(txtSenha);
-            panelControl2.Controls.Add(lblUsuario);
-            panelControl2.Controls.Add(separatorControl1);
-            panelControl2.Controls.Add(lblCriarExecutarFinalizar);
-            panelControl2.Controls.Add(txtUsuario);
-            panelControl2.Controls.Add(lblJustDoTheWork);
-            panelControl2.Location = new Point(12, 82);
-            panelControl2.Margin = new Padding(10);
-            panelControl2.Name = "panelControl2";
-            panelControl2.Size = new Size(736, 464);
-            panelControl2.TabIndex = 4;
-            // 
-            // separatorControl2
-            // 
-            separatorControl2.Location = new Point(232, 359);
-            separatorControl2.Name = "separatorControl2";
-            separatorControl2.Size = new Size(297, 23);
-            separatorControl2.TabIndex = 9;
+            // panelBackground
+            //
+            panelBackground.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelBackground.Controls.Add(panelLogin);
+            panelBackground.Controls.Add(panelCabecalho);
+            panelBackground.Location = new Point(12, 12);
+            panelBackground.Name = "panelBackground";
+            panelBackground.Size = new Size(760, 558);
+            panelBackground.TabIndex = 0;
+            //
+            // panelLogin
+            //
+            panelLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelLogin.Controls.Add(separatorSenha);
+            panelLogin.Controls.Add(btnEsqueciSenha);
+            panelLogin.Controls.Add(btnEntrar);
+            panelLogin.Controls.Add(lblSenha);
+            panelLogin.Controls.Add(txtSenha);
+            panelLogin.Controls.Add(lblLogon);
+            panelLogin.Controls.Add(separatorUsuario);
+            panelLogin.Controls.Add(lblCriarExecutarFinalizar);
+            panelLogin.Controls.Add(txtLogon);
+            panelLogin.Controls.Add(lblJustDoTheWork);
+            panelLogin.Location = new Point(12, 82);
+            panelLogin.Margin = new Padding(10);
+            panelLogin.Name = "panelLogin";
+            panelLogin.Size = new Size(736, 464);
+            panelLogin.TabIndex = 4;
+            //
+            // separatorSenha
+            //
+            separatorSenha.Location = new Point(232, 359);
+            separatorSenha.Name = "separatorSenha";
+            separatorSenha.Size = new Size(297, 23);
+            separatorSenha.TabIndex = 9;
             // 
             // btnEsqueciSenha
             // 
@@ -144,22 +144,22 @@
             txtSenha.Size = new Size(297, 44);
             txtSenha.TabIndex = 5;
             // 
-            // lblUsuario
+            // lblLogon
             // 
-            lblUsuario.Appearance.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsuario.Appearance.Options.UseFont = true;
-            lblUsuario.Location = new Point(232, 158);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(62, 19);
-            lblUsuario.TabIndex = 4;
-            lblUsuario.Text = "Usuário";
+            lblLogon.Appearance.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLogon.Appearance.Options.UseFont = true;
+            lblLogon.Location = new Point(232, 158);
+            lblLogon.Name = "lblLogon";
+            lblLogon.Size = new Size(62, 19);
+            lblLogon.TabIndex = 4;
+            lblLogon.Text = "Usuário";
             // 
-            // separatorControl1
+            // separatorUsuario
             // 
-            separatorControl1.Location = new Point(232, 129);
-            separatorControl1.Name = "separatorControl1";
-            separatorControl1.Size = new Size(297, 23);
-            separatorControl1.TabIndex = 3;
+            separatorUsuario.Location = new Point(232, 129);
+            separatorUsuario.Name = "separatorUsuario";
+            separatorUsuario.Size = new Size(297, 23);
+            separatorUsuario.TabIndex = 3;
             // 
             // lblCriarExecutarFinalizar
             // 
@@ -171,18 +171,18 @@
             lblCriarExecutarFinalizar.TabIndex = 2;
             lblCriarExecutarFinalizar.Text = "Criar.     Executar.     Finalizar.";
             // 
-            // txtUsuario
+            // txtLogon
             // 
-            txtUsuario.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Logon", true));
-            txtUsuario.EditValue = "";
-            txtUsuario.Location = new Point(232, 183);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtUsuario.Properties.Appearance.Options.UseFont = true;
-            txtUsuario.Properties.ContextImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("txtUsuario.Properties.ContextImageOptions.SvgImage");
-            txtUsuario.Properties.NullValuePrompt = "Usuário";
-            txtUsuario.Size = new Size(297, 44);
-            txtUsuario.TabIndex = 1;
+            txtLogon.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Logon", true));
+            txtLogon.EditValue = "";
+            txtLogon.Location = new Point(232, 183);
+            txtLogon.Name = "txtLogon";
+            txtLogon.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtLogon.Properties.Appearance.Options.UseFont = true;
+            txtLogon.Properties.ContextImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("txtLogon.Properties.ContextImageOptions.SvgImage");
+            txtLogon.Properties.NullValuePrompt = "Usuário";
+            txtLogon.Size = new Size(297, 44);
+            txtLogon.TabIndex = 1;
             // 
             // lblJustDoTheWork
             // 
@@ -194,17 +194,17 @@
             lblJustDoTheWork.TabIndex = 0;
             lblJustDoTheWork.Text = "JustDoTheWork";
             // 
-            // panelControl1
+            // panelCabecalho
             // 
-            panelControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelControl1.Controls.Add(lblBoasVindas);
-            panelControl1.Controls.Add(btnMinimizar);
-            panelControl1.Controls.Add(btnFecharSistema);
-            panelControl1.Location = new Point(12, 12);
-            panelControl1.Margin = new Padding(10);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(736, 50);
-            panelControl1.TabIndex = 3;
+            panelCabecalho.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelCabecalho.Controls.Add(lblBoasVindas);
+            panelCabecalho.Controls.Add(btnMinimizar);
+            panelCabecalho.Controls.Add(btnFecharSistema);
+            panelCabecalho.Location = new Point(12, 12);
+            panelCabecalho.Margin = new Padding(10);
+            panelCabecalho.Name = "panelCabecalho";
+            panelCabecalho.Size = new Size(736, 50);
+            panelCabecalho.TabIndex = 3;
             // 
             // lblBoasVindas
             // 
@@ -247,11 +247,11 @@
             btnFecharSistema.TabIndex = 0;
             btnFecharSistema.Click += btnFecharSistema_Click;
             // 
-            // timer
+            // timerBoasVindas
             // 
-            timer.Enabled = true;
-            timer.Interval = 1000;
-            timer.Tick += timer_Tick;
+            timerBoasVindas.Enabled = true;
+            timerBoasVindas.Interval = 1000;
+            timerBoasVindas.Tick += timerBoasVindas_Tick;
             // 
             // bindingSourceUsuario
             // 
@@ -265,7 +265,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 582);
             ControlBox = false;
-            Controls.Add(panelControl);
+            Controls.Add(panelBackground);
             FormBorderStyle = FormBorderStyle.None;
             IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("FormLogin.IconOptions.SvgImage");
             MaximizeBox = false;
@@ -274,41 +274,41 @@
             Name = "FormLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Load += FormLogin_Load;
-            ((System.ComponentModel.ISupportInitialize)panelControl).EndInit();
-            panelControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
-            panelControl2.ResumeLayout(false);
-            panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)separatorControl2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelBackground).EndInit();
+            panelBackground.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)panelLogin).EndInit();
+            panelLogin.ResumeLayout(false);
+            panelLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)separatorSenha).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtSenha.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)separatorControl1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtUsuario.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)separatorUsuario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLogon.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelCabecalho).EndInit();
+            panelCabecalho.ResumeLayout(false);
+            panelCabecalho.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceUsuario).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl;
+        private DevExpress.XtraEditors.PanelControl panelBackground;
         private DevExpress.XtraEditors.SimpleButton btnFecharSistema;
         private DevExpress.XtraEditors.SimpleButton btnMinimizar;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelCabecalho;
+        private DevExpress.XtraEditors.PanelControl panelLogin;
         private DevExpress.XtraEditors.LabelControl lblCriarExecutarFinalizar;
-        private DevExpress.XtraEditors.TextEdit txtUsuario;
+        private DevExpress.XtraEditors.TextEdit txtLogon;
         private DevExpress.XtraEditors.LabelControl lblJustDoTheWork;
-        private DevExpress.XtraEditors.LabelControl lblUsuario;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        private DevExpress.XtraEditors.LabelControl lblLogon;
+        private DevExpress.XtraEditors.SeparatorControl separatorUsuario;
         private DevExpress.XtraEditors.LabelControl lblSenha;
         private DevExpress.XtraEditors.TextEdit txtSenha;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+        private DevExpress.XtraEditors.SeparatorControl separatorSenha;
         private DevExpress.XtraEditors.SimpleButton btnEsqueciSenha;
         private DevExpress.XtraEditors.SimpleButton btnEntrar;
         private DevExpress.XtraEditors.LabelControl lblBoasVindas;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timerBoasVindas;
         private BindingSource bindingSourceUsuario;
     }
 }

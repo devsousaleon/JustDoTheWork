@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroModeloRelatorio));
             panelBackground = new DevExpress.XtraEditors.PanelControl();
-            panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            btnAbreEdicaoModelo = new DevExpress.XtraEditors.SimpleButton();
-            btnFecharCadastroModelo = new DevExpress.XtraEditors.SimpleButton();
-            btnIncluirCadastroModelo = new DevExpress.XtraEditors.SimpleButton();
+            panelAcoes = new DevExpress.XtraEditors.PanelControl();
+            btnEditarTextoModelo = new DevExpress.XtraEditors.SimpleButton();
+            btnFecharCadastroModeloRelatorio = new DevExpress.XtraEditors.SimpleButton();
+            btnSalvarCadastroModeloRelatorio = new DevExpress.XtraEditors.SimpleButton();
             groupTextoModelo = new DevExpress.XtraEditors.GroupControl();
-            richEditVisualizaTextoModelo = new DevExpress.XtraRichEdit.RichEditControl();
+            richEditTextoModelo = new DevExpress.XtraRichEdit.RichEditControl();
             groupInfoModelo = new DevExpress.XtraEditors.GroupControl();
             checkAtivo = new DevExpress.XtraEditors.CheckEdit();
             lblTipoModelo = new DevExpress.XtraEditors.LabelControl();
@@ -44,8 +44,8 @@
             lblDescricaoModelo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)panelBackground).BeginInit();
             panelBackground.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
-            panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
+            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupTextoModelo).BeginInit();
             groupTextoModelo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)groupInfoModelo).BeginInit();
@@ -57,7 +57,7 @@
             // 
             // panelBackground
             // 
-            panelBackground.Controls.Add(panelControl2);
+            panelBackground.Controls.Add(panelAcoes);
             panelBackground.Controls.Add(groupTextoModelo);
             panelBackground.Controls.Add(groupInfoModelo);
             panelBackground.Location = new Point(12, 12);
@@ -65,50 +65,50 @@
             panelBackground.Size = new Size(974, 640);
             panelBackground.TabIndex = 0;
             // 
-            // panelControl2
-            // 
-            panelControl2.Controls.Add(btnAbreEdicaoModelo);
-            panelControl2.Controls.Add(btnFecharCadastroModelo);
-            panelControl2.Controls.Add(btnIncluirCadastroModelo);
-            panelControl2.Location = new Point(7, 576);
-            panelControl2.Margin = new Padding(5);
-            panelControl2.Name = "panelControl2";
-            panelControl2.Size = new Size(960, 57);
-            panelControl2.TabIndex = 2;
-            // 
-            // btnAbreEdicaoModelo
-            // 
-            btnAbreEdicaoModelo.Location = new Point(227, 17);
-            btnAbreEdicaoModelo.Margin = new Padding(15);
-            btnAbreEdicaoModelo.Name = "btnAbreEdicaoModelo";
-            btnAbreEdicaoModelo.Size = new Size(150, 23);
-            btnAbreEdicaoModelo.TabIndex = 6;
-            btnAbreEdicaoModelo.Text = "Abrir Edição de Modelo";
-            btnAbreEdicaoModelo.Click += btnAbreEdicaoModelo_Click;
-            // 
-            // btnFecharCadastroModelo
-            // 
-            btnFecharCadastroModelo.Location = new Point(122, 17);
-            btnFecharCadastroModelo.Margin = new Padding(15);
-            btnFecharCadastroModelo.Name = "btnFecharCadastroModelo";
-            btnFecharCadastroModelo.Size = new Size(75, 23);
-            btnFecharCadastroModelo.TabIndex = 5;
-            btnFecharCadastroModelo.Text = "Fechar";
-            btnFecharCadastroModelo.Click += btnFecharCadastroModelo_Click;
-            // 
-            // btnIncluirCadastroModelo
-            // 
-            btnIncluirCadastroModelo.Location = new Point(17, 17);
-            btnIncluirCadastroModelo.Margin = new Padding(15);
-            btnIncluirCadastroModelo.Name = "btnIncluirCadastroModelo";
-            btnIncluirCadastroModelo.Size = new Size(75, 23);
-            btnIncluirCadastroModelo.TabIndex = 4;
-            btnIncluirCadastroModelo.Text = "Incluir";
-            btnIncluirCadastroModelo.Click += btnIncluirCadastroModelo_Click;
+            // panelAcoes
+            //
+            panelAcoes.Controls.Add(btnEditarTextoModelo);
+            panelAcoes.Controls.Add(btnFecharCadastroModeloRelatorio);
+            panelAcoes.Controls.Add(btnSalvarCadastroModeloRelatorio);
+            panelAcoes.Location = new Point(7, 576);
+            panelAcoes.Margin = new Padding(5);
+            panelAcoes.Name = "panelAcoes";
+            panelAcoes.Size = new Size(960, 57);
+            panelAcoes.TabIndex = 2;
+            //
+            // btnEditarTextoModelo
+            //
+            btnEditarTextoModelo.Location = new Point(227, 17);
+            btnEditarTextoModelo.Margin = new Padding(15);
+            btnEditarTextoModelo.Name = "btnEditarTextoModelo";
+            btnEditarTextoModelo.Size = new Size(150, 23);
+            btnEditarTextoModelo.TabIndex = 6;
+            btnEditarTextoModelo.Text = "Abrir Edição de Modelo";
+            btnEditarTextoModelo.Click += btnEditarTextoModelo_Click;
+            //
+            // btnFecharCadastroModeloRelatorio
+            //
+            btnFecharCadastroModeloRelatorio.Location = new Point(122, 17);
+            btnFecharCadastroModeloRelatorio.Margin = new Padding(15);
+            btnFecharCadastroModeloRelatorio.Name = "btnFecharCadastroModeloRelatorio";
+            btnFecharCadastroModeloRelatorio.Size = new Size(75, 23);
+            btnFecharCadastroModeloRelatorio.TabIndex = 5;
+            btnFecharCadastroModeloRelatorio.Text = "Fechar";
+            btnFecharCadastroModeloRelatorio.Click += btnFecharCadastroModeloRelatorio_Click;
+            //
+            // btnSalvarCadastroModeloRelatorio
+            //
+            btnSalvarCadastroModeloRelatorio.Location = new Point(17, 17);
+            btnSalvarCadastroModeloRelatorio.Margin = new Padding(15);
+            btnSalvarCadastroModeloRelatorio.Name = "btnSalvarCadastroModeloRelatorio";
+            btnSalvarCadastroModeloRelatorio.Size = new Size(75, 23);
+            btnSalvarCadastroModeloRelatorio.TabIndex = 4;
+            btnSalvarCadastroModeloRelatorio.Text = "Incluir";
+            btnSalvarCadastroModeloRelatorio.Click += btnSalvarCadastroModeloRelatorio_Click;
             // 
             // groupTextoModelo
             // 
-            groupTextoModelo.Controls.Add(richEditVisualizaTextoModelo);
+            groupTextoModelo.Controls.Add(richEditTextoModelo);
             groupTextoModelo.Location = new Point(7, 170);
             groupTextoModelo.Margin = new Padding(5);
             groupTextoModelo.Name = "groupTextoModelo";
@@ -116,15 +116,15 @@
             groupTextoModelo.TabIndex = 1;
             groupTextoModelo.Text = "Texto";
             // 
-            // richEditVisualizaTextoModelo
+            // richEditTextoModelo
             // 
-            richEditVisualizaTextoModelo.Location = new Point(7, 34);
-            richEditVisualizaTextoModelo.Margin = new Padding(5);
-            richEditVisualizaTextoModelo.Name = "richEditVisualizaTextoModelo";
-            richEditVisualizaTextoModelo.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
-            richEditVisualizaTextoModelo.ReadOnly = true;
-            richEditVisualizaTextoModelo.Size = new Size(946, 355);
-            richEditVisualizaTextoModelo.TabIndex = 0;
+            richEditTextoModelo.Location = new Point(7, 34);
+            richEditTextoModelo.Margin = new Padding(5);
+            richEditTextoModelo.Name = "richEditTextoModelo";
+            richEditTextoModelo.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
+            richEditTextoModelo.ReadOnly = true;
+            richEditTextoModelo.Size = new Size(946, 355);
+            richEditTextoModelo.TabIndex = 0;
             // 
             // groupInfoModelo
             // 
@@ -215,8 +215,8 @@
             Load += FormCadastroModeloRelatorio_Load;
             ((System.ComponentModel.ISupportInitialize)panelBackground).EndInit();
             panelBackground.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
-            panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
+            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)groupTextoModelo).EndInit();
             groupTextoModelo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)groupInfoModelo).EndInit();
@@ -233,15 +233,15 @@
         private DevExpress.XtraEditors.PanelControl panelBackground;
         private DevExpress.XtraEditors.GroupControl groupInfoModelo;
         private DevExpress.XtraEditors.GroupControl groupTextoModelo;
-        private DevExpress.XtraRichEdit.RichEditControl richEditVisualizaTextoModelo;
+        private DevExpress.XtraRichEdit.RichEditControl richEditTextoModelo;
         private DevExpress.XtraEditors.CheckEdit checkAtivo;
         private DevExpress.XtraEditors.LabelControl lblTipoModelo;
         private DevExpress.XtraEditors.LookUpEdit comboTipoModelo;
         private DevExpress.XtraEditors.TextEdit txtDescricaoModelo;
         private DevExpress.XtraEditors.LabelControl lblDescricaoModelo;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.SimpleButton btnIncluirCadastroModelo;
-        private DevExpress.XtraEditors.SimpleButton btnFecharCadastroModelo;
-        private DevExpress.XtraEditors.SimpleButton btnAbreEdicaoModelo;
+        private DevExpress.XtraEditors.PanelControl panelAcoes;
+        private DevExpress.XtraEditors.SimpleButton btnSalvarCadastroModeloRelatorio;
+        private DevExpress.XtraEditors.SimpleButton btnFecharCadastroModeloRelatorio;
+        private DevExpress.XtraEditors.SimpleButton btnEditarTextoModelo;
     }
 }

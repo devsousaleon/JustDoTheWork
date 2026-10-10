@@ -1,36 +1,37 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 
 namespace JustDoTheWork.Controller
 {
     public class ProjetoController
     {
-        private readonly IProjetoRepository _iProjetoRepository;
+        private readonly IProjetoRepository _projetoRepository;
 
         public ProjetoController(IProjetoRepository repository)
         {
-            _iProjetoRepository = repository;
+            _projetoRepository = repository;
         }
 
-        public string Inclusao(ProjetoDTO dtoProjeto)
+        public string Inclusao(ProjetoDTO projetoDTO)
         {
             var mensagem = "";
 
-            if (string.IsNullOrWhiteSpace(dtoProjeto.Nome))
+            if (string.IsNullOrWhiteSpace(projetoDTO.Nome))
                 return "O nome do projeto é obrigatório!";
 
             var projeto = new Projeto
             {
-                Nome = dtoProjeto.Nome
+                Nome = projetoDTO.Nome
             };
 
-            mensagem = _iProjetoRepository.Inclusao(projeto);
+            mensagem = _projetoRepository.Inclusao(projeto);
 
             return mensagem;
         }
 
         public IEnumerable<ProjetoDTO> PesquisarParaCombo()
-            => _iProjetoRepository.Pesquisar(new ProjetoDTO());
+            => _projetoRepository.Pesquisar(new ProjetoDTO());
     }
 }

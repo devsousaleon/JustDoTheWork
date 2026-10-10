@@ -31,40 +31,40 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroModeloRelatorioUserControl));
             panelFiltroPesquisa = new DevExpress.XtraEditors.PanelControl();
-            btnPesquisarModelo = new DevExpress.XtraEditors.SimpleButton();
+            btnPesquisarModeloRelatorio = new DevExpress.XtraEditors.SimpleButton();
             lblTipoModelo = new DevExpress.XtraEditors.LabelControl();
             comboTipoModelo = new DevExpress.XtraEditors.LookUpEdit();
             txtDescricaoModelo = new DevExpress.XtraEditors.TextEdit();
             lblDescricaoModelo = new DevExpress.XtraEditors.LabelControl();
-            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnLimpar = new DevExpress.XtraEditors.SimpleButton();
-            btnIncluirModelo = new DevExpress.XtraEditors.SimpleButton();
+            btnIncluirModeloRelatorio = new DevExpress.XtraEditors.SimpleButton();
             gridControlModeloRelatorio = new DevExpress.XtraGrid.GridControl();
-            resultadoPesquisaModeloRelatorioDTOBindingSource = new BindingSource(components);
+            bindingSourceResultadoPesquisaModeloRelatorio = new BindingSource(components);
             gridModeloRelatorio = new DevExpress.XtraGrid.Views.Grid.GridView();
             colId = new DevExpress.XtraGrid.Columns.GridColumn();
             colDescricao = new DevExpress.XtraGrid.Columns.GridColumn();
-            colTipoModeloId = new DevExpress.XtraGrid.Columns.GridColumn();
+            colTipoModelo = new DevExpress.XtraGrid.Columns.GridColumn();
             colAtivo = new DevExpress.XtraGrid.Columns.GridColumn();
-            colAction = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryItemButtonAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            colAcao = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryButtonAcao = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)panelFiltroPesquisa).BeginInit();
             panelFiltroPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)comboTipoModelo.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtDescricaoModelo.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
+            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlModeloRelatorio).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaModeloRelatorioDTOBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaModeloRelatorio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridModeloRelatorio).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAction).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).BeginInit();
             SuspendLayout();
             // 
             // panelFiltroPesquisa
             // 
             panelFiltroPesquisa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelFiltroPesquisa.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            panelFiltroPesquisa.Controls.Add(btnPesquisarModelo);
+            panelFiltroPesquisa.Controls.Add(btnPesquisarModeloRelatorio);
             panelFiltroPesquisa.Controls.Add(lblTipoModelo);
             panelFiltroPesquisa.Controls.Add(comboTipoModelo);
             panelFiltroPesquisa.Controls.Add(txtDescricaoModelo);
@@ -75,20 +75,20 @@
             panelFiltroPesquisa.Size = new Size(1250, 140);
             panelFiltroPesquisa.TabIndex = 10;
             // 
-            // btnPesquisarModelo
-            // 
-            btnPesquisarModelo.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPesquisarModelo.Appearance.Options.UseFont = true;
-            btnPesquisarModelo.BackgroundImageLayout = ImageLayout.None;
-            btnPesquisarModelo.ImageOptions.Image = (Image)resources.GetObject("btnPesquisarModelo.ImageOptions.Image");
-            btnPesquisarModelo.ImeMode = ImeMode.NoControl;
-            btnPesquisarModelo.Location = new Point(450, 40);
-            btnPesquisarModelo.Name = "btnPesquisarModelo";
-            btnPesquisarModelo.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            btnPesquisarModelo.Size = new Size(107, 23);
-            btnPesquisarModelo.TabIndex = 7;
-            btnPesquisarModelo.Text = "Pesquisar";
-            btnPesquisarModelo.Click += btnPesquisarModelo_Click;
+            // btnPesquisarModeloRelatorio
+            //
+            btnPesquisarModeloRelatorio.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPesquisarModeloRelatorio.Appearance.Options.UseFont = true;
+            btnPesquisarModeloRelatorio.BackgroundImageLayout = ImageLayout.None;
+            btnPesquisarModeloRelatorio.ImageOptions.Image = (Image)resources.GetObject("btnPesquisarModeloRelatorio.ImageOptions.Image");
+            btnPesquisarModeloRelatorio.ImeMode = ImeMode.NoControl;
+            btnPesquisarModeloRelatorio.Location = new Point(450, 40);
+            btnPesquisarModeloRelatorio.Name = "btnPesquisarModeloRelatorio";
+            btnPesquisarModeloRelatorio.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            btnPesquisarModeloRelatorio.Size = new Size(107, 23);
+            btnPesquisarModeloRelatorio.TabIndex = 7;
+            btnPesquisarModeloRelatorio.Text = "Pesquisar";
+            btnPesquisarModeloRelatorio.Click += btnPesquisarModeloRelatorio_Click;
             // 
             // lblTipoModelo
             // 
@@ -138,17 +138,17 @@
             lblDescricaoModelo.TabIndex = 6;
             lblDescricaoModelo.Text = "Descrição";
             // 
-            // panelControl1
+            // panelAcoes
             // 
-            panelControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            panelControl1.Controls.Add(btnLimpar);
-            panelControl1.Controls.Add(btnIncluirModelo);
-            panelControl1.Location = new Point(15, 185);
-            panelControl1.Margin = new Padding(15);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(150, 520);
-            panelControl1.TabIndex = 11;
+            panelAcoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelAcoes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            panelAcoes.Controls.Add(btnLimpar);
+            panelAcoes.Controls.Add(btnIncluirModeloRelatorio);
+            panelAcoes.Location = new Point(15, 185);
+            panelAcoes.Margin = new Padding(15);
+            panelAcoes.Name = "panelAcoes";
+            panelAcoes.Size = new Size(150, 520);
+            panelAcoes.TabIndex = 11;
             // 
             // btnLimpar
             // 
@@ -162,37 +162,37 @@
             btnLimpar.Text = "Limpar";
             btnLimpar.Click += btnLimpar_Click;
             // 
-            // btnIncluirModelo
+            // btnIncluirModeloRelatorio
             // 
-            btnIncluirModelo.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIncluirModelo.Appearance.Options.UseFont = true;
-            btnIncluirModelo.Location = new Point(17, 32);
-            btnIncluirModelo.Margin = new Padding(15, 30, 15, 30);
-            btnIncluirModelo.Name = "btnIncluirModelo";
-            btnIncluirModelo.Size = new Size(116, 23);
-            btnIncluirModelo.TabIndex = 5;
-            btnIncluirModelo.Text = "Incluir";
-            btnIncluirModelo.Click += btnIncluirModelo_Click;
+            btnIncluirModeloRelatorio.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIncluirModeloRelatorio.Appearance.Options.UseFont = true;
+            btnIncluirModeloRelatorio.Location = new Point(17, 32);
+            btnIncluirModeloRelatorio.Margin = new Padding(15, 30, 15, 30);
+            btnIncluirModeloRelatorio.Name = "btnIncluirModeloRelatorio";
+            btnIncluirModeloRelatorio.Size = new Size(116, 23);
+            btnIncluirModeloRelatorio.TabIndex = 5;
+            btnIncluirModeloRelatorio.Text = "Incluir";
+            btnIncluirModeloRelatorio.Click += btnIncluirModeloRelatorio_Click;
             // 
             // gridControlModeloRelatorio
             // 
             gridControlModeloRelatorio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gridControlModeloRelatorio.DataSource = resultadoPesquisaModeloRelatorioDTOBindingSource;
+            gridControlModeloRelatorio.DataSource = bindingSourceResultadoPesquisaModeloRelatorio;
             gridControlModeloRelatorio.Location = new Point(183, 185);
             gridControlModeloRelatorio.MainView = gridModeloRelatorio;
             gridControlModeloRelatorio.Name = "gridControlModeloRelatorio";
-            gridControlModeloRelatorio.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonAction });
+            gridControlModeloRelatorio.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryButtonAcao });
             gridControlModeloRelatorio.Size = new Size(1082, 520);
             gridControlModeloRelatorio.TabIndex = 12;
             gridControlModeloRelatorio.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridModeloRelatorio });
             // 
-            // resultadoPesquisaModeloRelatorioDTOBindingSource
+            // bindingSourceResultadoPesquisaModeloRelatorio
             // 
-            resultadoPesquisaModeloRelatorioDTOBindingSource.DataSource = typeof(DTO.ResultadoPesquisaModeloRelatorioDTO);
+            bindingSourceResultadoPesquisaModeloRelatorio.DataSource = typeof(DTO.ResultadoPesquisaModeloRelatorioDTO);
             // 
             // gridModeloRelatorio
             // 
-            gridModeloRelatorio.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colDescricao, colTipoModeloId, colAtivo, colAction });
+            gridModeloRelatorio.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colDescricao, colTipoModelo, colAtivo, colAcao });
             gridModeloRelatorio.GridControl = gridControlModeloRelatorio;
             gridModeloRelatorio.Name = "gridModeloRelatorio";
             // 
@@ -215,14 +215,14 @@
             colDescricao.Visible = true;
             colDescricao.VisibleIndex = 1;
             // 
-            // colTipoModeloId
+            // colTipoModelo
             // 
-            colTipoModeloId.FieldName = "TipoModelo";
-            colTipoModeloId.Name = "colTipoModeloId";
-            colTipoModeloId.OptionsColumn.AllowEdit = false;
-            colTipoModeloId.OptionsColumn.ReadOnly = true;
-            colTipoModeloId.Visible = true;
-            colTipoModeloId.VisibleIndex = 2;
+            colTipoModelo.FieldName = "TipoModelo";
+            colTipoModelo.Name = "colTipoModelo";
+            colTipoModelo.OptionsColumn.AllowEdit = false;
+            colTipoModelo.OptionsColumn.ReadOnly = true;
+            colTipoModelo.Visible = true;
+            colTipoModelo.VisibleIndex = 2;
             // 
             // colAtivo
             // 
@@ -233,27 +233,27 @@
             colAtivo.Visible = true;
             colAtivo.VisibleIndex = 3;
             // 
-            // colAction
+            // colAcao
             // 
-            colAction.Caption = "Ação";
-            colAction.ColumnEdit = repositoryItemButtonAction;
-            colAction.Name = "colAction";
-            colAction.Visible = true;
-            colAction.VisibleIndex = 4;
+            colAcao.Caption = "Ação";
+            colAcao.ColumnEdit = repositoryButtonAcao;
+            colAcao.Name = "colAcao";
+            colAcao.Visible = true;
+            colAcao.VisibleIndex = 4;
             // 
-            // repositoryItemButtonAction
+            // repositoryButtonAcao
             // 
-            repositoryItemButtonAction.AutoHeight = false;
-            repositoryItemButtonAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
-            repositoryItemButtonAction.Name = "repositoryItemButtonAction";
-            repositoryItemButtonAction.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            repositoryButtonAcao.AutoHeight = false;
+            repositoryButtonAcao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
+            repositoryButtonAcao.Name = "repositoryButtonAcao";
+            repositoryButtonAcao.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // CadastroModeloRelatorioUserControl
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gridControlModeloRelatorio);
-            Controls.Add(panelControl1);
+            Controls.Add(panelAcoes);
             Controls.Add(panelFiltroPesquisa);
             Name = "CadastroModeloRelatorioUserControl";
             Size = new Size(1280, 720);
@@ -263,35 +263,35 @@
             panelFiltroPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)comboTipoModelo.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtDescricaoModelo.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
+            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControlModeloRelatorio).EndInit();
-            ((System.ComponentModel.ISupportInitialize)resultadoPesquisaModeloRelatorioDTOBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaModeloRelatorio).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridModeloRelatorio).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonAction).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryButtonAcao).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.PanelControl panelFiltroPesquisa;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.PanelControl panelAcoes;
+        private DevExpress.XtraEditors.CheckEdit checkAtivo;
         private DevExpress.XtraEditors.LabelControl lblDescricaoModelo;
         private DevExpress.XtraEditors.TextEdit txtDescricaoModelo;
         private DevExpress.XtraEditors.LookUpEdit comboTipoModelo;
         private DevExpress.XtraEditors.LabelControl lblTipoModelo;
-        private DevExpress.XtraEditors.SimpleButton btnIncluirModelo;
+        private DevExpress.XtraEditors.SimpleButton btnIncluirModeloRelatorio;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
-        private DevExpress.XtraEditors.SimpleButton btnPesquisarModelo;
+        private DevExpress.XtraEditors.SimpleButton btnPesquisarModeloRelatorio;
         private DevExpress.XtraGrid.GridControl gridControlModeloRelatorio;
         private DevExpress.XtraGrid.Views.Grid.GridView gridModeloRelatorio;
-        private BindingSource resultadoPesquisaModeloRelatorioDTOBindingSource;
+        private BindingSource bindingSourceResultadoPesquisaModeloRelatorio;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescricao;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoModeloId;
+        private DevExpress.XtraGrid.Columns.GridColumn colTipoModelo;
         private DevExpress.XtraGrid.Columns.GridColumn colAtivo;
-        private DevExpress.XtraGrid.Columns.GridColumn colAction;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonAction;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryButtonAcao;
     }
 }

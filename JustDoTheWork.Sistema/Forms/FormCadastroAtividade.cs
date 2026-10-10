@@ -16,28 +16,28 @@ namespace JustDoTheWork.Sistema.Forms
             InitializeComponent();
             _atividadeController = CompositionRoot.CriarAtividadeController();
             _projetoController = CompositionRoot.CriarProjetoController();
-            BindingSourceAtividade.DataSource = new AtividadeDTO();
+            bindingSourceAtividade.DataSource = new AtividadeDTO();
         }
 
-        void FormRegister_Load(object sender, EventArgs e)
+        void FormCadastroAtividade_Load(object sender, EventArgs e)
         {
             AtualizaComboBoxProjeto();
         }
 
-        void btnFecharAtividade_Click(object sender, EventArgs e)
+        void btnFecharCadastroAtividade_Click(object sender, EventArgs e)
             => MessageService.Cancelar(this, "Deseja realmente fechar esta atividade? \nAs ações realizadas não serão salvas e serão perdidas!");
 
-        void btnIncluirAtividade_Click(object sender, EventArgs e)
+        void btnSalvarCadastroAtividade_Click(object sender, EventArgs e)
         {
-            var dtoAtividade = BindingSourceAtividade.Current as AtividadeDTO;
+            var atividadeDTO = bindingSourceAtividade.Current as AtividadeDTO;
 
-            if (comboProjetoPesquisa.EditValue != null)
-                dtoAtividade.ProjetoId = (int)comboProjetoPesquisa.EditValue;
+            if (comboProjeto.EditValue != null)
+                atividadeDTO.ProjetoId = (int)comboProjeto.EditValue;
 
-            dtoAtividade.DataCriacao = DateTime.Now.Date;
-            dtoAtividade.Descricao = txtEditorAtividade.Document.GetOpenXmlBytes(txtEditorAtividade.Document.Range);
+            atividadeDTO.DataCriacao = DateTime.Now.Date;
+            atividadeDTO.Descricao = richEditDescricaoAtividade.Document.GetOpenXmlBytes(richEditDescricaoAtividade.Document.Range);
 
-            var mensagemRetornoInclusaoAtividade = _atividadeController.Cadastro(dtoAtividade);
+            var mensagemRetornoInclusaoAtividade = _atividadeController.Inclusao(atividadeDTO);
 
             if (!string.IsNullOrEmpty(mensagemRetornoInclusaoAtividade))
             {
@@ -51,18 +51,18 @@ namespace JustDoTheWork.Sistema.Forms
 
         void btnAdicionarProjeto_Click(object sender, EventArgs e)
         {
-            FormCadastroProjeto _formAdicionaProjeto = new (this);
-            _formAdicionaProjeto.ShowDialog();
+            FormCadastroProjeto formCadastroProjeto = new (this);
+            formCadastroProjeto.ShowDialog();
         }
 
         public void AtualizaComboBoxProjeto()
-            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjetoPesquisa);
+            => UIMethodsService.AtualizaComboBoxProjeto(_projetoController, comboProjeto);
 
-        void btnEditaTextoAtividade_Click(object sender, EventArgs e)
+        void btnEditarTextoAtividade_Click(object sender, EventArgs e)
         {
-            var editaTextoAtividade = new FormEditaTextoAtividade(txtEditorAtividade.RtfText);
-            editaTextoAtividade.ShowDialog();
-            txtEditorAtividade.RtfText = editaTextoAtividade.NovoTextoDescricaoAtividade;
+            FormEditaTexto formEditaTexto = new FormEditaTexto(richEditDescricaoAtividade.RtfText);
+            formEditaTexto.ShowDialog();
+            richEditDescricaoAtividade.RtfText = formEditaTexto.TextoEditado;
         }
     }
 }

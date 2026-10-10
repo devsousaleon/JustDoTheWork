@@ -12,14 +12,15 @@ namespace JustDoTheWork.Sistema.ControlPanel
     {
         private readonly ProjetoController _projetoController;
         private readonly AtividadeController _atividadeController;
-        private readonly ModeloRelatorioController _modeloRelatorioControler;
+        private readonly ModeloRelatorioController _modeloRelatorioController;
 
         public HistoricoUserControl()
         {
             InitializeComponent();
+            DesignGrid.Configurar(gridHistorico, (colNomeAtividade, 420), (colNomeProjeto, 300), (colDataInicioExecucao, 200), (colDataFimExecucao, 200));
             _projetoController = CompositionRoot.CriarProjetoController();
             _atividadeController = CompositionRoot.CriarAtividadeController();
-            _modeloRelatorioControler = CompositionRoot.CriarModeloRelatorioController();
+            _modeloRelatorioController = CompositionRoot.CriarModeloRelatorioController();
         }
 
         void HistoricoUserControl_Load(object sender, EventArgs e)
@@ -40,10 +41,10 @@ namespace JustDoTheWork.Sistema.ControlPanel
             {
                 ProjetoId = comboProjetoPesquisa.EditValue != null ? (int?)comboProjetoPesquisa.EditValue : null,
                 Status = comboStatusPesquisa.EditValue != null ? (int?)comboStatusPesquisa.EditValue : null,
-                DataCriacaoAtividade = dataCriacao.EditValue != null ? dataCriacao.DateTime.Date : null
+                DataCriacaoAtividade = dataCriacaoPesquisa.EditValue != null ? dataCriacaoPesquisa.DateTime.Date : null
             };
 
-            var resultadoFiltro = _atividadeController.PesquisarParaGridVisualizaHistorico(filtroPesquisa);
+            var resultadoFiltro = _atividadeController.PesquisarHistorico(filtroPesquisa);
 
             gridControlHistorico.DataSource = resultadoFiltro;
         }
@@ -52,12 +53,12 @@ namespace JustDoTheWork.Sistema.ControlPanel
         {
             comboProjetoPesquisa.EditValue = null;
             comboStatusPesquisa.EditValue = null;
-            dataCriacao.EditValue = null;
+            dataCriacaoPesquisa.EditValue = null;
         }
 
         void btnImprimirHistorico_Click(object sender, EventArgs e)
         {
-            var buscaTextoModelo = _modeloRelatorioControler.BuscaModeloHistoricoExecucao();
+            var buscaTextoModelo = _modeloRelatorioController.BuscarModeloHistoricoExecucao();
 
             if (buscaTextoModelo == null)
             {
@@ -70,8 +71,8 @@ namespace JustDoTheWork.Sistema.ControlPanel
             
             var textoRtf = conversor.RtfText;
 
-            FormEditaTextoAtividade formEditaTextoAtividade = new(textoRtf);
-            formEditaTextoAtividade.ShowDialog();
+            FormEditaTexto formEditaTexto = new(textoRtf);
+            formEditaTexto.ShowDialog();
         }
     }
 }

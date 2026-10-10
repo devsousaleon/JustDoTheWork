@@ -15,7 +15,7 @@ namespace JustDoTheWork.Sistema
             Application.SetCompatibleTextRenderingDefault(false);
 
             if (databaseConfiguration is null || string.IsNullOrWhiteSpace(databaseConfiguration.ConnectionString))
-                Application.Run(new FormConfigBanco());
+                Application.Run(new FormConfiguracaoBanco());
             else
             {
                 CompositionRoot.Configurar(databaseConfiguration.ConnectionString, databaseConfiguration.ProviderName);

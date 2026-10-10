@@ -15,15 +15,16 @@ namespace JustDoTheWork.Sistema.ControlPanel
         public CadastroModeloRelatorioUserControl()
         {
             InitializeComponent();
+            DesignGrid.Configurar(gridModeloRelatorio, (colId, 70), (colDescricao, 480), (colTipoModelo, 300), (colAtivo, 80));
             _tipoModeloController = CompositionRoot.CriarTipoModeloController();
             _modeloRelatorioController = CompositionRoot.CriarModeloRelatorioController();
-            repositoryItemButtonAction.ButtonPressed += RepositoryItemButtonEditAction_ButtonClick;
+            repositoryButtonAcao.ButtonPressed += repositoryButtonAcao_ButtonPressed;
         }
 
         void CadastroModeloRelatorioUserControl_Load(object sender, EventArgs e)
-            => BuscaTipoModelo();
+            => AtualizaComboBoxTipoModelo();
 
-        void btnIncluirModelo_Click(object sender, EventArgs e)
+        void btnIncluirModeloRelatorio_Click(object sender, EventArgs e)
         {
             FormCadastroModeloRelatorio formCadastroModeloRelatorio = new FormCadastroModeloRelatorio();
             formCadastroModeloRelatorio.ShowDialog();
@@ -35,7 +36,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             comboTipoModelo.EditValue = null;
         }
 
-        void btnPesquisarModelo_Click(object sender, EventArgs e)
+        void btnPesquisarModeloRelatorio_Click(object sender, EventArgs e)
             => AtualizaGrid();
 
         public void AtualizaGrid()
@@ -46,19 +47,19 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 DescricaoModelo = txtDescricaoModelo.Text
             };
 
-            var busca = _modeloRelatorioController.PesquisaModeloRelatorio(filtro).ToList();
+            var busca = _modeloRelatorioController.Pesquisar(filtro).ToList();
 
             gridControlModeloRelatorio.DataSource = busca;
         }
 
-        void BuscaTipoModelo()
+        void AtualizaComboBoxTipoModelo()
             => UIMethodsService.AtualizaComboBoxTipoModelo(_tipoModeloController, comboTipoModelo);
 
-        void RepositoryItemButtonEditAction_ButtonClick(object sender, ButtonPressedEventArgs e)
+        void repositoryButtonAcao_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             IdSelecionado = Convert.ToInt32(gridModeloRelatorio.GetFocusedRowCellValue("Id"));
-            FormVisualizaModeloRelatorio _formVisualizaModeloRelatorio = new(this);
-            _formVisualizaModeloRelatorio.ShowDialog();
+            FormVisualizaModeloRelatorio formVisualizaModeloRelatorio = new(this);
+            formVisualizaModeloRelatorio.ShowDialog();
         }
     }
 }

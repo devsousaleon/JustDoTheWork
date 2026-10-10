@@ -1,5 +1,6 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
+using JustDoTheWork.Entity.DatabaseClasses;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {

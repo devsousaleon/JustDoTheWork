@@ -56,13 +56,13 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
         }
 
-        public string ExclusaoPorId(int Id)
+        public string ExclusaoPorId(int id)
         {
             using var context = _dbContextFactory.CreateDbContext();
             using var transacao = context.Database.BeginTransaction();
             try
             {
-                var modelosRelatorio = context.ModelosRelatorio.Find(Id)!;
+                var modelosRelatorio = context.ModelosRelatorio.Find(id)!;
                 context.ModelosRelatorio.Remove(modelosRelatorio);
                 context.SaveChanges();
                 transacao.Commit();
@@ -90,7 +90,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                           }).FirstOrDefault();
         }
 
-        public byte[]? BuscaModeloHistoricoExecucao()
+        public byte[]? BuscarModeloHistoricoExecucao()
         {
             using var context = _dbContextFactory.CreateDbContext();
 

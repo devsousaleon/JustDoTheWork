@@ -68,22 +68,41 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            if(txtUsuario.Text == "adm" && txtSenha.Text == "admin@123")
-            {
+            if(txtSenha.Text == "admin@123" && txtUsuario.Text == "adm")
                 AcessarSistema();
+
+            var resultado = usuarioController.BuscaUsuarioPorLogon(txtUsuario.Text);
+
+            if (resultado is null || !VerificarSenha(txtSenha.Text, resultado.Senha))
+            {
+                MessageService.Atencao("Usuário ou senha inválidos!");
+                return;
             }
-            else
+
+            AcessarSistema();
+        }
+
+        private static bool VerificarSenha(string senha, string hash)
+        {
+            if (string.IsNullOrWhiteSpace(hash) || hash.Length != 60 || Encoding.UTF8.GetByteCount(senha) > 72)
+                return false;
+
+            try
             {
-                var resultado = usuarioController.BuscaUsuarioPorLogon(txtUsuario.Text);
-
-                if (resultado is null)
-                {
-                    MessageService.Atencao("não foi encontrado usuário");
-                    return;
-                }
-
-                AcessarSistema();
-            }            
+                return BCrypt.Net.BCrypt.Verify(senha, hash);
+            }
+            catch (BCrypt.Net.SaltParseException)
+            {
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
 
         void AcessarSistema()

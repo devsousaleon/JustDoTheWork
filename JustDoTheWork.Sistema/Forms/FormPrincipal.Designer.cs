@@ -37,6 +37,7 @@
             accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ElementAtividades = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ElementModeloRelatorio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            ElementUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementRelatorio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlSeparator2 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ElementRelatorioExecucao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -95,7 +96,7 @@
             // 
             // accordionControlElementCadastro
             // 
-            accordionControlElementCadastro.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator1, ElementAtividades, ElementModeloRelatorio });
+            accordionControlElementCadastro.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator1, ElementAtividades, ElementModeloRelatorio, ElementUsuarios });
             accordionControlElementCadastro.Expanded = true;
             accordionControlElementCadastro.Hint = "Cadastros";
             accordionControlElementCadastro.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElementCadastro.ImageOptions.SvgImage");
@@ -126,6 +127,16 @@
             ElementModeloRelatorio.Text = "Modelos de Relatório";
             ElementModeloRelatorio.Click += AbreNovaJanela_Click;
             // 
+            // ElementUsuarios
+            //
+            ElementUsuarios.Hint = "Cadastro de Usuários";
+            ElementUsuarios.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ElementUsuarios.ImageOptions.SvgImage");
+            ElementUsuarios.Name = "ElementUsuarios";
+            ElementUsuarios.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            ElementUsuarios.Tag = "Usuarios";
+            ElementUsuarios.Text = "Usuários";
+            ElementUsuarios.Click += AbreNovaJanela_Click;
+            //
             // accordionControlElementRelatorio
             // 
             accordionControlElementRelatorio.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator2, ElementRelatorioExecucao });
@@ -197,6 +208,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementCadastro;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ElementAtividades;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ElementModeloRelatorio;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement ElementUsuarios;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementRelatorio;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;

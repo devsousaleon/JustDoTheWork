@@ -1,6 +1,7 @@
-﻿using JustDoTheWork.Entity;
+﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
@@ -73,6 +74,44 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             using var context = _dbContextFactory.CreateDbContext();
             return context.Usuarios.FirstOrDefault(u => u.Logon == logon);
+        }
+
+        public IEnumerable<TipoUsuario> BuscarTiposUsuario()
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.TiposUsuario.AsNoTracking().ToList();
+        }
+
+        public Usuario? BuscarPorId(int id)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
+        }
+
+        public IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            var usuarios = context.Usuarios.AsNoTracking().AsQueryable();
+            var nome = filtro.Nome?.Trim();
+            var logon = filtro.Logon?.Trim();
+
+            if (!string.IsNullOrEmpty(nome))
+                usuarios = usuarios.Where(usuario => usuario.Nome.Contains(nome));
+
+            if (!string.IsNullOrEmpty(logon))
+                usuarios = usuarios.Where(usuario => usuario.Logon.Contains(logon));
+
+            return (from usuario in usuarios
+                    join tipoUsuario in context.TiposUsuario.AsNoTracking()
+                        on usuario.TipoUsuarioId equals tipoUsuario.Id
+                    orderby usuario.Nome, usuario.Logon
+                    select new ResultadoPesquisaUsuarioDTO
+                    {
+                        Id = usuario.Id,
+                        Nome = usuario.Nome,
+                        Logon = usuario.Logon,
+                        TipoUsuario = tipoUsuario.Tipo
+                    }).ToList();
         }
     }
 }

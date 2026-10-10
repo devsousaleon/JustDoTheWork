@@ -140,6 +140,7 @@
             txtSenha.Properties.Appearance.Options.UseFont = true;
             txtSenha.Properties.ContextImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("txtSenha.Properties.ContextImageOptions.SvgImage");
             txtSenha.Properties.NullValuePrompt = "Senha";
+            txtSenha.Properties.UseSystemPasswordChar = true;
             txtSenha.Size = new Size(297, 44);
             txtSenha.TabIndex = 5;
             // 

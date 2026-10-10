@@ -1,4 +1,5 @@
-﻿using JustDoTheWork.Entity.DatabaseClasses;
+﻿using JustDoTheWork.DTO;
+using JustDoTheWork.Entity.DatabaseClasses;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
@@ -8,5 +9,8 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string Edicao(Usuario usuario);
         string ExclusaoPorId(int id);
         Usuario BuscarPorLogon(string logon);
+        IEnumerable<TipoUsuario> BuscarTiposUsuario();
+        Usuario? BuscarPorId(int id);
+        IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro);
     }
 }

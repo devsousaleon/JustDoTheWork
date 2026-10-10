@@ -16,6 +16,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Update="ControlPanel\CadastroUsuarioUserControl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\FormCadastroUsuario.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="Icon.ico" />
 	</ItemGroup>
 

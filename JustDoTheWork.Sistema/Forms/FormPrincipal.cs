@@ -59,6 +59,7 @@ namespace JustDoTheWork.Sistema.Forms
             {
                 case "Atividades": CarregaDadosTabControl(xtraTabControlMain, new VisualizaAtividadesUserControl(), "Cadastro de Atividades"); return;
                 case "ModelosRelatorio": CarregaDadosTabControl(xtraTabControlMain, new CadastroModeloRelatorioUserControl(), "Modelos de Relatório"); return;
+                case "Usuarios": CarregaDadosTabControl(xtraTabControlMain, new CadastroUsuarioUserControl(), "Cadastro de Usuários"); return;
                 case "RelatorioExecucao": CarregaDadosTabControl(xtraTabControlMain, new HistoricoUserControl(), "Execuções realizadas"); return;
             }
         }

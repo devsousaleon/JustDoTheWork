@@ -14,6 +14,36 @@ namespace JustDoTheWork.Controller
             _iUsuarioRepository = repository;
         }
 
+        public IEnumerable<TipoUsuario> ObterTiposUsuario()
+        {
+            var tiposUsuario = new[] { "Historiador", "Desenvolvedor", "QA Tester", "Tech Lead" };
+
+            return _iUsuarioRepository.BuscarTiposUsuario()
+                .Where(tipo => tiposUsuario.Contains(tipo.Tipo, StringComparer.OrdinalIgnoreCase))
+                .OrderBy(tipo => Array.FindIndex(tiposUsuario, nome => string.Equals(nome, tipo.Tipo, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+        }
+
+        public IEnumerable<ResultadoPesquisaUsuarioDTO> PesquisaUsuario(FiltroPesquisaUsuarioDTO filtro)
+            => _iUsuarioRepository.Pesquisar(filtro);
+
+        public UsuarioDTO? BuscaUsuarioPorId(int id)
+        {
+            var usuario = _iUsuarioRepository.BuscarPorId(id);
+
+            if (usuario is null)
+                return null;
+
+            return new UsuarioDTO
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Logon = usuario.Logon,
+                Senha = usuario.Senha,
+                TipoUsuarioId = usuario.TipoUsuarioId
+            };
+        }
+
         public string Inclusao(UsuarioDTO usuarioDTO)
         {
             if (string.IsNullOrWhiteSpace(usuarioDTO.Nome))

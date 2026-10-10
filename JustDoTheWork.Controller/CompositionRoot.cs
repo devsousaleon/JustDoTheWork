@@ -49,5 +49,10 @@ namespace JustDoTheWork.Controller
             var repository = new BancoRepository();
             return new BancoController(repository);
         }
+        public static UsuarioController CriarUsuarioController()
+        {
+            IUsuarioRepository repository = new UsuarioRepository(_dbContextFactory);
+            return new UsuarioController(repository);
+        }
     }
 }

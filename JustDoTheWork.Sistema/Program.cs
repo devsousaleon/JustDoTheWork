@@ -19,7 +19,7 @@ namespace JustDoTheWork.Sistema
             else
             {
                 CompositionRoot.Configurar(databaseConfiguration.ConnectionString, databaseConfiguration.ProviderName);
-                Application.Run(new FormPrincipal());
+                Application.Run(new FormLogin());
             }
         }
     }

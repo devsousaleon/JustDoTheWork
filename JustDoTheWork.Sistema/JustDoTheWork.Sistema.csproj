@@ -26,6 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
 		<PackageReference Include="DevExpress.Win" Version="25.2.5" />
 		<PackageReference Include="DevExpress.Win.BonusSkins" Version="25.2.5" />
 

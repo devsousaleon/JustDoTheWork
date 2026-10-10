@@ -18,6 +18,8 @@ public sealed class JustDoTheWorkDbContext : DbContext
     public DbSet<Projeto> Projetos => Set<Projeto>();
     public DbSet<ModeloRelatorio> ModelosRelatorio => Set<ModeloRelatorio>();
     public DbSet<TipoModelo> TiposModelo => Set<TipoModelo>();
+    public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<TipoUsuario> TiposUsuario => Set<TipoUsuario>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,6 +48,8 @@ public sealed class JustDoTheWorkDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SqlServerMappings.ProjetoMapping());
         modelBuilder.ApplyConfiguration(new SqlServerMappings.ModeloRelatorioMapping());
         modelBuilder.ApplyConfiguration(new SqlServerMappings.TipoModeloMapping());
+        modelBuilder.ApplyConfiguration(new SqlServerMappings.UsuarioMapping());
+        modelBuilder.ApplyConfiguration(new SqlServerMappings.TipoUsuarioMapping());
     }
 
     private static void ApplyPostgresMappings(ModelBuilder modelBuilder)
@@ -55,5 +59,7 @@ public sealed class JustDoTheWorkDbContext : DbContext
         modelBuilder.ApplyConfiguration(new PostgresMappings.ProjetoMapping());
         modelBuilder.ApplyConfiguration(new PostgresMappings.ModeloRelatorioMapping());
         modelBuilder.ApplyConfiguration(new PostgresMappings.TipoModeloMapping());
+        modelBuilder.ApplyConfiguration(new PostgresMappings.UsuarioMapping());
+        modelBuilder.ApplyConfiguration(new PostgresMappings.TipoUsuarioMapping());
     }
 }

@@ -113,3 +113,21 @@ ALTER TABLE ModeloRelatorio
 ADD CONSTRAINT FK_TipoModelo_ModeloRelatorio FOREIGN KEY(TipoModeloId) REFERENCES TipoModelo(Id)
 
 INSERT INTO TipoModelo VALUES ('Histórico Execução')
+
+CREATE TABLE Usuario(
+	
+	Id INT IDENTITY PRIMARY KEY,
+	Nome VARCHAR(30) NOT NULL,
+	Logon VARCHAR(30) NOT NULL,
+	Senha VARCHAR(100) NOT NULL,
+	TipoUsuarioId INT NOT NULL
+);
+
+CREATE TABLE TipoUsuario(
+	
+	Id INT IDENTITY PRIMARY KEY,
+	Tipo VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE Usuario
+ADD CONSTRAINT FK_TipoUsuario_Usuario FOREIGN KEY(TipoUsuarioId) REFERENCES TipoUsuario(Id)

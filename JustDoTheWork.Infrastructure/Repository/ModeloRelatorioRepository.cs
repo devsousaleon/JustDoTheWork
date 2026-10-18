@@ -101,6 +101,84 @@ namespace JustDoTheWork.Infrastructure.Repository
                           .FirstOrDefault();
         }
 
+        public DadosImpressaoHistoricoDTO? BuscarDadosImpressaoHistorico(IReadOnlyCollection<int> execucaoIds, int? usuarioId)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+
+            var dados = (
+                from modelo in context.ModelosRelatorio.AsNoTracking()
+                join tipo in context.TiposModelo.AsNoTracking() on modelo.TipoModeloId equals tipo.Id
+                where modelo.Ativo && modelo.TipoModeloId == 1
+                orderby modelo.Id
+                select new DadosImpressaoHistoricoDTO
+                {
+                    Modelo = new ModeloRelatorioDTO
+                    {
+                        Id = modelo.Id,
+                        Descricao = modelo.Descricao,
+                        TipoModeloId = modelo.TipoModeloId,
+                        Texto = modelo.Texto,
+                        Ativo = modelo.Ativo
+                    },
+                    TipoModelo = new TipoModeloDTO { Id = tipo.Id, Descricao = tipo.Descricao }
+                }).FirstOrDefault();
+
+            if (dados == null)
+                return null;
+
+            dados.Registros = (
+                from execucao in context.Execucoes.AsNoTracking()
+                join atividade in context.Atividades.AsNoTracking() on execucao.AtividadeId equals atividade.Id
+                join projeto in context.Projetos.AsNoTracking() on atividade.ProjetoId equals projeto.Id
+                where execucaoIds.Contains(execucao.Id)
+                select new RegistroImpressaoHistoricoDTO
+                {
+                    Execucao = new ExecucaoDTO
+                    {
+                        Id = execucao.Id,
+                        AtividadeId = execucao.AtividadeId,
+                        DataInicio = execucao.DataInicio,
+                        DataFim = execucao.DataFim
+                    },
+                    Atividade = new AtividadeDTO
+                    {
+                        Id = atividade.Id,
+                        Nome = atividade.Nome,
+                        Descricao = atividade.Descricao,
+                        Status = atividade.Status,
+                        DataCriacao = atividade.DataCriacao,
+                        DataFinalizacao = atividade.DataFinalizacao,
+                        ProjetoId = atividade.ProjetoId
+                    },
+                    Projeto = new ProjetoDTO { Id = projeto.Id, Nome = projeto.Nome }
+                }).ToList();
+
+            if (usuarioId.HasValue)
+            {
+                var emissor = (
+                    from usuario in context.Usuarios.AsNoTracking()
+                    join tipo in context.TiposUsuario.AsNoTracking() on usuario.TipoUsuarioId equals tipo.Id
+                    where usuario.Id == usuarioId.Value
+                    select new
+                    {
+                        Usuario = new UsuarioDTO
+                        {
+                            Id = usuario.Id,
+                            Nome = usuario.Nome,
+                            Logon = usuario.Logon,
+                            TipoUsuarioId = usuario.TipoUsuarioId,
+                            Senha = string.Empty
+                        },
+                        TipoUsuario = new TipoUsuario { Id = tipo.Id, Tipo = tipo.Tipo }
+                    }).FirstOrDefault();
+
+                dados.Usuario = emissor?.Usuario;
+                dados.TipoUsuario = emissor?.TipoUsuario;
+            }
+
+            return dados;
+        }
+
         public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO)
         {
             using var context = _dbContextFactory.CreateDbContext();

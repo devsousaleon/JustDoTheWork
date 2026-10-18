@@ -112,6 +112,25 @@
             panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnFecharEdicaoTexto = new DevExpress.XtraEditors.SimpleButton();
             btnSalvarTexto = new DevExpress.XtraEditors.SimpleButton();
+            btnImprimirTexto = new DevExpress.XtraEditors.SimpleButton();
+            groupCamposObjeto = new DevExpress.XtraEditors.GroupControl();
+            lblInstrucaoCamposObjeto = new DevExpress.XtraEditors.LabelControl();
+            lblCampoAtividade = new DevExpress.XtraEditors.LabelControl();
+            comboCampoAtividade = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoExecucao = new DevExpress.XtraEditors.LabelControl();
+            comboCampoExecucao = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoProjeto = new DevExpress.XtraEditors.LabelControl();
+            comboCampoProjeto = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoModeloRelatorio = new DevExpress.XtraEditors.LabelControl();
+            comboCampoModeloRelatorio = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoTipoModelo = new DevExpress.XtraEditors.LabelControl();
+            comboCampoTipoModelo = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoUsuario = new DevExpress.XtraEditors.LabelControl();
+            comboCampoUsuario = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoTipoUsuario = new DevExpress.XtraEditors.LabelControl();
+            comboCampoTipoUsuario = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblCampoComum = new DevExpress.XtraEditors.LabelControl();
+            comboCampoComum = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)barManager).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemFontEdit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemRichEditFontSizeEdit).BeginInit();
@@ -119,6 +138,16 @@
             ((System.ComponentModel.ISupportInitialize)richEditBarController).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
             panelAcoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)groupCamposObjeto).BeginInit();
+            groupCamposObjeto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)comboCampoAtividade.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoExecucao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoProjeto.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoModeloRelatorio.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoTipoModelo.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoUsuario.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoTipoUsuario.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoComum.Properties).BeginInit();
             SuspendLayout();
             // 
             // richEditTexto
@@ -129,7 +158,7 @@
             richEditTexto.MenuManager = barManager;
             richEditTexto.Name = "richEditTexto";
             richEditTexto.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
-            richEditTexto.Size = new Size(1240, 559);
+            richEditTexto.Size = new Size(955, 559);
             richEditTexto.TabIndex = 0;
             // 
             // barManager
@@ -639,10 +668,11 @@
             panelAcoes.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelAcoes.Controls.Add(btnFecharEdicaoTexto);
             panelAcoes.Controls.Add(btnSalvarTexto);
+            panelAcoes.Controls.Add(btnImprimirTexto);
             panelAcoes.Location = new Point(19, 626);
             panelAcoes.Name = "panelAcoes";
             panelAcoes.Size = new Size(1240, 48);
-            panelAcoes.TabIndex = 5;
+            panelAcoes.TabIndex = 2;
             // 
             // btnFecharEdicaoTexto
             // 
@@ -664,11 +694,211 @@
             btnSalvarTexto.Text = "Salvar";
             btnSalvarTexto.Click += btnSalvarTexto_Click;
             // 
+            // btnImprimirTexto
+            //
+            btnImprimirTexto.Location = new Point(12, 12);
+            btnImprimirTexto.Margin = new Padding(10);
+            btnImprimirTexto.Name = "btnImprimirTexto";
+            btnImprimirTexto.Size = new Size(75, 23);
+            btnImprimirTexto.TabIndex = 0;
+            btnImprimirTexto.Text = "Imprimir";
+            btnImprimirTexto.Visible = false;
+            btnImprimirTexto.Click += btnImprimirTexto_Click;
+            //
+            // groupCamposObjeto
+            //
+            groupCamposObjeto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            groupCamposObjeto.Controls.Add(lblInstrucaoCamposObjeto);
+            groupCamposObjeto.Controls.Add(lblCampoAtividade);
+            groupCamposObjeto.Controls.Add(comboCampoAtividade);
+            groupCamposObjeto.Controls.Add(lblCampoExecucao);
+            groupCamposObjeto.Controls.Add(comboCampoExecucao);
+            groupCamposObjeto.Controls.Add(lblCampoProjeto);
+            groupCamposObjeto.Controls.Add(comboCampoProjeto);
+            groupCamposObjeto.Controls.Add(lblCampoModeloRelatorio);
+            groupCamposObjeto.Controls.Add(comboCampoModeloRelatorio);
+            groupCamposObjeto.Controls.Add(lblCampoTipoModelo);
+            groupCamposObjeto.Controls.Add(comboCampoTipoModelo);
+            groupCamposObjeto.Controls.Add(lblCampoUsuario);
+            groupCamposObjeto.Controls.Add(comboCampoUsuario);
+            groupCamposObjeto.Controls.Add(lblCampoTipoUsuario);
+            groupCamposObjeto.Controls.Add(comboCampoTipoUsuario);
+            groupCamposObjeto.Controls.Add(lblCampoComum);
+            groupCamposObjeto.Controls.Add(comboCampoComum);
+            groupCamposObjeto.Location = new Point(989, 52);
+            groupCamposObjeto.Name = "groupCamposObjeto";
+            groupCamposObjeto.Size = new Size(270, 559);
+            groupCamposObjeto.TabIndex = 1;
+            groupCamposObjeto.Text = "Campos objeto";
+            //
+            // lblInstrucaoCamposObjeto
+            //
+            lblInstrucaoCamposObjeto.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            lblInstrucaoCamposObjeto.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            lblInstrucaoCamposObjeto.Location = new Point(15, 34);
+            lblInstrucaoCamposObjeto.Name = "lblInstrucaoCamposObjeto";
+            lblInstrucaoCamposObjeto.Size = new Size(240, 38);
+            lblInstrucaoCamposObjeto.TabIndex = 0;
+            lblInstrucaoCamposObjeto.Text = "Selecione um campo para inseri-lo na posição do cursor.";
+            //
+            // lblCampoAtividade
+            //
+            lblCampoAtividade.Location = new Point(15, 86);
+            lblCampoAtividade.Name = "lblCampoAtividade";
+            lblCampoAtividade.TabIndex = 1;
+            lblCampoAtividade.Text = "Atividade";
+            //
+            // comboCampoAtividade
+            //
+            comboCampoAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoAtividade.Location = new Point(15, 106);
+            comboCampoAtividade.Name = "comboCampoAtividade";
+            comboCampoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoAtividade.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoAtividade.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoAtividade.Size = new Size(240, 20);
+            comboCampoAtividade.TabIndex = 2;
+            comboCampoAtividade.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoExecucao
+            //
+            lblCampoExecucao.Location = new Point(15, 146);
+            lblCampoExecucao.Name = "lblCampoExecucao";
+            lblCampoExecucao.TabIndex = 3;
+            lblCampoExecucao.Text = "Execução";
+            //
+            // comboCampoExecucao
+            //
+            comboCampoExecucao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoExecucao.Location = new Point(15, 166);
+            comboCampoExecucao.Name = "comboCampoExecucao";
+            comboCampoExecucao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoExecucao.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoExecucao.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoExecucao.Size = new Size(240, 20);
+            comboCampoExecucao.TabIndex = 4;
+            comboCampoExecucao.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoProjeto
+            //
+            lblCampoProjeto.Location = new Point(15, 206);
+            lblCampoProjeto.Name = "lblCampoProjeto";
+            lblCampoProjeto.TabIndex = 5;
+            lblCampoProjeto.Text = "Projeto";
+            //
+            // comboCampoProjeto
+            //
+            comboCampoProjeto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoProjeto.Location = new Point(15, 226);
+            comboCampoProjeto.Name = "comboCampoProjeto";
+            comboCampoProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoProjeto.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoProjeto.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoProjeto.Size = new Size(240, 20);
+            comboCampoProjeto.TabIndex = 6;
+            comboCampoProjeto.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoModeloRelatorio
+            //
+            lblCampoModeloRelatorio.Location = new Point(15, 266);
+            lblCampoModeloRelatorio.Name = "lblCampoModeloRelatorio";
+            lblCampoModeloRelatorio.TabIndex = 7;
+            lblCampoModeloRelatorio.Text = "Modelo de relatório";
+            //
+            // comboCampoModeloRelatorio
+            //
+            comboCampoModeloRelatorio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoModeloRelatorio.Location = new Point(15, 286);
+            comboCampoModeloRelatorio.Name = "comboCampoModeloRelatorio";
+            comboCampoModeloRelatorio.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoModeloRelatorio.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoModeloRelatorio.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoModeloRelatorio.Size = new Size(240, 20);
+            comboCampoModeloRelatorio.TabIndex = 8;
+            comboCampoModeloRelatorio.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoTipoModelo
+            //
+            lblCampoTipoModelo.Location = new Point(15, 326);
+            lblCampoTipoModelo.Name = "lblCampoTipoModelo";
+            lblCampoTipoModelo.TabIndex = 9;
+            lblCampoTipoModelo.Text = "Tipo de modelo";
+            //
+            // comboCampoTipoModelo
+            //
+            comboCampoTipoModelo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoTipoModelo.Location = new Point(15, 346);
+            comboCampoTipoModelo.Name = "comboCampoTipoModelo";
+            comboCampoTipoModelo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoTipoModelo.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoTipoModelo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoTipoModelo.Size = new Size(240, 20);
+            comboCampoTipoModelo.TabIndex = 10;
+            comboCampoTipoModelo.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoUsuario
+            //
+            lblCampoUsuario.Location = new Point(15, 386);
+            lblCampoUsuario.Name = "lblCampoUsuario";
+            lblCampoUsuario.TabIndex = 11;
+            lblCampoUsuario.Text = "Usuário";
+            //
+            // comboCampoUsuario
+            //
+            comboCampoUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoUsuario.Location = new Point(15, 406);
+            comboCampoUsuario.Name = "comboCampoUsuario";
+            comboCampoUsuario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoUsuario.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoUsuario.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoUsuario.Size = new Size(240, 20);
+            comboCampoUsuario.TabIndex = 12;
+            comboCampoUsuario.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoTipoUsuario
+            //
+            lblCampoTipoUsuario.Location = new Point(15, 446);
+            lblCampoTipoUsuario.Name = "lblCampoTipoUsuario";
+            lblCampoTipoUsuario.TabIndex = 13;
+            lblCampoTipoUsuario.Text = "Tipo de usuário";
+            //
+            // comboCampoTipoUsuario
+            //
+            comboCampoTipoUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoTipoUsuario.Location = new Point(15, 466);
+            comboCampoTipoUsuario.Name = "comboCampoTipoUsuario";
+            comboCampoTipoUsuario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoTipoUsuario.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoTipoUsuario.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoTipoUsuario.Size = new Size(240, 20);
+            comboCampoTipoUsuario.TabIndex = 14;
+            comboCampoTipoUsuario.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
+            // lblCampoComum
+            //
+            lblCampoComum.Location = new Point(15, 506);
+            lblCampoComum.Name = "lblCampoComum";
+            lblCampoComum.TabIndex = 15;
+            lblCampoComum.Text = "Informações comuns";
+            //
+            // comboCampoComum
+            //
+            comboCampoComum.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoComum.Location = new Point(15, 526);
+            comboCampoComum.Name = "comboCampoComum";
+            comboCampoComum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            comboCampoComum.Properties.NullValuePrompt = "Selecione um campo";
+            comboCampoComum.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboCampoComum.Size = new Size(240, 20);
+            comboCampoComum.TabIndex = 16;
+            comboCampoComum.SelectedIndexChanged += comboCampoObjeto_SelectedIndexChanged;
+            //
             // FormEditaTexto
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1278, 686);
+            Controls.Add(groupCamposObjeto);
             Controls.Add(panelAcoes);
             Controls.Add(richEditTexto);
             Controls.Add(barDockControlLeft);
@@ -689,6 +919,17 @@
             ((System.ComponentModel.ISupportInitialize)richEditBarController).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
             panelAcoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)groupCamposObjeto).EndInit();
+            groupCamposObjeto.ResumeLayout(false);
+            groupCamposObjeto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)comboCampoAtividade.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoExecucao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoProjeto.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoModeloRelatorio.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoTipoModelo.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoUsuario.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoTipoUsuario.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboCampoComum.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -697,6 +938,24 @@
         #endregion
 
         private DevExpress.XtraRichEdit.RichEditControl richEditTexto;
+        private DevExpress.XtraEditors.GroupControl groupCamposObjeto;
+        private DevExpress.XtraEditors.LabelControl lblInstrucaoCamposObjeto;
+        private DevExpress.XtraEditors.LabelControl lblCampoAtividade;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoAtividade;
+        private DevExpress.XtraEditors.LabelControl lblCampoExecucao;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoExecucao;
+        private DevExpress.XtraEditors.LabelControl lblCampoProjeto;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoProjeto;
+        private DevExpress.XtraEditors.LabelControl lblCampoModeloRelatorio;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoModeloRelatorio;
+        private DevExpress.XtraEditors.LabelControl lblCampoTipoModelo;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoTipoModelo;
+        private DevExpress.XtraEditors.LabelControl lblCampoUsuario;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoUsuario;
+        private DevExpress.XtraEditors.LabelControl lblCampoTipoUsuario;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoTipoUsuario;
+        private DevExpress.XtraEditors.LabelControl lblCampoComum;
+        private DevExpress.XtraEditors.ComboBoxEdit comboCampoComum;
         private DevExpress.XtraBars.BarManager barManager;
         private DevExpress.XtraRichEdit.UI.ClipboardBar clipboardBar;
         private DevExpress.XtraRichEdit.UI.PasteItem pasteItem;
@@ -777,6 +1036,7 @@
         private DevExpress.XtraRichEdit.UI.RichEditBarController richEditBarController;
         private DevExpress.XtraEditors.PanelControl panelAcoes;
         private DevExpress.XtraEditors.SimpleButton btnSalvarTexto;
+        private DevExpress.XtraEditors.SimpleButton btnImprimirTexto;
         private DevExpress.XtraEditors.SimpleButton btnFecharEdicaoTexto;
     }
 }

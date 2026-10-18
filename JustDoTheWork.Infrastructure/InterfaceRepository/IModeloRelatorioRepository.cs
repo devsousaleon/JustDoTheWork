@@ -10,6 +10,7 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string ExclusaoPorId(int id);
         ModeloRelatorioDTO BuscarPorId(int id);
         byte[]? BuscarModeloHistoricoExecucao();
+        DadosImpressaoHistoricoDTO? BuscarDadosImpressaoHistorico(IReadOnlyCollection<int> execucaoIds, int? usuarioId);
         IEnumerable<ResultadoPesquisaModeloRelatorioDTO> Pesquisar(FiltroPesquisaModeloRelatorioDTO filtroPesquisaModeloRelatorioDTO);
     }
 }

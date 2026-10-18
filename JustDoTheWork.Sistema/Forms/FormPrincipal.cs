@@ -9,9 +9,16 @@ namespace JustDoTheWork.Sistema.Forms
 {
     public partial class FormPrincipal : XtraForm
     {
-        public FormPrincipal()
+        private readonly int? _usuarioId;
+
+        public FormPrincipal() : this(null)
+        {
+        }
+
+        public FormPrincipal(int? usuarioId)
         {
             InitializeComponent();
+            _usuarioId = usuarioId;
         }
 
         void FormPrincipal_Load(object sender, EventArgs e)
@@ -60,7 +67,7 @@ namespace JustDoTheWork.Sistema.Forms
                 case "Atividades": CarregaDadosTabControl(tabControlPrincipal, new CadastroAtividadeUserControl(), "Cadastro de Atividades"); return;
                 case "ModelosRelatorio": CarregaDadosTabControl(tabControlPrincipal, new CadastroModeloRelatorioUserControl(), "Modelos de Relatório"); return;
                 case "Usuarios": CarregaDadosTabControl(tabControlPrincipal, new CadastroUsuarioUserControl(), "Cadastro de Usuários"); return;
-                case "RelatorioExecucao": CarregaDadosTabControl(tabControlPrincipal, new HistoricoUserControl(), "Execuções realizadas"); return;
+                case "RelatorioExecucao": CarregaDadosTabControl(tabControlPrincipal, new HistoricoUserControl(_usuarioId), "Execuções realizadas"); return;
             }
         }
 

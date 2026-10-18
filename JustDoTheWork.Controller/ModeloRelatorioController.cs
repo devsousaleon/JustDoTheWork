@@ -63,5 +63,23 @@ namespace JustDoTheWork.Controller
 
         public byte[]? BuscarModeloHistoricoExecucao()
             => _modeloRelatorioRepository.BuscarModeloHistoricoExecucao();
+
+        public DadosImpressaoHistoricoDTO BuscarDadosImpressaoHistorico(IEnumerable<int> execucaoIds, int? usuarioId)
+        {
+            var ids = execucaoIds.Distinct().ToArray();
+            if (ids.Length == 0 || ids.Any(id => id <= 0))
+                throw new InvalidOperationException("Pesquise as execuções que deseja imprimir antes de gerar o relatório.");
+
+            var dados = _modeloRelatorioRepository.BuscarDadosImpressaoHistorico(ids, usuarioId);
+            if (dados?.Modelo.Texto is not { Length: > 0 })
+                throw new InvalidOperationException("Não foi encontrado modelo ativo com texto para impressão!");
+
+            if (dados.Registros.Count != ids.Length)
+                throw new InvalidOperationException("Uma ou mais execuções não estão mais disponíveis. Atualize a pesquisa antes de imprimir.");
+
+            var registrosPorId = dados.Registros.ToDictionary(registro => registro.Execucao.Id);
+            dados.Registros = ids.Select(id => registrosPorId[id]).ToList();
+            return dados;
+        }
     }
 }

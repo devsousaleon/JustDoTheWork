@@ -69,7 +69,10 @@ namespace JustDoTheWork.Sistema.Forms
             }
 
             if(txtSenha.Text == "admin@123" && txtLogon.Text == "adm")
-                AcessarSistema();
+            {
+                AcessarSistema(_usuarioController.BuscarPorLogon(txtLogon.Text)?.Id);
+                return;
+            }
 
             var resultado = _usuarioController.BuscarPorLogon(txtLogon.Text);
 
@@ -79,7 +82,7 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            AcessarSistema();
+            AcessarSistema(resultado.Id);
         }
 
         private static bool VerificarSenha(string senha, string hash)
@@ -105,9 +108,9 @@ namespace JustDoTheWork.Sistema.Forms
             }
         }
 
-        void AcessarSistema()
+        void AcessarSistema(int? usuarioId)
         {
-            var formPrincipal = new FormPrincipal();
+            var formPrincipal = new FormPrincipal(usuarioId);
 
             formPrincipal.FormClosed += (_, _) => this.Close();
 

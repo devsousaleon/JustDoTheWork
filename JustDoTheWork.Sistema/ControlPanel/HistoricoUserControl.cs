@@ -1,8 +1,8 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraRichEdit;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.Sistema.Services;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
@@ -13,10 +13,16 @@ namespace JustDoTheWork.Sistema.ControlPanel
         private readonly ProjetoController _projetoController;
         private readonly AtividadeController _atividadeController;
         private readonly ModeloRelatorioController _modeloRelatorioController;
+        private readonly int? _usuarioId;
 
-        public HistoricoUserControl()
+        public HistoricoUserControl() : this(null)
+        {
+        }
+
+        public HistoricoUserControl(int? usuarioId)
         {
             InitializeComponent();
+            _usuarioId = usuarioId;
             DesignGrid.Configurar(gridHistorico, (colNomeAtividade, 420), (colNomeProjeto, 300), (colDataInicioExecucao, 200), (colDataFimExecucao, 200));
             _projetoController = CompositionRoot.CriarProjetoController();
             _atividadeController = CompositionRoot.CriarAtividadeController();
@@ -56,23 +62,43 @@ namespace JustDoTheWork.Sistema.ControlPanel
             dataCriacaoPesquisa.EditValue = null;
         }
 
+        int[] ObtemExecucaoIdsImpressao()
+            => Enumerable.Range(0, gridHistorico.DataRowCount)
+                .Select(linha => gridHistorico.GetRow(linha))
+                .OfType<ResultadoPesquisaHistoricoDTO>()
+                .Select(execucao => execucao.ExecucaoId)
+                .ToArray();
+
         void btnImprimirHistorico_Click(object sender, EventArgs e)
         {
-            var buscaTextoModelo = _modeloRelatorioController.BuscarModeloHistoricoExecucao();
-
-            if (buscaTextoModelo == null)
+            var execucaoIds = ObtemExecucaoIdsImpressao();
+            if (execucaoIds.Length == 0)
             {
-                MessageService.Atencao("Não foi encontrado modelo ativo para impressão!");
+                MessageService.Atencao("Pesquise as execuções que deseja imprimir antes de gerar o relatório.");
                 return;
             }
 
-            using var conversor = new RichEditControl();
-            conversor.LoadDocument(buscaTextoModelo, DocumentFormat.OpenXml);
-            
-            var textoRtf = conversor.RtfText;
-
-            FormEditaTexto formEditaTexto = new(textoRtf);
-            formEditaTexto.ShowDialog();
+            try
+            {
+                UseWaitCursor = true;
+                var dados = _modeloRelatorioController.BuscarDadosImpressaoHistorico(execucaoIds, _usuarioId);
+                var textoRtf = ImpressaoHistoricoService.GerarDocumento(dados);
+                UseWaitCursor = false;
+                using var formEditaTexto = new FormEditaTexto(textoRtf, somenteLeitura: true);
+                formEditaTexto.ShowDialog(FindForm());
+            }
+            catch (InvalidOperationException erro)
+            {
+                MessageService.Atencao(erro.Message);
+            }
+            catch (Exception)
+            {
+                MessageService.Erro("Não foi possível gerar o relatório do histórico. Verifique a conexão com o banco e o texto do modelo.");
+            }
+            finally
+            {
+                UseWaitCursor = false;
+            }
         }
     }
 }

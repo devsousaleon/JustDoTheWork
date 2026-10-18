@@ -144,6 +144,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                     on atividade.Id equals execucao.AtividadeId
                 select new ResultadoPesquisaHistoricoDTO
                 {
+                    ExecucaoId = execucao.Id,
                     NomeAtividade = atividade.Nome,
                     NomeProjeto = projeto.Nome,
                     DataInicioExecucao = execucao.DataInicio,

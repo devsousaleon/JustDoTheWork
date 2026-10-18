@@ -27,7 +27,7 @@ namespace JustDoTheWork.Sistema.Forms
 
         void FormCadastroUsuario_Load(object sender, EventArgs e)
         {
-            comboTipoUsuario.Properties.DataSource = _usuarioController.ObterTiposUsuario().ToList();
+            comboTipoUsuario.Properties.DataSource = _usuarioController.ObterTiposUsuario();
 
             if (_idUsuario == 0)
                 return;

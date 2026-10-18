@@ -31,7 +31,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 Logon = txtLogon.Text
             };
 
-            bindingSourceResultadoPesquisaUsuario.DataSource = _usuarioController.Pesquisar(filtro).ToList();
+            bindingSourceResultadoPesquisaUsuario.DataSource = _usuarioController.Pesquisar(filtro);
         }
 
         void btnIncluirUsuario_Click(object sender, EventArgs e)

@@ -1,9 +1,9 @@
-﻿using JustDoTheWork.Entity.DatabaseClasses;
+﻿using JustDoTheWork.DTO;
 
 namespace JustDoTheWork.Infrastructure.InterfaceRepository
 {
     public interface ITipoModeloRepository
     {
-        IEnumerable<TipoModelo> PesquisarParaCombo();
+        IEnumerable<TipoModeloDTO> PesquisarParaCombo();
     }
 }

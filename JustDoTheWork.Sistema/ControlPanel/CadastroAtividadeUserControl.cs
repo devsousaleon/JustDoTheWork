@@ -36,7 +36,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
         }
 
         public void AtualizaGrid()
-            => gridControlAtividade.DataSource = _atividadeController.Pesquisar(bindingSourceFiltroPesquisaAtividade.Current as FiltroPesquisaAtividadeDTO).ToList();
+            => gridControlAtividade.DataSource = _atividadeController.Pesquisar(bindingSourceFiltroPesquisaAtividade.Current as FiltroPesquisaAtividadeDTO);
 
         void btnPesquisarAtividade_Click(object sender, EventArgs e)
             => AtualizaGrid();

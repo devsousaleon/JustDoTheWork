@@ -10,9 +10,9 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string Edicao(Atividade atividade);
         string AlterarStatus(int id, int status, JustDoTheWorkDbContext context);
         string ExclusaoPorId(int id);
-        Atividade BuscarPorId(int id);
+        AtividadeDTO BuscarPorId(int id);
         IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtro);
         IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtro);
-        IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status);
+        IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(params int[] status);
     }
 }

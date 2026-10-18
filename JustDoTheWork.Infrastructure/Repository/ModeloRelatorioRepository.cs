@@ -183,9 +183,10 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             using var context = _dbContextFactory.CreateDbContext();
             var modelos = context.ModelosRelatorio.AsNoTracking().AsQueryable();
+            var descricao = filtroPesquisaModeloRelatorioDTO.DescricaoModelo?.Trim();
 
-            if (!string.IsNullOrEmpty(filtroPesquisaModeloRelatorioDTO.DescricaoModelo))
-                modelos = modelos.Where(mr => mr.Descricao.Contains(filtroPesquisaModeloRelatorioDTO.DescricaoModelo));
+            if (!string.IsNullOrEmpty(descricao))
+                modelos = modelos.Where(mr => mr.Descricao.Contains(descricao));
 
             if (filtroPesquisaModeloRelatorioDTO.TipoModelo > 0)
                 modelos = modelos.Where(mr => mr.TipoModeloId == filtroPesquisaModeloRelatorioDTO.TipoModelo);

@@ -9,8 +9,9 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string Edicao(Usuario usuario);
         string ExclusaoPorId(int id);
         Usuario BuscarPorLogon(string logon);
+        UsuarioLoginDTO? BuscarParaLogin(string logon);
         IEnumerable<TipoUsuario> BuscarTiposUsuario();
-        Usuario? BuscarPorId(int id);
+        UsuarioDTO? BuscarPorId(int id);
         IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro);
     }
 }

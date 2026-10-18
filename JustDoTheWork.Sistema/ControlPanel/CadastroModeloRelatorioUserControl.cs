@@ -47,7 +47,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
                 DescricaoModelo = txtDescricaoModelo.Text
             };
 
-            var busca = _modeloRelatorioController.Pesquisar(filtro).ToList();
+            var busca = _modeloRelatorioController.Pesquisar(filtro);
 
             gridControlModeloRelatorio.DataSource = busca;
         }

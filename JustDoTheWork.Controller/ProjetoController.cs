@@ -32,6 +32,6 @@ namespace JustDoTheWork.Controller
         }
 
         public IEnumerable<ProjetoDTO> PesquisarParaCombo()
-            => _projetoRepository.Pesquisar(new ProjetoDTO());
+            => _projetoRepository.PesquisarParaCombo();
     }
 }

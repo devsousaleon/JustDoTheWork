@@ -75,18 +75,30 @@ namespace JustDoTheWork.Infrastructure.Repository
             }
         }
 
-        public Atividade BuscarPorId(int id)
+        public AtividadeDTO BuscarPorId(int id)
         {
             using var context = _dbContextFactory.CreateDbContext();
-            return context.Atividades.AsNoTracking().FirstOrDefault(atividade => atividade.Id == id)!;
+            return context.Atividades.AsNoTracking()
+                .Where(atividade => atividade.Id == id)
+                .Select(atividade => new AtividadeDTO
+                {
+                    Id = atividade.Id,
+                    Nome = atividade.Nome,
+                    Status = atividade.Status,
+                    Descricao = atividade.Descricao,
+                    DataCriacao = atividade.DataCriacao,
+                    DataFinalizacao = atividade.DataFinalizacao,
+                    ProjetoId = atividade.ProjetoId
+                }).FirstOrDefault()!;
         }
         public IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtro)
         {
             using var context = _dbContextFactory.CreateDbContext();
             var atividades = context.Atividades.AsNoTracking().AsQueryable();
+            var nome = filtro.Nome?.Trim();
 
-            if (!string.IsNullOrWhiteSpace(filtro.Nome))
-                atividades = atividades.Where(atividade => atividade.Nome.Contains(filtro.Nome));
+            if (!string.IsNullOrEmpty(nome))
+                atividades = atividades.Where(atividade => atividade.Nome.Contains(nome));
 
             if (filtro.Status is > 0)
             {
@@ -99,7 +111,7 @@ namespace JustDoTheWork.Infrastructure.Repository
 
             if (filtro.DataCriacao.HasValue)
             {
-                var inicio = filtro.DataCriacao.Value;
+                var inicio = filtro.DataCriacao.Value.Date;
                 var fim = inicio.AddDays(1);
                 atividades = atividades.Where(atividade => atividade.DataCriacao >= inicio && atividade.DataCriacao < fim);
             }
@@ -112,7 +124,8 @@ namespace JustDoTheWork.Infrastructure.Repository
                 {
                     Id = atividade.Id,
                     Atividade = atividade.Nome,
-                    Projeto = projeto.Nome
+                    Projeto = projeto.Nome,
+                    Status = atividade.Status
                 }).ToList();
         }
         public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtro)
@@ -151,21 +164,22 @@ namespace JustDoTheWork.Infrastructure.Repository
                     DataFimExecucao = execucao.DataFim
                 }).ToList();
         }
-        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status)
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(params int[] status)
         {
             using var context = _dbContextFactory.CreateDbContext();
-            var statusAtividade = (StatusAtividade)status;
+            var statusAtividades = status.Select(valor => (StatusAtividade)valor).ToArray();
 
             return (
                 from atividade in context.Atividades.AsNoTracking()
                 join projeto in context.Projetos.AsNoTracking()
                     on atividade.ProjetoId equals projeto.Id
-                where atividade.Status == statusAtividade
+                where statusAtividades.Contains(atividade.Status)
                 select new ResultadoPesquisaAtividadeDTO
                 {
                     Id = atividade.Id,
                     Atividade = atividade.Nome,
-                    Projeto = projeto.Nome
+                    Projeto = projeto.Nome,
+                    Status = atividade.Status
                 }).ToList();
         }
         public string AlterarStatus(int id, int status, JustDoTheWorkDbContext context)

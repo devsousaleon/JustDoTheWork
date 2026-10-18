@@ -7,7 +7,7 @@ namespace JustDoTheWork.UI.Core
     {
         public static void AtualizaComboBoxProjeto(ProjetoController projetoController, LookUpEdit comboProjeto)
         {
-            var dados = projetoController.PesquisarParaCombo().ToList();
+            var dados = projetoController.PesquisarParaCombo();
 
             if (dados == null)
                 return;
@@ -29,7 +29,7 @@ namespace JustDoTheWork.UI.Core
 
         public static void AtualizaComboBoxTipoModelo(TipoModeloController tipoModeloController, LookUpEdit comboTipoModelo)
         {
-            var resultadoBusca = tipoModeloController.PesquisarParaCombo().ToList();
+            var resultadoBusca = tipoModeloController.PesquisarParaCombo();
 
             if (resultadoBusca == null)
                 return;

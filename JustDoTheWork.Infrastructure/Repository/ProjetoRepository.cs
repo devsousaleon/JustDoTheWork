@@ -3,12 +3,14 @@ using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class ProjetoRepository : IProjetoRepository
     {
         private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
+        private static readonly ConditionalWeakTable<JustDoTheWorkDbContextFactory, CacheConsulta<ProjetoDTO>> _cacheProjetos = new();
 
         public ProjetoRepository(JustDoTheWorkDbContextFactory? dbContextFactory = null)
         {
@@ -25,6 +27,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 context.Add(projeto);
                 context.SaveChanges();
                 transacao.Commit();
+                _cacheProjetos.GetOrCreateValue(_dbContextFactory).Invalidar();
                 return "";
             }
             catch (Exception ex)
@@ -42,6 +45,7 @@ namespace JustDoTheWork.Infrastructure.Repository
             {
                 context.SaveChanges();
                 transacao.Commit();
+                _cacheProjetos.GetOrCreateValue(_dbContextFactory).Invalidar();
                 return "";
             }
             catch (Exception ex)
@@ -61,6 +65,7 @@ namespace JustDoTheWork.Infrastructure.Repository
                 context.Projetos.Remove(projeto);
                 context.SaveChanges();
                 transacao.Commit();
+                _cacheProjetos.GetOrCreateValue(_dbContextFactory).Invalidar();
                 return "";
             }
             catch (Exception ex)
@@ -80,9 +85,10 @@ namespace JustDoTheWork.Infrastructure.Repository
         {
             using var context = _dbContextFactory.CreateDbContext();
             var projetos = context.Projetos.AsNoTracking().AsQueryable();
+            var nome = filtro.Nome?.Trim();
 
-            if (!string.IsNullOrWhiteSpace(filtro.Nome))
-                projetos = projetos.Where(p => p.Nome.Contains(filtro.Nome));
+            if (!string.IsNullOrEmpty(nome))
+                projetos = projetos.Where(p => p.Nome.Contains(nome));
 
             return (
                 from projeto in projetos
@@ -91,6 +97,20 @@ namespace JustDoTheWork.Infrastructure.Repository
                     Id = projeto.Id,
                     Nome = projeto.Nome
                 }).ToList();
+        }
+
+        public IEnumerable<ProjetoDTO> PesquisarParaCombo()
+        {
+            return _cacheProjetos.GetOrCreateValue(_dbContextFactory).Obter(() =>
+            {
+                using var context = _dbContextFactory.CreateDbContext();
+                return context.Projetos.AsNoTracking()
+                    .Select(projeto => new ProjetoDTO
+                    {
+                        Id = projeto.Id,
+                        Nome = projeto.Nome
+                    }).ToList();
+            }, projeto => new ProjetoDTO { Id = projeto.Id, Nome = projeto.Nome });
         }
     }
 }

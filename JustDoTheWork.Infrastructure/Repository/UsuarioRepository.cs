@@ -2,12 +2,14 @@
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace JustDoTheWork.Infrastructure.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
+        private static readonly ConditionalWeakTable<JustDoTheWorkDbContextFactory, CacheConsulta<TipoUsuario>> _cacheTiposUsuario = new();
 
         public UsuarioRepository(JustDoTheWorkDbContextFactory dbContextFactory)
         {
@@ -73,19 +75,55 @@ namespace JustDoTheWork.Infrastructure.Repository
         public Usuario BuscarPorLogon(string logon)
         {
             using var context = _dbContextFactory.CreateDbContext();
-            return context.Usuarios.FirstOrDefault(u => u.Logon == logon);
+            return context.Usuarios.AsNoTracking().FirstOrDefault(u => u.Logon == logon);
+        }
+
+        public UsuarioLoginDTO? BuscarParaLogin(string logon)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+            return context.Usuarios.AsNoTracking()
+                .Where(usuario => usuario.Logon == logon)
+                .Select(usuario => new UsuarioLoginDTO
+                {
+                    Id = usuario.Id,
+                    Senha = usuario.Senha
+                }).FirstOrDefault();
         }
 
         public IEnumerable<TipoUsuario> BuscarTiposUsuario()
         {
-            using var context = _dbContextFactory.CreateDbContext();
-            return context.TiposUsuario.AsNoTracking().ToList();
+            return _cacheTiposUsuario.GetOrCreateValue(_dbContextFactory).Obter(() =>
+            {
+                using var context = _dbContextFactory.CreateDbContext();
+                return context.TiposUsuario.AsNoTracking()
+                    .Where(tipo => tipo.Tipo.ToUpper() == "HISTORIADOR" ||
+                                   tipo.Tipo.ToUpper() == "DESENVOLVEDOR" ||
+                                   tipo.Tipo.ToUpper() == "QA TESTER" ||
+                                   tipo.Tipo.ToUpper() == "TECH LEAD")
+                    .OrderBy(tipo => tipo.Tipo.ToUpper() == "HISTORIADOR" ? 0 :
+                                     tipo.Tipo.ToUpper() == "DESENVOLVEDOR" ? 1 :
+                                     tipo.Tipo.ToUpper() == "QA TESTER" ? 2 : 3)
+                    .Select(tipo => new TipoUsuario
+                    {
+                        Id = tipo.Id,
+                        Tipo = tipo.Tipo
+                    }).ToList();
+            }, tipo => new TipoUsuario { Id = tipo.Id, Tipo = tipo.Tipo });
         }
 
-        public Usuario? BuscarPorId(int id)
+        public UsuarioDTO? BuscarPorId(int id)
         {
             using var context = _dbContextFactory.CreateDbContext();
-            return context.Usuarios.AsNoTracking().FirstOrDefault(usuario => usuario.Id == id);
+            return context.Usuarios.AsNoTracking()
+                .Where(usuario => usuario.Id == id)
+                .Select(usuario => new UsuarioDTO
+                {
+                    Id = usuario.Id,
+                    Nome = usuario.Nome,
+                    Logon = usuario.Logon,
+                    Senha = usuario.Senha,
+                    TipoUsuarioId = usuario.TipoUsuarioId
+                }).FirstOrDefault();
         }
 
         public IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro)

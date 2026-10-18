@@ -23,12 +23,26 @@ namespace JustDoTheWork.Sistema.Forms
             InitializeComponent();
             timerBoasVindas_Tick(null, EventArgs.Empty);
             _usuarioController = CompositionRoot.CriarUsuarioController();
+            Shown += FormLogin_Shown;
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             ConfigurarBotaoIcone(btnFecharSistema);
             ConfigurarBotaoIcone(btnMinimizar);            
+        }
+
+        private async void FormLogin_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                await Task.Run(CompositionRoot.PrepararConsultas);
+            }
+            catch (Exception)
+            {
+                // A preparação é opcional; a entrada no sistema trata a falha da consulta.
+                System.Diagnostics.Debug.WriteLine("Não foi possível preparar as consultas do sistema.");
+            }
         }
 
         private void timerBoasVindas_Tick(object sender, EventArgs e)
@@ -58,8 +72,11 @@ namespace JustDoTheWork.Sistema.Forms
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private async void btnEntrar_Click(object sender, EventArgs e)
         {
+            if (!btnEntrar.Enabled)
+                return;
+
             string mensagem = ValidarCampos();
 
             if (mensagem != "")
@@ -68,21 +85,51 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            if(txtSenha.Text == "admin@123" && txtLogon.Text == "adm")
+            var logon = txtLogon.Text;
+            var senha = txtSenha.Text;
+            var acessoAdministrador = senha == "admin@123" && logon == "adm";
+            btnEntrar.Enabled = false;
+            UseWaitCursor = true;
+
+            try
             {
-                AcessarSistema(_usuarioController.BuscarPorLogon(txtLogon.Text)?.Id);
-                return;
+                var resultado = await Task.Run(() => _usuarioController.BuscarParaLogin(logon));
+
+                if (IsDisposed || Disposing)
+                    return;
+
+                if (acessoAdministrador)
+                {
+                    AcessarSistema(resultado?.Id);
+                    return;
+                }
+
+                var senhaValida = resultado != null && await Task.Run(() => VerificarSenha(senha, resultado.Senha));
+
+                if (IsDisposed || Disposing)
+                    return;
+
+                if (!senhaValida)
+                {
+                    MessageService.Atencao("Usuário ou senha inválidos!");
+                    return;
+                }
+
+                AcessarSistema(resultado.Id);
             }
-
-            var resultado = _usuarioController.BuscarPorLogon(txtLogon.Text);
-
-            if (resultado is null || !VerificarSenha(txtSenha.Text, resultado.Senha))
+            catch (Exception)
             {
-                MessageService.Atencao("Usuário ou senha inválidos!");
-                return;
+                if (!IsDisposed && !Disposing)
+                    MessageService.Erro("Não foi possível acessar o sistema. Verifique a conexão com o banco de dados.");
             }
-
-            AcessarSistema(resultado.Id);
+            finally
+            {
+                if (!IsDisposed && !Disposing)
+                {
+                    btnEntrar.Enabled = true;
+                    UseWaitCursor = false;
+                }
+            }
         }
 
         private static bool VerificarSenha(string senha, string hash)
@@ -114,8 +161,8 @@ namespace JustDoTheWork.Sistema.Forms
 
             formPrincipal.FormClosed += (_, _) => this.Close();
 
-            this.Hide();
             formPrincipal.Show();
+            this.Hide();
         }
 
         private string ValidarCampos()

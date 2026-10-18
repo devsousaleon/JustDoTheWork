@@ -4,16 +4,22 @@ namespace JustDoTheWork.Infrastructure;
 
 public sealed class JustDoTheWorkDbContextFactory : IDbContextFactory<JustDoTheWorkDbContext>
 {
-    private readonly DbContextOptions<JustDoTheWorkDbContext> _options;
+    private readonly Lazy<DbContextOptions<JustDoTheWorkDbContext>> _options;
 
     public JustDoTheWorkDbContextFactory(string connectionString, string providerName)
     {
         if (string.IsNullOrWhiteSpace(connectionString))
             throw new ArgumentException("A connection string não pode ser vazia.", nameof(connectionString));
 
+        var provider = DatabaseProviderResolver.Resolve(providerName);
+        _options = new Lazy<DbContextOptions<JustDoTheWorkDbContext>>(() => CriarOpcoes(connectionString, provider));
+    }
+
+    private static DbContextOptions<JustDoTheWorkDbContext> CriarOpcoes(string connectionString, DatabaseProvider provider)
+    {
         var optionsBuilder = new DbContextOptionsBuilder<JustDoTheWorkDbContext>();
 
-        switch (DatabaseProviderResolver.Resolve(providerName))
+        switch (provider)
         {
             case DatabaseProvider.SqlServer:
                 optionsBuilder.UseSqlServer(connectionString);
@@ -24,12 +30,12 @@ public sealed class JustDoTheWorkDbContextFactory : IDbContextFactory<JustDoTheW
                 break;
 
             default:
-                throw new NotSupportedException($"O provider '{providerName}' não é suportado.");
+                throw new NotSupportedException($"O provider '{provider}' não é suportado.");
         }
 
-        _options = optionsBuilder.Options;
+        return optionsBuilder.Options;
     }
 
     public JustDoTheWorkDbContext CreateDbContext()
-        => new(_options);
+        => new(_options.Value);
 }

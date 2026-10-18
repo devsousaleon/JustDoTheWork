@@ -11,5 +11,6 @@ namespace JustDoTheWork.Infrastructure.InterfaceRepository
         string ExclusaoPorId(int id);
         Projeto BuscarPorId(int id);
         IEnumerable<ProjetoDTO> Pesquisar(ProjetoDTO filtro);
+        IEnumerable<ProjetoDTO> PesquisarParaCombo();
     }
 }

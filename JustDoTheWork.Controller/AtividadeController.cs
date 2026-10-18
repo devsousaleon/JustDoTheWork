@@ -129,21 +129,7 @@ namespace JustDoTheWork.Controller
             => _atividadeRepository.Pesquisar(filtroPesquisaAtividadeDTO);
 
         public AtividadeDTO BuscarPorId(int id)
-        {
-            var atividade = _atividadeRepository.BuscarPorId(id);
-
-            var atividadeDTO = new AtividadeDTO
-            {
-                Nome = atividade.Nome,
-                Status = atividade.Status,
-                Descricao = atividade.Descricao,
-                DataCriacao = atividade.DataCriacao,
-                DataFinalizacao = atividade.DataFinalizacao,
-                ProjetoId = atividade.ProjetoId
-            };
-
-            return atividadeDTO;
-        }
+            => _atividadeRepository.BuscarPorId(id);
 
         public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtroPesquisaHistoricoDTO)
         {
@@ -157,7 +143,7 @@ namespace JustDoTheWork.Controller
             return _atividadeRepository.PesquisarHistorico(filtro);
         }
 
-        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(int status)
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(params int[] status)
             => _atividadeRepository.PesquisarPorStatus(status);
 
         public string AlterarStatus(int idAtividade, int statusAtual, int novoStatus, string tipoExecucao)

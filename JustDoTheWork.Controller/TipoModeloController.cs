@@ -13,14 +13,6 @@ namespace JustDoTheWork.Controller
         }
 
         public IEnumerable<TipoModeloDTO> PesquisarParaCombo()
-        {
-            var resultado = _tipoModeloRepository.PesquisarParaCombo();
-
-            return resultado.Select(m => new TipoModeloDTO
-            {
-                Id = m.Id,
-                Descricao = m.Descricao
-            });
-        }
+            => _tipoModeloRepository.PesquisarParaCombo();
     }
 }

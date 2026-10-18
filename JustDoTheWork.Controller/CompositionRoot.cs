@@ -19,6 +19,12 @@ namespace JustDoTheWork.Controller
         private static JustDoTheWorkDbContextFactory DbContextFactory()
             => _dbContextFactory ?? throw new InvalidOperationException("O CompositionRoot precisa ser configurado antes da criação dos controllers.");
 
+        public static void PrepararConsultas()
+        {
+            using var context = DbContextFactory().CreateDbContext();
+            _ = context.Model;
+        }
+
         public static AtividadeController CriarAtividadeController()
         {
             IAtividadeRepository repository = new AtividadeRepository(DbContextFactory());

@@ -48,13 +48,11 @@ namespace JustDoTheWork.Sistema.ControlPanel
 
         void AtualizaGrid()
         {
-            var dadosPendente = _atividadeController.PesquisarPorStatus(2).ToList();
-            var dadosExecutando = _atividadeController.PesquisarPorStatus(3).ToList();
-            var dadosPausado = _atividadeController.PesquisarPorStatus(4).ToList();
+            var dados = _atividadeController.PesquisarPorStatus(2, 3, 4).ToLookup(atividade => atividade.Status);
 
-            gridControlPendentes.DataSource = dadosPendente;
-            gridControlExecutando.DataSource = dadosExecutando;
-            gridControlPausado.DataSource = dadosPausado;
+            gridControlPendentes.DataSource = dados[StatusAtividade.Pendente].ToList();
+            gridControlExecutando.DataSource = dados[StatusAtividade.Executando].ToList();
+            gridControlPausado.DataSource = dados[StatusAtividade.Pausado].ToList();
 
             IdSelecionadoAtividade = 0;
         }

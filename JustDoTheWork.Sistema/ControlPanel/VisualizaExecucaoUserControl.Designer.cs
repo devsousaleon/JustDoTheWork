@@ -54,11 +54,6 @@
             colNomeProjeto = new DevExpress.XtraGrid.Columns.GridColumn();
             colAcaoPendente = new DevExpress.XtraGrid.Columns.GridColumn();
             repositoryButtonAcaoPendente = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            panelAcoes = new DevExpress.XtraEditors.PanelControl();
-            btnFinalizar = new DevExpress.XtraEditors.SimpleButton();
-            btnPausar = new DevExpress.XtraEditors.SimpleButton();
-            btnExecutar = new DevExpress.XtraEditors.SimpleButton();
-            btnVoltarPendente = new DevExpress.XtraEditors.SimpleButton();
             panelAtividadesExecucao = new DevExpress.XtraEditors.PanelControl();
             tableLayoutExecucao = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)bindingSourceResultadoPesquisaAtividade).BeginInit();
@@ -77,8 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)gridControlPendentes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPendentes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPendente).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelAcoes).BeginInit();
-            panelAcoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).BeginInit();
             panelAtividadesExecucao.SuspendLayout();
             SuspendLayout();
@@ -119,7 +112,6 @@
             gridExecutando.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdExecutando, colNomeAtividadeExecutando, colNomeProjetoExecutando, colAcaoExecutando });
             gridExecutando.GridControl = gridControlExecutando;
             gridExecutando.Name = "gridExecutando";
-            gridExecutando.RowClick += gridExecutando_RowClick;
             // 
             // colAtividadeIdExecutando
             // 
@@ -165,7 +157,6 @@
             // repositoryButtonAcaoExecutando
             // 
             repositoryButtonAcaoExecutando.AutoHeight = false;
-            repositoryButtonAcaoExecutando.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
             repositoryButtonAcaoExecutando.Name = "repositoryButtonAcaoExecutando";
             repositoryButtonAcaoExecutando.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -201,7 +192,6 @@
             gridPausado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeIdPausado, colNomeAtividadePausado, colNomeProjetoPausado, colAcaoPausado });
             gridPausado.GridControl = gridControlPausado;
             gridPausado.Name = "gridPausado";
-            gridPausado.RowClick += gridPausado_RowClick;
             // 
             // colAtividadeIdPausado
             // 
@@ -247,7 +237,6 @@
             // repositoryButtonAcaoPausado
             // 
             repositoryButtonAcaoPausado.AutoHeight = false;
-            repositoryButtonAcaoPausado.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
             repositoryButtonAcaoPausado.Name = "repositoryButtonAcaoPausado";
             repositoryButtonAcaoPausado.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -283,7 +272,6 @@
             gridPendentes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colAtividadeId, colNomeAtividade, colNomeProjeto, colAcaoPendente });
             gridPendentes.GridControl = gridControlPendentes;
             gridPendentes.Name = "gridPendentes";
-            gridPendentes.RowClick += gridPendentes_RowClick;
             // 
             // colAtividadeId
             // 
@@ -327,74 +315,9 @@
             // repositoryButtonAcaoPendente
             // 
             repositoryButtonAcaoPendente.AutoHeight = false;
-            repositoryButtonAcaoPendente.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search) });
             repositoryButtonAcaoPendente.Name = "repositoryButtonAcaoPendente";
             repositoryButtonAcaoPendente.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // panelAcoes
-            // 
-            panelAcoes.Dock = DockStyle.Bottom;
-            panelAcoes.Controls.Add(btnFinalizar);
-            panelAcoes.Controls.Add(btnPausar);
-            panelAcoes.Controls.Add(btnExecutar);
-            panelAcoes.Controls.Add(btnVoltarPendente);
-            panelAcoes.Location = new Point(22, 620);
-            panelAcoes.Name = "panelAcoes";
-            panelAcoes.Size = new Size(1216, 70);
-            panelAcoes.TabIndex = 6;
-            // 
-            // btnFinalizar
-            // 
-            btnFinalizar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnFinalizar.Appearance.Font = new Font("Courier New", 8.25F);
-            btnFinalizar.Appearance.Options.UseFont = true;
-            btnFinalizar.Location = new Point(10, 42);
-            btnFinalizar.Margin = new Padding(8);
-            btnFinalizar.Name = "btnFinalizar";
-            btnFinalizar.Size = new Size(75, 23);
-            btnFinalizar.TabIndex = 2;
-            btnFinalizar.Text = "Finalizar";
-            btnFinalizar.Click += btnFinalizar_Click;
-            // 
-            // btnPausar
-            // 
-            btnPausar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnPausar.Appearance.Font = new Font("Courier New", 8.25F);
-            btnPausar.Appearance.Options.UseFont = true;
-            btnPausar.Location = new Point(10, 10);
-            btnPausar.Margin = new Padding(8);
-            btnPausar.Name = "btnPausar";
-            btnPausar.Size = new Size(75, 23);
-            btnPausar.TabIndex = 0;
-            btnPausar.Text = "Pausar";
-            btnPausar.Click += btnPausar_Click;
-            // 
-            // btnExecutar
-            // 
-            btnExecutar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnExecutar.Appearance.Font = new Font("Courier New", 8.25F);
-            btnExecutar.Appearance.Options.UseFont = true;
-            btnExecutar.Location = new Point(101, 42);
-            btnExecutar.Margin = new Padding(8);
-            btnExecutar.Name = "btnExecutar";
-            btnExecutar.Size = new Size(165, 23);
-            btnExecutar.TabIndex = 3;
-            btnExecutar.Text = "Executar";
-            btnExecutar.Click += btnExecutar_Click;
-            // 
-            // btnVoltarPendente
-            //
-            btnVoltarPendente.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnVoltarPendente.Appearance.Font = new Font("Courier New", 8.25F);
-            btnVoltarPendente.Appearance.Options.UseFont = true;
-            btnVoltarPendente.Location = new Point(101, 10);
-            btnVoltarPendente.Margin = new Padding(8);
-            btnVoltarPendente.Name = "btnVoltarPendente";
-            btnVoltarPendente.Size = new Size(165, 23);
-            btnVoltarPendente.TabIndex = 1;
-            btnVoltarPendente.Text = "Voltar para Pendente";
-            btnVoltarPendente.Click += btnVoltarPendente_Click;
-            //
             // tableLayoutExecucao
             //
             tableLayoutExecucao.ColumnCount = 2;
@@ -416,7 +339,6 @@
             panelAtividadesExecucao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelAtividadesExecucao.Padding = new Padding(10);
             panelAtividadesExecucao.Controls.Add(tableLayoutExecucao);
-            panelAtividadesExecucao.Controls.Add(panelAcoes);
             panelAtividadesExecucao.Location = new Point(10, 10);
             panelAtividadesExecucao.Margin = new Padding(10);
             panelAtividadesExecucao.Name = "panelAtividadesExecucao";
@@ -447,8 +369,6 @@
             ((System.ComponentModel.ISupportInitialize)gridControlPendentes).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPendentes).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryButtonAcaoPendente).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelAcoes).EndInit();
-            panelAcoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)panelAtividadesExecucao).EndInit();
             panelAtividadesExecucao.ResumeLayout(false);
             ResumeLayout(false);
@@ -463,11 +383,6 @@
         private DevExpress.XtraEditors.GroupControl groupExecutando;
         private DevExpress.XtraEditors.GroupControl groupPausado;
         private DevExpress.XtraEditors.GroupControl groupPendente;
-        private DevExpress.XtraEditors.PanelControl panelAcoes;
-        private DevExpress.XtraEditors.SimpleButton btnFinalizar;
-        private DevExpress.XtraEditors.SimpleButton btnPausar;
-        private DevExpress.XtraEditors.SimpleButton btnExecutar;
-        private DevExpress.XtraEditors.SimpleButton btnVoltarPendente;
         private DevExpress.XtraEditors.PanelControl panelAtividadesExecucao;
         private TableLayoutPanel tableLayoutExecucao;
         private DevExpress.XtraGrid.GridControl gridControlPendentes;

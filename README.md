@@ -112,7 +112,7 @@ O desenho apresenta o fluxo principal e um caminho de cancelamento pelo cadastro
 2. **Entre no sistema.** Use um usuário do banco com senha no formato BCrypt; consulte as orientações de primeiro acesso abaixo.
 3. **Crie sua primeira atividade.** Acesse **Cadastro → Atividades → Incluir**, selecione um projeto ou crie um pelo botão de adicionar projeto e preencha a descrição.
 4. **Revise e avance.** Abra a atividade pela ação da grid e use **Avançar** para enviá-la ao quadro de pendentes.
-5. **Execute o trabalho.** Na aba **Execução de Tarefas**, selecione a atividade e use os botões para executar, pausar, voltar para pendente ou finalizar.
+5. **Execute o trabalho.** Na aba **Execução de Tarefas**, use os ícones na linha da atividade; passe o mouse para consultar a ação de cada botão. Pendentes podem executar; atividades em execução podem pausar, voltar para pendente ou finalizar; pausadas podem executar ou voltar para pendente. A lupa abre os detalhes e o histórico da atividade.
 6. **Consulte os registros.** Acesse **Relatório → Relatório de Execuções**, informe os filtros e pesquise os períodos registrados.
 7. **Personalize os cadastros.** Em **Cadastro**, organize os usuários e os modelos de relatório que serão utilizados.
 

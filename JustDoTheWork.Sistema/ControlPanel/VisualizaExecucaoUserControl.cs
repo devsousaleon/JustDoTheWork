@@ -1,7 +1,12 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.Images;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using JustDoTheWork.Controller;
+using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
 using JustDoTheWork.Sistema.Forms;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
@@ -14,8 +19,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
         readonly AtividadeController _atividadeController;
         readonly Timer timerAtualizaGrid;
 
-        int _statusExecucaoSelecionado;
-
         public int IdSelecionadoAtividade { get; private set; }
 
         public VisualizaExecucaoUserControl()
@@ -24,10 +27,13 @@ namespace JustDoTheWork.Sistema.ControlPanel
             DesignGrid.Configurar(gridPendentes, (colAtividadeId, 65), (colNomeAtividade, 250), (colNomeProjeto, 180));
             DesignGrid.Configurar(gridExecutando, (colAtividadeIdExecutando, 65), (colNomeAtividadeExecutando, 350), (colNomeProjetoExecutando, 220));
             DesignGrid.Configurar(gridPausado, (colAtividadeIdPausado, 65), (colNomeAtividadePausado, 350), (colNomeProjetoPausado, 220));
+            ConfigurarBotoesAcao(gridPendentes, colAcaoPendente, repositoryButtonAcaoPendente, ("Executar", StatusAtividade.Executando, "svgimages/arrows/next.svg"));
+            ConfigurarBotoesAcao(gridExecutando, colAcaoExecutando, repositoryButtonAcaoExecutando, ("Pausar", StatusAtividade.Pausado, "svgimages/arrows/pause.svg"), ("Voltar para pendente", StatusAtividade.Pendente, "svgimages/history/undo.svg"), ("Finalizar", StatusAtividade.Finalizado, "svgimages/icon%20builder/actions_check.svg"));
+            ConfigurarBotoesAcao(gridPausado, colAcaoPausado, repositoryButtonAcaoPausado, ("Executar", StatusAtividade.Executando, "svgimages/arrows/next.svg"), ("Voltar para pendente", StatusAtividade.Pendente, "svgimages/history/undo.svg"));
             _atividadeController = CompositionRoot.CriarAtividadeController();
-            repositoryButtonAcaoPendente.ButtonPressed += repositoryButtonAcaoPendente_ButtonPressed;
-            repositoryButtonAcaoExecutando.ButtonPressed += repositoryButtonAcaoExecutando_ButtonPressed;
-            repositoryButtonAcaoPausado.ButtonPressed += repositoryButtonAcaoPausado_ButtonPressed;
+            repositoryButtonAcaoPendente.ButtonClick += repositoryButtonAcaoPendente_ButtonClick;
+            repositoryButtonAcaoExecutando.ButtonClick += repositoryButtonAcaoExecutando_ButtonClick;
+            repositoryButtonAcaoPausado.ButtonClick += repositoryButtonAcaoPausado_ButtonClick;
             
             timerAtualizaGrid = new Timer(components) { Interval = 10000 };
             timerAtualizaGrid.Tick += timerAtualizaGrid_Tick;
@@ -51,59 +57,80 @@ namespace JustDoTheWork.Sistema.ControlPanel
             gridControlPausado.DataSource = dadosPausado;
 
             IdSelecionadoAtividade = 0;
-            _statusExecucaoSelecionado = 0;
         }
 
-        void btnExecutar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(3,"Inclusao");
-
-        void btnPausar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(4, "Edicao");
-
-        void btnVoltarPendente_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(2, "Edicao");
-
-        void btnFinalizar_Click(object sender, EventArgs e)
-            => ExecutaAcaoAlterarStatus(6, "Edicao");
-
-        void gridExecutando_RowClick(object sender, RowClickEventArgs e)
-            => InformaIdSelecionadoAtividade(gridExecutando, 3);
-
-        void gridPausado_RowClick(object sender, RowClickEventArgs e)
-            => InformaIdSelecionadoAtividade(gridPausado, 4);
-
-        void gridPendentes_RowClick(object sender, RowClickEventArgs e)
-            => InformaIdSelecionadoAtividade(gridPendentes, 2);
-
-        void repositoryButtonAcaoPendente_ButtonPressed(object sender, ButtonPressedEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridPendentes); 
-        
-        void repositoryButtonAcaoExecutando_ButtonPressed(object sender, ButtonPressedEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridExecutando); 
-        
-        void repositoryButtonAcaoPausado_ButtonPressed(object sender, ButtonPressedEventArgs e)
-            => InstanciaFormPorIdSelecionado(gridPausado);        
-
-        void InstanciaFormPorIdSelecionado(GridView gridView)
+        void ConfigurarBotoesAcao(GridView gridView, GridColumn coluna, RepositoryItemButtonEdit repository, params (string legenda, StatusAtividade novoStatus, string icone)[] acoes)
         {
-            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id"));
+            const int larguraBotao = 28;
+            const int espacoPorBotao = 40;
+            repository.BorderStyle = BorderStyles.NoBorder;
+            repository.Buttons.Clear();
+            repository.Buttons.Add(new EditorButton(ButtonPredefines.Search)
+            {
+                ToolTip = "Visualizar atividade e histórico de execução",
+                Width = larguraBotao
+            });
 
-            if (IdSelecionadoAtividade <= 0)
+            foreach (var (legenda, novoStatus, icone) in acoes)
+            {
+                var botao = new EditorButton(ButtonPredefines.Glyph)
+                {
+                    ToolTip = legenda,
+                    Tag = novoStatus,
+                    Width = larguraBotao
+                };
+                botao.ImageOptions.SvgImage = ImageResourceCache.Default.GetSvgImage(icone);
+                botao.ImageOptions.SvgImageSize = new Size(16, 16);
+                botao.ImageOptions.Location = ImageLocation.MiddleCenter;
+                repository.Buttons.Add(botao);
+            }
+
+            // Reserva folga para o tamanho mínimo dos botões no tema da grid.
+            var larguraColuna = repository.Buttons.Count * espacoPorBotao + 8;
+            coluna.Caption = "Ações";
+            coluna.OptionsColumn.FixedWidth = true;
+            coluna.OptionsColumn.AllowSize = false;
+            coluna.MinWidth = larguraColuna;
+            coluna.MaxWidth = larguraColuna;
+            coluna.Width = larguraColuna;
+            gridView.RowHeight = 32;
+        }
+
+        void repositoryButtonAcaoPendente_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => ExecutaAcaoGrid(gridPendentes, StatusAtividade.Pendente, e.Button);
+
+        void repositoryButtonAcaoExecutando_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => ExecutaAcaoGrid(gridExecutando, StatusAtividade.Executando, e.Button);
+
+        void repositoryButtonAcaoPausado_ButtonClick(object sender, ButtonPressedEventArgs e)
+            => ExecutaAcaoGrid(gridPausado, StatusAtividade.Pausado, e.Button);
+
+        void ExecutaAcaoGrid(GridView gridView, StatusAtividade statusAtual, EditorButton botao)
+        {
+            if (!gridView.IsDataRow(gridView.FocusedRowHandle) || gridView.GetFocusedRow() is not ResultadoPesquisaAtividadeDTO atividade || atividade.Id <= 0)
                 return;
 
-            FormVisualizaAtividadeExecucao formVisualizaAtividadeExecucao = new(this);
-            formVisualizaAtividadeExecucao.ShowDialog();
-        }
-
-        void ExecutaAcaoAlterarStatus(int novoStatus, string acaoExecutada)
-        {
-            if (IdSelecionadoAtividade <= 0 || _statusExecucaoSelecionado == 0)
+            if (botao.Kind == ButtonPredefines.Search)
             {
-                MessageService.Atencao("Selecione uma atividade.");
+                InstanciaFormPorIdSelecionado(atividade.Id);
                 return;
             }
 
-            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(IdSelecionadoAtividade, _statusExecucaoSelecionado, novoStatus, acaoExecutada);
+            if (botao.Tag is StatusAtividade novoStatus)
+                ExecutaAcaoAlterarStatus(atividade.Id, statusAtual, novoStatus);
+        }
+
+        void InstanciaFormPorIdSelecionado(int idAtividade)
+        {
+            IdSelecionadoAtividade = idAtividade;
+            using FormVisualizaAtividadeExecucao formVisualizaAtividadeExecucao = new(this);
+            formVisualizaAtividadeExecucao.ShowDialog(FindForm());
+        }
+
+        void ExecutaAcaoAlterarStatus(int idAtividade, StatusAtividade statusAtual, StatusAtividade novoStatus)
+        {
+            var acaoExecutada = novoStatus == StatusAtividade.Executando ? "Inclusao" : statusAtual == StatusAtividade.Executando ? "Edicao" : string.Empty;
+            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(idAtividade, (int)statusAtual, (int)novoStatus, acaoExecutada);
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoAlteracaoStatus))
             {
@@ -112,12 +139,6 @@ namespace JustDoTheWork.Sistema.ControlPanel
             }
 
             AtualizaGrid();
-        }
-
-        void InformaIdSelecionadoAtividade(GridView gridView, int status) 
-        {
-            IdSelecionadoAtividade = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id"));
-            _statusExecucaoSelecionado = status;
         }
 
         void timerAtualizaGrid_Tick(object sender, EventArgs e)

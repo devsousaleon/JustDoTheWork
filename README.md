@@ -1,23 +1,22 @@
 <p align="center">
-  <img src="docs/assets/readme-banner.svg" alt="JustDoTheWork 1.5.0: planeje atividades, execute o trabalho e acompanhe seu histórico." width="100%">
+  <img src="docs/assets/readme-banner.svg" alt="JustDoTheWork 1.6.0 para Windows, com planejamento, execução e histórico de atividades." width="100%">
 </p>
 
 # JustDoTheWork
 
-**Organize a atividade. Execute com contexto. Acompanhe cada etapa.**
-
-O JustDoTheWork é uma aplicação desktop para Windows que reúne projetos, atividades, registros de execução e cadastros em um só lugar. Você descreve o que precisa ser feito, acompanha o trabalho entre pendências, execução e pausas e consulta quando cada período de execução começou e terminou.
+O JustDoTheWork é uma aplicação desktop para Windows que organiza projetos e atividades do levantamento de requisitos à conclusão dos testes. O quadro de tarefas mostra o trabalho disponível para cada perfil, e o histórico registra os períodos de execução, seus autores e as etapas em que ocorreram.
 
 Desenvolvido em **C# e .NET 8**, com **Windows Forms**, **DevExpress** e persistência via **Entity Framework Core**, o projeto possui configurações para **SQL Server e PostgreSQL**.
 
 <p align="center">
-  <strong>Versão 1.5.0</strong> · Windows Desktop · Interface em português · Tema escuro
+  <strong>Versão 1.6.0</strong> · Windows Desktop · Interface em português · Tema escuro
 </p>
 
 <p align="center">
   <a href="#funcionalidades">Funcionalidades</a> ·
   <a href="#fluxo">Fluxo de trabalho</a> ·
-  <a href="#versao-150">Novidades da 1.5.0</a> ·
+  <a href="#versao-160">Novidades da 1.6.0</a> ·
+  <a href="#impressao">Impressão</a> ·
   <a href="#executar">Como executar</a> ·
   <a href="#arquitetura">Arquitetura</a>
 </p>
@@ -32,63 +31,52 @@ Desenvolvido em **C# e .NET 8**, com **Windows Forms**, **DevExpress** e persist
 | --- | --- |
 | 🗂️ **Projetos e atividades** | Criar um projeto durante o cadastro da atividade; incluir atividades com nome, projeto e descrição formatada; consultar e editar seus dados. |
 | 🔎 **Pesquisa de atividades** | Filtrar por nome, projeto, status e data de criação; limpar os filtros; abrir os detalhes pela ação da grid. |
-| ▶️ **Painel de execução** | Visualizar atividades pendentes, em execução e pausadas; executar, pausar, retomar, voltar para pendente e finalizar. |
-| 🕒 **Histórico** | Consultar os períodos de execução, com início e fim; pesquisar por projeto, status e data de criação da atividade. |
-| 📝 **Modelos de relatório** | Incluir, pesquisar, editar e excluir modelos; definir seu tipo e ativação; editar o conteúdo em um editor de texto formatado. |
-| 👥 **Usuários** | Incluir e editar usuários; pesquisar por nome ou logon; visualizar nome, logon e tipo na listagem. |
+| ▶️ **Painel de execução** | Acompanhar atividades pendentes, em execução e pausadas. As ações de executar, pausar, retomar, encaminhar e concluir dependem do perfil e da etapa. |
+| 🕒 **Histórico** | Consultar início, fim, autor e etapa das execuções. A pesquisa pode ser filtrada por projeto, status e data de criação da atividade. |
+| 📝 **Modelos de relatório** | Gerenciar modelos e inserir campos de objeto no editor de texto formatado para preencher o histórico na impressão. |
+| 👥 **Usuários** | Cadastrar, pesquisar e editar usuários pelo menu do Tech Lead. |
 | 🔐 **Login** | Conferir o logon cadastrado e verificar a senha com BCrypt. |
 | 🔌 **Banco de dados** | Selecionar SQL Server ou PostgreSQL, informar a conexão, testar o acesso e salvar a configuração. |
 
-O menu lateral abre os cadastros e o relatório de execuções em abas. O painel principal reúne os três quadros de trabalho e atualiza suas listagens a cada **10 segundos**.
-
-### Uma interface para acompanhar o trabalho
-
-- **Pendentes, Em execução e Pausado:** três quadros para localizar a atividade e escolher a próxima ação.
-- **Grids padronizadas:** mais espaço para textos, IDs e datas centralizados, coluna de ação à direita e larguras ajustadas ao espaço disponível.
-- **Detalhes da atividade:** dados do cadastro, descrição e consulta ao histórico de execução.
-- **Editor compartilhado:** conteúdo formatado para descrever requisitos e preparar modelos de relatório.
-- **Mensagens em português:** validações, confirmações e retornos das operações.
+O menu lateral abre em abas as telas disponíveis para o perfil autenticado. O painel principal atualiza as listagens a cada **10 segundos**.
 
 <a id="fluxo"></a>
 
 ## 🔄 Progressão e responsáveis
 
-Uma atividade começa **Pendente** com o **Historiador**. Ao avançar, ele escolhe um **Desenvolvedor**; quando o desenvolvimento termina, o responsável escolhe um **QA Tester**. A conclusão do QA finaliza a atividade e registra sua data de encerramento.
+Uma atividade começa **Pendente** na etapa de **Historiador**. Ao avançar, o Historiador responsável indica um **Desenvolvedor**. Ao concluir o desenvolvimento, o executor indica um **QA Tester**. A conclusão do QA finaliza a atividade e registra a data de encerramento.
 
 ```mermaid
 flowchart LR
     H[Historiador: pendente] -->|Escolher Desenvolvedor| D[Desenvolvedor: pendente]
     D -->|Escolher QA Tester| Q[QA Tester: pendente]
+    Q -->|Devolver para correção| D
     Q -->|Finalizar atividade| F[Finalizada]
 ```
 
 Em cada etapa, o responsável pode executar, pausar e retomar o trabalho. Avançar encerra qualquer execução aberta e entrega a atividade como pendente ao próximo responsável. Status, etapa, responsável e períodos de execução são gravados na mesma transação.
 
-As regras de acesso seguem o backend Web, incluindo as consultas por ID:
+O perfil limita tanto as listagens quanto a abertura de atividades por ID.
 
-| Perfil | Tarefas visíveis |
+| Perfil | Acesso e ações |
 | --- | --- |
 | **Historiador** | Todas as atividades, de qualquer responsável, etapa e status. Executa e encaminha somente sua própria etapa. |
-| **Tech Lead** | Todas as atividades. Pode editar, cancelar abertas e administrar vínculos, mas não executar, avançar ou concluir etapas. |
+| **Tech Lead** | Todas as atividades. Administra cadastros e edita atividades em qualquer status. Pode cancelar atividades abertas e vincular responsáveis quando elas estiverem sem atribuição. |
 | **Desenvolvedor** | Pendentes de Desenvolvimento compartilhadas com a equipe; em execução ou pausadas, somente as próprias. |
 | **QA Tester** | Pendentes de Testes compartilhadas com a equipe; em execução ou pausadas, somente as próprias. |
 
 Iniciar uma pendente de Desenvolvimento/Testes assume a atividade e registra o executor na mesma transação. Voltar a Pendente libera a fila normal. O QA pode **Devolver ao desenvolvedor**; essa correção fica reservada ao desenvolvedor anterior, mesmo ao pausar ou voltar a Pendente, até avançar novamente.
 
-Desenvolvedores e testers consultam suas execuções mesmo depois que a atividade muda de etapa. Períodos antigos sem autoria continuam identificados como **Autoria não registrada** e só aparecem a esses perfis enquanto a atividade estiver atribuída ao usuário. Historiador e Tech Lead consultam todos os períodos, gerenciam modelos e imprimem. O menu dos especialistas contém Tarefas e Minhas execuções. Veja [as regras de negócio e a validação](docs/REGRAS_NEGOCIO.md).
+Desenvolvedores e testers consultam suas execuções mesmo depois que a atividade muda de etapa. Períodos antigos sem autoria continuam identificados como **Autoria não registrada** e só aparecem a esses perfis enquanto a atividade estiver atribuída ao usuário. Historiador e Tech Lead consultam todos os períodos, gerenciam modelos e imprimem. [Regras de negócio](docs/REGRAS_NEGOCIO.md)
 
-O login exige um usuário cadastrado com senha BCrypt e um dos quatro perfis. Não há acesso por credenciais fixas sem validação no banco.
+<a id="versao-160"></a>
 
-<a id="versao-150"></a>
+## ✨ Novidades da versão 1.6.0
 
-## ✨ O que chegou na versão 1.5.0
-
-- **Gestão de usuários:** tela de inclusão e edição, busca por nome ou logon, listagem e acesso pelo menu lateral.
-- **Tipos de usuário:** Historiador, Desenvolvedor, QA Tester e Tech Lead, utilizando os IDs já existentes no banco.
-- **Senhas com BCrypt:** geração de hash ao cadastrar ou trocar a senha e verificação no login. Na edição, deixar a senha em branco mantém a senha atual.
-- **Cancelamento de atividades:** ação na tela de detalhes do cadastro.
-- **Apresentação das grids:** alinhamentos, proporções de colunas e disposição dos quadros de execução ajustados.
-- **Nomenclatura consistente:** nomes de telas, componentes, eventos, métodos e variáveis padronizados, com regras registradas na documentação e na `.editorconfig`.
+- **Menu e ações por perfil.** A tela inicial identifica o usuário e seu perfil, e o quadro apresenta as ações permitidas para cada atividade.
+- **Fila e autoria por etapa.** Desenvolvedores e QA Testers assumem pendências da equipe ao iniciar a execução. Cada novo período registra o executor e a etapa.
+- **Impressão com campos de objeto.** O editor permite inserir dados da atividade, do projeto e da execução que são preenchidos ao gerar o relatório.
+- **Otimizações de login e consultas.** O aplicativo inicializa o modelo do EF Core em segundo plano ao abrir o login e verifica o hash BCrypt fora da thread da interface. As listas de projetos, tipos de usuário e tipos de modelo usam cache.
 
 <a id="uso"></a>
 
@@ -97,14 +85,18 @@ O login exige um usuário cadastrado com senha BCrypt e um dos quatro perfis. N�
 1. **Prepare e configure o banco.** Informe o provedor e os dados de conexão na primeira abertura. Salve e reinicie o aplicativo.
 2. **Entre no sistema.** Use um usuário do banco com senha no formato BCrypt; consulte as orientações de primeiro acesso abaixo.
 3. **Crie sua primeira atividade.** Acesse **Cadastro → Atividades → Incluir**, selecione um projeto ou crie um pelo botão de adicionar projeto e preencha a descrição.
-4. **Revise e avance.** Como Historiador, abra a atividade pela lupa e use **Avançar etapa** para escolher um Desenvolvedor. O Desenvolvedor encaminha ao QA Tester, que finaliza a atividade.
-5. **Execute o trabalho.** Na aba **Execução de Tarefas**, use os ícones na linha da atividade; passe o mouse para consultar a ação de cada botão. Pendentes podem executar; atividades em execução podem pausar, voltar para pendente ou finalizar; pausadas podem executar ou voltar para pendente. A lupa abre os detalhes e o histórico da atividade.
-6. **Consulte os registros.** Acesse **Relatório → Relatório de Execuções**, informe os filtros e pesquise os períodos registrados.
-7. **Personalize os cadastros.** Em **Cadastro**, organize os usuários e os modelos de relatório que serão utilizados.
+4. **Encaminhe a atividade.** Como Historiador responsável, abra os detalhes pela lupa e use **Avançar etapa** após preencher nome, projeto e descrição com texto ou imagem.
+5. **Assuma e execute.** Na aba **Execução de Tarefas**, use **Executar** para assumir uma pendência da sua etapa. Depois do desenvolvimento, encaminhe a atividade ao QA. Após os testes, o QA pode concluir a atividade ou devolvê-la para correção.
+6. **Consulte os registros.** Use **Relatório de Execuções** como Historiador ou Tech Lead. Como Desenvolvedor ou QA Tester, use **Minhas execuções**.
 
-### Modelos de relatório nesta versão
+<a id="impressao"></a>
 
-O botão **Imprimir** da tela de histórico gera o documento com os períodos pesquisados e os campos de objeto preenchidos. Exige um modelo ativo de Histórico Execução com conteúdo; quando há mais de um, solicita a seleção. Historiador e Tech Lead podem imprimir entre 1 e 100 períodos por relatório.
+## 🖨️ Impressão do histórico
+
+1. Como Historiador ou Tech Lead, cadastre um modelo ativo do tipo **Histórico Execução** e escreva o conteúdo do relatório no editor.
+2. Posicione o cursor no documento e escolha um item em **Campos objeto**. Use, por exemplo, `Atividade.Nome`, `Projeto.Nome`, `Execucao.Usuario`, `Execucao.DataInicio` ou `Execucao.DataFim`.
+3. Em **Relatório de Execuções**, filtre de 1 a 100 períodos e clique em **Imprimir**. Se houver mais de um modelo ativo do tipo exigido, selecione o que deseja usar.
+4. Confira a prévia. O relatório preenche os campos do modelo e gera uma seção para cada período.
 
 <a id="executar"></a>
 
@@ -143,9 +135,9 @@ TipoModelo ──── ModeloRelatorio
 
 O arquivo [justdothework_sql.sql](justdothework_sql.sql) contém as seções de criação para SQL Server e PostgreSQL. Crie o banco e execute somente a seção do provedor escolhido. Os quatro tipos de usuário são cadastrados sem assumir seus IDs no código. Descrições e modelos usam documentos Open XML em colunas binárias.
 
-Para bancos existentes, a primeira autenticação válida aplica, em transação, os scripts incorporados de atualização do fluxo. Eles adicionam etapa, responsável, chave estrangeira e índice por responsável/status. O usuário de conexão precisa poder atualizar a estrutura nessa primeira execução. Também é possível executar o script do provedor manualmente, dentro de uma transação, antes de iniciar o aplicativo.
+Após a primeira autenticação válida de cada inicialização, o aplicativo executa o script de atualização do provedor em uma transação. Os scripts são idempotentes. Em bancos existentes, adicionam os campos de etapa, responsável e devolução exclusiva nas atividades, além de autoria e etapa nas execuções. A conta de conexão precisa de permissões para executar essa atualização. Se for preparar a estrutura manualmente, execute dentro de uma transação o script correspondente ao provedor. [SQL Server](JustDoTheWork.Infrastructure/Scripts/AtualizarFluxoSqlServer.sql) · [PostgreSQL](JustDoTheWork.Infrastructure/Scripts/AtualizarFluxoPostgres.sql)
 
-As atividades antigas em Análise passam para Pendente; as já finalizadas recebem a etapa Finalizada. Nenhum responsável é escolhido automaticamente para registros antigos. O Tech Lead consulta as atividades sem vínculo e usa **Vincular responsável** nos detalhes para destiná-las ao profissional da etapa.
+Ao adicionar a coluna de etapa a uma base antiga, o script move as atividades em **Análise** para **Pendente** e atribui a etapa **Finalizada** às atividades já concluídas. A autoria das execuções antigas permanece sem registro. O Tech Lead pode abrir os detalhes de uma atividade sem atribuição e usar **Vincular responsável**.
 
 ### 3. Restaure os pacotes e inicie
 
@@ -172,7 +164,7 @@ A configuração salva utiliza a proteção `DataProtectionConfigurationProvider
 
 Prepare no banco o primeiro usuário Tech Lead com hash BCrypt, utilizando o ID consultado em TipoUsuario. Depois de entrar com esse usuário, abra **Cadastro → Usuários → Incluir** para cadastrar Historiadores, Desenvolvedores e QA Testers. Cadastros e trocas de senha feitos pela tela geram o hash automaticamente. O tipo do usuário autenticado determina suas permissões e as atividades que pode consultar.
 
-Os perfis determinam o acesso às consultas e operações. Usuários antigos com senha em texto precisam ter a senha atualizada pela tela de cadastro para utilizar a verificação BCrypt. Os hashes não são enviados aos formulários de edição; deixar a senha em branco preserva o hash no banco.
+Se houver usuários antigos com senhas em texto, entre com o Tech Lead já preparado e redefina essas senhas em **Cadastro → Usuários**. Deixar a senha em branco durante a edição preserva o valor armazenado.
 
 <a id="arquitetura"></a>
 
@@ -236,6 +228,5 @@ O repositório ainda não possui um arquivo `LICENSE` com uma licença de uso de
 ---
 
 <p align="center">
-  Desenvolvido por <a href="https://github.com/devsousaleon">devsousaleon</a>.<br>
-  <strong>Do planejamento ao histórico: cada etapa do trabalho tem seu lugar.</strong>
+  Desenvolvido por <a href="https://github.com/devsousaleon">devsousaleon</a>.
 </p>

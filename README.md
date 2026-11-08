@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/readme-banner.svg" alt="JustDoTheWork 1.6.0 para Windows, com planejamento, execução e histórico de atividades." width="100%">
+  <img src="docs/assets/readme-banner-v1.6.0.svg" alt="JustDoTheWork 1.6.0 para Windows, com planejamento, execução e histórico de atividades." width="100%">
 </p>
 
 # JustDoTheWork

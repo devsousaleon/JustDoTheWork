@@ -20,10 +20,12 @@ namespace JustDoTheWork.Controller
 
             if (string.IsNullOrWhiteSpace(projetoDTO.Nome))
                 return "O nome do projeto é obrigatório!";
+            if (projetoDTO.Nome.Length > 50)
+                return "O nome do projeto deve ter até 50 caracteres.";
 
             var projeto = new Projeto
             {
-                Nome = projetoDTO.Nome
+                Nome = projetoDTO.Nome.Trim()
             };
 
             mensagem = _projetoRepository.Inclusao(projeto);

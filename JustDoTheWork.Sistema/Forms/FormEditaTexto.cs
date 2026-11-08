@@ -49,13 +49,18 @@ namespace JustDoTheWork.Sistema.Forms
                 (nameof(Atividade.Status), "Status"),
                 (nameof(Atividade.DataCriacao), "Data de criação"),
                 (nameof(Atividade.DataFinalizacao), "Data de finalização"),
-                (nameof(Atividade.ProjetoId), "ID do projeto"));
+                (nameof(Atividade.ProjetoId), "ID do projeto"),
+                ("Responsavel", "Responsável atual"),
+                (nameof(Atividade.Etapa), "Etapa atual"));
 
             ConfiguraCampoObjeto(comboCampoExecucao, nameof(Execucao),
                 (nameof(Execucao.Id), "ID"),
                 (nameof(Execucao.DataInicio), "Data de início"),
                 (nameof(Execucao.DataFim), "Data de fim"),
-                (nameof(Execucao.AtividadeId), "ID da atividade"));
+                (nameof(Execucao.AtividadeId), "ID da atividade"),
+                (nameof(Execucao.UsuarioId), "ID do executor"),
+                ("Usuario", "Executor"),
+                (nameof(Execucao.Etapa), "Etapa da execução"));
 
             ConfiguraCampoObjeto(comboCampoProjeto, nameof(Projeto),
                 (nameof(Projeto.Id), "ID"),

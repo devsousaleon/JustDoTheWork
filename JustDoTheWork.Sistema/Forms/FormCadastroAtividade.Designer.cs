@@ -140,6 +140,7 @@
             // comboProjeto
             //
             comboProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "ProjetoId", true));
+            comboProjeto.EnterMoveNextControl = true;
             comboProjeto.Location = new Point(590, 37);
             comboProjeto.Name = "comboProjeto";
             comboProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -187,6 +188,7 @@
             // txtNomeAtividade
             // 
             txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceAtividade, "Nome", true));
+            txtNomeAtividade.EnterMoveNextControl = true;
             txtNomeAtividade.Location = new Point(85, 40);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

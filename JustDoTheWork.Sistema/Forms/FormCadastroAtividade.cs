@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 
@@ -21,6 +22,8 @@ namespace JustDoTheWork.Sistema.Forms
 
         void FormCadastroAtividade_Load(object sender, EventArgs e)
         {
+            btnSalvarCadastroAtividade.Enabled = _atividadeController.PodeCadastrar;
+            groupInfoAtividade.Text = "Dados da atividade — início pendente com Historiador";
             AtualizaComboBoxProjeto();
         }
 
@@ -31,11 +34,9 @@ namespace JustDoTheWork.Sistema.Forms
         {
             var atividadeDTO = bindingSourceAtividade.Current as AtividadeDTO;
 
-            if (comboProjeto.EditValue != null)
-                atividadeDTO.ProjetoId = (int)comboProjeto.EditValue;
-
-            atividadeDTO.DataCriacao = DateTime.Now.Date;
+            atividadeDTO.ProjetoId = comboProjeto.EditValue is int projetoId ? projetoId : null;
             atividadeDTO.Descricao = richEditDescricaoAtividade.Document.GetOpenXmlBytes(richEditDescricaoAtividade.Document.Range);
+            atividadeDTO.UsuarioResponsavelId = CompositionRoot.UsuarioAtual?.EhTechLead == true ? null : CompositionRoot.UsuarioAtual?.Id;
 
             var mensagemRetornoInclusaoAtividade = _atividadeController.Inclusao(atividadeDTO);
 

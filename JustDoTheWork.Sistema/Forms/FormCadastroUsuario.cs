@@ -10,7 +10,6 @@ namespace JustDoTheWork.Sistema.Forms
     {
         private readonly UsuarioController _usuarioController;
         private readonly int _idUsuario;
-        private string _senhaAtual = string.Empty;
 
         public FormCadastroUsuario()
         {
@@ -42,7 +41,6 @@ namespace JustDoTheWork.Sistema.Forms
                 return;
             }
 
-            _senhaAtual = usuarioDTO.Senha;
             usuarioDTO.Senha = string.Empty;
             txtSenha.Properties.NullValuePrompt = "Deixe em branco para manter a senha atual";
             bindingSourceUsuario.DataSource = usuarioDTO;
@@ -57,24 +55,18 @@ namespace JustDoTheWork.Sistema.Forms
 
             var emEdicao = usuarioDTO.Id > 0;
 
-            // O BCrypt considera até 72 bytes da senha; rejeita entradas que seriam truncadas.
             if (!string.IsNullOrWhiteSpace(usuarioDTO.Senha) && Encoding.UTF8.GetByteCount(usuarioDTO.Senha) > 72)
             {
                 MessageService.Atencao("A senha excede o tamanho permitido. Use uma senha mais curta.");
                 return;
             }
 
-            var senhaParaSalvar = string.IsNullOrWhiteSpace(usuarioDTO.Senha)
-                ? (emEdicao ? _senhaAtual : usuarioDTO.Senha)
-                : BCrypt.Net.BCrypt.HashPassword(usuarioDTO.Senha, workFactor: 12);
-
-            // Mantém a senha digitada no binding para permitir uma nova tentativa se o cadastro falhar.
             var usuarioParaSalvar = new UsuarioDTO
             {
                 Id = usuarioDTO.Id,
                 Nome = usuarioDTO.Nome,
                 Logon = usuarioDTO.Logon,
-                Senha = senhaParaSalvar,
+                Senha = usuarioDTO.Senha,
                 TipoUsuarioId = usuarioDTO.TipoUsuarioId
             };
 

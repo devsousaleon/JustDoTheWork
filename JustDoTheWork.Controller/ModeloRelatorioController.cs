@@ -23,10 +23,12 @@ namespace JustDoTheWork.Controller
 
             if (modeloRelatorioDTO.TipoModeloId == 0)
                 return "Informe o tipo do modelo!";
+            if (modeloRelatorioDTO.Descricao.Length > 50 || modeloRelatorioDTO.Texto is { Length: > 10 * 1024 * 1024 })
+                return "Informe um nome com até 50 caracteres e um documento com até 10 MiB.";
 
             var modeloRelatorio = new ModeloRelatorio
             {
-                Descricao = modeloRelatorioDTO.Descricao,
+                Descricao = modeloRelatorioDTO.Descricao.Trim(),
                 TipoModeloId = modeloRelatorioDTO.TipoModeloId,
                 Texto = modeloRelatorioDTO.Texto,
                 Ativo = modeloRelatorioDTO.Ativo
@@ -45,34 +47,42 @@ namespace JustDoTheWork.Controller
 
             if (modeloRelatorioDTO.TipoModeloId == 0)
                 return "Informe o tipo do modelo!";
+            if (modeloRelatorioDTO.Descricao.Length > 50 || modeloRelatorioDTO.Texto is { Length: > 10 * 1024 * 1024 })
+                return "Informe um nome com até 50 caracteres e um documento com até 10 MiB.";
 
-            var modeloRelatorio = new ModeloRelatorio
+            var modeloRelatorio = new ModeloRelatorioDTO
             {
                 Id = modeloRelatorioDTO.Id,
-                Descricao = modeloRelatorioDTO.Descricao,
+                Descricao = modeloRelatorioDTO.Descricao.Trim(),
                 TipoModeloId = modeloRelatorioDTO.TipoModeloId,
                 Texto = modeloRelatorioDTO.Texto,
-                Ativo = modeloRelatorioDTO.Ativo
+                Ativo = modeloRelatorioDTO.Ativo,
+                Revisao = modeloRelatorioDTO.Revisao
             };
 
             return _modeloRelatorioRepository.Edicao(modeloRelatorio);
         }
 
-        public string Exclusao(int id)
-            => _modeloRelatorioRepository.ExclusaoPorId(id);
+        public string Exclusao(int id, string revisao)
+            => _modeloRelatorioRepository.ExclusaoPorId(id, revisao);
 
         public byte[]? BuscarModeloHistoricoExecucao()
             => _modeloRelatorioRepository.BuscarModeloHistoricoExecucao();
 
-        public DadosImpressaoHistoricoDTO BuscarDadosImpressaoHistorico(IEnumerable<int> execucaoIds, int? usuarioId)
+        public IEnumerable<ResultadoPesquisaModeloRelatorioDTO> PesquisarModelosHistorico()
+            => _modeloRelatorioRepository.PesquisarModelosHistorico();
+
+        public DadosImpressaoHistoricoDTO BuscarDadosImpressaoHistorico(IEnumerable<int> execucaoIds, int? usuarioId, int? modeloId = null)
         {
             var ids = execucaoIds.Distinct().ToArray();
-            if (ids.Length == 0 || ids.Any(id => id <= 0))
-                throw new InvalidOperationException("Pesquise as execuções que deseja imprimir antes de gerar o relatório.");
+            if (ids.Length == 0 || ids.Length > 100 || ids.Any(id => id <= 0))
+                throw new InvalidOperationException("Selecione entre 1 e 100 execuções para imprimir.");
 
-            var dados = _modeloRelatorioRepository.BuscarDadosImpressaoHistorico(ids, usuarioId);
+            var dados = _modeloRelatorioRepository.BuscarDadosImpressaoHistorico(ids, usuarioId, modeloId);
             if (dados?.Modelo.Texto is not { Length: > 0 })
                 throw new InvalidOperationException("Não foi encontrado modelo ativo com texto para impressão!");
+            if (!DocumentoAtividade.TemConteudo(dados.Modelo.Texto))
+                throw new InvalidOperationException("O modelo de impressão precisa de um documento válido com conteúdo.");
 
             if (dados.Registros.Count != ids.Length)
                 throw new InvalidOperationException("Uma ou mais execuções não estão mais disponíveis. Atualize a pesquisa antes de imprimir.");

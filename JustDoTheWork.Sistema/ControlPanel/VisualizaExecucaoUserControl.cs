@@ -8,6 +8,7 @@ using JustDoTheWork.Controller;
 using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Sistema.Forms;
+using JustDoTheWork.Sistema.Services;
 using JustDoTheWork.UI.Core;
 using JustDoTheWork.UI.Core.Geral;
 using Timer = System.Windows.Forms.Timer;
@@ -27,10 +28,29 @@ namespace JustDoTheWork.Sistema.ControlPanel
             DesignGrid.Configurar(gridPendentes, (colAtividadeId, 65), (colNomeAtividade, 250), (colNomeProjeto, 180));
             DesignGrid.Configurar(gridExecutando, (colAtividadeIdExecutando, 65), (colNomeAtividadeExecutando, 350), (colNomeProjetoExecutando, 220));
             DesignGrid.Configurar(gridPausado, (colAtividadeIdPausado, 65), (colNomeAtividadePausado, 350), (colNomeProjetoPausado, 220));
+            var mostrarResponsavel = CompositionRoot.UsuarioAtual?.EhTechLead == true ||
+                string.Equals(CompositionRoot.UsuarioAtual?.TipoUsuario, FluxoAtividade.Historiador, StringComparison.OrdinalIgnoreCase);
+            DesignGrid.ConfigurarEtapaResponsavel(gridPendentes, mostrarResponsavel);
+            DesignGrid.ConfigurarEtapaResponsavel(gridExecutando, mostrarResponsavel);
+            DesignGrid.ConfigurarEtapaResponsavel(gridPausado, mostrarResponsavel);
             ConfigurarBotoesAcao(gridPendentes, colAcaoPendente, repositoryButtonAcaoPendente, ("Executar", StatusAtividade.Executando, "svgimages/arrows/next.svg"));
-            ConfigurarBotoesAcao(gridExecutando, colAcaoExecutando, repositoryButtonAcaoExecutando, ("Pausar", StatusAtividade.Pausado, "svgimages/arrows/pause.svg"), ("Voltar para pendente", StatusAtividade.Pendente, "svgimages/history/undo.svg"), ("Finalizar", StatusAtividade.Finalizado, "svgimages/icon%20builder/actions_check.svg"));
+            ConfigurarBotoesAcao(gridExecutando, colAcaoExecutando, repositoryButtonAcaoExecutando, ("Pausar", StatusAtividade.Pausado, "svgimages/arrows/pause.svg"), ("Voltar para pendente", StatusAtividade.Pendente, "svgimages/history/undo.svg"), ("Avançar etapa / finalizar QA", StatusAtividade.Finalizado, "svgimages/icon%20builder/actions_check.svg"));
             ConfigurarBotoesAcao(gridPausado, colAcaoPausado, repositoryButtonAcaoPausado, ("Executar", StatusAtividade.Executando, "svgimages/arrows/next.svg"), ("Voltar para pendente", StatusAtividade.Pendente, "svgimages/history/undo.svg"));
             _atividadeController = CompositionRoot.CriarAtividadeController();
+            if (CompositionRoot.UsuarioAtual?.EhTechLead == true)
+            {
+                ConfigurarBotoesAcao(gridPendentes, colAcaoPendente, repositoryButtonAcaoPendente);
+                ConfigurarBotoesAcao(gridExecutando, colAcaoExecutando, repositoryButtonAcaoExecutando);
+                ConfigurarBotoesAcao(gridPausado, colAcaoPausado, repositoryButtonAcaoPausado);
+            }
+            ConfigurarPermissoesLinha(gridPendentes, colAcaoPendente, repositoryButtonAcaoPendente);
+            ConfigurarPermissoesLinha(gridExecutando, colAcaoExecutando, repositoryButtonAcaoExecutando);
+            ConfigurarPermissoesLinha(gridPausado, colAcaoPausado, repositoryButtonAcaoPausado);
+            colAtividadeId.MinWidth = 40;
+            colNomeAtividade.MinWidth = 80;
+            colNomeProjeto.MinWidth = 60;
+            gridPendentes.Columns["NomeEtapa"].MinWidth = 90;
+            gridPendentes.Columns["Responsavel"].MinWidth = 90;
             repositoryButtonAcaoPendente.ButtonClick += repositoryButtonAcaoPendente_ButtonClick;
             repositoryButtonAcaoExecutando.ButtonClick += repositoryButtonAcaoExecutando_ButtonClick;
             repositoryButtonAcaoPausado.ButtonClick += repositoryButtonAcaoPausado_ButtonClick;
@@ -103,6 +123,27 @@ namespace JustDoTheWork.Sistema.ControlPanel
         void repositoryButtonAcaoPausado_ButtonClick(object sender, ButtonPressedEventArgs e)
             => ExecutaAcaoGrid(gridPausado, StatusAtividade.Pausado, e.Button);
 
+        void ConfigurarPermissoesLinha(GridView grid, GridColumn coluna, RepositoryItemButtonEdit original)
+        {
+            var somenteLeitura = (RepositoryItemButtonEdit)original.Clone();
+            while (somenteLeitura.Buttons.Count > 1)
+                somenteLeitura.Buttons.RemoveAt(1);
+            grid.GridControl.RepositoryItems.Add(somenteLeitura);
+            somenteLeitura.ButtonClick += (_, e) => ExecutaAcaoGrid(grid, StatusAtividade.Pendente, e.Button);
+            grid.CustomRowCellEdit += (_, e) =>
+            {
+                if (e.Column != coluna || grid.GetRow(e.RowHandle) is not ResultadoPesquisaAtividadeDTO linha)
+                    return;
+                var atividade = VersaoDaLinha(linha);
+                if (!_atividadeController.PodeMovimentar(atividade) && !_atividadeController.PodeAssumir(atividade))
+                    e.RepositoryItem = somenteLeitura;
+            };
+        }
+
+        static AtividadeDTO VersaoDaLinha(ResultadoPesquisaAtividadeDTO atividade)
+            => new() { Id = atividade.Id, Status = atividade.Status, Etapa = atividade.Etapa,
+                UsuarioResponsavelId = atividade.UsuarioResponsavelId, RetornoExclusivo = atividade.RetornoExclusivo };
+
         void ExecutaAcaoGrid(GridView gridView, StatusAtividade statusAtual, EditorButton botao)
         {
             if (!gridView.IsDataRow(gridView.FocusedRowHandle) || gridView.GetFocusedRow() is not ResultadoPesquisaAtividadeDTO atividade || atividade.Id <= 0)
@@ -115,20 +156,29 @@ namespace JustDoTheWork.Sistema.ControlPanel
             }
 
             if (botao.Tag is StatusAtividade novoStatus)
-                ExecutaAcaoAlterarStatus(atividade.Id, statusAtual, novoStatus);
+            {
+                if (novoStatus == StatusAtividade.Finalizado)
+                {
+                    var dados = _atividadeController.BuscarPorId(atividade.Id);
+                    if (dados != null && FluxoAtividadeService.AvancarAtividade(_atividadeController, dados, FindForm()))
+                        AtualizaGrid();
+                    return;
+                }
+                ExecutaAcaoAlterarStatus(atividade, novoStatus);
+            }
         }
 
         void InstanciaFormPorIdSelecionado(int idAtividade)
         {
             IdSelecionadoAtividade = idAtividade;
-            using FormVisualizaAtividadeExecucao formVisualizaAtividadeExecucao = new(this);
-            formVisualizaAtividadeExecucao.ShowDialog(FindForm());
+            using var formVisualizaAtividade = new FormVisualizaAtividade(idAtividade);
+            formVisualizaAtividade.ShowDialog(FindForm());
+            AtualizaGrid();
         }
 
-        void ExecutaAcaoAlterarStatus(int idAtividade, StatusAtividade statusAtual, StatusAtividade novoStatus)
+        void ExecutaAcaoAlterarStatus(ResultadoPesquisaAtividadeDTO atividade, StatusAtividade novoStatus)
         {
-            var acaoExecutada = novoStatus == StatusAtividade.Executando ? "Inclusao" : statusAtual == StatusAtividade.Executando ? "Edicao" : string.Empty;
-            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(idAtividade, (int)statusAtual, (int)novoStatus, acaoExecutada);
+            var mensagemRetornoAlteracaoStatus = _atividadeController.AlterarStatus(VersaoDaLinha(atividade), (int)novoStatus);
 
             if (!string.IsNullOrWhiteSpace(mensagemRetornoAlteracaoStatus))
             {

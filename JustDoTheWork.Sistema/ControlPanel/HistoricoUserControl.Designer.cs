@@ -84,6 +84,7 @@
             // 
             // comboProjetoPesquisa
             // 
+            comboProjetoPesquisa.EnterMoveNextControl = true;
             comboProjetoPesquisa.Location = new Point(83, 8);
             comboProjetoPesquisa.Name = "comboProjetoPesquisa";
             comboProjetoPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -95,6 +96,7 @@
             // 
             // comboStatusPesquisa
             // 
+            comboStatusPesquisa.EnterMoveNextControl = true;
             comboStatusPesquisa.Location = new Point(83, 56);
             comboStatusPesquisa.Name = "comboStatusPesquisa";
             comboStatusPesquisa.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -108,6 +110,7 @@
             // dataCriacaoPesquisa
             //
             dataCriacaoPesquisa.EditValue = null;
+            dataCriacaoPesquisa.EnterMoveNextControl = true;
             dataCriacaoPesquisa.Location = new Point(451, 10);
             dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
             dataCriacaoPesquisa.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

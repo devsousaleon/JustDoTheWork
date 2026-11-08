@@ -45,6 +45,7 @@
             // txtNomeProjeto
             // 
             txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceProjeto, "Nome", true));
+            txtNomeProjeto.EnterMoveNextControl = true;
             txtNomeProjeto.Location = new Point(76, 19);
             txtNomeProjeto.Margin = new Padding(4, 3, 4, 3);
             txtNomeProjeto.Name = "txtNomeProjeto";

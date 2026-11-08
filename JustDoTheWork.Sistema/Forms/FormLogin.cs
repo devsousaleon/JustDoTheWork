@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Import.OpenXml;
 using JustDoTheWork.Controller;
+using JustDoTheWork.DTO;
+using JustDoTheWork.Entity;
 using JustDoTheWork.UI.Core.Geral;
 using System;
 using System.Collections.Generic;
@@ -40,7 +42,7 @@ namespace JustDoTheWork.Sistema.Forms
             }
             catch (Exception)
             {
-                // A preparação é opcional; a entrada no sistema trata a falha da consulta.
+
                 System.Diagnostics.Debug.WriteLine("Não foi possível preparar as consultas do sistema.");
             }
         }
@@ -63,14 +65,10 @@ namespace JustDoTheWork.Sistema.Forms
         }
 
         private void btnFecharSistema_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+            => Application.Exit();
 
         private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+            => this.WindowState = FormWindowState.Minimized;
 
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
@@ -87,7 +85,6 @@ namespace JustDoTheWork.Sistema.Forms
 
             var logon = txtLogon.Text;
             var senha = txtSenha.Text;
-            var acessoAdministrador = senha == "admin@123" && logon == "adm";
             btnEntrar.Enabled = false;
             UseWaitCursor = true;
 
@@ -97,12 +94,6 @@ namespace JustDoTheWork.Sistema.Forms
 
                 if (IsDisposed || Disposing)
                     return;
-
-                if (acessoAdministrador)
-                {
-                    AcessarSistema(resultado?.Id);
-                    return;
-                }
 
                 var senhaValida = resultado != null && await Task.Run(() => VerificarSenha(senha, resultado.Senha));
 
@@ -115,7 +106,22 @@ namespace JustDoTheWork.Sistema.Forms
                     return;
                 }
 
-                AcessarSistema(resultado.Id);
+                if (!FluxoAtividade.TipoUsuarioValido(resultado.TipoUsuario))
+                {
+                    MessageService.Atencao("O usuário precisa ter um dos perfis Historiador, Desenvolvedor, QA Tester ou Tech Lead.");
+                    return;
+                }
+                try
+                {
+                    await Task.Run(CompositionRoot.AtualizarEstruturaAtividades);
+                }
+                catch (Exception)
+                {
+                    MessageService.Erro("Não foi possível atualizar a estrutura de atividades. Verifique a conexão e a permissão de atualização do banco.");
+                    return;
+                }
+                if (!IsDisposed && !Disposing)
+                    AcessarSistema(resultado);
             }
             catch (Exception)
             {
@@ -155,9 +161,10 @@ namespace JustDoTheWork.Sistema.Forms
             }
         }
 
-        void AcessarSistema(int? usuarioId)
+        void AcessarSistema(UsuarioLoginDTO usuario)
         {
-            var formPrincipal = new FormPrincipal(usuarioId);
+            CompositionRoot.IniciarSessao(usuario);
+            var formPrincipal = new FormPrincipal(usuario.Id);
 
             formPrincipal.FormClosed += (_, _) => this.Close();
 

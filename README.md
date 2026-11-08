@@ -51,47 +51,33 @@ O menu lateral abre os cadastros e o relatório de execuções em abas. O painel
 
 <a id="fluxo"></a>
 
-## 🔄 Da análise à finalização
+## 🔄 Progressão e responsáveis
 
-Uma nova atividade começa em **Análise**. Depois de revisar os dados e a descrição, a ação **Avançar** a envia para **Pendente**, disponibilizando-a no painel de execução.
+Uma atividade começa **Pendente** com o **Historiador**. Ao avançar, ele escolhe um **Desenvolvedor**; quando o desenvolvimento termina, o responsável escolhe um **QA Tester**. A conclusão do QA finaliza a atividade e registra sua data de encerramento.
 
 ```mermaid
 flowchart LR
-    A["📋 Análise"] -->|Avançar no cadastro| P["📌 Pendente"]
-    P -->|Executar| E["▶ Em execução"]
-    E -->|Pausar| S["⏸ Pausado"]
-    S -->|Executar novamente| E
-    E -->|Voltar para pendente| P
-    S -->|Voltar para pendente| P
-    E -->|Finalizar| F["✓ Finalizado"]
-    P -. Cancelar no cadastro .-> C["✕ Cancelado"]
-
-    classDef analise fill:#182338,stroke:#8bbfff,color:#ffffff;
-    classDef pendente fill:#302715,stroke:#efc878,color:#ffffff;
-    classDef executando fill:#12382c,stroke:#89e1b6,color:#ffffff;
-    classDef pausado fill:#30223c,stroke:#c1a2ea,color:#ffffff;
-    classDef finalizado fill:#153132,stroke:#84d3d7,color:#ffffff;
-    classDef cancelado fill:#38202b,stroke:#ed9db2,color:#ffffff;
-    class A analise;
-    class P pendente;
-    class E executando;
-    class S pausado;
-    class F finalizado;
-    class C cancelado;
+    H[Historiador: pendente] -->|Escolher Desenvolvedor| D[Desenvolvedor: pendente]
+    D -->|Escolher QA Tester| Q[QA Tester: pendente]
+    Q -->|Finalizar atividade| F[Finalizada]
 ```
 
-| Ação | O que acontece |
+Em cada etapa, o responsável pode executar, pausar e retomar o trabalho. Avançar encerra qualquer execução aberta e entrega a atividade como pendente ao próximo responsável. Status, etapa, responsável e períodos de execução são gravados na mesma transação.
+
+As regras de acesso seguem o backend Web, incluindo as consultas por ID:
+
+| Perfil | Tarefas visíveis |
 | --- | --- |
-| **Executar** | A atividade entra em execução e um registro recebe sua data e hora de início. |
-| **Pausar** | O período de execução aberto recebe a data e hora de fim; a atividade passa para pausada. |
-| **Retomar** | Executar uma atividade pausada inicia outro período, preservando os registros anteriores. |
-| **Voltar para pendente** | A atividade retorna à fila. Quando parte de uma execução em andamento, esse período é encerrado. |
-| **Finalizar** | A execução é encerrada e a atividade recebe o status finalizado e a data de finalização. |
-| **Cancelar** | Na tela de detalhes do cadastro, a ação disponível altera o status para cancelado e registra a data de encerramento da atividade. |
+| **Historiador** | Todas as atividades, de qualquer responsável, etapa e status. Executa e encaminha somente sua própria etapa. |
+| **Tech Lead** | Todas as atividades. Pode editar, cancelar abertas e administrar vínculos, mas não executar, avançar ou concluir etapas. |
+| **Desenvolvedor** | Pendentes de Desenvolvimento compartilhadas com a equipe; em execução ou pausadas, somente as próprias. |
+| **QA Tester** | Pendentes de Testes compartilhadas com a equipe; em execução ou pausadas, somente as próprias. |
 
-O desenho apresenta o fluxo principal e um caminho de cancelamento pelo cadastro. As ações do painel validam as transições entre os estados. A alteração do status e o registro de execução são realizados dentro da mesma transação de banco de dados.
+Iniciar uma pendente de Desenvolvimento/Testes assume a atividade e registra o executor na mesma transação. Voltar a Pendente libera a fila normal. O QA pode **Devolver ao desenvolvedor**; essa correção fica reservada ao desenvolvedor anterior, mesmo ao pausar ou voltar a Pendente, até avançar novamente.
 
-**Exemplo:** você executa uma atividade pela manhã, pausa para uma reunião e retoma depois. O histórico preserva os dois períodos de execução, permitindo consultar seus horários separadamente.
+Desenvolvedores e testers consultam suas execuções mesmo depois que a atividade muda de etapa. Períodos antigos sem autoria continuam identificados como **Autoria não registrada** e só aparecem a esses perfis enquanto a atividade estiver atribuída ao usuário. Historiador e Tech Lead consultam todos os períodos, gerenciam modelos e imprimem. O menu dos especialistas contém Tarefas e Minhas execuções. Veja [as regras de negócio e a validação](docs/REGRAS_NEGOCIO.md).
+
+O login exige um usuário cadastrado com senha BCrypt e um dos quatro perfis. Não há acesso por credenciais fixas sem validação no banco.
 
 <a id="versao-150"></a>
 
@@ -111,14 +97,14 @@ O desenho apresenta o fluxo principal e um caminho de cancelamento pelo cadastro
 1. **Prepare e configure o banco.** Informe o provedor e os dados de conexão na primeira abertura. Salve e reinicie o aplicativo.
 2. **Entre no sistema.** Use um usuário do banco com senha no formato BCrypt; consulte as orientações de primeiro acesso abaixo.
 3. **Crie sua primeira atividade.** Acesse **Cadastro → Atividades → Incluir**, selecione um projeto ou crie um pelo botão de adicionar projeto e preencha a descrição.
-4. **Revise e avance.** Abra a atividade pela ação da grid e use **Avançar** para enviá-la ao quadro de pendentes.
+4. **Revise e avance.** Como Historiador, abra a atividade pela lupa e use **Avançar etapa** para escolher um Desenvolvedor. O Desenvolvedor encaminha ao QA Tester, que finaliza a atividade.
 5. **Execute o trabalho.** Na aba **Execução de Tarefas**, use os ícones na linha da atividade; passe o mouse para consultar a ação de cada botão. Pendentes podem executar; atividades em execução podem pausar, voltar para pendente ou finalizar; pausadas podem executar ou voltar para pendente. A lupa abre os detalhes e o histórico da atividade.
 6. **Consulte os registros.** Acesse **Relatório → Relatório de Execuções**, informe os filtros e pesquise os períodos registrados.
 7. **Personalize os cadastros.** Em **Cadastro**, organize os usuários e os modelos de relatório que serão utilizados.
 
 ### Modelos de relatório nesta versão
 
-O botão **Imprimir** da tela de histórico busca um modelo ativo do tipo de histórico de execução e o abre no editor de texto. O conteúdo pode ser revisado nesse editor. A montagem automática do relatório com as linhas pesquisadas ainda precisa ser implementada.
+O botão **Imprimir** da tela de histórico gera o documento com os períodos pesquisados e os campos de objeto preenchidos. Exige um modelo ativo de Histórico Execução com conteúdo; quando há mais de um, solicita a seleção. Historiador e Tech Lead podem imprimir entre 1 e 100 períodos por relatório.
 
 <a id="executar"></a>
 
@@ -155,16 +141,11 @@ TipoUsuario ─── Usuario
 TipoModelo ──── ModeloRelatorio
 ```
 
-O arquivo [justdothework_sql.sql](justdothework_sql.sql) reúne comandos históricos dos dois provedores e precisa de revisão antes de ser usado para preparar a **1.5.0**. A aplicação espera o schema existente; atualmente não há migrations ou criação automática do banco na inicialização.
+O arquivo [justdothework_sql.sql](justdothework_sql.sql) contém as seções de criação para SQL Server e PostgreSQL. Crie o banco e execute somente a seção do provedor escolhido. Os quatro tipos de usuário são cadastrados sem assumir seus IDs no código. Descrições e modelos usam documentos Open XML em colunas binárias.
 
-Ao preparar esse script:
+Para bancos existentes, a primeira autenticação válida aplica, em transação, os scripts incorporados de atualização do fluxo. Eles adicionam etapa, responsável, chave estrangeira e índice por responsável/status. O usuário de conexão precisa poder atualizar a estrutura nessa primeira execução. Também é possível executar o script do provedor manualmente, dentro de uma transação, antes de iniciar o aplicativo.
 
-- Execute apenas os comandos do provedor escolhido e confirme o banco de destino.
-- Revise as chaves estrangeiras e os `INSERT`s, informando as colunas explicitamente.
-- Utilize tipos binários para `Atividade.Descricao` e `ModeloRelatorio.Texto`: `VARBINARY(MAX)` no SQL Server ou `BYTEA` no PostgreSQL. Esses campos armazenam documentos Open XML.
-- Para PostgreSQL, inclua também `usuario` e `tipousuario`, seguindo os mappings atuais.
-- Cadastre os quatro tipos de usuário: **Historiador**, **Desenvolvedor**, **QA Tester** e **Tech Lead**. O cadastro de usuários consulta os respectivos IDs no banco.
-- Prepare o tipo de modelo **Histórico Execução** com **ID 1**, pois a consulta do modelo ativo de histórico utiliza esse ID na versão atual.
+As atividades antigas em Análise passam para Pendente; as já finalizadas recebem a etapa Finalizada. Nenhum responsável é escolhido automaticamente para registros antigos. O Tech Lead consulta as atividades sem vínculo e usa **Vincular responsável** nos detalhes para destiná-las ao profissional da etapa.
 
 ### 3. Restaure os pacotes e inicie
 
@@ -189,18 +170,9 @@ A configuração salva utiliza a proteção `DataProtectionConfigurationProvider
 
 ### 5. Primeiro acesso e usuários
 
-Após acessar a interface, abra **Cadastro → Usuários → Incluir** para criar um usuário com nome, logon, senha e tipo. Cadastros e trocas de senha feitos pela tela geram o hash BCrypt automaticamente.
+Prepare no banco o primeiro usuário Tech Lead com hash BCrypt, utilizando o ID consultado em TipoUsuario. Depois de entrar com esse usuário, abra **Cadastro → Usuários → Incluir** para cadastrar Historiadores, Desenvolvedores e QA Testers. Cadastros e trocas de senha feitos pela tela geram o hash automaticamente. O tipo do usuário autenticado determina suas permissões e as atividades que pode consultar.
 
-<details>
-<summary><strong>Acesso de demonstração presente na 1.5.0</strong></summary>
-
-A implementação atual de [FormLogin](JustDoTheWork.Sistema/Forms/FormLogin.cs) contém um atalho de desenvolvimento com logon `adm` e senha `admin@123`. Esse trecho abre a interface e continua a consulta do usuário no banco, podendo exibir uma mensagem de credenciais inválidas quando o registro não existe.
-
-Revise esse atalho antes de utilizar a aplicação em um ambiente real. O fluxo de login dos usuários cadastrados consulta o logon e verifica o hash BCrypt armazenado.
-
-</details>
-
-Os tipos de usuário representam a classificação do cadastro. A versão atual ainda não aplica permissões diferentes por tipo. Usuários antigos com senha em texto precisam ter a senha atualizada pela tela de cadastro para utilizar a verificação BCrypt.
+Os perfis determinam o acesso às consultas e operações. Usuários antigos com senha em texto precisam ter a senha atualizada pela tela de cadastro para utilizar a verificação BCrypt. Os hashes não são enviados aos formulários de edição; deixar a senha em branco preserva o hash no banco.
 
 <a id="arquitetura"></a>
 

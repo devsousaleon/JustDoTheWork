@@ -1,8 +1,7 @@
 namespace JustDoTheWork.DTO
 {
-    public class UsuarioLoginDTO
+    public class UsuarioLoginDTO : UsuarioSessaoDTO
     {
-        public int Id { get; set; }
         public string Senha { get; set; } = string.Empty;
     }
 }

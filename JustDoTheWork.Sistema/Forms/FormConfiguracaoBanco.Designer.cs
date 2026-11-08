@@ -117,6 +117,7 @@
             // txtSenhaBanco
             // 
             txtSenhaBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Senha", true));
+            txtSenhaBanco.EnterMoveNextControl = true;
             txtSenhaBanco.Location = new Point(388, 120);
             txtSenhaBanco.Margin = new Padding(10);
             txtSenhaBanco.Name = "txtSenhaBanco";
@@ -140,6 +141,7 @@
             // txtUsuarioBanco
             // 
             txtUsuarioBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Usuario", true));
+            txtUsuarioBanco.EnterMoveNextControl = true;
             txtUsuarioBanco.Location = new Point(388, 72);
             txtUsuarioBanco.Margin = new Padding(10);
             txtUsuarioBanco.Name = "txtUsuarioBanco";
@@ -158,6 +160,7 @@
             // txtBanco
             // 
             txtBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Banco", true));
+            txtBanco.EnterMoveNextControl = true;
             txtBanco.Location = new Point(72, 120);
             txtBanco.Margin = new Padding(10);
             txtBanco.Name = "txtBanco";
@@ -176,6 +179,7 @@
             // txtServidor
             // 
             txtServidor.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Servidor", true));
+            txtServidor.EnterMoveNextControl = true;
             txtServidor.Location = new Point(72, 72);
             txtServidor.Margin = new Padding(10);
             txtServidor.Name = "txtServidor";
@@ -195,6 +199,7 @@
             // 
             comboTipoBanco.DataBindings.Add(new Binding("EditValue", bindingSourceBanco, "Tipo", true));
             comboTipoBanco.EditValue = "Selecione um banco";
+            comboTipoBanco.EnterMoveNextControl = true;
             comboTipoBanco.Location = new Point(72, 31);
             comboTipoBanco.Name = "comboTipoBanco";
             comboTipoBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });

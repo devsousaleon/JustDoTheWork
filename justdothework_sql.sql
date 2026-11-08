@@ -1,133 +1,127 @@
-/* POSTGRES */
+/* POSTGRESQL — execute somente esta seção no banco justdothework.
+   A criação do banco deve ser feita antes, com CREATE DATABASE justdothework.
+   Para atualizar uma instalação existente, o aplicativo aplica os scripts
+   JustDoTheWork.Infrastructure/Scripts/AtualizarFluxo*.sql após o login. */
 
-CREATE DATABASE justdothework;
+CREATE TABLE tipousuario (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL
+);
+INSERT INTO tipousuario (tipo) VALUES ('Historiador'), ('Desenvolvedor'), ('QA Tester'), ('Tech Lead');
 
-CREATE TABLE atividade(
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+    logon VARCHAR(30) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    tipousuarioid INT NOT NULL REFERENCES tipousuario(id)
+);
+CREATE INDEX ix_usuario_logon ON usuario(logon);
 
-	id SERIAL PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL, 
-	descricao TEXT,
-	status INT NOT NULL,
-	projetoId INT, 
-	datacriacao TIMESTAMP NOT NULL,
-	datafinalizacao TIMESTAMP NULL
+CREATE TABLE projeto (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+CREATE TABLE atividade (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    descricao BYTEA,
+    status INT NOT NULL DEFAULT 2,
+    projetoid INT NULL REFERENCES projeto(id),
+    datacriacao TIMESTAMP NOT NULL,
+    datafinalizacao TIMESTAMP NULL,
+    etapa INT NOT NULL DEFAULT 1,
+    usuarioresponsavelid INT NULL,
+    ultimodesenvolvedorid INT NULL REFERENCES usuario(id),
+    retornoexclusivo BOOLEAN NOT NULL DEFAULT FALSE,
+    CONSTRAINT fk_usuarioresponsavel_atividade FOREIGN KEY (usuarioresponsavelid) REFERENCES usuario(id)
+);
+CREATE INDEX ix_atividade_usuarioresponsavelid_status ON atividade(usuarioresponsavelid, status);
+CREATE INDEX ix_atividade_projetoid ON atividade(projetoid);
+CREATE INDEX ix_atividade_status ON atividade(status);
+CREATE TABLE execucao (
+    id SERIAL PRIMARY KEY,
+    datainicio TIMESTAMP NOT NULL,
+    datafim TIMESTAMP NULL,
+    atividadeid INT NOT NULL REFERENCES atividade(id),
+    usuarioid INT NULL REFERENCES usuario(id),
+    etapa INT NULL
+);
+CREATE INDEX ix_execucao_atividadeid ON execucao(atividadeid);
+CREATE INDEX ix_execucao_atividade_etapa_datafim ON execucao(atividadeid, etapa, datafim);
+CREATE TABLE tipomodelo (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(50) NOT NULL
+);
+INSERT INTO tipomodelo (descricao) VALUES ('Histórico Execução');
+CREATE TABLE modelorelatorio (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(50) NOT NULL,
+    tipomodeloid INT NOT NULL REFERENCES tipomodelo(id),
+    texto BYTEA,
+    ativo BOOLEAN NOT NULL
 );
 
-CREATE TABLE Execucao(
+/* SQL SERVER — execute somente esta seção no banco JustDoTheWork.
+   A criação do banco deve ser feita antes, com CREATE DATABASE JustDoTheWork.
+   As senhas de usuários devem conter hash BCrypt. Cadastre o primeiro Tech Lead
+   com o ID do tipo consultado no banco, sem assumir IDs fixos. */
 
-	id SERIAL PRIMARY KEY,
-	datainicio TIMESTAMP NOT NULL,
-	datafim TIMESTAMP NULL,
-	atividadeid INT NOT NULL
-
+CREATE TABLE TipoUsuario (
+    Id INT IDENTITY PRIMARY KEY,
+    Tipo VARCHAR(50) NOT NULL
 );
-
-CREATE TABLE projeto(
-
-	id SERIAL PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL
+INSERT INTO TipoUsuario (Tipo) VALUES ('Historiador'), ('Desenvolvedor'), ('QA Tester'), ('Tech Lead');
+CREATE TABLE Usuario (
+    Id INT IDENTITY PRIMARY KEY,
+    Nome VARCHAR(30) NOT NULL,
+    Logon VARCHAR(30) NOT NULL,
+    Senha VARCHAR(100) NOT NULL,
+    TipoUsuarioId INT NOT NULL REFERENCES TipoUsuario(Id)
 );
-
-
-ALTER TABLE atividade
-ADD CONSTRAINT fk_projeto_atividade FOREIGN KEY(projetoid) REFERENCES projetoid)
-
-ALTER TABLE execucao
-ADD CONSTRAINT fk_atividade_execucao FOREIGN KEY(atividadeid) REFERENCES atividade(id)
-
-CREATE TABLE modelorelatorio(
-
-	id SERIAL PRIMARY KEY,
-	descricao VARCHAR(50) NOT NULL,
-	tipomodeloid INT NOT NULL,
-	texto TEXT,
-	ativo BOOLEAN NOT NULL
+CREATE INDEX IX_Usuario_Logon ON Usuario(Logon);
+CREATE TABLE Projeto (
+    Id INT IDENTITY PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
 );
-
-CREATE TABLE tipomodelo(
-
-	id SERIAL PRIMARY KEY,
-	descricao VARCHAR(50) NOT NULL
+CREATE TABLE Atividade (
+    Id INT IDENTITY PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Descricao VARBINARY(MAX),
+    Status INT NOT NULL DEFAULT 2,
+    ProjetoId INT NULL REFERENCES Projeto(Id),
+    DataCriacao DATETIME NOT NULL,
+    DataFinalizacao DATETIME NULL,
+    Etapa INT NOT NULL CONSTRAINT DF_Atividade_Etapa DEFAULT 1,
+    UsuarioResponsavelId INT NULL,
+    UltimoDesenvolvedorId INT NULL,
+    RetornoExclusivo BIT NOT NULL CONSTRAINT DF_Atividade_RetornoExclusivo DEFAULT 0,
+    CONSTRAINT FK_Atividade_UltimoDesenvolvedor FOREIGN KEY (UltimoDesenvolvedorId) REFERENCES Usuario(Id),
+    CONSTRAINT FK_UsuarioResponsavel_Atividade FOREIGN KEY (UsuarioResponsavelId) REFERENCES Usuario(Id)
 );
-
-ALTER TABLE modelorelatorio
-ADD CONSTRAINT fk_tipoModelo_modelorelatorio FOREIGN KEY(tipomodeloid) REFERENCES tipomodelo(id)
-
-INSERT INTO tipomodelo VALUES ('Histórico Execução')
-
-/* SQL SERVER */
-
-CREATE DATABASE JustDoTheWork;
-
-CREATE TABLE Atividade(
-
-	Id INT IDENTITY PRIMARY KEY,
-	Nome VARCHAR(50) NOT NULL, 
-	Descricao VARCHAR(MAX),
-	Status INT NOT NULL,
-	ProjetoId INT, 
-	DataCriacao DATETIME NOT NULL,
-	DataFinalizacao DATETIME NULL
+CREATE INDEX IX_Atividade_UsuarioResponsavelId_Status ON Atividade(UsuarioResponsavelId, Status);
+CREATE INDEX IX_Atividade_ProjetoId ON Atividade(ProjetoId);
+CREATE INDEX IX_Atividade_Status ON Atividade(Status);
+CREATE TABLE Execucao (
+    Id INT IDENTITY PRIMARY KEY,
+    DataInicio DATETIME NOT NULL,
+    DataFim DATETIME NULL,
+    AtividadeId INT NOT NULL REFERENCES Atividade(Id),
+    UsuarioId INT NULL,
+    Etapa INT NULL,
+    CONSTRAINT FK_Execucao_Usuario FOREIGN KEY (UsuarioId) REFERENCES Usuario(Id)
 );
-
-CREATE TABLE Execucao(
-
-	Id INT IDENTITY PRIMARY KEY,
-	DataInicio DATETIME NOT NULL,
-	DataFim DATETIME NULL,
-	AtividadeId INT NOT NULL
-
+CREATE INDEX IX_Execucao_AtividadeId ON Execucao(AtividadeId);
+CREATE INDEX IX_Execucao_Atividade_Etapa_DataFim ON Execucao(AtividadeId, Etapa, DataFim) INCLUDE (UsuarioId);
+CREATE TABLE TipoModelo (
+    Id INT IDENTITY PRIMARY KEY,
+    Descricao VARCHAR(50) NOT NULL
 );
-
-CREATE TABLE Projeto(
-
-	Id INT IDENTITY PRIMARY KEY,
-	Nome VARCHAR(50) NOT NULL
+INSERT INTO TipoModelo (Descricao) VALUES ('Histórico Execução');
+CREATE TABLE ModeloRelatorio (
+    Id INT IDENTITY PRIMARY KEY,
+    Descricao VARCHAR(50) NOT NULL,
+    TipoModeloId INT NOT NULL REFERENCES TipoModelo(Id),
+    Texto VARBINARY(MAX),
+    Ativo BIT NOT NULL
 );
-
-
-ALTER TABLE Atividade
-ADD CONSTRAINT FK_Projeto_Atividade FOREIGN KEY(ProjetoId) REFERENCES Projeto(Id)
-
-ALTER TABLE Execucao
-ADD CONSTRAINT FK_Atividade_Execucao FOREIGN KEY(AtividadeId) REFERENCES Atividade(Id)
-
-
-CREATE TABLE ModeloRelatorio(
-
-	Id INT IDENTITY PRIMARY KEY,
-	Descricao VARCHAR(50) NOT NULL,
-	TipoModeloId INT NOT NULL,
-	Texto VARBINARY(MAX),
-	Ativo BIT NOT NULL
-);
-
-CREATE TABLE TipoModelo(
-
-	Id INT IDENTITY PRIMARY KEY,
-	Descricao VARCHAR(50) NOT NULL
-
-);
-
-ALTER TABLE ModeloRelatorio
-ADD CONSTRAINT FK_TipoModelo_ModeloRelatorio FOREIGN KEY(TipoModeloId) REFERENCES TipoModelo(Id)
-
-INSERT INTO TipoModelo VALUES ('Histórico Execução')
-
-CREATE TABLE Usuario(
-	
-	Id INT IDENTITY PRIMARY KEY,
-	Nome VARCHAR(30) NOT NULL,
-	Logon VARCHAR(30) NOT NULL,
-	Senha VARCHAR(100) NOT NULL,
-	TipoUsuarioId INT NOT NULL
-);
-
-CREATE TABLE TipoUsuario(
-	
-	Id INT IDENTITY PRIMARY KEY,
-	Tipo VARCHAR(50) NOT NULL
-);
-
-ALTER TABLE Usuario
-ADD CONSTRAINT FK_TipoUsuario_Usuario FOREIGN KEY(TipoUsuarioId) REFERENCES TipoUsuario(Id)

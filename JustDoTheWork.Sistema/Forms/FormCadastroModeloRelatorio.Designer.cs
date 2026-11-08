@@ -143,6 +143,7 @@
             // checkAtivo
             // 
             checkAtivo.EditValue = true;
+            checkAtivo.EnterMoveNextControl = true;
             checkAtivo.Location = new Point(442, 41);
             checkAtivo.Name = "checkAtivo";
             checkAtivo.Properties.Appearance.Font = new Font("Tahoma", 9.75F);
@@ -166,6 +167,7 @@
             // 
             // comboTipoModelo
             // 
+            comboTipoModelo.EnterMoveNextControl = true;
             comboTipoModelo.Location = new Point(123, 87);
             comboTipoModelo.Name = "comboTipoModelo";
             comboTipoModelo.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -178,6 +180,7 @@
             // 
             // txtDescricaoModelo
             // 
+            txtDescricaoModelo.EnterMoveNextControl = true;
             txtDescricaoModelo.Location = new Point(122, 37);
             txtDescricaoModelo.Name = "txtDescricaoModelo";
             txtDescricaoModelo.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

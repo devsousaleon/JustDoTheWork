@@ -206,6 +206,7 @@
             // 
             txtNomeProjeto.DataBindings.Add(new Binding("EditValue", bindingSourceDadosAtividadeExecucao, "NomeProjeto", true));
             txtNomeProjeto.Enabled = false;
+            txtNomeProjeto.EnterMoveNextControl = true;
             txtNomeProjeto.Location = new Point(105, 81);
             txtNomeProjeto.Name = "txtNomeProjeto";
             txtNomeProjeto.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -234,6 +235,7 @@
             dataCriacaoAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceDadosAtividadeExecucao, "DataCriacaoAtividade", true));
             dataCriacaoAtividade.EditValue = null;
             dataCriacaoAtividade.Enabled = false;
+            dataCriacaoAtividade.EnterMoveNextControl = true;
             dataCriacaoAtividade.Location = new Point(583, 40);
             dataCriacaoAtividade.Name = "dataCriacaoAtividade";
             dataCriacaoAtividade.Properties.Appearance.Font = new Font("Courier New", 12F);
@@ -268,6 +270,7 @@
             // 
             txtNomeAtividade.DataBindings.Add(new Binding("EditValue", bindingSourceDadosAtividadeExecucao, "NomeAtividade", true));
             txtNomeAtividade.Enabled = false;
+            txtNomeAtividade.EnterMoveNextControl = true;
             txtNomeAtividade.Location = new Point(105, 40);
             txtNomeAtividade.Name = "txtNomeAtividade";
             txtNomeAtividade.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

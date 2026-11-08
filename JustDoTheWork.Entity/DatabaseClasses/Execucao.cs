@@ -5,5 +5,7 @@
         public DateTime DataInicio { get; set; } = DateTime.Now;
         public DateTime? DataFim { get; set; }
         public int AtividadeId { get; set; }
+        public int? UsuarioId { get; set; }
+        public EtapaAtividade? Etapa { get; set; }
     }
 }

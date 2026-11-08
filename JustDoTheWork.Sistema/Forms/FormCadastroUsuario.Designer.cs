@@ -103,6 +103,7 @@ namespace JustDoTheWork.Sistema.Forms
             // txtNomeUsuario
             //
             txtNomeUsuario.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Nome", true, DataSourceUpdateMode.OnPropertyChanged));
+            txtNomeUsuario.EnterMoveNextControl = true;
             txtNomeUsuario.Location = new Point(145, 37);
             txtNomeUsuario.Name = "txtNomeUsuario";
             txtNomeUsuario.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -127,6 +128,7 @@ namespace JustDoTheWork.Sistema.Forms
             // txtLogon
             //
             txtLogon.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Logon", true, DataSourceUpdateMode.OnPropertyChanged));
+            txtLogon.EnterMoveNextControl = true;
             txtLogon.Location = new Point(145, 87);
             txtLogon.Name = "txtLogon";
             txtLogon.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -151,6 +153,7 @@ namespace JustDoTheWork.Sistema.Forms
             // txtSenha
             //
             txtSenha.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Senha", true, DataSourceUpdateMode.OnPropertyChanged));
+            txtSenha.EnterMoveNextControl = true;
             txtSenha.Location = new Point(145, 137);
             txtSenha.Name = "txtSenha";
             txtSenha.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -174,6 +177,7 @@ namespace JustDoTheWork.Sistema.Forms
             //
             // comboTipoUsuario
             //
+            comboTipoUsuario.EnterMoveNextControl = true;
             comboTipoUsuario.Location = new Point(145, 187);
             comboTipoUsuario.Name = "comboTipoUsuario";
             comboTipoUsuario.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);

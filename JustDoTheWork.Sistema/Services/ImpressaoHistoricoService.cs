@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using System.Globalization;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
@@ -18,6 +18,7 @@ public static class ImpressaoHistoricoService
 
         using var modelo = new RichEditDocumentServer();
         modelo.LoadDocument(dados.Modelo.Texto, DocumentFormat.OpenXml);
+
         using var fonte = new DataTable();
         var dataHoraImpressao = DateTime.Now;
 
@@ -35,10 +36,9 @@ public static class ImpressaoHistoricoService
             using var fonteRegistro = fonte.Clone();
             fonteRegistro.Rows.Add(linha.ItemArray);
 
-            // Conteúdos armazenados em OpenXML viram texto, nunca a representação de um byte[].
-            // A própria referência de conteúdo fica vazia nesta avaliação para evitar recursão.
             linha["Atividade.Descricao"] = ExtraiTextoPreenchido(registro.Atividade.Descricao, fonteRegistro);
             fonteRegistro.Rows[0]["Atividade.Descricao"] = linha["Atividade.Descricao"];
+
             linha["ModeloRelatorio.Texto"] = ExtraiTextoPreenchido(dados.Modelo.Texto, fonteRegistro);
             fonte.Rows.Add(linha);
         }
@@ -63,10 +63,15 @@ public static class ImpressaoHistoricoService
             ["Atividade.DataCriacao"] = Formata(registro.Atividade.DataCriacao),
             ["Atividade.DataFinalizacao"] = Formata(registro.Atividade.DataFinalizacao),
             ["Atividade.ProjetoId"] = Formata(registro.Atividade.ProjetoId),
+            ["Atividade.Responsavel"] = registro.Atividade.Responsavel,
+            ["Atividade.Etapa"] = FluxoAtividade.NomeEtapa(registro.Atividade.Etapa),
             ["Execucao.Id"] = Formata(registro.Execucao.Id),
             ["Execucao.DataInicio"] = Formata(registro.Execucao.DataInicio),
             ["Execucao.DataFim"] = Formata(registro.Execucao.DataFim),
             ["Execucao.AtividadeId"] = Formata(registro.Execucao.AtividadeId),
+            ["Execucao.UsuarioId"] = Formata(registro.Execucao.UsuarioId),
+            ["Execucao.Usuario"] = registro.Execucao.Usuario,
+            ["Execucao.Etapa"] = registro.Execucao.Etapa.HasValue ? FluxoAtividade.NomeEtapa(registro.Execucao.Etapa.Value) : string.Empty,
             ["Projeto.Id"] = Formata(registro.Projeto.Id),
             ["Projeto.Nome"] = registro.Projeto.Nome ?? string.Empty,
             ["ModeloRelatorio.Id"] = Formata(dados.Modelo.Id),

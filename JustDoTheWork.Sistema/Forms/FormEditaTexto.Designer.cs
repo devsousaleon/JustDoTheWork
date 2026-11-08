@@ -751,6 +751,7 @@
             // comboCampoAtividade
             //
             comboCampoAtividade.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoAtividade.EnterMoveNextControl = true;
             comboCampoAtividade.Location = new Point(15, 106);
             comboCampoAtividade.Name = "comboCampoAtividade";
             comboCampoAtividade.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -770,6 +771,7 @@
             // comboCampoExecucao
             //
             comboCampoExecucao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoExecucao.EnterMoveNextControl = true;
             comboCampoExecucao.Location = new Point(15, 166);
             comboCampoExecucao.Name = "comboCampoExecucao";
             comboCampoExecucao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -789,6 +791,7 @@
             // comboCampoProjeto
             //
             comboCampoProjeto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoProjeto.EnterMoveNextControl = true;
             comboCampoProjeto.Location = new Point(15, 226);
             comboCampoProjeto.Name = "comboCampoProjeto";
             comboCampoProjeto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -808,6 +811,7 @@
             // comboCampoModeloRelatorio
             //
             comboCampoModeloRelatorio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoModeloRelatorio.EnterMoveNextControl = true;
             comboCampoModeloRelatorio.Location = new Point(15, 286);
             comboCampoModeloRelatorio.Name = "comboCampoModeloRelatorio";
             comboCampoModeloRelatorio.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -827,6 +831,7 @@
             // comboCampoTipoModelo
             //
             comboCampoTipoModelo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoTipoModelo.EnterMoveNextControl = true;
             comboCampoTipoModelo.Location = new Point(15, 346);
             comboCampoTipoModelo.Name = "comboCampoTipoModelo";
             comboCampoTipoModelo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -846,6 +851,7 @@
             // comboCampoUsuario
             //
             comboCampoUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoUsuario.EnterMoveNextControl = true;
             comboCampoUsuario.Location = new Point(15, 406);
             comboCampoUsuario.Name = "comboCampoUsuario";
             comboCampoUsuario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -865,6 +871,7 @@
             // comboCampoTipoUsuario
             //
             comboCampoTipoUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoTipoUsuario.EnterMoveNextControl = true;
             comboCampoTipoUsuario.Location = new Point(15, 466);
             comboCampoTipoUsuario.Name = "comboCampoTipoUsuario";
             comboCampoTipoUsuario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -884,6 +891,7 @@
             // comboCampoComum
             //
             comboCampoComum.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboCampoComum.EnterMoveNextControl = true;
             comboCampoComum.Location = new Point(15, 526);
             comboCampoComum.Name = "comboCampoComum";
             comboCampoComum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });

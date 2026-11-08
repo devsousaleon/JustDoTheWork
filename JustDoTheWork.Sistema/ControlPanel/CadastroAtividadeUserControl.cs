@@ -17,7 +17,9 @@ namespace JustDoTheWork.Sistema.ControlPanel
         {
             InitializeComponent();
             DesignGrid.Configurar(gridAtividade, (colId, 70), (colAtividade, 520), (colProjeto, 350));
+            DesignGrid.ConfigurarEtapaResponsavel(gridAtividade);
             _atividadeController = CompositionRoot.CriarAtividadeController();
+            btnIncluirAtividade.Visible = _atividadeController.PodeCadastrar;
             _projetoController = CompositionRoot.CriarProjetoController();
             repositoryButtonAcao.ButtonPressed += repositoryButtonAcao_ButtonPressed;
             bindingSourceFiltroPesquisaAtividade.DataSource = new FiltroPesquisaAtividadeDTO();

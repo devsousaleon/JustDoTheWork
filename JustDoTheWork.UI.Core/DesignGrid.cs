@@ -8,6 +8,14 @@ namespace JustDoTheWork.UI.Core
 {
     public static class DesignGrid
     {
+        public static void ConfigurarEtapaResponsavel(GridView grid, bool mostrarResponsavel = true)
+        {
+            var colEtapa = grid.Columns.AddVisible("NomeEtapa", "Etapa");
+            var colResponsavel = grid.Columns.AddVisible("Responsavel", "Responsável");
+            Configurar(grid, (colEtapa, 145), (colResponsavel, 180));
+            colResponsavel.Visible = mostrarResponsavel;
+        }
+
         public static void Configurar(GridView grid, params (GridColumn coluna, int largura)[] colunas)
         {
             grid.OptionsView.ColumnAutoWidth = true;

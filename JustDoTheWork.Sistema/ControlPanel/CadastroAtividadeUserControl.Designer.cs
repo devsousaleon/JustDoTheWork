@@ -158,6 +158,7 @@
             // 
             dataCriacaoPesquisa.DataBindings.Add(new Binding("EditValue", bindingSourceFiltroPesquisaAtividade, "DataCriacao", true));
             dataCriacaoPesquisa.EditValue = null;
+            dataCriacaoPesquisa.EnterMoveNextControl = true;
             dataCriacaoPesquisa.Location = new Point(567, 56);
             dataCriacaoPesquisa.Name = "dataCriacaoPesquisa";
             dataCriacaoPesquisa.Properties.Appearance.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

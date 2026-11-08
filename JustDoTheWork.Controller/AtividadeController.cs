@@ -1,218 +1,126 @@
-﻿using JustDoTheWork.DTO;
+using JustDoTheWork.DTO;
 using JustDoTheWork.Entity;
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
-using JustDoTheWork.Infrastructure.Repository;
 
 namespace JustDoTheWork.Controller
 {
     public class AtividadeController
     {
         private readonly IAtividadeRepository _atividadeRepository;
-        private readonly JustDoTheWorkDbContextFactory _dbContextFactory;
+        private readonly UsuarioSessaoDTO? _usuario;
 
-        public AtividadeController(IAtividadeRepository repository, JustDoTheWorkDbContextFactory dbContextFactory)
+        public AtividadeController(IAtividadeRepository repository, JustDoTheWorkDbContextFactory dbContextFactory, UsuarioSessaoDTO? usuario = null)
         {
             _atividadeRepository = repository;
-            _dbContextFactory = dbContextFactory;
+            _usuario = usuario;
         }
+
+        public bool PodeCadastrar => _usuario != null && (_usuario.EhTechLead || string.Equals(_usuario.TipoUsuario, FluxoAtividade.Historiador, StringComparison.OrdinalIgnoreCase));
+
+        public bool PodeMovimentar(Atividade atividade)
+            => ConsultaAtividade.PodeMovimentar(atividade, _usuario);
+
+        public bool PodeEditar(Atividade atividade) => ConsultaAtividade.PodeEditar(atividade, _usuario);
+        public bool PodeCancelar(Atividade atividade) => ConsultaAtividade.PodeCancelar(atividade, _usuario);
+        public bool PodeAssumir(Atividade atividade) => ConsultaAtividade.PodeAssumir(atividade, _usuario);
+        public bool PodeExcluir(AtividadeDTO atividade)
+            => (_usuario?.EhTechLead == true || (_usuario?.Id == atividade.UsuarioResponsavelId &&
+                string.Equals(_usuario?.TipoUsuario, FluxoAtividade.Historiador, StringComparison.OrdinalIgnoreCase))) &&
+               atividade.Etapa == EtapaAtividade.Historiador && atividade.Status is StatusAtividade.Pendente or StatusAtividade.Analise && !atividade.TemExecucoes;
 
         public string Inclusao(AtividadeDTO atividadeDTO)
         {
-            var mensagem = "";
-
-            if (atividadeDTO == null)
-                return "Dados inválidos para inclusão!";
-
-            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
-                return "É necessário informar o nome da atividade!";
-
-            if (atividadeDTO.ProjetoId == 0)
-                return "É necessário vincular a atividade a um projeto!";
-
+            if (!PodeCadastrar)
+                return "Somente o Historiador ou o Tech Lead pode cadastrar atividades.";
+            var mensagem = ValidarDados(atividadeDTO);
+            if (mensagem != "")
+                return mensagem;
+            if (_usuario?.EhTechLead != true)
+                atividadeDTO.UsuarioResponsavelId = _usuario!.Id;
             var atividade = new Atividade
             {
-                Nome = atividadeDTO.Nome,
+                Nome = atividadeDTO.Nome.Trim(),
                 Descricao = atividadeDTO.Descricao,
-                Status = StatusAtividade.Analise,
-                ProjetoId = atividadeDTO.ProjetoId
+                ProjetoId = atividadeDTO.ProjetoId,
+                UsuarioResponsavelId = atividadeDTO.UsuarioResponsavelId,
+                DataCriacao = RelogioAplicacao.Agora
             };
             mensagem = _atividadeRepository.Inclusao(atividade);
-
+            if (mensagem == "")
+                atividadeDTO.Id = atividade.Id;
             return mensagem;
         }
 
         public IEnumerable<StatusDTO> ObterStatusAtividade()
-        {
-            return Enum
-                .GetValues(typeof(StatusAtividade))
-                .Cast<StatusAtividade>()
-                .Select(s => new StatusDTO
-                {
-                    Id = (int)s,
-                    Status = s.ToString()
-                });
-        }
+            => Enum.GetValues<StatusAtividade>().Select(status => new StatusDTO { Id = (int)status, Status = status.ToString() });
 
-        public string Exclusao(int idExclusao)
-            => _atividadeRepository.ExclusaoPorId(idExclusao);
+        public string Exclusao(AtividadeDTO atividade)
+            => _atividadeRepository.ExclusaoPorId(atividade);
 
         public string Edicao(AtividadeDTO atividadeDTO, int statusAtual)
         {
-            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
-                return "Necessário informar o nome da atividade para salvar!";
-
-            if (atividadeDTO.Descricao == null && atividadeDTO.Status != StatusAtividade.Analise)
-                return "Necessário informar a descrição da atividade!";
-
-            var atividade = new Atividade
-            {
-                Id = atividadeDTO.Id,
-                Nome = atividadeDTO.Nome,
-                Descricao = atividadeDTO.Descricao,
-                Status = (StatusAtividade)statusAtual,
-                DataCriacao = atividadeDTO.DataCriacao,
-                DataFinalizacao = atividadeDTO.DataFinalizacao,
-                ProjetoId = atividadeDTO.ProjetoId
-            };
-
-            return _atividadeRepository.Edicao(atividade);
-
+            var mensagem = ValidarDados(atividadeDTO);
+            if (mensagem != "")
+                return mensagem;
+            return _atividadeRepository.Edicao(atividadeDTO);
         }
 
-        public string AvancarAtividade(AtividadeDTO atividadeDTO)
+        public string AvancarAtividade(AtividadeDTO atividadeDTO, int? usuarioDestinoId = null)
         {
-            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
-                return "Necessário informar o nome da atividade para salvar!";
-
-            if (atividadeDTO.Descricao == null)
-                return "Necessário informar os requisitos para esta atividade!";
-
-            var atividade = new Atividade
-            {
-                Id = atividadeDTO.Id,
-                Nome = atividadeDTO.Nome,
-                Descricao = atividadeDTO.Descricao,
-                Status = StatusAtividade.Pendente,
-                DataCriacao = atividadeDTO.DataCriacao,
-                DataFinalizacao = atividadeDTO.DataFinalizacao,
-                ProjetoId = atividadeDTO.ProjetoId
-            };
-
-            return _atividadeRepository.Edicao(atividade);
+            var mensagem = ValidarDados(atividadeDTO);
+            if (mensagem != "")
+                return mensagem;
+            if (!DocumentoAtividade.TemConteudo(atividadeDTO.Descricao))
+                return "É necessário informar os requisitos da atividade antes de avançar.";
+            return _atividadeRepository.AvancarAtividade(atividadeDTO, usuarioDestinoId);
         }
 
         public string CancelarAtividade(AtividadeDTO atividadeDTO)
+            => _atividadeRepository.CancelarAtividade(atividadeDTO);
+
+        public string DevolverDesenvolvedor(AtividadeDTO atividadeDTO)
         {
-            if (string.IsNullOrWhiteSpace(atividadeDTO.Nome))
-                return "Necessário informar o nome da atividade para salvar!";
-
-            if (atividadeDTO.Descricao == null)
-                return "Necessário informar os requisitos para esta atividade!";
-
-            var atividade = new Atividade
-            {
-                Id = atividadeDTO.Id,
-                Nome = atividadeDTO.Nome,
-                Descricao = atividadeDTO.Descricao,
-                Status = StatusAtividade.Cancelado,
-                DataCriacao = atividadeDTO.DataCriacao,
-                DataFinalizacao = DateTime.Now,
-                ProjetoId = atividadeDTO.ProjetoId
-            };
-
-            return _atividadeRepository.Edicao(atividade);
+            var mensagem = ValidarDados(atividadeDTO);
+            return mensagem == "" ? _atividadeRepository.DevolverDesenvolvedor(atividadeDTO) : mensagem;
         }
 
-        public IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtroPesquisaAtividadeDTO)
-            => _atividadeRepository.Pesquisar(filtroPesquisaAtividadeDTO);
+        public string VincularResponsavel(AtividadeDTO atividade, int usuarioResponsavelId)
+            => _atividadeRepository.VincularResponsavel(atividade, usuarioResponsavelId);
+
+        public IEnumerable<ResultadoPesquisaAtividadeDTO> Pesquisar(FiltroPesquisaAtividadeDTO filtro)
+            => _atividadeRepository.Pesquisar(filtro);
 
         public AtividadeDTO BuscarPorId(int id)
             => _atividadeRepository.BuscarPorId(id);
 
-        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtroPesquisaHistoricoDTO)
-        {
-            var filtro = new FiltroPesquisaHistoricoDTO
-            {
-                ProjetoId = filtroPesquisaHistoricoDTO.ProjetoId,
-                Status = filtroPesquisaHistoricoDTO.Status,
-                DataCriacaoAtividade = filtroPesquisaHistoricoDTO.DataCriacaoAtividade,
-            };
-
-            return _atividadeRepository.PesquisarHistorico(filtro);
-        }
+        public IEnumerable<ResultadoPesquisaHistoricoDTO> PesquisarHistorico(FiltroPesquisaHistoricoDTO filtro)
+            => _atividadeRepository.PesquisarHistorico(filtro);
 
         public IEnumerable<ResultadoPesquisaAtividadeDTO> PesquisarPorStatus(params int[] status)
             => _atividadeRepository.PesquisarPorStatus(status);
 
-        public string AlterarStatus(int idAtividade, int statusAtual, int novoStatus, string tipoExecucao)
+        public string AlterarStatus(AtividadeDTO atividade, int novoStatus)
         {
-            if (!TransicaoPermitida(statusAtual, novoStatus))
-                return "Essa ação não é permitida para esse status.";
-
-            string mensagem = "";
-
-            var execucaoRepository = new ExecucaoRepository();
-            var execucao = new Execucao();
-
-            using var context = _dbContextFactory.CreateDbContext();
-            using var transacao = context.Database.BeginTransaction();
-            
-            mensagem = _atividadeRepository.AlterarStatus(idAtividade, novoStatus, context);
-
-            if (mensagem != "")
-            {
-                transacao.Rollback();
-                return mensagem;
-            }
-
-            if (tipoExecucao == "Edicao")
-            {                
-                execucao = new Execucao { AtividadeId = idAtividade, DataFim = DateTime.Now };
-
-                mensagem = execucaoRepository.FinalizarExecucao(execucao, context);
-
-                if (mensagem != "")
-                {
-                    transacao.Rollback();
-                    return mensagem;
-                }
-            }
-
-            if (tipoExecucao == "Inclusao")
-            {
-                execucao = new Execucao { AtividadeId = idAtividade, DataInicio = DateTime.Now };
-
-                mensagem = execucaoRepository.Inclusao(execucao, context);
-
-                if (mensagem != "")
-                {
-                    transacao.Rollback();
-                    return mensagem;
-                }
-            }
-
-            transacao.Commit();
-            return mensagem;
+            if (!FluxoAtividade.TransicaoPermitida(atividade.Status, (StatusAtividade)novoStatus))
+                return "Essa ação não é permitida. Use Avançar etapa para encaminhar ou finalizar a atividade.";
+            return _atividadeRepository.AlterarStatus(atividade, novoStatus);
         }
 
-        private bool TransicaoPermitida(int transicaoAtual, int transicaoNova)
+        private static string ValidarDados(AtividadeDTO? atividade)
         {
-            switch (transicaoAtual)
-            {
-                case 2: // Pendente
-                    return transicaoNova == 3;
-
-                case 3: // Executando
-                    return transicaoNova == 4 || transicaoNova == 2 || transicaoNova == 6;
-
-                case 4: // Pausado
-                    return transicaoNova == 3 || transicaoNova == 2;
-
-                default:
-                    return false;
-            }
+            if (atividade == null)
+                return "Dados inválidos para a atividade.";
+            if (string.IsNullOrWhiteSpace(atividade.Nome))
+                return "É necessário informar o nome da atividade.";
+            if (atividade.Nome.Length > 50)
+                return "O nome da atividade deve ter até 50 caracteres.";
+            if (atividade.ProjetoId is not > 0)
+                return "É necessário vincular a atividade a um projeto.";
+            if (atividade.Descricao is { Length: > 10 * 1024 * 1024 })
+                return "A descrição excede o limite de 10 MiB.";
+            return "";
         }
     }
 }

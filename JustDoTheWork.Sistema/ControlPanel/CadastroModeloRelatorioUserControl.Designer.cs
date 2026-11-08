@@ -105,6 +105,7 @@
             // 
             // comboTipoModelo
             // 
+            comboTipoModelo.EnterMoveNextControl = true;
             comboTipoModelo.Location = new Point(123, 69);
             comboTipoModelo.Name = "comboTipoModelo";
             comboTipoModelo.Properties.Appearance.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -117,6 +118,7 @@
             // 
             // txtDescricaoModelo
             // 
+            txtDescricaoModelo.EnterMoveNextControl = true;
             txtDescricaoModelo.Location = new Point(107, 10);
             txtDescricaoModelo.Name = "txtDescricaoModelo";
             txtDescricaoModelo.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

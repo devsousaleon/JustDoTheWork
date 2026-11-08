@@ -53,9 +53,9 @@
             gridHistoricoExecucao = new DevExpress.XtraGrid.Views.Grid.GridView();
             colAtividadeId = new DevExpress.XtraGrid.Columns.GridColumn();
             colDataFimExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryDataFimExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
+            repositoryDataFimExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             colDataInicioExecucao = new DevExpress.XtraGrid.Columns.GridColumn();
-            repositoryDataInicioExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit();
+            repositoryDataInicioExecucao = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             panelAcoes = new DevExpress.XtraEditors.PanelControl();
             btnCancelarAtividade = new DevExpress.XtraEditors.SimpleButton();
             btnAvancarAtividade = new DevExpress.XtraEditors.SimpleButton();
@@ -328,13 +328,13 @@
             // colDataFimExecucao
             // 
             colDataFimExecucao.ColumnEdit = repositoryDataFimExecucao;
-            colDataFimExecucao.FieldName = "DataFimExecucao";
+            colDataFimExecucao.Caption = "Fim da execução";
+            colDataFimExecucao.FieldName = nameof(DTO.ExecucaoDTO.DataFim);
             colDataFimExecucao.Name = "colDataFimExecucao";
             colDataFimExecucao.OptionsColumn.AllowEdit = false;
             colDataFimExecucao.OptionsColumn.AllowMove = false;
             colDataFimExecucao.OptionsColumn.AllowSize = false;
             colDataFimExecucao.OptionsColumn.ReadOnly = true;
-            colDataFimExecucao.UnboundDataType = typeof(DateTime);
             colDataFimExecucao.Visible = true;
             colDataFimExecucao.VisibleIndex = 2;
             // 
@@ -347,7 +347,8 @@
             // colDataInicioExecucao
             // 
             colDataInicioExecucao.ColumnEdit = repositoryDataInicioExecucao;
-            colDataInicioExecucao.FieldName = "DataInicioExecucao";
+            colDataInicioExecucao.Caption = "Início da execução";
+            colDataInicioExecucao.FieldName = nameof(DTO.ExecucaoDTO.DataInicio);
             colDataInicioExecucao.Name = "colDataInicioExecucao";
             colDataInicioExecucao.OptionsColumn.AllowEdit = false;
             colDataInicioExecucao.OptionsColumn.AllowMove = false;
@@ -508,8 +509,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAtividadeId;
         private DevExpress.XtraGrid.Columns.GridColumn colDataFimExecucao;
         private DevExpress.XtraGrid.Columns.GridColumn colDataInicioExecucao;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryDataFimExecucao;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateTimeOffsetEdit repositoryDataInicioExecucao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryDataFimExecucao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryDataInicioExecucao;
         private BindingSource bindingSourceAtividade;
         private DevExpress.XtraEditors.SimpleButton btnCancelarAtividade;
     }

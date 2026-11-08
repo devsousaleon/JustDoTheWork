@@ -134,6 +134,7 @@
             // 
             txtSenha.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Senha", true));
             txtSenha.EditValue = "";
+            txtSenha.EnterMoveNextControl = true;
             txtSenha.Location = new Point(232, 258);
             txtSenha.Name = "txtSenha";
             txtSenha.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -175,6 +176,7 @@
             // 
             txtLogon.DataBindings.Add(new Binding("EditValue", bindingSourceUsuario, "Logon", true));
             txtLogon.EditValue = "";
+            txtLogon.EnterMoveNextControl = true;
             txtLogon.Location = new Point(232, 183);
             txtLogon.Name = "txtLogon";
             txtLogon.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);

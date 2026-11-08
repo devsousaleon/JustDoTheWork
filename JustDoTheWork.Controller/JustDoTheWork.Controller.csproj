@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <ProjectReference Include="..\JustDoTheWork.DTO\JustDoTheWork.DTO.csproj" />
     <ProjectReference Include="..\JustDoTheWork.Entity\JustDoTheWork.Entity.csproj" />
     <ProjectReference Include="..\JustDoTheWork.Infrastructure\JustDoTheWork.Infrastructure.csproj" />

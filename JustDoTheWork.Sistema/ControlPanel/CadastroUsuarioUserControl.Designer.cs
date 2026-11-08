@@ -89,6 +89,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             //
             // txtNomeUsuario
             //
+            txtNomeUsuario.EnterMoveNextControl = true;
             txtNomeUsuario.Location = new Point(107, 20);
             txtNomeUsuario.Name = "txtNomeUsuario";
             txtNomeUsuario.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -112,6 +113,7 @@ namespace JustDoTheWork.Sistema.ControlPanel
             //
             // txtLogon
             //
+            txtLogon.EnterMoveNextControl = true;
             txtLogon.Location = new Point(107, 75);
             txtLogon.Name = "txtLogon";
             txtLogon.Properties.Appearance.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

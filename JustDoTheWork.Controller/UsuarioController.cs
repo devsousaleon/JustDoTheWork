@@ -1,17 +1,20 @@
 ﻿using JustDoTheWork.DTO;
 using JustDoTheWork.Entity.DatabaseClasses;
 using JustDoTheWork.Infrastructure.InterfaceRepository;
+using System.Text;
 
 namespace JustDoTheWork.Controller
 {
     public class UsuarioController
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly UsuarioSessaoDTO? _usuario;
         string _mensagem;
 
-        public UsuarioController(IUsuarioRepository repository)
+        public UsuarioController(IUsuarioRepository repository, UsuarioSessaoDTO? usuario = null)
         {
             _usuarioRepository = repository;
+            _usuario = usuario;
         }
 
         public IEnumerable<TipoUsuario> ObterTiposUsuario()
@@ -19,6 +22,9 @@ namespace JustDoTheWork.Controller
 
         public UsuarioLoginDTO? BuscarParaLogin(string logon)
             => _usuarioRepository.BuscarParaLogin(logon);
+
+        public IEnumerable<UsuarioSelecaoDTO> PesquisarPorTipo(string tipoUsuario)
+            => _usuarioRepository.PesquisarPorTipo(tipoUsuario);
 
         public IEnumerable<ResultadoPesquisaUsuarioDTO> Pesquisar(FiltroPesquisaUsuarioDTO filtro)
             => _usuarioRepository.Pesquisar(filtro);
@@ -28,6 +34,8 @@ namespace JustDoTheWork.Controller
 
         public string Inclusao(UsuarioDTO usuarioDTO)
         {
+            if (_usuario?.EhTechLead != true)
+                return "Somente o Tech Lead pode cadastrar usuários.";
             if (string.IsNullOrWhiteSpace(usuarioDTO.Nome))
                 return "Necessário informar o nome do usuário!";
 
@@ -39,12 +47,16 @@ namespace JustDoTheWork.Controller
 
             if (usuarioDTO.TipoUsuarioId == 0)
                 return "Necessário informar o tipo de usuário!";
+            if (usuarioDTO.Nome.Length > 30 || usuarioDTO.Logon.Length > 30)
+                return "Nome e logon devem ter até 30 caracteres.";
+            if (Encoding.UTF8.GetByteCount(usuarioDTO.Senha) > 72)
+                return "A senha excede o limite de 72 bytes.";
 
             var usuario = new Usuario
             {
-                Nome = usuarioDTO.Nome,
-                Logon = usuarioDTO.Logon,
-                Senha = usuarioDTO.Senha,
+                Nome = usuarioDTO.Nome.Trim(),
+                Logon = usuarioDTO.Logon.Trim(),
+                Senha = BCrypt.Net.BCrypt.HashPassword(usuarioDTO.Senha, workFactor: 12),
                 TipoUsuarioId = usuarioDTO.TipoUsuarioId
             };
             _mensagem = _usuarioRepository.Inclusao(usuario);
@@ -54,6 +66,8 @@ namespace JustDoTheWork.Controller
 
         public string Edicao(UsuarioDTO usuarioDTO)
         {
+            if (_usuario?.EhTechLead != true)
+                return "Somente o Tech Lead pode editar usuários.";
             if (string.IsNullOrWhiteSpace(usuarioDTO.Nome))
                 return "Necessário informar o nome do usuário!";
 
@@ -62,13 +76,17 @@ namespace JustDoTheWork.Controller
 
             if (usuarioDTO.TipoUsuarioId == 0)
                 return "Necessário informar o tipo de usuário!";
+            if (usuarioDTO.Nome.Length > 30 || usuarioDTO.Logon.Length > 30)
+                return "Nome e logon devem ter até 30 caracteres.";
+            if (!string.IsNullOrWhiteSpace(usuarioDTO.Senha) && Encoding.UTF8.GetByteCount(usuarioDTO.Senha) > 72)
+                return "A senha excede o limite de 72 bytes.";
 
             var usuario = new Usuario
             {
                 Id = usuarioDTO.Id,
-                Nome = usuarioDTO.Nome,
-                Logon = usuarioDTO.Logon,
-                Senha = usuarioDTO.Senha,
+                Nome = usuarioDTO.Nome.Trim(),
+                Logon = usuarioDTO.Logon.Trim(),
+                Senha = string.IsNullOrWhiteSpace(usuarioDTO.Senha) ? string.Empty : BCrypt.Net.BCrypt.HashPassword(usuarioDTO.Senha, workFactor: 12),
                 TipoUsuarioId = usuarioDTO.TipoUsuarioId
             };
 
@@ -89,7 +107,7 @@ namespace JustDoTheWork.Controller
             {
                 Id = usuario.Id,
                 Logon = usuario.Logon,
-                Senha = usuario.Senha,
+                Senha = string.Empty,
                 Nome = usuario.Nome,
                 TipoUsuarioId = usuario.TipoUsuarioId
             };

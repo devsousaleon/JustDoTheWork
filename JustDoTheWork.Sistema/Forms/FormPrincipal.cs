@@ -4,6 +4,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 using JustDoTheWork.Sistema.ControlPanel;
+using JustDoTheWork.Controller;
+using JustDoTheWork.Entity;
 
 namespace JustDoTheWork.Sistema.Forms
 {
@@ -23,6 +25,14 @@ namespace JustDoTheWork.Sistema.Forms
 
         void FormPrincipal_Load(object sender, EventArgs e)
         {
+            var usuario = CompositionRoot.UsuarioAtual ?? throw new InvalidOperationException("É necessário entrar no sistema com um usuário cadastrado.");
+            Text = $"JustDoTheWork — {usuario.Nome} ({usuario.TipoUsuario})";
+            accordionElementUsuarios.Visible = usuario.EhTechLead;
+            var podeAdministrar = usuario.EhTechLead || string.Equals(usuario.TipoUsuario, FluxoAtividade.Historiador, StringComparison.OrdinalIgnoreCase);
+            accordionElementCadastro.Visible = podeAdministrar;
+            accordionElementAtividades.Visible = podeAdministrar;
+            accordionElementModeloRelatorio.Visible = podeAdministrar;
+            accordionElementRelatorioExecucao.Text = podeAdministrar ? "Relatório de Execuções" : "Minhas execuções";
             CarregaTelaPrincipalExecucao(new VisualizaExecucaoUserControl());
         }
 
@@ -60,6 +70,10 @@ namespace JustDoTheWork.Sistema.Forms
         void AbreNovaJanela_Click(object sender, EventArgs e)
         {
             if (sender is not AccordionControlElement elemento)
+                return;
+            var usuario = CompositionRoot.UsuarioAtual;
+            var podeAdministrar = usuario?.EhTechLead == true || string.Equals(usuario?.TipoUsuario, FluxoAtividade.Historiador, StringComparison.OrdinalIgnoreCase);
+            if ((elemento.Tag is "Atividades" or "ModelosRelatorio" && !podeAdministrar) || (elemento.Tag is "Usuarios" && usuario?.EhTechLead != true))
                 return;
 
             switch (elemento.Tag)

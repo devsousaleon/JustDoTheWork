@@ -13,6 +13,9 @@ namespace JustDoTheWork.Sistema.Forms
         private readonly TipoModeloController _tipoModeloController;
         private readonly ModeloRelatorioController _modeloRelatorioController;
         private readonly CadastroModeloRelatorioUserControl _cadastroModeloRelatorioUserControl;
+        private string _revisao = string.Empty;
+        private byte[] _textoOriginal;
+        private bool _textoEditado;
 
         public FormVisualizaModeloRelatorio(CadastroModeloRelatorioUserControl cadastroModeloRelatorioUserControl)
         {
@@ -33,10 +36,11 @@ namespace JustDoTheWork.Sistema.Forms
             var modeloRelatorioDTO = new ModeloRelatorioDTO
             {
                 Id = _cadastroModeloRelatorioUserControl.IdSelecionado,
+                Revisao = _revisao,
                 Descricao = txtDescricaoModelo.Text,
                 TipoModeloId = (int)comboTipoModelo.EditValue,
                 Ativo = checkAtivo.Checked,
-                Texto = richEditTextoModelo.Document.GetOpenXmlBytes(richEditTextoModelo.Document.Range)
+                Texto = _textoEditado ? richEditTextoModelo.Document.GetOpenXmlBytes(richEditTextoModelo.Document.Range) : _textoOriginal
             };
 
             var mensagemRetornoCadastroModeloRelatorio = _modeloRelatorioController.Edicao(modeloRelatorioDTO);
@@ -56,8 +60,11 @@ namespace JustDoTheWork.Sistema.Forms
         void btnEditarTextoModelo_Click(object sender, EventArgs e)
         {
             FormEditaTexto formEditaTexto = new FormEditaTexto(richEditTextoModelo.RtfText);
-            formEditaTexto.ShowDialog();
-            richEditTextoModelo.RtfText = formEditaTexto.TextoEditado;
+            if (formEditaTexto.ShowDialog(this) == DialogResult.OK)
+            {
+                richEditTextoModelo.RtfText = formEditaTexto.TextoEditado;
+                _textoEditado = true;
+            }
         }
 
         void AtualizaComboBoxTipoModelo()
@@ -69,18 +76,25 @@ namespace JustDoTheWork.Sistema.Forms
 
             if (modeloRelatorioDTO == null)
                 return;
+            _revisao = modeloRelatorioDTO.Revisao;
+            _textoOriginal = modeloRelatorioDTO.Texto;
+            _textoEditado = false;
 
             txtDescricaoModelo.Text = modeloRelatorioDTO.Descricao;
             comboTipoModelo.EditValue = modeloRelatorioDTO.TipoModeloId;
             checkAtivo.Checked = modeloRelatorioDTO.Ativo;
-            richEditTextoModelo.LoadDocument(modeloRelatorioDTO.Texto, DocumentFormat.OpenXml);
+
+            if (modeloRelatorioDTO.Texto is { Length: > 0 })
+                richEditTextoModelo.LoadDocument(modeloRelatorioDTO.Texto, DocumentFormat.OpenXml);
+            else
+                richEditTextoModelo.CreateNewDocument();
         }
 
         void btnExcluirModeloRelatorio_Click(object sender, EventArgs e)
         {
             if (MessageService.Pergunta("Deseja realmente excluir este modelo?") == DialogResult.Yes)
             {
-                var mensagemRetornoExclusaoModeloRelatorio = _modeloRelatorioController.Exclusao(_cadastroModeloRelatorioUserControl.IdSelecionado);
+                var mensagemRetornoExclusaoModeloRelatorio = _modeloRelatorioController.Exclusao(_cadastroModeloRelatorioUserControl.IdSelecionado, _revisao);
 
                 if (!string.IsNullOrWhiteSpace(mensagemRetornoExclusaoModeloRelatorio))
                 {
